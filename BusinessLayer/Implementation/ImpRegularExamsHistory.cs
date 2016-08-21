@@ -54,8 +54,10 @@ namespace BusinessLayer.Implementation
         private void SetRegularLabsListAUX(string discriminator,int clinicalReg) { 
                 
             StringBuilder stringJson = new StringBuilder();
-            using (SqlConnection dbConnection = new SqlConnection("Data Source= WANJIKU\\NEWSQLEXPRESS; Initial Catalog =HPCareDBContext; Integrated Security=SSPI"))
-            {
+            using (SqlConnection dbConnection = new SqlConnection("Data Source=SQL5025.myASP.NET;Initial Catalog=DB_A0ADFA_HPCareDBContext;User Id=DB_A0ADFA_HPCareDBContext_admin;Password=hpcare2016;"))
+            
+                // using (SqlConnection dbConnection = new SqlConnection("Data Source= WANJIKU\\NEWSQLEXPRESS; Initial Catalog =HPCareDBContext; Integrated Security=SSPI"))
+                {
                 DbCommand dbCommand = dbConnection.CreateCommand();
                 dbCommand.CommandType = CommandType.Text;
                 string query = " SELECT  MCDTs.MCDT_ID, MCDTs.MCDT_date, MCDTs.LabExam_data_in, MCDTs.LabExam_date_out,"+
