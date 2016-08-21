@@ -1,16 +1,41 @@
 ﻿var staffDetails = [];
 app.controller("StaffInformationsController", function ($scope, StaffInformationFactory, alert) {
- 
+
     $scope.StaffFullInformation = null;
     $scope.Staff = null;
-    
+    $scope.Genders = null;
+    $scope.Marital = null;
+    $scope.Professional = null;
+    $scope.gender;
+
     $scope.Init = function () {
 
         var staffInformation = StaffInformationFactory.GetStaffFullInformations();
         staffInformation.then(function (dt) {
             $scope.StaffFullInformation = dt.data;
-            
+            alert.warning(JSON.stringify($scope.StaffFullInformation));
             $scope.InitInformation();
+        }, function (error) {
+            alert.warning("Error in getting the information !");
+        });
+
+        var genders = StaffInformationFactory.GetGender();
+        genders.then(function (dt) {
+            $scope.Genders = dt.data;
+        }, function (error) {
+            alert.warning("Error in getting the information !");
+        });
+
+        var marital = StaffInformationFactory.GetMaritalStatus();
+        marital.then(function (dt) {
+            $scope.Marital = dt.data;
+        }, function (error) {
+            alert.warning("Error in getting the information !");
+        });
+
+        var types = StaffInformationFactory.GetProfessionalTypes();
+        types.then(function (dt) {
+            $scope.Professional = dt.data;
         }, function (error) {
             alert.warning("Error in getting the information !");
         });
@@ -19,20 +44,20 @@ app.controller("StaffInformationsController", function ($scope, StaffInformation
 
     $scope.InitInformation = function () {
         $scope.Name = $scope.StaffFullInformation[0].Name;
-        $scope.Gender = $scope.StaffFullInformation[0].gender;
-        $scope.MaritalStatus = $scope.StaffFullInformation[0].MaritalStatus;
+        $scope.GenderName = $scope.StaffFullInformation[0].GenderName;
+        $scope.MaritalStatusName = $scope.StaffFullInformation[0].MaritalStatusName;
         $scope.Address = $scope.StaffFullInformation[0].Address;
         $scope.Email = $scope.StaffFullInformation[0].Email;
         $scope.Telephone = $scope.StaffFullInformation[0].Telephone;
         $scope.Identification = $scope.StaffFullInformation[0].User_identification;
-        $scope.ProfessionalType = $scope.StaffFullInformation[0].ProfessionalType;
+        $scope.ProfessionalName = $scope.StaffFullInformation[0].ProfessionalType.ProfessionalName;
     }
 
-    $scope.SaveInformation = function(){
+    $scope.SaveInformation = function (g, m) {
         var Staff = new Object();
         Staff.Name = $scope.Staff.Name;
-        Staff.gender = $scope.Staff.gender;
-        Staff.MaritalStatus = $scope.Staff.MaritalStatus;
+        Staff.gender = g;
+        Staff.MaritalStatus = m;
         Staff.Address = $scope.Staff.Address;
         Staff.Email = $scope.Staff.Email;
         Staff.Telephone = $scope.Staff.Telephone;
@@ -59,6 +84,18 @@ app.factory('StaffInformationFactory', function ($http) {
 
     fac.GetStaffFullInformations = function () {
         return $http.get('../Staffs/GetStaffInformation');
+    }
+
+    fac.GetGender = function () {
+        return $http.get('../Staffs/GetGender');
+    }
+
+    fac.GetMaritalStatus = function () {
+        return $http.get('../Staffs/GetMaritalStatus');
+    }
+
+    fac.GetProfessionalTypes = function () {
+        return $http.get('../Staffs/GetProfessionalTypes');
     }
 
     fac.saveStaffInformations = function (listInformations) {

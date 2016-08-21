@@ -33,14 +33,26 @@ namespace PresentationLayer.Controllers {
                            u.Name,
                            u.Address,
                            u.Email,
-                           u.gender,
-                           u.MaritalStatus,
+                           u.gender.GenderName,
+                           u.MaritalStatus.MaritalStatusName,
                            u.Telephone,
                            u.User_identification,
                            p.ProfessionalType
                        };
 
             return Json(list, JsonRequestBehavior.AllowGet);
+        }
+
+        public JsonResult GetGender() {
+            return Json(db.Genders.ToList(), JsonRequestBehavior.AllowGet);
+        }
+
+        public JsonResult GetMaritalStatus() {
+            return Json(db.MaritalStatus.ToList(), JsonRequestBehavior.AllowGet);
+        }
+
+        public JsonResult GetProfessionalTypes() {
+            return Json(db.ProfessionalTypes.ToList(), JsonRequestBehavior.AllowGet);
         }
 
         public ActionResult ListLabTecInformation() {

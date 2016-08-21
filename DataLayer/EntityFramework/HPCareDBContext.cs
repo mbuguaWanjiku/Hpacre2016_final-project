@@ -17,7 +17,7 @@ using System.Threading.Tasks;
 namespace DataLayer.EntityFramework {
     public class HPCareDBContext : DbContext {
 
-        public HPCareDBContext() : base("HPCareDBContext") { }
+        public HPCareDBContext() : base("HPCareDBContextPublish") { }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder) {
             modelBuilder.Entity<KFT>().ToTable("KFT");
@@ -34,17 +34,29 @@ namespace DataLayer.EntityFramework {
             modelBuilder.Entity<Staff>().ToTable("Staff");
             modelBuilder.Entity<Patient>().ToTable("Patient");
             modelBuilder.Entity<FirstVisit>().ToTable("FirstVisit");
-           
             modelBuilder.Entity<SubsequentVisit>().ToTable("SubsequentVisit");
         }
 
+        public DbSet<Gender> Genders {
+            get; set;
+        }
+
+        public DbSet<MaritalStatus> MaritalStatus {
+            get; set;
+        }
+
+        public DbSet<ProfessionalsType> ProfessionalTypes {
+            get; set;
+        }
 
         public DbSet<CID_DiseaseCode> CID_DiseaseCodes {
             get; set;
         }
+
         public DbSet<CID_Category> CID_Categories {
             get; set;
         }
+
         public DbSet<CIDCode> CIDCodes {
             get; set;
         }
@@ -68,10 +80,11 @@ namespace DataLayer.EntityFramework {
         public DbSet<LabExams> LabExams {
             get; set;
         }
-        public DbSet<RegularExam> RegularExams
-        {
+
+        public DbSet<RegularExam> RegularExams {
             get; set;
         }
+
         public DbSet<MCDT> MCDTs {
             get; set;
         }
@@ -107,12 +120,15 @@ namespace DataLayer.EntityFramework {
         public DbSet<TreatmentCategory> TreatmentCategories {
             get; set;
         }
+
         public DbSet<TreatmentType> TreatmentTypes {
             get; set;
         }
+
         public DbSet<Drug> Drugs {
             get; set;
         }
+
         public DbSet<DrugCategory> DrugCategories {
             get; set;
         }
@@ -128,9 +144,11 @@ namespace DataLayer.EntityFramework {
         public DbSet<DrugAdministration> DrugAdministrations {
             get; set;
         }
+
         public DbSet<DrugFrequency> DrugFrequencies {
             get; set;
         }
+
         public DbSet<Dosage> DrugDosages {
             get; set;
         }

@@ -1,178 +1,234 @@
 ﻿
-<div class="panel panel-widget col-lg-12" ng-controller="KitchenSinkCtrl as vm">
+app.controller('KitchenSinkCtrl', function ($scope, moment, alert, calendarConfig, TreatmentService) {
 
-    <div class="progressbar-heading grids-heading">
-        <h2>Patient Treatment Plan</h2>
-    </div>
-    <h2 class="text-center">{{ vm.calendarTitle }}</h2>
-    <div class="row">
-        <div class="col-md-6 text-center">
-            <div class="btn-group">
-                <button class="btn btn-primary"
-                        mwl-date-modifier
-                        date="vm.viewDate"
-                        decrement="vm.calendarView">
-                    Previous
-                </button>
-                <button class="btn btn-default"
-                        mwl-date-modifier
-                        date="vm.viewDate"
-                        set-to-today>
-                    Today
-                </button>
-                <button class="btn btn-primary"
-                        mwl-date-modifier
-                        date="vm.viewDate"
-                        increment="vm.calendarView">
-                    Next
-                </button>
-            </div>
-        </div>
-        <br class="visible-xs visible-sm">
-        <div class="col-md-6 text-center">
-            <div class="btn-group">
-                <label class="btn btn-primary" ng-model="vm.calendarView" uib-btn-radio="'year'">Year</label>
-                <label class="btn btn-primary" ng-model="vm.calendarView" uib-btn-radio="'month'">Month</label>
-                <label class="btn btn-primary" ng-model="vm.calendarView" uib-btn-radio="'week'">Week</label>
-                <label class="btn btn-primary" ng-model="vm.calendarView" uib-btn-radio="'day'">Day</label>
-            </div>
-        </div>
-    </div>
-    <br>
-    <mwl-calendar events="vm.events"
-                  view="vm.calendarView"
-                  view-title="vm.calendarTitle"
-                  view-date="vm.viewDate"
-                  on-event-click="vm.eventClicked(calendarEvent)"
-                  on-event-times-changed="vm.eventTimesChanged(calendarEvent); calendarEvent.startsAt = calendarNewEventStart; calendarEvent.endsAt = calendarNewEventEnd"
-                  cell-is-open="vm.isCellOpen"
-                  day-view-start="08:00"
-                  day-view-end="14:59"
-                  day-view-split="30"
-                  cell-modifier="vm.modifyCell(calendarCell)">
-    </mwl-calendar>
-    <br><br><br>
-    <h3 id="event-editor">
-        <label>Treatment Plan Configurations</label>
-        <button class="btn btn-primary pull-right"
-                ng-click="addIntervention()">
-            Add new
-        </button>
-        <div class="clearfix"></div>
-    </h3>
-    <table class="table table-bordered">
-        <thead>
-            <tr><th>No</th>
-                <th>Category</th>
-                <th>Type</th>
-                <!--<th>Secondary color</th>-->
-                <th>Starts at</th>
-                <th>Ends at</th>
-                <th>Actions</th>
-            </tr>
-        </thead>
-        <tbody class="table table-bordered">
-            <tr ng-repeat="event in vm.events track by $index">
-                <!--<tr>-->
-                <td style="width:2%">{{$index +1}}</td>
-                <td>
-                    <!--<input type="text"
-                           class="form-control"
-                           ng-model="event.title">-->
+    var vm = this;
+    vm.events = [];//create and configuration module
+    vm.type = null;
+    vm.cat = null;
+    $scope.treatmentCategory = [];
+    $scope.treatmentTypeList = [];
+    $scope.Category = null;
+    $scope.TreatmentType = null;
+    vm.InterventionsList = [];
+    //These variables MUST be set as a minimum for the calendar to work
+    vm.calendarView = 'month';
+    vm.viewDate = new Date();
+    var actions = [];
+    //An object to hold intervention considering the intervention class have different properties
+    var InterventionVW = function (id, title, Intervention_id, color, startsAt, endsAt, draggable, resizable, actions) {
+        this.Intervention_id = Intervention_id;
+        this.title = title;
+        this.id = id;
+        this.color = color;
+        this.startsAt = endsAt
+        this.endsAt = startsAt;
+        this.draggable = draggable;
+        this.resizable = resizable;
+        this.actions = actions;
+    }
 
-                    <select id="Category"
-                            class="form-control"
-                            name="categories"
-                            ng-model="Category"
-                            ng-options="cg as cg.Description for cg in treatmentCategory"
-                            ng-change="getTreatmentType(Category,$index)">
-                        <option value="" selected="selected">Select category</option>
 
-                    </select>
+    vm.isCellOpen = true;
 
-                </td>
-                <td>
-                    <select id="treatmentType"
-                            class="form-control"
-                            name="treatmentType"
-                            ng-model="TreatmentType"
-                            ng-options="cg as cg.Description for cg in treatmentTypeList"
-                          
-                            ng-change="submitType(TreatmentType)">
-
-                        <option value="" selected="selected">SelectType</option>
-
-                    </select>
+    vm.toggle = function ($event, field, event) {
+        $event.preventDefault();
+        $event.stopPropagation();
+        event[field] = !event[field];
+    };
 
 
 
-                    <input class="form-control" colorpicker type="hidden" ng-model="event.color.primary" value="#ad2121">
-                </td>
-                <td ng-show="false">
-                    <input class="form-control" colorpicker type="text" ng-model="event.color.secondary" value="#216aad">
-                </td>
-                <td>
-                    <p class="input-group" style="max-width: 200px">
-                        <input type="text"
-                               class="form-control"
-                               readonly
-                               uib-datepicker-popup="dd MMMM yyyy"
-                               ng-model="event.startsAt"
-                               is-open="event.startOpen"
-                               close-text="Close">
-                        <span class="input-group-btn">
-                            <button type="button"
-                                    class="btn btn-default"
-                                    ng-click="vm.toggle($event, 'startOpen', event)">
-                                <i class="glyphicon glyphicon-calendar"></i>
-                            </button>
-                        </span>
-                    </p>
-                    <div uib-timepicker
-                         ng-model="event.startsAt"
-                         hour-step="1"
-                         minute-step="15"
-                         show-meridian="true">
-                    </div>
-                </td>
-                <td>
-                    <p class="input-group" style="max-width: 200px">
-                        <input type="text"
-                               class="form-control"
-                               readonly
-                               uib-datepicker-popup="dd MMMM yyyy"
-                               ng-model="event.endsAt"
-                               is-open="event.endOpen"
-                               close-text="Close">
-                        <span class="input-group-btn">
-                            <button type="button"
-                                    class="btn btn-default"
-                                    ng-click="vm.toggle($event, 'endOpen', event)">
-                                <i class="glyphicon glyphicon-calendar"></i>
-                            </button>
-                        </span>
-                    </p>
-                    <div uib-timepicker
-                         ng-model="event.endsAt"
-                         hour-step="1"
-                         minute-step="15"
-                         show-meridian="true">
-                    </div>
-                </td>
-                <td>
-                    <button class="btn btn-primary"
-                             ng-model="TreatmentType"
-                            ng-click="updateIntervention($index)">
-                        Update
-                    </button>
-                    <button class="btn btn-danger"
-                            ng-click="deleteIntervention($index)">
-                            
-                        Delete
-                    </button>
-                </td>
-            </tr>
-        </tbody>
-    </table>
-</div>
+    /***************************************************************************************************************************/
 
+    var getData = TreatmentService.GetCategory();
+    getData.then(function (dt) {
+
+        $scope.treatmentCategory = dt.data;
+    }, function (error) {
+        //alert.show("error in obtaining treatment category");
+
+    });
+    // Function For Populate CIDCODE  // This function we will call after select change country
+    $scope.getTreatmentType = function (category) {
+        vm.cat = category;
+        TreatmentService.TreatmentType(category.id).then(function (dt) {
+            $scope.treatmentTypeList = dt.data;
+        }, function (error) {
+            //alert.show('Error!');
+        });
+    }
+
+
+    function addInterventionsToEvents() {
+        var arrayEvents = [];
+        vm.events = [];
+        var getData = TreatmentService.GetInterventionsDB();
+        getData.then(function (dt) {
+            for (var i = 0; i < dt.data.length; i++) {
+                arrayEvents.push(dt.data[i]);
+            }
+            var startAt, endAt, Intervention_id, id, type, primary, secondary;
+            for (var i = 0; i < arrayEvents.length; i++) {
+                startAt = moment(arrayEvents[i].startsAt).toDate();
+                endAt = moment(arrayEvents[i].endsAt).toDate();
+                id = arrayEvents[i].Intervention_type_id;
+                title = arrayEvents[i].Intervention_type_description;
+                Intervention_id = arrayEvents[i].Intervention_id;
+                primary = getRandomColor();
+                secondary = getRandomColor;
+
+                type = new InterventionVW(id, title, Intervention_id, { primary, secondary }, startAt, endAt, true, true, actions);
+                //calendarConfig.colorTypes.warning
+                vm.events.push(type);
+
+            }
+
+            function getRandomColor() {
+                var letters = '0123456789ABCDEF';
+                var color = '#';
+                for (var i = 0; i < 6; i++) {
+                    color += letters[Math.floor(Math.random() * 16)];
+                }
+                return color;
+            }
+
+        }, function (error) {
+            //alert.show('Error!');
+        });
+
+    }
+
+    addInterventionsToEvents();
+    $scope.submitType = function (type) {
+        vm.type = type;
+    }
+    $scope.addIntervention = function (index) {
+        /**
+        * if exists unset/default intervention block the addition of new one
+        */
+        function existUnSet() {
+            var exist = false;
+            for (var index = 0; index < vm.events.length; index++) {
+                if (vm.events[index].title == "unset") {
+                    exist = true;
+                    break;
+                }
+
+            }
+            return exist;
+        }
+        function add() {
+            var title = "unset";
+            var startsAt = moment().startOf('day').toDate();
+            var endsAt = moment().endOf('day').toDate();
+            vm.events.push({
+                title: title,
+                startsAt: startsAt,
+                endsAt: endsAt,
+                color: calendarConfig.colorTypes.important,
+                draggable: true,
+                resizable: true
+            });
+            TreatmentService.AddIntervention();
+            alert.success("added UNSET Intervention  \n please update it  ");
+        }
+
+        if (existUnSet()) {
+            alert.warning("Already exist an unset intervention at last index  \n please configure using update option ");
+        } else {
+            add();
+        }
+
+
+
+    }
+
+    $scope.updateIntervention = function (index) {
+        var id, title;
+
+        if (vm.type !== 'undefined' && vm.type !== null) {
+            title = vm.type.Description;
+            id = vm.type.id;
+        } else {
+
+            id = vm.events[index].id;
+            title = vm.events[index].title
+        }
+
+        vm.events[index].title = title;
+        var arrayIntervention = [id, vm.events[index].endsAt, vm.events[index].startsAt, vm.events[index].Intervention_id];
+
+        var response = TreatmentService.UpdateInterventions(arrayIntervention);
+        alert.success("updated Intervention  " + (index + 1));
+    }
+
+    $scope.deleteIntervention = function (index) {
+        var id = vm.events[index].Intervention_id;
+        TreatmentService.DeleteIntervention(id);
+        vm.events.splice(index, 1);
+        alert.success(" deleted Intervention " + (index + 1));
+
+    }
+});
+
+
+app.factory('TreatmentService', function ($http) {
+    var fac = {};
+    fac.GetCategory = function () {
+
+        return $http.get("../TreatmentPlans/GetTreatmentCategories");
+    }
+    fac.TreatmentType = function (id) {
+
+        return $http.get('../TreatmentPlans/GetTreatmentType?id=' + id)
+    }
+
+    fac.UpdateInterventions = function (intervention) {
+        var interventions = JSON.stringify({ 'Intervention': intervention });
+        var response = $http({
+            method: "post",
+            headers: {
+                'Content-Type': "application/json; charset=utf-8"
+            },
+            url: "../TreatmentPlans/SaveInterventions",
+            data: interventions,
+            dataType: "json",
+        });
+
+        return response;
+    }
+    fac.GetInterventionsDB = function () {
+
+        return $http.get("../TreatmentPlans/GetInterventions");
+
+    }
+    fac.AddIntervention = function () {
+        //var intervention = JSON.stringify({ 'Intervention': array });
+        var response = $http({
+            method: "post",
+            headers: {
+                'Content-Type': "application/json; charset=utf-8"
+            },
+            url: "../TreatmentPlans/AddInterventions"
+
+        });
+
+    }
+
+    fac.DeleteIntervention = function (id) {
+
+        $http.post("../TreatmentPlans/DeleteIntervention?id=" + id);
+        //var response = $http({
+        //    method: "post",
+        //    headers: {
+        //        'Content-Type': "application/json; charset=utf-8"
+        //    },
+        //    url: "../TreatmentPlans/DeleteIntervention",
+        //    data :id,
+        //    dataType: "json",
+        //});
+    }
+
+    return fac;
+
+});

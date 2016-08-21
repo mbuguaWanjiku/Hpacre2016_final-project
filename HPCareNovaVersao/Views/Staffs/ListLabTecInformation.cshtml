@@ -4,7 +4,6 @@
         <div class="progressbar-heading grids-heading">
             <h2>Profile Page</h2>
         </div>
-
         <div class="col-md-12" ng-controller="StaffInformationsController" ng-init="Init()">
             <div class="forms">
                 <div class="form-horizontal">
@@ -15,15 +14,19 @@
                         </div>
                     </div>
                     <div class="form-group">
-                        <label for="focusedinput2" class="col-md-2 control-label">Gender</label>
+                        <label class="col-md-2 control-label">Gender</label>
                         <div class="col-md-8">
-                            <input type="text" class="form-control" id="focusedinput2" placeholder="{{Gender}}" ng-model="Staff.Gender" />
+                            <select ng-options="x as x.GenderName for x in Genders" ng-model="gender">
+                                @*<option value="" selected="selected">{{GenderName}}</option>*@
+                            </select>
                         </div>
                     </div>
                     <div class="form-group">
-                        <label for="focusedinput3" class="col-md-2 control-label">Marital Status</label>
+                        <label class="col-md-2 control-label">Marital Status</label>
                         <div class="col-md-8">
-                            <input type="text" class="form-control" id="focusedinput3" placeholder="{{MaritalStatus}}" ng-model="Staff.MaritalStatus" />
+                            <select ng-options="x as x.MaritalStatusName for x in Marital" ng-model="MaritalStatus">
+                                @*<option value="" selected="selected">{{MaritalStatusName}}</option>*@
+                            </select>
                         </div>
                     </div>
                     <div class="form-group">
@@ -53,11 +56,10 @@
                     <div class="form-group">
                         <label class="col-md-2 control-label">Professional Types</label>
                         <div class="col-md-8">
-                            <p class="form-control1 m-n">{{ProfessionalType}}</p>
+                            <p class="form-control1 m-n">{{ProfessionalName}}</p>
                         </div>
                     </div>
-
-                    <button type="submit" class="btn btn-primary" ng-click="SaveInformation()" style="float:right">Save Info</button>
+                    <button type="submit" class="btn btn-primary" ng-click="SaveInformation(gender, MaritalStatus)" style="float:right">Save Info</button>
                 </div>
             </div>
         </div>
