@@ -6,19 +6,15 @@ using System.Threading.Tasks;
 using System.ComponentModel.DataAnnotations;
 using DataLayer.Entities.MCDTEntities;
 
-namespace DataLayer.Entities.MCDT
-{
-    public abstract class MCDT
-    {
+namespace DataLayer.Entities.MCDT {
+    public abstract class MCDT {
 
         [Key]
-        public int MCDT_ID
-        {
+        public int MCDT_ID {
             get; set;
         }
 
-        public Units MCDT_units
-        {
+        public Units MCDT_units {
             get; set;
         }
 
@@ -26,13 +22,11 @@ namespace DataLayer.Entities.MCDT
         //    get; set;
         //}
 
-        public MCDTType MCDT_type
-        {
+        public MCDTType MCDT_type {
             get; set;
         }
 
-        public Nullable<DateTime> MCDT_date
-        {
+        public Nullable<DateTime> MCDT_date {
             get; set;
         }
 

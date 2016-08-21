@@ -38,7 +38,7 @@ function getRandomColor() {
 
 //****** Grafico *******//
 
-app.controller("SpecificController", function ($scope, $interval, GraphsSpecificFactory) {
+app.controller("SpecificController", function ($scope, $interval, GraphsSpecificFactory, alert) {
     $scope.MCDTS = [];
     $scope.McdtListLevel1 = [];
 
