@@ -101,9 +101,10 @@ namespace BusinessLayer.Implementation
         {
 
             StringBuilder stringJson = new StringBuilder();
-
-            using (SqlConnection dbConnection = new SqlConnection("Data Source= WANJIKU\\NEWSQLEXPRESS; Initial Catalog =HPCareDBContext; Integrated Security=SSPI"))
-            {
+            using (SqlConnection dbConnection = new SqlConnection("Data Source=SQL5025.myASP.NET;Initial Catalog=DB_A0ADFA_HPCareDBContext;User Id=DB_A0ADFA_HPCareDBContext_admin;Password=hpcare2016;"))
+            
+                //using (SqlConnection dbConnection = new SqlConnection("Data Source= WANJIKU\\NEWSQLEXPRESS; Initial Catalog =HPCareDBContext; Integrated Security=SSPI"))
+                {
                 DbCommand dbCommand = dbConnection.CreateCommand();
                 dbCommand.CommandType = CommandType.Text;
                 string query = " SELECT CID_Category.Description, CID_DiseaseCode.DiseaseCode, CIDCodes.Version, Diseases.Disease_start_date, Diseases.Disease_end_date FROM CID_Category INNER JOIN  CID_DiseaseCode ON CID_Category.CID_CategorID = CID_DiseaseCode.CIDCategory_CID_CategorID INNER JOIN CIDCodes ON CID_DiseaseCode.DiseaseCID_ID = CIDCodes.CID_DiseaseCode_DiseaseCID_ID INNER JOIN Diagnosis ON CIDCodes.CIDCOD_id = Diagnosis.Diagnosis_CID_code_CIDCOD_id INNER JOIN Diseases ON Diagnosis.Diagnosis_disease_Disease_id = Diseases.Disease_id  AND Disease_is_active = 0 AND Diagnosis.Diagnosis_id = " + diagnosisID;
