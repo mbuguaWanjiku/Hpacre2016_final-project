@@ -10,29 +10,24 @@ using DataLayer.Entities.MCDT;
 using DataLayer.EntityFramework;
 using BusinessLayer.Implementation;
 
-namespace HPCareNovaVersao.Controllers
-{
-    public class MCDTsController : Controller
-    {
+namespace HPCareNovaVersao.Controllers {
+    public class MCDTsController : Controller {
         private HPCareDBContext db = new HPCareDBContext();
         private ImpMCDTs ImpMcdt;
 
         // GET: MCDTs
-        public ActionResult Index()
-        {
+        public ActionResult Index() {
             return PartialView();
         }
 
         [HttpGet]
-        public ActionResult PrescribeMCDT()
-        {
+        public ActionResult PrescribeMCDT() {
             return PartialView();
         }
 
 
         ///[HttpPost]
-        public string SavePrescribedMCDT(string[] MCDTS)
-        {
+        public string SavePrescribedMCDT(string[] MCDTS) {
             List<string> listMcdts = MCDTS.ToList();
             new ImpMCDTs().SavePrescribedMCDT(listMcdts);
             return "hitted ";

@@ -138,5 +138,16 @@ app.factory('alert', function ($uibModal) {
         });
     }
 
+    fac.graphs = function (message) {
+        return $uibModal.open({
+            templateUrl: '../Content/Angular/ModalViewsContent/modalControlGraph.html',
+            controller: function () {
+                var vm = this;
+                vm.observations = message;
+            },
+            controllerAs: 'vm'
+        });
+    }
+
     return fac;
 });

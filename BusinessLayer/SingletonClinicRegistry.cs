@@ -42,9 +42,8 @@ namespace BusinessLayer {
         }
 
         public static ClinicRegistryManager AccessDatabase(Patient patient, Users staff, HPCareDBContext context) {
-            using (SqlConnection connection = new SqlConnection("Data Source= WANJIKU\\NEWSQLEXPRESS ; Initial Catalog =HPCareDBContext;Integrated Security=SSPI"))
-            {
-             
+            using(SqlConnection connection = new SqlConnection("Data Source=MÁRCIA\\SQLSERVER; Initial Catalog =HPCareDBContext; Integrated Security=true")) {
+
                 SqlCommand command = new SqlCommand("insert into ClinicRegistryManagers (Clinic_patient_User_id, Staff_doctor_User_id) values ( " + patient.User_id + ", " + staff.User_id + "); select scope_identity();", connection);
 
                 command.CommandType = CommandType.Text;

@@ -177,6 +177,7 @@ app.controller("SpecificController", function ($scope, $interval, GraphsSpecific
     }
 
     $scope.clickedElement = function () {
+        alert.graphs();
         lineChartData.labels = [];
         lineChartData.datasets = [];
         drawGraphs();
