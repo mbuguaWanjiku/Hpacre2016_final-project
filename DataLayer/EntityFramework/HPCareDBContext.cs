@@ -17,7 +17,7 @@ using System.Threading.Tasks;
 namespace DataLayer.EntityFramework {
     public class HPCareDBContext : DbContext {
 
-        public HPCareDBContext() : base("HPCareDBContextPublish") { }
+        public HPCareDBContext() : base("HPCareDBContext") { }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder) {
             modelBuilder.Entity<KFT>().ToTable("KFT");
