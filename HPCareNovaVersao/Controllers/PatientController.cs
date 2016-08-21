@@ -131,19 +131,31 @@ namespace PresentationLayer.Controllers {
             impPatient.saveFamilyHistory(familyHistory, null);
         }
 
-        public JsonResult GetPatientInformation() {
-            List<object> patientInformations = new List<object>();
-            Users patient = db.Users.Find(2); //ir buscar atraves do session
-            patientInformations.Add(patient.Email);
-            patientInformations.Add(patient.Telephone);
-            patientInformations.Add(patient.Address);
-            return Json(patientInformations, JsonRequestBehavior.AllowGet);
+        //public JsonResult GetPatientInformation() {
+        //    List<object> patientInformations = new List<object>();
+        //    Users patient = db.Users.Find(2); //ir buscar atraves do session
+        //    patientInformations.Add(patient.Email);
+        //    patientInformations.Add(patient.Telephone);
+        //    patientInformations.Add(patient.Address);
+        //    return Json(patientInformations, JsonRequestBehavior.AllowGet);
+        //}
+
+
+
+
+        public JsonResult GetGender() {
+            return Json(db.Genders.ToList(), JsonRequestBehavior.AllowGet);
+        }
+
+        public JsonResult GetMaritalStatus() {
+            return Json(db.MaritalStatus.ToList(), JsonRequestBehavior.AllowGet);
         }
 
         [HttpPost]
         public void SaveInformations(List<Patient> usersInformations) {
             impPatient.saveDataFromPatient(usersInformations);
         }
+
 
     }
 }

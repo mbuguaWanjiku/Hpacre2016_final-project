@@ -6,6 +6,8 @@ using System.Text;
 using System.Threading.Tasks;
 using DataLayer.Entities;
 using DataLayer.EntityFramework;
+using System.Data.SqlClient;
+using System.Data;
 
 namespace BusinessLayer.Implementation {
     public class impPatient : IPatient {
@@ -74,9 +76,44 @@ namespace BusinessLayer.Implementation {
                 patient.Email = p.Email;
                 patient.Address = p.Address;
                 patient.Telephone = p.Telephone;
+                patient.Name = p.Name;
+
+                if(p.gender != null) {
+                    AccessDatabaseGender(p.gender.GenderId, patient.User_id);
+                }
+
+                if(p.MaritalStatus != null) {
+                    AccessDatabaseStatus(p.MaritalStatus.MaritalStatusId, patient.User_id);
+                }
             }
 
             db.SaveChanges();
+        }
+
+        public void AccessDatabaseGender(int gender, int idPatient) {
+            using(SqlConnection connection = new SqlConnection("Data Source=SQL5025.myASP.NET;Initial Catalog=DB_A0ADFA_HPCareDBContext;User Id=DB_A0ADFA_HPCareDBContext_admin;Password=hpcare2016;")) {
+                //using(SqlConnection connection = new SqlConnection("Data Source= MÁRCIA\\SQLSERVER; Initial Catalog =HPCareDBContext; Integrated Security=SSPI")) {
+                SqlCommand command = new SqlCommand("update users set gender_GenderId = " + gender + " where user_id = " + idPatient + ";", connection);
+
+                command.CommandType = CommandType.Text;
+                command.Connection = connection;
+                connection.Open();
+                command.ExecuteNonQuery();
+            }
+
+        }
+
+        public void AccessDatabaseStatus(int status, int idPatient) {
+            using(SqlConnection connection = new SqlConnection("Data Source=SQL5025.myASP.NET;Initial Catalog=DB_A0ADFA_HPCareDBContext;User Id=DB_A0ADFA_HPCareDBContext_admin;Password=hpcare2016;")) {
+                //using(SqlConnection connection = new SqlConnection("Data Source= MÁRCIA\\SQLSERVER; Initial Catalog =HPCareDBContext; Integrated Security=SSPI")) {
+                SqlCommand command = new SqlCommand("update users set MaritalStatus_MaritalStatusId = " + status + " where user_id = " + idPatient + ";", connection);
+
+                command.CommandType = CommandType.Text;
+                command.Connection = connection;
+                connection.Open();
+                command.ExecuteNonQuery();
+            }
+
         }
     }
 }

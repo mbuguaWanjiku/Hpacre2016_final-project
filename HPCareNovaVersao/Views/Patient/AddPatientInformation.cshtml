@@ -10,35 +10,54 @@
             <div class="forms">
                 <div class="form-horizontal">
                     <div class="form-group">
-                        <label for="focusedinput1" class="col-sm-2 control-label">Patient's Email: </label>
+                        <label for="focusedinput1" class="col-sm-2 control-label">Patient's Name </label>
                         <div class="col-sm-8">
-                            <input type="text" class="form-control" id="focusedinput1" placeholder="Email" ng-model="Users.Email" ng-disabled="Users.Email != null && Aux == true" />
+                            <input type="text" class="form-control" id="focusedinput1" placeholder="{{Name}}" ng-model="Users.Name" />
                         </div>
                     </div>
-                @*</div>*@
 
-               @* <div class="form-horizontal">*@
-                    <div class="form-group">
-                        <label for="focusedinput2" class="col-sm-2 control-label">Patient's Telephone</label>
-                        <div class="col-sm-8">
-                            <input type="text" class="form-control" id="focusedinput2" placeholder="Telephone" ng-model="Users.Telephone" ng-disabled="Users.Telephone != null && Aux == true" />
-                        </div>
-                    </div>
-                @*</div>*@
-
-                @*<div class="form-horizontal">*@
                     <div class="form-group">
                         <label for="focusedinput3" class="col-sm-2 control-label">Patient's Address</label>
                         <div class="col-sm-8">
-                            <input type="text" class="form-control" id="focusedinput3" placeholder="Address" ng-model="Users.Address" ng-disabled="Users.Address != null && Aux == true" />
+                            <input type="text" class="form-control" id="focusedinput3" placeholder="{{Address}}" ng-model="Users.Address" @*ng-disabled="Users.Address != null && Aux == true"*@ />
                         </div>
                     </div>
+
+                    <div class="form-group">
+                        <label for="focusedinput4" class="col-sm-2 control-label">Patient's Email </label>
+                        <div class="col-sm-8">
+                            <input type="text" class="form-control" id="focusedinput4" placeholder="{{Email}}" ng-model="Users.Email" @*ng-disabled="Users.Email != null && Aux == true"*@ />
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="focusedinput2" class="col-sm-2 control-label">Patient's Telephone</label>
+                        <div class="col-sm-8">
+                            <input type="text" class="form-control" id="focusedinput2" placeholder="{{Telephone}}" ng-model="Users.Telephone" @*ng-disabled="Users.Telephone != null && Aux == true"*@ />
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="col-md-2 control-label">Patient's Gender</label>
+                        <div class="col-md-8">
+                            <select ng-options="x as x.GenderName for x in Genders" ng-model="gender">
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="col-md-2 control-label">Patient's Marital Status</label>
+                        <div class="col-md-8">
+                            <select ng-options="x as x.MaritalStatusName for x in Marital" ng-model="MaritalStatus">
+                            </select>
+                        </div>
+                    </div>
+
                 </div>
-                gender 
-                marital status
+            
             </div>
 
-            <button type="submit" class="btn btn-primary" ng-click="savePatientData()" style="float:right">Save Patient Info</button>
+            <button type="submit" class="btn btn-primary" ng-click="savePatientData(gender, MaritalStatus)" style="float:right">Save Patient Info</button>
         </div>
 
     </div>

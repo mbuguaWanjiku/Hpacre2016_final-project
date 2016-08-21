@@ -8,6 +8,8 @@ app.controller("PatientInformationsController", function ($scope, PatientInforma
     $scope.PatientRiskFactorsCategories = null;
     $scope.PatientAllergyCategories = null;
     $scope.PatientFullInformation = null;
+    $scope.gender = null;
+    $scope.MaritalStatus = null;
 
 
 
@@ -45,8 +47,8 @@ app.controller("PatientInformationsController", function ($scope, PatientInforma
 
     $scope.InitInformation = function () {
         $scope.Name = $scope.PatientFullInformation[0].Name;
-        $scope.Gender = $scope.PatientFullInformation[0].gender;
-        $scope.MaritalStatus = $scope.PatientFullInformation[0].MaritalStatus;
+        $scope.Gender = $scope.PatientFullInformation[0].gender.GenderName;
+        $scope.MaritalStatus = $scope.PatientFullInformation[0].MaritalStatus.MaritalStatusName;
         $scope.Address = $scope.PatientFullInformation[0].Address;
         $scope.Email = $scope.PatientFullInformation[0].Email;
         $scope.Telephone = $scope.PatientFullInformation[0].Telephone;

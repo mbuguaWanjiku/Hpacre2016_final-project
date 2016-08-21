@@ -214,27 +214,50 @@ app.controller("PatientController", function ($scope, alert, PatientFactory) {
 
     $scope.Users = null;
     $scope.Aux = false;
+    $scope.Genders = null;
+    $scope.Marital = null;
+    $scope.gender = null;
+    $scope.MaritalStatus = null;
 
     $scope.elemReady = function () {
         var getData = PatientFactory.GetPatientInformations();
         getData.then(function (dt) {
             $scope.Users = dt.data;
-            $scope.Users.Email = dt.data[0];
-            $scope.Users.Telephone = dt.data[1];
-            $scope.Users.Address = dt.data[2];
-            if (dt.data[0] && dt.data[1] && dt.data[2]) {
-                $scope.Aux = true;
-            }
+            $scope.Name = $scope.Users[0].Name;
+            $scope.Address = $scope.Users[0].Address;
+            $scope.Email = $scope.Users[0].Email;
+            $scope.Telephone = $scope.Users[0].Telephone;
+            //if (dt.data[0] && dt.data[1] && dt.data[2]) {
+            //    $scope.Aux = true;
+            //}
         }, function (error) {
-            alert("Erro aqui ");
+            alert.warning("Something went wrong ! Please try again. ");
+        });
+
+        var genders = PatientFactory.GetGenders();
+        genders.then(function (dt) {
+            $scope.Genders = dt.data;
+        }, function (error) {
+            alert.warning("Something went wrong ! Please try again. ");
+        });
+
+        var maritalStatus = PatientFactory.GetMaritalStatus();
+        maritalStatus.then(function (dt) {
+            $scope.Marital = dt.data;
+        }, function (error) {
+            alert.warning("Something went wrong ! Please try again. ");
         });
     }
 
-    $scope.savePatientData = function () {
+    $scope.savePatientData = function (g, m) {
+
         var Patient = new Object();
         Patient.Email = $scope.Users.Email;
         Patient.Telephone = $scope.Users.Telephone;
         Patient.Address = $scope.Users.Address;
+        Patient.gender = g;
+        Patient.MaritalStatus = m;
+        Patient.Name = $scope.Users.Name;
 
         patientDetails.push(Patient);
 
@@ -245,7 +268,6 @@ app.controller("PatientController", function ($scope, alert, PatientFactory) {
                 patientDetails = [];
                 $scope.Aux = true;
             }, function () {
-                //alert("error");
                 alert.warning("Something went wrong ! Please try again. ");
             });
         }
@@ -294,7 +316,6 @@ app.factory('PatientFactory', function ($http) {
         return response;
     }
 
-
     fac.saveRiskFactors = function (listRiskFactors) {
         var riskFactorsList = JSON.stringify({ 'riskFactors': tempListRiskFactor });
         var response = $http({
@@ -321,7 +342,17 @@ app.factory('PatientFactory', function ($http) {
     // ************* Get Patient Informations *********************** //
 
     fac.GetPatientInformations = function () {
-        return $http.get('../Patient/GetPatientInformation');
+        return $http.get('../Patient/GetPatientInformations');
+    }
+
+    // ************** Get Genders and MaritalStatus **************** //
+
+    fac.GetGenders = function () {
+        return $http.get('../Patient/GetGender');
+    }
+
+    fac.GetMaritalStatus = function () {
+        return $http.get('../Patient/GetMaritalStatus');
     }
 
     // ************* Save Patient Informations ********************* //
