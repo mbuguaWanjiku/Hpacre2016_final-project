@@ -76,8 +76,10 @@ namespace BusinessLayer.Implementation
         {
 
             StringBuilder stringJson = new StringBuilder();
-            using (SqlConnection dbConnection = new SqlConnection("Data Source= WANJIKU\\NEWSQLEXPRESS; Initial Catalog =HPCareDBContext; Integrated Security=SSPI"))
+            //using (SqlConnection dbConnection = new SqlConnection("Data Source= WANJIKU\\NEWSQLEXPRESS; Initial Catalog =HPCareDBContext; Integrated Security=SSPI"))
+            using (SqlConnection dbConnection = new SqlConnection("Data Source=SQL5025.myASP.NET;Initial Catalog=DB_A0ADFA_HPCareDBContext;User Id=DB_A0ADFA_HPCareDBContext_admin;Password=hpcare2016;"))
             {
+                
                 DbCommand dbCommand = dbConnection.CreateCommand();
                 dbCommand.CommandType = CommandType.Text;
                 string query = " SELECT DrugCategories.description, Drugs.Drug_name, DrugIssuances.Medication_end_date,DrugIssuances.Medication_start_date, DrugIssuances.DrugIssuance_id FROM  DrugIssuances ,Drugs,DrugCategories where DrugIssuances.IssuedDrug_Drug_id = Drug_id and Drugs.Category_category_id = DrugCategories.category_id and DrugIssuance_id =" + drugIssuance;
