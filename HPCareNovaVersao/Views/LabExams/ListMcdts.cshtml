@@ -1,0 +1,67 @@
+﻿
+<div class="row">
+    <div class="col-md-1"></div>
+    <div class="panel panel-widget col-md-10">
+        <div class="col-md-12">
+            <div class="row">
+                <div class="progressbar-heading grids-heading">
+                    <h2>Patient Exam List</h2>
+                </div>
+
+                <div ng-controller="LabExamsController" ng-init="InitInformation()">
+                    <div class="col-md-12" ng-show="id == null">
+                        <table class="table table-hover">
+                            <thead>
+                                <tr>
+                                    <th></th>
+                                    <th>Patient Name</th>
+                                    <th>MCDT Type</th>
+                                    <th>MCDT Date</th>
+                                    <th>Lab Date In</th>
+                                    <th>Lab Date Out</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr ng-repeat="LabExams in mcdtsList">
+                                    <td><span ng-click="getPatientMcdts(LabExams.User_id)" class="fa fa-plus"></span></td>
+                                    <td> {{LabExams.Name}} </td>
+                                    <td> {{LabExams.MCDT_type}} </td>
+                                    <td> {{LabExams.McdtDate}} </td>
+                                    <td> {{LabExams.LabDateIn}} </td>
+                                    <td> {{LabExams.LabDateOut}} </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <div class="col-md-12" ng-show="id">
+                        <table class="table table-hover">
+                            <thead>
+                                <tr>
+                                    <th></th>
+                                    <th>MCDT Type</th>
+                                    <th>MCDT Date</th>
+                                    <th>Lab Date In</th>
+                                    <th>Lab Date Out</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr ng-repeat="LabExams in mcdtsList" ng-show="LabExams.User_id == id">
+                                    <td><a ng-click="getMcdtType(LabExams.MCDT_ID, LabExams.MCDT_type)"><span class="fa fa-list-alt" style="color:black;"></span></a></td>
+                                    <td> {{LabExams.MCDT_type}} </td>
+                                    <td> {{LabExams.McdtDate}} </td>
+                                    <td> {{LabExams.LabDateIn}} </td>
+                                    <td> {{LabExams.LabDateOut}} </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                        <span ng-click="goBack()" class="fa fa-reply"></span>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+    </div>
+    <div class="col-md-1"></div>
+</div>

@@ -1,0 +1,147 @@
+﻿
+
+
+<div class="panel panel-widget">
+    <div class="progressbar-heading grids-heading">
+        <h2>Drug Prescription</h2>
+    </div>
+    <div class="well form-control-wrapper dropdown dropdown-toggle col-mod-6 pull-left" ng-controller="MedicationController as vm">
+        @*<label for="drug_category">Drug Category</label>*@
+        <form id="drugsForm">
+            <select id="drug_category"
+                    ng-init="CategoryList"
+                    ng-model="category"
+                    ng-options="cg as cg.description for cg in CategoryList"
+                    ng-change="GetDrug()">
+                <option value="" selected="selected">Select Category</option>
+            </select>
+            <br />
+            @*<label for="drug">Drug Name</label>*@
+            <select id="drug"
+                    ng-model="Drug"
+                    ng-options="dg as dg.Drug_name for dg in DrugList " ng-change="debug(drug)">
+                <option value="" selected="selected">Select Drug</option>
+            </select>
+            <br />
+            @*<label for="dosage">Drug Dosage</label>*@
+            <select id="dosage"
+                    ng-model="Dosage"
+                    ng-options="dos as dos.Description for dos in drugDosageList">
+                <option value="" selected="selected">Select Dosage</option>
+            </select>
+            <br />
+            @*<label for="frequency">Drug Frequency</label>*@
+            <select id="frequency"
+                    ng-model="Frequency"
+                    ng-options="freq as freq.Description for freq in drugFrequenciesList">
+                <option value="" selected="selected">Select Frequency</option>
+            </select>
+            <br />
+            @*<label for="admin">Drug Administration</label>*@
+            <select id="admin"
+                    ng-model="Administration"
+                    ng-options="adm as adm.Description for adm in drugAdminList">
+                <option value="" selected="selected">Select Administration</option>
+            </select>
+
+            <br />
+            @*<div class="well">*@
+            <div class="form-control-wrapper" style="width:200px" ng-controller="MedicationController as vm">
+
+                <p class="input-group">
+                    <input type="text"
+                           class="form-control"
+                           readonly
+                           uib-datepicker-popup="dd MMMM yyyy"
+                           ng-model="vm.event.startsAt"
+                           is-open="vm.event.startOpen"
+                           close-text="Close">
+                    <span class="input-group-btn">
+                        <button type="button"
+                                class="btn btn-default"
+                                ng-click="vm.toggle($event, 'startOpen', vm.event)">
+                            <i class="glyphicon glyphicon-calendar"></i>
+                        </button>
+                    </span>
+                </p>
+                <div uib-timepicker
+                     ng-model="vm.event.startsAt"
+                     hour-step="1"
+                     minute-step="15"
+                     show-meridian="true">
+                </div>
+
+                <p class="input-group">
+                    <input type="text"
+                           class="form-control"
+                           readonly
+                           uib-datepicker-popup="dd MMMM yyyy"
+                           ng-model="vm.event.endsAt"
+                           is-open="vm.event.endOpen"
+                           close-text="Close">
+                    <span class="input-group-btn">
+                        <button type="button"
+                                class="btn btn-default"
+                                ng-click="vm.toggle($event, 'endOpen', vm.event)">
+                            <i class="glyphicon glyphicon-calendar"></i>
+                        </button>
+                    </span>
+                </p>
+                <div uib-timepicker
+                     ng-model="vm.event.endsAt"
+                     hour-step="1"
+                     minute-step="15"
+                     show-meridian="true">
+                </div>
+
+
+                <div class="modal-footer">
+                    @*<button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>*@
+                    <button type="submit" class="btn btn-primary" ng-click="saveToBasket(Drug,category,Administration,Dosage,Frequency)" ng-disabled="drugForm.$invalid">Add To Basket</button>
+                </div>
+            </div>
+        </form>
+    </div>
+    <!-- //date-picker -->
+
+
+    <div class="well col-mod-6 pull-right" ng-controller="MedicationController" style="width:700px ">
+
+        <table class="table table-bordered">
+            <caption>Prescribed Drugs</caption>
+            <thead>
+                <tr>
+                    <th>Drug Category</th>
+                    <th>Drug Name</th>
+                    <th>Drug Admin</th>
+                    <th>Drug  freq</th>
+                    <th>Drug  Dos</th>
+                    <th>Drug start</th>
+                    <th>Drug End</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr ng-repeat="DrugVW in selectedDrugsBuffer">
+                    <td> {{DrugVW.category}}</td>
+                    <td> {{DrugVW.DrugName}}</td>
+                    <td> {{DrugVW.admin}}</td>
+                    <td> {{DrugVW.freq }}</td>
+                    <td> {{DrugVW.Dos }}</td>
+                    <td> {{DrugVW.startDate |date:'dd-M-yyyy H:mm'}} </td>
+                    <td> {{DrugVW.endDate   |date:'dd-M-yyyy H:mm'}} </td>
+                    <td>
+                        <span ng-click="deleteDrug(DrugVW)" class="glyphicon glyphicon-trash" style="color:blue"></span>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+
+        <div class="modal-footer">
+            <button type="submit" class="btn btn-primary" ng-click="saveDrugs()">Save drugs</button>
+        </div>
+    </div>
+
+    <!--//grids-->
+</div>
+

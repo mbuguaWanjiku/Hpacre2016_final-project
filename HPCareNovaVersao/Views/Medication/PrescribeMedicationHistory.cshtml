@@ -1,0 +1,54 @@
+﻿
+
+<div class="panel panel-widget">
+    <div class="progressbar-heading grids-heading">
+        <h2>Medication History</h2>
+    </div>
+    <div class="well" ng-controller="MedicationHistoryController">
+        <div class="panel-widget">
+            <span class="glyphicon glyphicon-filter"></span>
+
+            <select ng-model="sortColumn" class="dropDownOptions">
+                <option value="StartDate" selected>StartDate</option>
+                <option value="EndDate">EndDate</option>
+                <option value="Drugcategory">Drug Category</option>
+                <option value="DrugName">Drug Name</option>
+            </select><span></span>
+            <input type="number" step="2" min="0" max="20" ng-model="rowLimit" placeholder="rows" style="width:140px" />
+        </div>
+        <table class=" table-bordered table-bordered  form-control-wrapper">
+            <caption>Patient active diseases</caption>
+            <thead>
+                <tr>
+                    <th>No</th>
+                    <th>StartDate</th>
+                    <th>EndDate</th>
+                    <th>DrugName</th>
+                    <th>Category</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr ng-repeat="medHistory in medicationHistory | limitTo:rowLimit | orderBy:sortColumn">
+                    <td style="width:2%">{{$index + 1}}</td>
+                    <td>
+                        {{medHistory.StartDate | jsonDate :'dd-M-yyyy H:mm' }}
+                    </td>
+                    <td>
+                        {{medHistory.EndDate | jsonDate :'dd-M-yyyy H:mm' }}
+                    </td>
+                    <td>
+                        {{medHistory.DrugName}}
+                    </td>
+                    <td>
+                        {{medHistory.Drugcategory}}
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+
+
+    </div>
+
+</div>
+
+

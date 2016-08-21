@@ -1,0 +1,133 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="14.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{C73F4255-5C87-4076-9AC6-4C9740629CAE}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>DataLayer</RootNamespace>
+    <AssemblyName>DataLayer</AssemblyName>
+    <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Class1.cs" />
+    <Compile Include="Entities\DiagnosisEntities\CIDCode.cs" />
+    <Compile Include="Entities\DiagnosisEntities\CID_Category.cs" />
+    <Compile Include="Entities\DiagnosisEntities\CID_DiseaseCode.cs" />
+    <Compile Include="Entities\DiagnosisEntities\Diagnosis.cs" />
+    <Compile Include="Entities\DiagnosisEntities\Disease.cs" />
+    <Compile Include="Entities\DiagnosisEntities\PatientDiagnosisManager.cs" />
+    <Compile Include="Entities\MCDTEntities\KFT.cs" />
+    <Compile Include="Entities\MCDTEntities\LabExams.cs" />
+    <Compile Include="Entities\MCDTEntities\LFT.cs" />
+    <Compile Include="Entities\MCDTEntities\LymphocytesSubsets.cs" />
+    <Compile Include="Entities\MCDTEntities\MCDT.cs" />
+    <Compile Include="Entities\MCDTEntities\MCDTManager.cs" />
+    <Compile Include="Entities\MCDTEntities\MCDTStaffManager.cs" />
+    <Compile Include="Entities\MCDTEntities\MCDTType.cs" />
+    <Compile Include="Entities\MCDTEntities\PhysicalExam.cs" />
+    <Compile Include="Entities\MCDTEntities\PlateletsCount.cs" />
+    <Compile Include="Entities\MCDTEntities\PsychiatricExam.cs" />
+    <Compile Include="Entities\MCDTEntities\RBCIndices.cs" />
+    <Compile Include="Entities\MCDTEntities\RBCS.cs" />
+    <Compile Include="Entities\MCDTEntities\RegularExam.cs" />
+    <Compile Include="Entities\MCDTEntities\Units.cs" />
+    <Compile Include="Entities\MCDTEntities\ViralLoad.cs" />
+    <Compile Include="Entities\MCDTEntities\WBCS.cs" />
+    <Compile Include="Entities\PatientEntities\Admission.cs" />
+    <Compile Include="Entities\PatientEntities\Intervention.cs" />
+    <Compile Include="Entities\PatientEntities\NextOfKin.cs" />
+    <Compile Include="Entities\PatientEntities\NextOfKinManager.cs" />
+    <Compile Include="Entities\PatientEntities\NOFkinRelationShip.cs" />
+    <Compile Include="Entities\PatientEntities\TreatmentCategory.cs" />
+    <Compile Include="Entities\PatientEntities\TreatmentPlan.cs" />
+    <Compile Include="Entities\PatientEntities\TreatmentType.cs" />
+    <Compile Include="Entities\TreatmentEntities\Dosage.cs" />
+    <Compile Include="Entities\TreatmentEntities\Drug.cs" />
+    <Compile Include="Entities\TreatmentEntities\DrugAdministration.cs" />
+    <Compile Include="Entities\TreatmentEntities\DrugCategory.cs" />
+    <Compile Include="Entities\TreatmentEntities\DrugFrequency.cs" />
+    <Compile Include="Entities\TreatmentEntities\DrugIssuance.cs" />
+    <Compile Include="Entities\TreatmentEntities\DrugManager.cs" />
+    <Compile Include="Entities\TreatmentEntities\Therapy.cs" />
+    <Compile Include="Entities\TreatmentEntities\TherapyManager.cs" />
+    <Compile Include="Entities\UserEntities\AgeGroup.cs" />
+    <Compile Include="Entities\UserEntities\Allergies.cs" />
+    <Compile Include="Entities\UserEntities\AllergiesManager.cs" />
+    <Compile Include="Entities\UserEntities\AllergyCategory.cs" />
+    <Compile Include="Entities\UserEntities\FamilyHistory.cs" />
+    <Compile Include="Entities\UserEntities\FamilyHistoryManager.cs" />
+    <Compile Include="Entities\UserEntities\FamilyHistoryCategory.cs" />
+    <Compile Include="Entities\UserEntities\Gender.cs" />
+    <Compile Include="Entities\UserEntities\MaritalStatus.cs" />
+    <Compile Include="Entities\UserEntities\Patient.cs" />
+    <Compile Include="Entities\UserEntities\Person.cs" />
+    <Compile Include="Entities\UserEntities\ProfessionalsType.cs" />
+    <Compile Include="Entities\UserEntities\RiskFactors.cs" />
+    <Compile Include="Entities\UserEntities\RiskFactorsManager.cs" />
+    <Compile Include="Entities\UserEntities\RiskFactorsType.cs" />
+    <Compile Include="Entities\UserEntities\Staff.cs" />
+    <Compile Include="Entities\UserEntities\User.cs" />
+    <Compile Include="Entities\VisitsEntities\ClinicRegistryManager.cs" />
+    <Compile Include="Entities\VisitsEntities\FirstVisit.cs" />
+    <Compile Include="Entities\VisitsEntities\HomeVisit.cs" />
+    <Compile Include="Entities\VisitsEntities\HomeVisitManager.cs" />
+    <Compile Include="Entities\VisitsEntities\Registry.cs" />
+    <Compile Include="Entities\VisitsEntities\SubsequentVisit.cs" />
+    <Compile Include="Entities\VisitsEntities\Visit.cs" />
+    <Compile Include="Entities\VisitsEntities\VisitManager.cs" />
+    <Compile Include="EntityFramework\HPCareDBContext.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+    <None Include="packages.config" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

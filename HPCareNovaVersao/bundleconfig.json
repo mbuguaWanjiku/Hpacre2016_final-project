@@ -1,0 +1,14 @@
+[
+  {
+    "outputFileName": "Scripts/",
+    "inputFiles": [
+      "Scripts/"
+    ]
+  },
+  {
+    "outputFileName": "Views/Shared/Admin.cshtml",
+    "inputFiles": [
+      "Views/Shared/Admin.cshtml"
+    ]
+  }
+]

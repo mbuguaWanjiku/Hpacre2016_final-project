@@ -1,0 +1,50 @@
+﻿
+<div class="modal-header">
+    <!--<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>-->
+    <h4 class="modal-title" id="myModalLabel">Add Lymphocytes Subsets Lab Exam Results</h4>
+</div>
+<div class="modal-body">
+    <div class="form-body" ng-controller="LabExamsController">
+        <form class="form-horizontal">
+
+            <!--<div class="form-group">
+                <label for="focusedinput3" class="col-md-2 control-label">Lymphocytes Units</label>
+                <div class="col-md-8">
+                    <input type="text" class="form-control" id="focusedinput3" ng-model="LabExams.Lymphocytes_units" />
+                </div>
+            </div>-->
+
+            <div class="form-group">
+                <label for="focusedinput4" class="col-md-2 control-label">CD3</label>
+                <div class="col-md-8">
+                    <input type="text" class="form-control" id="focusedinput4" ng-model="LabExams.CD3" />
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="focusedinput5" class="col-md-2 control-label">CD4</label>
+                <div class="col-md-8">
+                    <input type="text" class="form-control" id="focusedinput5" ng-model="LabExams.CD4" />
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="focusedinput6" class="col-md-2 control-label">CD8</label>
+                <div class="col-md-8">
+                    <input type="text" class="form-control" id="focusedinput6" ng-model="LabExams.CD8" />
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="focusedinput7" class="col-md-2 control-label">T Lymphocytes</label>
+                <div class="col-md-8">
+                    <input type="text" class="form-control" id="focusedinput7" ng-model="LabExams.T_lymphocytes" />
+                </div>
+            </div>
+
+            <div class="modal-footer">
+                <button type="button" class="btn btn-primary" ng-click="SaveLymphocytes(); $close()">Submit</button>
+            </div>
+        </form>
+    </div>
+</div>

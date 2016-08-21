@@ -1,0 +1,55 @@
+﻿
+
+<div class="col-md-1"></div>
+<div class="panel panel-widget col-md-10">
+    <div class="progressbar-heading grids-heading">
+        <h2>Diagnosis History</h2>
+    </div>
+
+    <div class="well col-md-12">
+        <div class="selected dropDownOptions" ng-controller="DiagnosisHistoryController">
+
+            <table class="table table-hover form-control-wrapper">
+                <caption>Patient active diseases</caption>
+                <thead>
+                    <tr>
+                        <th>StartDate</th>
+                        <th>EndDate</th>
+                        <th>CID Version</th>
+                        <th>CID Category</th>
+                        <th>CID Code</th>
+                        <th>Physician</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr ng-repeat="diagosis in diagnoses">
+                        <td>
+                            {{diagosis.StartDate | jsonDate :'dd-M-yyyy H:mm'}}
+                        </td>
+                        <td>
+                            {{diagosis.EndDate | jsonDate :'dd-M-yyyy H:mm'}}
+                        </td>
+                        <td>
+                            {{diagosis.Version}}
+                        </td>
+                        <td>
+                            {{diagosis. DiseaseCIDCategory}}
+                        </td>
+                        <td>
+                            {{diagosis. DiseaseCIDCode}}
+                        </td>
+                        <td>
+                            Physician
+                        </td>
+
+                    </tr>
+                </tbody>
+            </table>
+
+        </div>
+
+    </div>
+
+</div>
+
+<div class="col-md-1"></div>

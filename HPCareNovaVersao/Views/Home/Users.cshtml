@@ -1,0 +1,27 @@
+﻿
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Users</title>
+</head>
+<body>
+    <div> 
+
+        <table>
+            @foreach (var v in ViewBag.users) {
+
+            <tr>
+                <td>@v.UserName</td>
+            </tr>
+            }
+
+        </table>
+    </div>
+</body>
+</html>
