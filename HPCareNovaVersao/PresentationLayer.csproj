@@ -209,6 +209,7 @@
     <Compile Include="Controllers\StaffsController.cs" />
     <Compile Include="Controllers\TreatmentPlansController.cs" />
     <Compile Include="Controllers\UsersController.cs" />
+    <Compile Include="Controllers\VisitManagerController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -234,6 +235,7 @@
     <Content Include="Content\Angular\controllers\PatientTemplateInfo.js" />
     <Content Include="Content\Angular\controllers\SpecificGraphMonitorization.js" />
     <Content Include="Content\Angular\controllers\StaffController.js" />
+    <Content Include="Content\Angular\controllers\VisitManagerController.js" />
     <Content Include="Content\Angular\ModalViewsContent\modalControlGraph.html" />
     <Content Include="Content\Angular\ModalViewsContent\modalLymphocyte.html" />
     <Content Include="Content\Angular\ModalViewsContent\modalPlatelets.html" />
@@ -295,11 +297,10 @@
     <Content Include="ApplicationInsights.config">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Hpcare\HomeAdmin.html" />
-    <Content Include="Hpcare\HomePatient.html" />
     <Content Include="Hpcare\HomeLabTec.html" />
     <Content Include="Hpcare\Home.html" />
     <Content Include="Hpcare\scriptsLoader.html" />
+    <Content Include="Hpcare\VisitManager.html" />
     <Content Include="Images\1.png" />
     <Content Include="Images\2.png" />
     <Content Include="Images\3.png" />
@@ -1251,14 +1252,10 @@
     <Content Include="Views\LabExams\ListMcdts.cshtml" />
     <Content Include="Views\Medication\PrescribeMedicationHistory.cshtml" />
     <Content Include="Views\RegularExamsHistory\GetRegularExamsHistory.cshtml" />
-    <Content Include="Views\Patient\PatientProfilePage.cshtml" />
-    <Content Include="Views\Patient\PatientTreatmentPlan.cshtml" />
-    <Content Include="Views\Patient\PatientMcdts.cshtml" />
-    <Content Include="Views\Patient\PatientDiseaseHistory.cshtml" />
-    <Content Include="Views\Patient\PatientMedications.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Views\VisitManager\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />
