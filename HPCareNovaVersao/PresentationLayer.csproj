@@ -231,6 +231,7 @@
     <Content Include="Content\Angular\controllers\MedicationHistoryController.js" />
     <Content Include="Content\Angular\controllers\PatientController.js" />
     <Content Include="Content\Angular\controllers\PatientInformationsController.js" />
+    <Content Include="Content\Angular\controllers\PatientTemplateInfo.js" />
     <Content Include="Content\Angular\controllers\SpecificGraphMonitorization.js" />
     <Content Include="Content\Angular\controllers\StaffController.js" />
     <Content Include="Content\Angular\ModalViewsContent\modalControlGraph.html" />

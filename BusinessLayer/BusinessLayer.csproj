@@ -56,11 +56,15 @@
     <Compile Include="Implementation\impStaff.cs" />
     <Compile Include="Implementation\ImpTherapy.cs" />
     <Compile Include="Implementation\ImpTreatmentPlan.cs" />
+    <Compile Include="Implementation\ViewModels\AllergiesViewModel.cs" />
+    <Compile Include="Implementation\ViewModels\FamilyHistoryViewModel.cs" />
     <Compile Include="Implementation\ViewModels\InterventionVM.cs" />
     <Compile Include="Implementation\ViewModels\McdtViewModel.cs" />
     <Compile Include="Implementation\ViewModels\MedicationHistoryVM.cs" />
     <Compile Include="Implementation\ViewModels\PatientDiseaseHistoryVM.cs" />
+    <Compile Include="Implementation\ViewModels\PatientInformationViewModel.cs" />
     <Compile Include="Implementation\ViewModels\RegularExamsVM.cs" />
+    <Compile Include="Implementation\ViewModels\RiskFactorsViewModel.cs" />
     <Compile Include="Implementation\ViewModels\TreatmentCategoryVM.cs" />
     <Compile Include="Implementation\ViewModels\TreatmentTypeVM.cs" />
     <Compile Include="Interfaces\ILabExams.cs" />
