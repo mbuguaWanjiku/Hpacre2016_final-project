@@ -7,14 +7,20 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using DataLayer.Entities.MCDTEntities;
+using BusinessLayer.Implementation.ViewModels;
+using System.Data.SqlClient;
+using System.Data;
+using System.Data.Common;
 
 namespace BusinessLayer.Implementation {
     public class impLabExams : ILabExams {
 
         private HPCareDBContext db;
+        private List<McdtViewModel> listMcdtVM;
 
         public impLabExams(HPCareDBContext db) {
             this.db = db;
+            listMcdtVM = new List<McdtViewModel>();
         }
 
         public void saveKft(List<KFT> kftList) {
@@ -133,6 +139,48 @@ namespace BusinessLayer.Implementation {
             }
 
             db.SaveChanges();
+        }
+
+        public List<McdtViewModel> ListMcdts() {
+            AccessDatabase();
+            return listMcdtVM;
+        }
+
+        private void AccessDatabase() {
+            using(SqlConnection connection = new SqlConnection("Data Source=SQL5025.myASP.NET;Initial Catalog=DB_A0ADFA_HPCareDBContext;User Id=DB_A0ADFA_HPCareDBContext_admin;Password=hpcare2016;")) {
+                //using(SqlConnection connection = new SqlConnection("Data Source=MÁRCIA\\SQLSERVER; Initial Catalog =HPCareDBContext; Integrated Security=true")) {
+                //using (SqlConnection connection = new SqlConnection("Data Source= WANJIKU\\NEWSQLEXPRESS ; Initial Catalog =HPCareDBContext;Integrated Security=SSPI"))
+                //{
+                SqlCommand command = new SqlCommand("SELECT MCDTs.MCDT_ID, MCDTs.MCDT_type, MCDTs.MCDT_date, MCDTs.LabExam_data_in, MCDTs.LabExam_date_out, Users.User_id," + 
+                    " Users.Name , MCDTs.Discriminator FROM ClinicRegistryManagers INNER JOIN MCDTManagers ON ClinicRegistryManagers.ClinicRegistryManagerId = MCDTManagers.clinicRegistryManager_ClinicRegistryManagerId " + 
+                    "INNER JOIN MCDTStaffManagers ON MCDTManagers.MCDTStaffManager_MCDTStaffManager_id = MCDTStaffManagers.MCDTStaffManager_id INNER JOIN MCDTs ON " +
+                    "MCDTStaffManagers.mcdt_MCDT_ID = MCDTs.MCDT_ID INNER JOIN Patient ON ClinicRegistryManagers.Clinic_patient_User_id = Patient.User_id INNER JOIN " +
+                    "Users ON Patient.User_id = Users.User_id", connection);
+                command.CommandType = CommandType.Text;
+                command.Connection = connection;
+                connection.Open();
+
+                DbDataReader dbDataReader = command.ExecuteReader();
+                McdtViewModel viewModel;
+
+                while(dbDataReader.Read()) {
+                    viewModel = new McdtViewModel {
+                        McdtId = dbDataReader.GetInt32(0),
+                        McdtType = dbDataReader.GetInt32(1),
+                        McdtDate = GetDateDefault(dbDataReader, 2),
+                        LabDateIn = GetDateDefault(dbDataReader, 3),
+                        LabDateOut = GetDateDefault(dbDataReader, 4),
+                        UserId = dbDataReader.GetInt32(5),
+                        UserName = dbDataReader.GetString(6),
+                        Discriminator = dbDataReader.GetString(7)
+                    };
+                    listMcdtVM.Add(viewModel);
+                }
+            }
+        }
+
+        private DateTime GetDateDefault(DbDataReader reader, int colIndex) {
+            return (reader.IsDBNull(colIndex) ? new DateTime(1970, 01, 01) : reader.GetDateTime(colIndex));
         }
     }
 }

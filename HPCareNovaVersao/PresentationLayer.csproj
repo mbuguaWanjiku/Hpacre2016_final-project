@@ -294,6 +294,8 @@
     <Content Include="ApplicationInsights.config">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <Content Include="Hpcare\HomeAdmin.html" />
+    <Content Include="Hpcare\HomePatient.html" />
     <Content Include="Hpcare\HomeLabTec.html" />
     <Content Include="Hpcare\Home.html" />
     <Content Include="Hpcare\scriptsLoader.html" />
@@ -1248,6 +1250,11 @@
     <Content Include="Views\LabExams\ListMcdts.cshtml" />
     <Content Include="Views\Medication\PrescribeMedicationHistory.cshtml" />
     <Content Include="Views\RegularExamsHistory\GetRegularExamsHistory.cshtml" />
+    <Content Include="Views\Patient\PatientProfilePage.cshtml" />
+    <Content Include="Views\Patient\PatientTreatmentPlan.cshtml" />
+    <Content Include="Views\Patient\PatientMcdts.cshtml" />
+    <Content Include="Views\Patient\PatientDiseaseHistory.cshtml" />
+    <Content Include="Views\Patient\PatientMedications.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

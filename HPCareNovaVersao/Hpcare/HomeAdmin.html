@@ -1,0 +1,505 @@
+﻿
+<!DOCTYPE HTML>
+<html>
+<head>
+    <title>Baxster an Admin Panel Category Flat Bootstrap Responsive Website Template | Home :: w3layouts</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="keywords" content="Baxster Responsive web template, Bootstrap Web Templates, Flat Web Templates, Android Compatible web template,
+SmartPhone Compatible web template, free WebDesigns for Nokia, Samsung, LG, SonyEricsson, Motorola web design" />
+    <script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); } </script>
+
+    <!--Angular scripts-->
+
+    <script src="/Scripts/angular.js"></script>
+    <script src="/Scripts/angular-animate.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/moment.js/2.11.1/moment.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/interact.js/1.2.4/interact.min.js"></script>
+
+    <!--<script src="//ajax.googleapis.com/ajax/libs/angularjs/1.5.8/angular.js"></script>-->
+    <!--<script src="//ajax.googleapis.com/ajax/libs/angularjs/1.5.8/angular-animate.js"></script>-->
+    <script src="//cdnjs.cloudflare.com/ajax/libs/angular-ui-bootstrap/2.0.0/ui-bootstrap-tpls.min.js"></script>
+    <script src="//cdn.rawgit.com/jkbrzt/rrule/v2.1.0/lib/rrule.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/angular-bootstrap-colorpicker/3.0.25/js/bootstrap-colorpicker-module.min.js"></script>
+    <script src="//mattlewis92.github.io/angular-bootstrap-calendar/dist/js/angular-bootstrap-calendar-tpls.min.js"></script>
+    <!--<script src="../Angular/Modules/MainModule.js"></script>
+    <script src="example.js"></script>
+    <script src="helpers.js"></script>-->
+    <link href="//netdna.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
+    <!--<link href="//cdnjs.cloudflare.com/ajax/libs/angular-bootstrap-colorpicker/3.0.25/css/colorpicker.min.css" rel="stylesheet">-->
+    <link href="//mattlewis92.github.io/angular-bootstrap-calendar/dist/css/angular-bootstrap-calendar.min.css" rel="stylesheet">
+
+
+    <script src="/Scripts/angular-ui-router.js"></script>
+    <script src="../Content/Angular/Modules/MainModule.js"></script>
+    <script src="../Content/Angular/Modules/NavigationConfiguration.js"></script>
+    <script src="../Content/Angular/Services/DialoguesFactory.js"></script>
+    <script src="../Content/Angular/Services/DiagnosisHistoryService.js"></script>
+    <script src="../Content/Angular/controllers/DiagnosisClassificationController.js"></script>
+    <script src="../Content/Angular/controllers/DiagnosisHistoryController.js"></script>
+
+    <script src="../Content/Angular/controllers/MedicationController.js"></script>
+    <script src="../Content/Angular/Services/MedicationHistoryFactory.js"></script>
+    <script src="../Content/Angular/controllers/MedicationHistoryController.js"></script>
+    <script src="../Content/Angular/controllers/HomeController.js"></script>
+
+    <script src="../Content/Angular/controllers/MCDTController.js"></script>
+    <script src="../Content/Angular/Services/DialoguesFactory.js"></script>
+    <script src="../Content/TreatmentPlan/indexController.js"></script>
+    <script src="../Content/TreatmentPlan/TreatmentPlanMedController.js"></script>
+
+    <script src="../Content/Angular/Services/MCDRegularExamFactory.js"></script>
+    <script src="../Content/Angular/Services/RegularLabResultsModalFactory.js"></script>
+    <script src="../Content/Angular/controllers/MCDTHistoryController.js"></script>
+
+
+    <script src="../Content/Angular/controllers/PatientInformationsController.js"></script>
+    <script src="../Content/Angular/controllers/StaffController.js"></script>
+    <script src="../Content/Angular/controllers/PatientController.js"></script>
+
+    <script src="../Content/Angular/controllers/GraphsObjectsController.js"></script>
+    <script src="../Content/Angular/controllers/SpecificGraphMonitorization.js"></script>
+
+    <!-- Bootstrap Core CSS -->
+    <link href="/Content/bootstrap.css" rel='stylesheet' type='text/css' />
+    <!-- Custom CSS -->
+    <link href="/Content/style.css" rel='stylesheet' type='text/css' />
+    <!-- font CSS -->
+    <link rel="icon" href="favicon.ico" type="image/x-icon">
+    <!-- font-awesome icons -->
+    <link href="/Content/font-awesome.css" rel="stylesheet">
+    <!-- //font-awesome icons -->
+    <!-- chart -->
+    <script src="../Scripts/Graphs/Chart.js"></script>
+    <!-- //chart -->
+    <!-- js-->
+    <script src="/Scripts/jquery-1.11.1.min.js"></script>
+    <script src="/Scripts/modernizr.custom.js"></script>
+    <!--webfonts-->
+    <link href='//fonts.googleapis.com/css?family=Roboto+Condensed:400,300,300italic,400italic,700,700italic' rel='stylesheet' type='text/css'>
+    <!--//webfonts-->
+    <!--animate-->
+    <link href="/Content/animate.css" rel="stylesheet" type="text/css" media="all">
+    <script src="/Scripts/wow.min.js"></script>
+    <script>
+        new WOW().init();
+    </script>
+    <!--//end-animate-->
+    <!-- Metis Menu -->
+    <script src="/Scripts/metisMenu.min.js"></script>
+    <script src="/Scripts/custom.js"></script>
+    <link href="/Scripts/custom.js" rel="stylesheet">
+    <!--//Metis Menu -->
+    <!-- move-chart -->
+    <link rel="stylesheet" href="/Content/atlas.css" type="text/css" charset="utf-8">
+    <!-- //move-chart -->
+    <!-- date-picker -->
+    <link href="../Content/bootstrap-material-datetimepicker.css" rel="stylesheet" />
+    <link href="//fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <!-- //date-picker -->
+</head>
+<body class="cbp-spmenu-push" data-ng-app="myApp">
+    <div class="main-content">
+        <!--left-fixed -navigation-->
+        <div class="sidebar" role="navigation">
+            <div class="navbar-collapse">
+                <nav class="cbp-spmenu cbp-spmenu-vertical cbp-spmenu-right dev-page-sidebar mCustomScrollbar _mCS_1 mCS-autoHide mCS_no_scrollbar" id="cbp-spmenu-s1">
+                    <div class="scrollbar scrollbar1">
+                        <ul class="nav" id="side-menu">
+
+                            <li>
+                                <div ui-sref="searchPatient"> <a href="#" class="active" style="margin-left:18px;"><i class="fa fa-home nav_icon"></i>Search Patient</a></div>
+                            </li>
+
+                            <li>
+                                <a href="#"><i class="fa fa-heartbeat nav_icon"></i>MCDT<span class="fa arrow"></span></a>
+                                <ul class="nav nav-second-level collapse">
+                                    <li>
+                                        <div ui-sref="prescribeMCDT"> <a href="#" style="margin-left:50px;">Prescription</a></div>
+                                    </li>
+                                    <li>
+                                        <a href="#" style="margin-left:37px;"><i class="fa fa-area-chart"></i>MCDT Results<span class="fa arrow"></span></a>
+                                        <ul class="nav nav-second-level collapse">
+                                            <li>
+                                                <div ui-sref="mcdtResults"> <a href="#" style="margin-left:85px;">Regular Results</a></div>
+                                            </li>
+                                            <li>
+                                                <div ui-sref="regularExamsHistory"> <a href="#" style="margin-left:85px;">Regular Exams History</a></div>
+                                            </li>
+                                            <li>
+                                                <div ui-sref="mcdtSpecificResults"> <a href="#" style="margin-left:85px;">Specific Result</a></div>
+                                            </li>
+
+                                        </ul>
+                                    </li>
+
+                                    <li>
+                                        <div ui-sref="createTreatmentPlan"> <a href="#" style="margin-left:50px;">Configure Treatment Plan</a></div>
+                                    </li>
+                                    <li>
+                                        <div ui-sref="consultTreatmentPlan"> <a href="#" style="margin-left:50px;">Treatment Plan</a></div>
+                                    </li>
+                                </ul>
+                                <!-- /nav-second-level -->
+                            </li>
+                            <li>
+                                <a href="#" class="elements"><i class="fa fa-stethoscope nav_icon"></i>&nbsp;Diagnosis <span class="fa arrow"></span></a>
+                                <ul class="nav nav-second-level collapse">
+                                    <li>
+                                        <div ui-sref="classifyDisease"> <a href="#" style="margin-left:50px;">&nbsp;ClassifyDisease</a></div>
+                                    </li>
+                                    <li>
+                                        <div ui-sref="updateDiseaseStatus"> <a href="#" style="margin-left:50px;">&nbsp;Update Disease Status</a></div>
+                                    </li>
+                                    <li>
+                                        <div ui-sref="diagnosisHistory"> <a href="#" style="margin-left:50px;">&nbsp;Diagnosis History</a></div>
+                                    </li>
+                                </ul>
+                                <!-- /nav-second-level -->
+                            </li>
+
+                            <li>
+                                <a href="#"><i class="fa fa-medkit nav_icon"></i>Treatment<span class="fa arrow"></span></a>
+                                <ul class="nav nav-second-level collapse">
+                                    <li>
+                                        <div ui-sref="prescribeMedication"><a href="#" style="margin-left:50px;">&nbsp;Medication</a></div>
+                                    </li>
+                                    <li>
+                                        <div ui-sref="prescribeTherapy"><a href="#" style="margin-left:50px;">&nbsp;Therapy</a></div>
+                                    </li>
+                                    <li>
+                                        <a href="#" style="margin-left:38px;">&nbsp;Hospital Admissions</a>
+                                    </li>
+                                </ul>
+                                <!-- /nav-second-level -->
+                            </li>
+
+                            <li>
+                                <div ui-sref="addPatientInfo"><a href="#" style="margin-left:18px;"><i class="fa fa-plus"></i>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Add Patient Info</a></div>
+                            </li>
+
+                            <li>
+                                <div ui-sref="consultPatientInfo"><a href="#" style="margin-left:18px;"><i class="fa fa-list-alt"></i>&nbsp;&nbsp;&nbsp;&nbsp;Consult Patient Info</a></div>
+                            </li>
+
+                            <li>
+                                <a href="#" class="elements"><i class="fa fa-file-text nav_icon"></i>Observations</a>
+                            </li>
+
+                        </ul>
+                    </div>
+                    <!-- //sidebar-collapse -->
+                </nav>
+            </div>
+        </div>
+        <!--left-fixed -navigation-->
+        <!-- header-starts -->
+        <div class="sticky-header header-section ">
+            <div class="header-left">
+                <!--logo -->
+                <div class="logo">
+                    <a href="index.html">
+                        <ul>
+                            <!--<li><img src="images/logo1.png" alt="" /></li>-->
+                            <li><h1>HPCare</h1></li>
+                            <div class="clearfix"> </div>
+                        </ul>
+                    </a>
+                </div>
+                <!--//logo-->
+                <div class="header-right header-right-grid">
+                    <div class="profile_details_left">
+                        <!--notifications of menu start -->
+                        <ul class="nofitications-dropdown">
+                            <li class="dropdown head-dpdn">
+                                <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-envelope"></i><span class="badge">3</span></a>
+                                <ul class="dropdown-menu anti-dropdown-menu">
+                                    <li>
+                                        <div class="notification_header">
+                                            <h3>You have 3 new messages</h3>
+                                        </div>
+                                    </li>
+                                    <li>
+                                        <a href="#">
+                                            <div class="user_img"><img src="/images/1.png" alt=""></div>
+                                            <div class="notification_desc">
+                                                <p>Lorem ipsum dolor amet</p>
+                                                <p><span>1 hour ago</span></p>
+                                            </div>
+                                            <div class="clearfix"></div>
+                                        </a>
+                                    </li>
+                                    <li class="odd">
+                                        <a href="#">
+                                            <div class="user_img"><img src="/images/2.png" alt=""></div>
+                                            <div class="notification_desc">
+                                                <p>Lorem ipsum dolor amet </p>
+                                                <p><span>1 hour ago</span></p>
+                                            </div>
+                                            <div class="clearfix"></div>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="#">
+                                            <div class="user_img"><img src="/images/3.png" alt=""></div>
+                                            <div class="notification_desc">
+                                                <p>Lorem ipsum dolor amet </p>
+                                                <p><span>1 hour ago</span></p>
+                                            </div>
+                                            <div class="clearfix"></div>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <div class="notification_bottom">
+                                            <a href="#">See all messages</a>
+                                        </div>
+                                    </li>
+                                </ul>
+                            </li>
+                            <li class="dropdown head-dpdn">
+                                <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-expanded="false"><i class="fa fa-bell"></i><span class="badge blue">3</span></a>
+                                <ul class="dropdown-menu anti-dropdown-menu">
+                                    <li>
+                                        <div class="notification_header">
+                                            <h3>You have 3 new notification</h3>
+                                        </div>
+                                    </li>
+                                    <li>
+                                        <a href="#">
+                                            <div class="user_img"><img src="/images/2.png" alt=""></div>
+                                            <div class="notification_desc">
+                                                <p>Lorem ipsum dolor amet</p>
+                                                <p><span>1 hour ago</span></p>
+                                            </div>
+                                            <div class="clearfix"></div>
+                                        </a>
+                                    </li>
+                                    <li class="odd">
+                                        <a href="#">
+                                            <div class="user_img"><img src="/images/1.png" alt=""></div>
+                                            <div class="notification_desc">
+                                                <p>Lorem ipsum dolor amet </p>
+                                                <p><span>1 hour ago</span></p>
+                                            </div>
+                                            <div class="clearfix"></div>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="#">
+                                            <div class="user_img"><img src="/images/3.png" alt=""></div>
+                                            <div class="notification_desc">
+                                                <p>Lorem ipsum dolor amet </p>
+                                                <p><span>1 hour ago</span></p>
+                                            </div>
+                                            <div class="clearfix"></div>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <div class="notification_bottom">
+                                            <a href="#">See all notifications</a>
+                                        </div>
+                                    </li>
+                                </ul>
+                            </li>
+                            <li class="dropdown head-dpdn">
+                                <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-expanded="false"><i class="fa fa-tasks"></i><span class="badge blue1">15</span></a>
+                                <ul class="dropdown-menu anti-dropdown-menu">
+                                    <li>
+                                        <div class="notification_header">
+                                            <h3>You have 8 pending task</h3>
+                                        </div>
+                                    </li>
+                                    <li>
+                                        <a href="#">
+                                            <div class="task-info">
+                                                <span class="task-desc">Database update</span><span class="percentage">40%</span>
+                                                <div class="clearfix"></div>
+                                            </div>
+                                            <div class="progress progress-striped active">
+                                                <div class="bar yellow" style="width:40%;"></div>
+                                            </div>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="#">
+                                            <div class="task-info">
+                                                <span class="task-desc">Dashboard done</span><span class="percentage">90%</span>
+                                                <div class="clearfix"></div>
+                                            </div>
+                                            <div class="progress progress-striped active">
+                                                <div class="bar green" style="width:90%;"></div>
+                                            </div>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="#">
+                                            <div class="task-info">
+                                                <span class="task-desc">Mobile App</span><span class="percentage">33%</span>
+                                                <div class="clearfix"></div>
+                                            </div>
+                                            <div class="progress progress-striped active">
+                                                <div class="bar red" style="width: 33%;"></div>
+                                            </div>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="#">
+                                            <div class="task-info">
+                                                <span class="task-desc">Issues fixed</span><span class="percentage">80%</span>
+                                                <div class="clearfix"></div>
+                                            </div>
+                                            <div class="progress progress-striped active">
+                                                <div class="bar  blue" style="width: 80%;"></div>
+                                            </div>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <div class="notification_bottom">
+                                            <a href="#">See all pending tasks</a>
+                                        </div>
+                                    </li>
+                                </ul>
+                            </li>
+                        </ul>
+                        <div class="clearfix"> </div>
+                    </div>
+                </div>
+
+
+                <div class="clearfix"> </div>
+            </div>
+            <!--search-box-->
+            <div class="search-box">
+                <form class="input">
+                    <input class="sb-search-input input__field--madoka" placeholder="Search..." type="search" id="input-31" />
+                </form>
+            </div>
+            <!--//end-search-box-->
+            <div class="header-right">
+
+                <!--notification menu end -->
+                <div class="profile_details">
+                    <ul>
+                        <li class="dropdown profile_details_drop">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
+                                <div class="profile_img">
+                                    <span class="prfil-img"><img src="/images/a.png" alt=""> </span>
+                                    <div class="clearfix"></div>
+                                </div>
+                            </a>
+                            <ul class="dropdown-menu drp-mnu">
+                                <li> <a href="#"><i class="fa fa-cog"></i> Settings</a> </li>
+                                <li><div ui-sref="clinicProfile"><a href="#"><i class="fa fa-user"></i> Profile</a></div></li>
+                                <!--<li> <a href="#"><i class="fa fa-user"></i> Profile</a> </li>-->
+                                <li> <a href="#" id="logout"> Logout</a> </li>
+                            </ul>
+                        </li>
+                    </ul>
+                </div>
+                <!--toggle button start-->
+                <button id="showLeftPush"><i class="fa fa-bars"></i></button>
+                <!--toggle button end-->
+                <div class="clearfix"> </div>
+            </div>
+            <div class="clearfix"> </div>
+        </div>
+        <!-- //header-ends -->
+        <!-- main content start-->
+        <div id="page-wrapper">
+            <div class="main-page  " style="margin-top:13%;">
+
+
+                <div data-ui-view="">
+
+                </div>
+
+            </div>
+        </div>
+        <!--footer-->
+        <div class="dev-page">
+
+            <!-- page footer -->
+            <!-- dev-page-footer-closed dev-page-footer-fixed -->
+            <div class="dev-page-footer dev-page-footer-fixed">
+                <!-- container -->
+                <div class="container">
+                    <div class="copyright">
+                        <p>© 2016 Baxster . All Rights Reserved . Design by <a href="http://w3layouts.com/">W3layouts</a></p>
+                    </div>
+
+
+
+                </div>
+                <!-- //container -->
+            </div>
+            <!-- /page footer -->
+        </div>
+        <!--//footer-->
+    </div>
+    <!-- Classie -->
+    <script src="/Scripts/classie.js"></script>
+    <script>
+        var menuLeft = document.getElementById('cbp-spmenu-s1'),
+            showLeftPush = document.getElementById('showLeftPush'),
+            body = document.body;
+
+        showLeftPush.onclick = function () {
+            classie.toggle(this, 'active');
+            classie.toggle(body, 'cbp-spmenu-push-toright');
+            classie.toggle(menuLeft, 'cbp-spmenu-open');
+            disableOther('showLeftPush');
+        };
+
+
+        function disableOther(button) {
+            if (button !== 'showLeftPush') {
+                classie.toggle(showLeftPush, 'disabled');
+            }
+        }
+    </script>
+    <!-- Bootstrap Core JavaScript -->
+
+    <script type="text/javascript" src="/Scripts/bootstrap.min.js"></script>
+
+    <script type="text/javascript" src="/Scripts/dev-loaders.js"></script>
+    <script type="text/javascript" src="/Scripts/dev-layout-default.js"></script>
+    <script type="text/javascript" src="/Scripts/jquery.marquee.js"></script>
+    <link href="/Content/bootstrap.min.css" rel="stylesheet">
+
+
+
+
+   
+    <script type="text/javascript" src="/Scripts/plugins.js"></script>
+    <!--//max-plugin-->
+    <!--scrolling js-->
+    <script src="/Scripts/jquery.nicescroll.js"></script>
+    <script src="/Scripts/scripts.js"></script>
+    
+    <!--<script src="/Scripts/jquery.fn.gantt.js"></script>-->
+
+    <!-- //status -->
+    <script>
+        $('#logout').click(function (e) {
+            if (!window.confirm("Are you sure you want to logout?"))
+                return;
+
+            e.preventDefault();
+
+            $.ajax({
+                type: 'POST',
+                url: '../Account/LogOff',
+                dataType: 'script',
+                success: function () {
+                    //alert("sucess");
+                    document.location.href = "/";
+                },
+                error: function (req, status, err) {
+                    alert(err);
+                }
+            });
+        });
+    </script>
+
+</body>
+</html>

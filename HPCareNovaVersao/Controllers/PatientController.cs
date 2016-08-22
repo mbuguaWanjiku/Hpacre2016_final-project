@@ -131,18 +131,6 @@ namespace PresentationLayer.Controllers {
             impPatient.saveFamilyHistory(familyHistory, null);
         }
 
-        //public JsonResult GetPatientInformation() {
-        //    List<object> patientInformations = new List<object>();
-        //    Users patient = db.Users.Find(2); //ir buscar atraves do session
-        //    patientInformations.Add(patient.Email);
-        //    patientInformations.Add(patient.Telephone);
-        //    patientInformations.Add(patient.Address);
-        //    return Json(patientInformations, JsonRequestBehavior.AllowGet);
-        //}
-
-
-
-
         public JsonResult GetGender() {
             return Json(db.Genders.ToList(), JsonRequestBehavior.AllowGet);
         }
@@ -156,6 +144,26 @@ namespace PresentationLayer.Controllers {
             impPatient.saveDataFromPatient(usersInformations);
         }
 
+        // ********** Patient Template *******************//
 
+        public ActionResult PatientProfilePage() {
+            return PartialView();
+        }
+
+        public ActionResult PatientTreatmentPlan() {
+            return PartialView();
+        }
+
+        public ActionResult PatientMcdts() {
+            return PartialView();
+        }
+
+        public ActionResult PatientDiseaseHistory() {
+            return PartialView();
+        }
+
+        public ActionResult PatientMedications() {
+            return PartialView();
+        }
     }
 }

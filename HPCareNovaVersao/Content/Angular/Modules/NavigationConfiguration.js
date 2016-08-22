@@ -101,6 +101,36 @@
         templateUrl: "../Content/TreatmentPlan/TreatmentPlanMed.html"
     })
 
+     // *************** Patient Template ******************//
+
+    .state("patientProfilePage", {
+        url: "/patientProfilePage",
+        templateUrl: "../Patient/PatientProfilePage"
+    })
+
+    .state("patientTreatmentPlan", {
+        url: "/patientTreatmentPlan",
+        templateUrl: "../Patient/PatientTreatmentPlan"
+    })
+
+    .state("patientMcdts", {
+        url: "/patientMcdts",
+        templateUrl: "../Patient/PatientMcdts"
+    })
+
+    .state("patientDiseaseHistory", {
+        url: "/patientDiseaseHistory",
+        templateUrl: "../Patient/PatientDiseaseHistory"
+    })
+
+    .state("patientMedications", {
+        url: "/patientMedications",
+        templateUrl: "../Patient/PatientMedications"
+    })
+
+
+
+
 
 
     ;
