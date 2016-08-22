@@ -19,6 +19,5 @@ namespace BusinessLayer.Implementation.ViewModels {
             get; set;
         }
 
-
     }
 }
