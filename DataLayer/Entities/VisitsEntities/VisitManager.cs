@@ -20,7 +20,7 @@ namespace DataLayer.Entities.Visitas {
         public Visit visit {
             get; set;
         }
-
+        //redudant
         public Patient patient {
             get; set;
         }
@@ -29,6 +29,7 @@ namespace DataLayer.Entities.Visitas {
             get; set;
         }
 
+        //redudant
         public virtual Registry VisitRegistry {
             get; set;
         }
