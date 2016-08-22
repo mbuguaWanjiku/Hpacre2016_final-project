@@ -2,32 +2,40 @@
 
 
 app.factory('showResultModal', function ($uibModal) {
+
+    function formatDate(date) {
+        return new Date(parseInt(date.replace('/Date(', ''))).toISOString().slice(0, 10);;
+    }
+
     function createTemplate(mcdtObject, type) {
         var header = function () {
             var divHeader = document.createElement("div");
             divHeader.className = 'modal-header';
             var h3 = document.createElement("h3");
             h3.classList.add('modal-title');
-            h3.appendChild(document.createTextNode(type + '  Results'));
+            h3.appendChild(document.createTextNode(type + '  Results ' + formatDate(mcdtObject.MCDT_date)));
             divHeader.appendChild(h3);
             return divHeader;
-        }      
+        }
         var body = function () {
             var bodyDiv = document.createElement("div");
             bodyDiv.className = 'modal-body';
-            var h1, span, label;
+            var h1, br, label;
             for (var prop in mcdtObject) {
-                if (!mcdtObject.hasOwnProperty(prop)) {
+
+                if (mcdtObject.hasOwnProperty(prop) && prop !== 'MCDT_ID' && prop !== 'LabExam_date_out' && prop !== 'LabExam_data_in' && prop !== 'MCDT_type' && prop !== 'MCDT_date') {
                     //The current property is not a indirect property of p
-                    continue;
+                    br = document.createElement('br');
+                    label = document.createElement('label');
+                    label.appendChild(document.createTextNode(prop))
+                    label.appendChild(document.createTextNode('\u00A0\u00A0\u00A0\u00A0'));
+                    h1 = document.createElement('h2').appendChild(document.createTextNode(mcdtObject[prop]));
+                    p = document.createElement('prep');
+                    //p.className = 'results';
+                    p.appendChild(label); p.appendChild(h1);
+                    bodyDiv.appendChild(p)
+                    bodyDiv.appendChild(br)
                 }
-                span = document.createElement('span');
-                label = document.createElement('label');
-                label.appendChild(document.createTextNode(prop))
-                h1 = document.createElement('h2').appendChild(document.createTextNode(mcdtObject[prop]));
-                p = document.createElement('p');
-                p.appendChild(label); p.appendChild(span); p.appendChild(h1);
-                bodyDiv.appendChild(p)
             }
             return bodyDiv;
         }
