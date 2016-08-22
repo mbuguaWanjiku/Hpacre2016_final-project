@@ -17,7 +17,7 @@ namespace BusinessLayer.Implementation {
             using(SqlConnection connection = new SqlConnection("Data Source=SQL5025.myASP.NET;Initial Catalog=DB_A0ADFA_HPCareDBContext;User Id=DB_A0ADFA_HPCareDBContext_admin;Password=hpcare2016;")) {
                 //using(SqlConnection connection = new SqlConnection("Data Source= MÁRCIA\\SQLSERVER ; Initial Catalog =HPCareDBContext;Integrated Security=SSPI")) {
 
-                SqlCommand command = new SqlCommand("select user_id from Users where Name = '" + currentUser + "';", connection);
+                SqlCommand command = new SqlCommand("select user_id from aspnetusers, users where AspNetUsersId = AspUserId and UserName = '" + currentUser + "';", connection);
 
                 command.CommandType = CommandType.Text;
                 command.Connection = connection;

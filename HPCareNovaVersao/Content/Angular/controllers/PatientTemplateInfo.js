@@ -58,6 +58,23 @@ app.controller("PatientTemplateInfo", function ($scope, PatientTemplateInformati
 
 
 
+app.controller("PatientTemplateDiseasesHistory", function ($scope, PatientTemplateInformationFactory) {
+
+    $scope.listDisease = null;
+    $scope.PatientDiseaseHistoryVM = null;
+
+    $scope.Init = function () {
+        var getData = PatientTemplateInformationFactory.GetPatientDiseaseHistory();
+        getData.then(function (dt) {
+            $scope.listDisease = dt.data;
+        }, function (error) {
+            alert("erro");
+        });
+
+    }
+
+});
+
 app.factory('PatientTemplateInformationFactory', function ($http) {
     var fac = {};
 
@@ -75,6 +92,10 @@ app.factory('PatientTemplateInformationFactory', function ($http) {
 
     fac.GetPatientFullInformations = function () {
         return $http.get('../Patient/GetPatientTemplateInformation');
+    }
+
+    fac.GetPatientDiseaseHistory = function () {
+        return $http.get('../Patient/GetPatientDiseasesHistoryJson');
     }
 
     return fac;

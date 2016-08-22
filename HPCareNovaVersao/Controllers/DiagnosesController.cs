@@ -18,7 +18,7 @@ namespace PresentationLayer.Controllers {
     public class DiagnosisController : Controller {
 
         private HPCareDBContext db = new HPCareDBContext();
-     
+
         private impDiagnosis impDiagnosis;
 
         public DiagnosisController() {
@@ -30,16 +30,13 @@ namespace PresentationLayer.Controllers {
             return PartialView();
         }
 
-        public ActionResult ClassifyDisease_CID()
-        {
+        public ActionResult ClassifyDisease_CID() {
             return PartialView();
         }
 
-      
         [HttpPost]
-        public string ClassifyDisease_CID(List<CID_DiseaseCode> CIDclassification)
-        {
-           
+        public string ClassifyDisease_CID(List<CID_DiseaseCode> CIDclassification) {
+
             impDiagnosis.SaveDiagnosis(CIDclassification);
             return "classified";
         }
@@ -58,36 +55,29 @@ namespace PresentationLayer.Controllers {
             return PartialView();
         }
 
-        public PartialViewResult UpdateDiseaseStatusResult()
-        {
+        public PartialViewResult UpdateDiseaseStatusResult() {
             return PartialView("~/Views/Diagnosis/UpdateDiseaseStatus.cshtml");
         }
 
-
-
-        public JsonResult GetPatientActiveDisease()
-        {
+        public JsonResult GetPatientActiveDisease() {
             Patient patient = db.Users.Find((int)Session["patientId"]) as Patient;
-          
+
             var diseaseList = impDiagnosis.getPatientActiveDiseases(patient);
             return Json(diseaseList, JsonRequestBehavior.AllowGet);
         }
 
-        public ActionResult GetPatientInActiveDisease()
-        {
+        public ActionResult GetPatientInActiveDisease() {
             Patient patient = db.Users.Find((int)Session["patientId"]) as Patient;
             //Patient patient = new Patient();//should use current patient from the session
             List<Disease> diseaseList = impDiagnosis.getPatientInActiveDiseases(patient);
             return PartialView(diseaseList.ToList());
         }
 
-
         public ActionResult GetPatientDiagnosisHistory() {
             return PartialView();
         }
 
-        public JsonResult GetPatientDiagnosisHistoryJson()
-        {
+        public JsonResult GetPatientDiagnosisHistoryJson() {
             ImpPatientDiagnosisHistory history = new ImpPatientDiagnosisHistory();
             Patient patient = db.Users.Find((int)Session["patientId"]) as Patient;
 
@@ -95,25 +85,19 @@ namespace PresentationLayer.Controllers {
             return Json(HistoryList, JsonRequestBehavior.AllowGet);
         }
 
-        public JsonResult GetCidCodeCategories()
-        {
+        public JsonResult GetCidCodeCategories() {
             List<CID_Category> list = db.CID_Categories.ToList();
-           
+
             return Json(list, JsonRequestBehavior.AllowGet);
         }
 
-        public JsonResult GetCIDByCategory(int category_id)
-        {
+        public JsonResult GetCIDByCategory(int category_id) {
             var disease = from dis in db.CID_DiseaseCodes
                           where dis.CIDCategory.CID_CategorID == category_id
                           select dis;
             List<CID_DiseaseCode> listDrug = db.CID_DiseaseCodes.Where(x => x.CIDCategory.CID_CategorID == category_id).ToList();
             return Json(listDrug, JsonRequestBehavior.AllowGet);
         }
-
-
-
-
 
     }
 }

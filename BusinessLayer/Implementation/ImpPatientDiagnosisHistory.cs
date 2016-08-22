@@ -9,10 +9,8 @@ using System.Data.Common;
 using System.Data;
 using System.Data.SqlClient;
 
-namespace BusinessLayer.Implementation
-{
-    public class ImpPatientDiagnosisHistory
-    {
+namespace BusinessLayer.Implementation {
+    public class ImpPatientDiagnosisHistory {
         private HPCareDBContext db = new HPCareDBContext();
 
         /// <summary>
@@ -25,33 +23,27 @@ namespace BusinessLayer.Implementation
         /// Rtuens a list of the past diseases
         /// </returns>
 
-        public List<PatientDiseaseHistoryVM> GetDiagnosisHistory(Patient patient)
-        {
+        public List<PatientDiseaseHistoryVM> GetDiagnosisHistory(Patient patient) {
             //List<PatientDiseaseHistoryaAUX> patientHistory = new List<PatientDiseaseHistoryaAUX>();
             PatientDiseaseHistoryVM diseaseHistory = null;
             List<PatientDiseaseHistoryVM> listaBuilder = new List<PatientDiseaseHistoryVM>();
 
-            foreach (int diagnosisID in GetPatientDiagnoses(patient))
-            {
+            foreach(int diagnosisID in GetPatientDiagnoses(patient)) {
                 diseaseHistory = new PatientDiseaseHistoryVM();
                 PatientDiseaseHistoryVM diagnosisHistory = GetDiagnosisHistoryObject(diagnosisID, diseaseHistory);
                 listaBuilder.Add(diseaseHistory);
             }
             return listaBuilder;
-
         }
-        public List<int> GetPatientDiagnoses(Patient patient)
-        {
+
+        public List<int> GetPatientDiagnoses(Patient patient) {
             List<Diagnosis> diagnosisRegistry = new List<Diagnosis>();
             List<int> diagnosisIDs = new List<int>();
 
-            foreach (ClinicRegistryManager registry in GetPatientClinicalRegisties(patient))
-            {
-                foreach (Diagnosis id in GetClinicalRegistryDiagnoses(registry.ClinicRegistryManagerId))
-                {
+            foreach(ClinicRegistryManager registry in GetPatientClinicalRegisties(patient)) {
+                foreach(Diagnosis id in GetClinicalRegistryDiagnoses(registry.ClinicRegistryManagerId)) {
 
-                    if (isInactive(id.Diagnosis_id))
-                    {
+                    if(isInactive(id.Diagnosis_id)) {
                         diagnosisIDs.Add(id.Diagnosis_id);
                     }
 
@@ -60,13 +52,13 @@ namespace BusinessLayer.Implementation
             }
             return diagnosisIDs;
         }
+
         /// <summary>
         /// filtering inacive diseases
         /// </summary>
         /// <param name="id"></param>
         /// <returns></returns>
-        private bool isInactive(int id)
-        {
+        private bool isInactive(int id) {
             int count = db.Diagnoses.Where(x => x.Diagnosis_disease.Disease_is_active == true && x.Diagnosis_id == id).Count();
             return (count < 1);
         }
@@ -78,8 +70,7 @@ namespace BusinessLayer.Implementation
         /// <returns>
         /// returns a list of diagnosis associated with the clinical registry
         /// </returns>
-        public List<Diagnosis> GetClinicalRegistryDiagnoses(int clinicalRegistryID)
-        {
+        public List<Diagnosis> GetClinicalRegistryDiagnoses(int clinicalRegistryID) {
             return db.Diagnoses.Where(x => x.ClinicRegistry_Manager.ClinicRegistryManagerId == clinicalRegistryID).ToList();
         }
 
@@ -90,19 +81,17 @@ namespace BusinessLayer.Implementation
         /// <returns>
         /// Returns a list of 
         /// </returns>
-        public List<ClinicRegistryManager> GetPatientClinicalRegisties(Patient patient)
-        {
+        public List<ClinicRegistryManager> GetPatientClinicalRegisties(Patient patient) {
             List<ClinicRegistryManager> clinicalRegistries =
                 db.ClinicRegistryManagers.Where(x => x.Clinic_patient.User_id == patient.User_id).ToList();
             return clinicalRegistries;
         }
 
-        private PatientDiseaseHistoryVM GetDiagnosisHistoryObject(int diagnosisID, PatientDiseaseHistoryVM patientDiagnosis)
-        {
+        private PatientDiseaseHistoryVM GetDiagnosisHistoryObject(int diagnosisID, PatientDiseaseHistoryVM patientDiagnosis) {
 
             StringBuilder stringJson = new StringBuilder();
-            using (SqlConnection dbConnection = new SqlConnection("Data Source=SQL5025.myASP.NET;Initial Catalog=DB_A0ADFA_HPCareDBContext;User Id=DB_A0ADFA_HPCareDBContext_admin;Password=hpcare2016;"))
-            
+            using(SqlConnection dbConnection = new SqlConnection("Data Source=SQL5025.myASP.NET;Initial Catalog=DB_A0ADFA_HPCareDBContext;User Id=DB_A0ADFA_HPCareDBContext_admin;Password=hpcare2016;"))
+
                 //using (SqlConnection dbConnection = new SqlConnection("Data Source= WANJIKU\\NEWSQLEXPRESS; Initial Catalog =HPCareDBContext; Integrated Security=SSPI"))
                 {
                 DbCommand dbCommand = dbConnection.CreateCommand();
@@ -111,10 +100,8 @@ namespace BusinessLayer.Implementation
                 dbCommand.CommandText = query;
                 dbConnection.Open();
                 DbDataReader dbDataReader = dbCommand.ExecuteReader();
-                while (dbDataReader.Read())
-                {
-                    if (stringJson.Length != 0)
-                    {
+                while(dbDataReader.Read()) {
+                    if(stringJson.Length != 0) {
                         stringJson.Append(",");
                     }
 

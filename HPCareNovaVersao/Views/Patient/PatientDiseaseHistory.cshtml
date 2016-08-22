@@ -1,1 +1,41 @@
-﻿Patient Disease
+﻿<div class="row">
+    <div class="col-md-1"></div>
+    <div class="panel panel-widget col-md-10">
+        <div class="progressbar-heading grids-heading" ng-controller="PatientTemplateInfo" ng-init="Init()">
+            <h2>My Info</h2>
+        </div>
+        <div class="col-md-12" ng-controller="PatientTemplateDiseasesHistory" ng-init="Init()">
+            <div class="row">
+                
+                @*<div class="col-md-1">
+                </div>*@
+                <div class="col-md-12">
+                    <table class="table table-hover">
+                        <thead>
+                            <tr>
+                                <th>Version</th>
+                                <th>CID Code</th>
+                                <th>Disease Category</th>
+                                <th>Start Date</th>
+                                <th>End Date</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr ng-repeat="PatientDiseaseHistoryVM in listDisease">
+                                <td> {{PatientDiseaseHistoryVM.Version}}</td>
+                                <td> {{PatientDiseaseHistoryVM.DiseaseCIDCode}}</td>
+                                <td> {{PatientDiseaseHistoryVM.DiseaseCIDCategory}}</td>
+                                <td> {{PatientDiseaseHistoryVM.StartDate | jsonDate :'dd-MM-yyyy' }}</td>
+                                <td> {{PatientDiseaseHistoryVM.EndDate | jsonDate :'dd-MM-yyyy'}}</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                @*<div class="col-md-1">
+                </div>*@
+            </div>
+        </div>
+
+    </div>
+    <div class="col-md-1"></div>
+</div>

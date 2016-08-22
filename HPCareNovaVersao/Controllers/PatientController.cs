@@ -2,6 +2,7 @@
 using DataLayer.Entities;
 using DataLayer.Entities.UserEntities;
 using DataLayer.EntityFramework;
+using Microsoft.AspNet.Identity;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -13,9 +14,13 @@ namespace PresentationLayer.Controllers {
 
         HPCareDBContext db = new HPCareDBContext();
         private impPatient impPatient;
+        private ImpPatientDiagnosisHistory impHistory;
+        private ImpMedicationHistory impMedication;
 
         public PatientController() {
             impPatient = new impPatient(db);
+            impHistory = new ImpPatientDiagnosisHistory();
+            impMedication = new ImpMedicationHistory();
         }
 
         // ************** Get Patient Informations do Clinic ***************** //
@@ -147,8 +152,19 @@ namespace PresentationLayer.Controllers {
             return PartialView();
         }
 
+        public JsonResult GetPatientDiseasesHistoryJson() {
+            CurrentUserId current = new CurrentUserId();
+            Patient patient = db.Users.Find(current.AccessDatabase(User.Identity.GetUserName())) as Patient;
+            var list = impHistory.GetDiagnosisHistory(patient);
+            return Json(list, JsonRequestBehavior.AllowGet);
+        }
+
         public ActionResult PatientMedications() {
             return PartialView();
         }
+
+        //public JsonResult GetPatientMedicationHistoryJson() {
+        //    return Json(impMedication.GetPatientMedicationHistory())
+        //}
     }
 }
