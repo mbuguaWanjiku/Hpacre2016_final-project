@@ -307,7 +307,7 @@ app.factory('LabExamsFactory', function ($http) {
         var informations = JSON.stringify({ 'wbcsList': tempArray });
         var response = $http({
             method: "post",
-            url: "../LabExams/saveKftResults",
+            url: "../LabExams/saveWbcsResults",
             data: informations,
             dataType: "json",
         });
