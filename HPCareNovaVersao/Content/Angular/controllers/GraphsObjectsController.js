@@ -48,7 +48,7 @@ function getRandomColor() {
 
 //*********************************************************//
 
-app.controller("GraphsController", function ($scope, GraphsFactory, $interval) {
+app.controller("GraphsController", function ($scope, GraphsFactory, $interval, alert) {
 
     document.getElementById("date-start").value = '2016/01/01';
     document.getElementById("date-end").value = todayDate.getFullYear() + "/" + (todayDate.getMonth() + 1) + "/" + todayDate.getDay();
@@ -71,7 +71,7 @@ app.controller("GraphsController", function ($scope, GraphsFactory, $interval) {
             }
 
         }, function (error) {
-            alert("error");
+            alert.warning("Something went wrong ! Please try again.");
         });
 
         var getColumnsNames = GraphsFactory.GetColumns(selectedDescription);
@@ -101,7 +101,7 @@ app.controller("GraphsController", function ($scope, GraphsFactory, $interval) {
                 new Chart(document.getElementById("line").getContext("2d")).Line(lineChartData);
 
             }, function (error) {
-                alert("error");
+                alert.warning("Something went wrong ! Please try again.");
             });
 
         });
