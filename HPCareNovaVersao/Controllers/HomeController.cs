@@ -92,19 +92,21 @@ namespace PresentationLayer.Controllers {
         }
 
         public ActionResult SearchPatient(string search) {
-            PatientId(search);
+            //PatientId(search);
             return PartialView();
         }
 
-        public Users PatientId(string search) {
+        public JsonResult Search(string search) {
             ImpHome homeImplementation = new ImpHome();
-            string aux = Request.QueryString["search"];
-            //string aux = "4_2";
+            //string aux = Request.QueryString["search"];
+            string aux = search;
             Users patient = homeImplementation.AccessDatabase(aux);
             Session["patientId"] = patient.User_id;
 
-            return patient;
+            return Json(patient, JsonRequestBehavior.AllowGet);
         }
+
+       
 
     }
 }

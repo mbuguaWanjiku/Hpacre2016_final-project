@@ -1,25 +1,29 @@
-﻿app.controller("SearchPatient", function ($scope,HomeService) {
+﻿app.controller("SearchPatient", function ($scope,$state,HomeService,alert) {
 
     $scope.Search = "";
-
-    
-    
     $scope.getDetails = function () {
         var res = document.getElementById("searchPatient").value;
+        var getData = HomeService.SearchPatient(res);
+        getData.then(function (patient) {
+            $scope.SearchRes = patient.data;
+            $state.go('consultPatientInfo')
+        }, function () {
+            alert.warning('Error in getting records');
+        });
+    }
        
-        HomeService.SearchPatient(res);
-    }
-
-});
+        });
 
 
-app.factory('HomeService', function ($http) {
-    var fac = {};
+        app.factory('HomeService', function ($http) {
+            var fac = {};
+    
+            fac.SearchPatient = function (id) {
+                alert(id);
+                return $http.get('../Home/Search?search='+ id)
+                
+            }
 
-    fac.SearchPatient = function (id) {
-        alert(id);
-        return $http.get('../Home/SearchPatient?search='+ id)
-        alert("passed");
-    }
-    return fac;
-});
+
+            return fac;
+        });

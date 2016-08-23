@@ -32,10 +32,10 @@ namespace BusinessLayer {
             int currentIdStaff = currentStaff.AccessDatabase(HttpContext.Current.User.Identity.Name);
             Users staff = currentStaff.ReturnCurrentUser(currentIdStaff);
            
-            Staff staff1 = context.Users.Find(1) as Staff;
+            //Staff staff1 = context.Users.Find(1) as Staff;
             if(singletonInstance == null) {
 
-                singletonInstance = new ClinicRegistryManager { ClinicRegistryManagerId = AccessDatabase(patient, staff1, context).ClinicRegistryManagerId };
+                singletonInstance = new ClinicRegistryManager { ClinicRegistryManagerId = AccessDatabase(patient, staff, context).ClinicRegistryManagerId };
             }
 
             return context.ClinicRegistryManagers.Find(singletonInstance.ClinicRegistryManagerId);
