@@ -1,4 +1,15 @@
 ﻿app.config(function ($stateProvider, $urlRouterProvider) {
+<<<<<<< HEAD
+    //$urlRouterProvider.when("", "");
+    $urlRouterProvider.otherwise('/');
+    $stateProvider
+     .state("VisitManager", {
+           url: "VisitManager.html",
+           templateUrl: "VisitManager.html"
+       })
+
+       .state("searchPatient", {
+=======
     $urlRouterProvider.otherwise('/');
     $stateProvider
      .state("VisitManager", {
@@ -7,6 +18,7 @@
      })
 
       .state("searchPatient", {
+>>>>>>> origin/master
            url: "/searchPatient",
          
            templateUrl: "../Home/SearchPatient"
@@ -134,11 +146,24 @@
     })
 
 
-    ;
+<<<<<<< HEAD
 
+
+
+
+    
+
+=======
+    ;
+>>>>>>> origin/master
 
 });
 
+<<<<<<< HEAD
+=======
+});
+
+>>>>>>> origin/master
 app.run(['$state', function ($state) {
     $state.transitionTo('VisitManager');
 }])
