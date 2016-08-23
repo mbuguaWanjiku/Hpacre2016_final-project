@@ -294,6 +294,7 @@
     <Content Include="ApplicationInsights.config">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <Content Include="Hpcare\VisitManager.html" />
     <Content Include="Hpcare\HomeLabTec.html" />
     <Content Include="Hpcare\Home.html" />
     <Content Include="Hpcare\scriptsLoader.html" />
