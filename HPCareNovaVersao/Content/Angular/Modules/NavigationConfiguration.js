@@ -6,6 +6,11 @@
          templateUrl:"VisitManager.html"
      })
 
+      .state("searchPatient", {
+           url: "/searchPatient",
+         
+           templateUrl: "../Home/SearchPatient"
+       })
        .state("prescribeMCDT", {
            url: "/prescribeMCDT",
            templateUrl: "../MCDTs/PrescribeMCDT"
