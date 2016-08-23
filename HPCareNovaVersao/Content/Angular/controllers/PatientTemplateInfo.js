@@ -1,5 +1,5 @@
 ﻿
-app.controller("PatientInformationsController", function ($scope, PatientInformationFactory) {
+app.controller("PatientTemplateInfo", function ($scope, PatientTemplateInformationFactory) {
 
     $scope.FamilyHistoryCategories = null;
     $scope.RiskFactorsCategories = null;
@@ -12,30 +12,29 @@ app.controller("PatientInformationsController", function ($scope, PatientInforma
     $scope.MaritalStatus = null;
 
 
-
     $scope.Init = function () {
-        var familyHistories = PatientInformationFactory.GetPatientFamilyHistories();
+        var familyHistories = PatientTemplateInformationFactory.GetPatientFamilyHistories();
         familyHistories.then(function (dt) {
             $scope.PatientFamilyHistoryCategories = dt.data;
         }, function (error) {
             alert("erro");
         });
 
-        var riskFactors = PatientInformationFactory.GetPatientRiskFactors();
+        var riskFactors = PatientTemplateInformationFactory.GetPatientRiskFactors();
         riskFactors.then(function (dt) {
             $scope.PatientRiskFactorsCategories = dt.data;
         }, function (error) {
             alert("erro");
         });
 
-        var allergies = PatientInformationFactory.GetPatientAllergies();
+        var allergies = PatientTemplateInformationFactory.GetPatientAllergies();
         allergies.then(function (dt) {
             $scope.PatientAllergyCategories = dt.data;
         }, function (error) {
             alert("erro");
         });
 
-        var patientInformation = PatientInformationFactory.GetPatientFullInformations();
+        var patientInformation = PatientTemplateInformationFactory.GetPatientFullInformations();
         patientInformation.then(function (dt) {
             $scope.PatientFullInformation = dt.data;
             $scope.InitInformation();
@@ -59,23 +58,23 @@ app.controller("PatientInformationsController", function ($scope, PatientInforma
 
 
 
-app.factory('PatientInformationFactory', function ($http) {
+app.factory('PatientTemplateInformationFactory', function ($http) {
     var fac = {};
 
     fac.GetPatientAllergies = function () {
-        return $http.get('../Patient/GetPatientAllergies');
+        return $http.get('../Patient/GetPatientTemplateAllergies');
     }
 
     fac.GetPatientRiskFactors = function () {
-        return $http.get('../Patient/GetPatientRiskFactors');
+        return $http.get('../Patient/GetPatientTemplateRisks');
     }
 
     fac.GetPatientFamilyHistories = function () {
-        return $http.get('../Patient/GetPatientFamilyHistory');
+        return $http.get('../Patient/GetPatientTemplateFamilyHistory');
     }
 
     fac.GetPatientFullInformations = function () {
-        return $http.get('../Patient/GetPatientInformations');
+        return $http.get('../Patient/GetPatientTemplateInformation');
     }
 
     return fac;
