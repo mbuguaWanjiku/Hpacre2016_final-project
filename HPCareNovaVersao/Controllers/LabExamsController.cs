@@ -84,6 +84,12 @@ namespace PresentationLayer.Controllers {
             return PartialView();
         }
 
+
+
+
+
+
+        // *** Apagar daqui **** ///
         //[HttpGet]
         public JsonResult MonitorizationGraphsDatesJson(MCDTType mcdtType, DateTime startDate, DateTime endDate) {
             List<DateTime> dates = ReturnRowsDateTime(mcdtType, startDate, endDate);
@@ -91,11 +97,6 @@ namespace PresentationLayer.Controllers {
             return Json(dates, JsonRequestBehavior.AllowGet);
         }
 
-        /// <summary>
-        /// metodo que devolve apenas as colunas que sao referentes ao type e id que é passado como parametro - DATETIME
-        /// </summary>
-        /// <param name="type"></param>
-        /// <returns></returns>
         public List<DateTime> ReturnRowsDateTime(MCDTType mcdtType, DateTime startDate, DateTime endDate) {
             using(SqlConnection connection = new SqlConnection("Data Source=SQL5025.myASP.NET;Initial Catalog=DB_A0ADFA_HPCareDBContext;User Id=DB_A0ADFA_HPCareDBContext_admin;Password=hpcare2016;")) {
                 //using(SqlConnection connection = new SqlConnection("Data Source=MÁRCIA\\SQLSERVER; Initial Catalog =HPCareDBContext; Integrated Security=true")) {
@@ -121,6 +122,11 @@ namespace PresentationLayer.Controllers {
             }
         }
 
+        // **** até aqui ******* //
+
+
+        // **** apagar daqui *******//
+
         //[HttpGet]
         public JsonResult MonitorizationGraphsValuesJson(MCDTType mcdtType, DateTime startDate, DateTime endDate) {
             List<object> values = ReturnRowsValues(mcdtType, startDate, endDate);
@@ -135,14 +141,6 @@ namespace PresentationLayer.Controllers {
         /// <returns></returns>
         public List<object> ReturnRowsValues(MCDTType mcdtType, DateTime startDate, DateTime endDate) {
             using(SqlConnection connection = new SqlConnection("Data Source=SQL5025.myASP.NET;Initial Catalog=DB_A0ADFA_HPCareDBContext;User Id=DB_A0ADFA_HPCareDBContext_admin;Password=hpcare2016;")) {
-                //using(SqlConnection connection = new SqlConnection("Data Source=MÁRCIA\\SQLSERVER; Initial Catalog =HPCareDBContext; Integrated Security=true")) {
-                //SELECT      kft.* 
-                //FROM Users INNER JOIN
-                //         Users AS Users_1 ON Users.User_id = Users_1.User_id CROSS JOIN
-                //         ClinicRegistryManagers INNER JOIN
-                //         MCDTManagers ON ClinicRegistryManagers.ClinicRegistryManagerId = MCDTManagers.clinicRegistryManager_ClinicRegistryManagerId INNER JOIN
-                //         MCDTStaffManagers ON MCDTManagers.MCDTStaffManager_MCDTStaffManager_id = MCDTStaffManagers.MCDTStaffManager_id INNER JOIN
-                //         MCDTs ON MCDTStaffManagers.mcdt_MCDT_ID = MCDTs.MCDT_ID inner join KFT on kft.MCDT_ID = mcdts.MCDT_ID and users.User_id = 4;
                 SqlCommand command = new SqlCommand("select mcdt_date, " + mcdtType + ".* from mcdts, " + mcdtType + " where mcdts.mcdt_id = " + mcdtType + ".mcdt_id and MCDT_date > '" + (startDate.Year + "/" + startDate.Month + "/" + startDate.Day) + "' and mcdt_Date < '" + (endDate.Year + "/" + endDate.Month + "/" + endDate.Day) + "';", connection);
 
                 command.CommandType = CommandType.Text;
@@ -163,6 +161,10 @@ namespace PresentationLayer.Controllers {
             }
         }
 
+        // **** até aqui ******* //
+
+
+        // **** apagar daqui *******//
 
         //[HttpGet]
         public JsonResult MonitorizationGraphsColumnsNamesJson(MCDTType mcdtType, DateTime startDate, DateTime endDate) {
@@ -171,20 +173,12 @@ namespace PresentationLayer.Controllers {
         }
 
         /// <summary>
-        /// metodo que devolve apenas as colunas que sao referentes ao type e id que é passado como parametro - COLUMNS NAMES
+        /// metodo que devolve as COLUMNS NAMES
         /// </summary>
         /// <param name="type"></param>
         /// <returns></returns>
         public List<string> ReturnColumnsNames(MCDTType mcdtType, DateTime startDate, DateTime endDate) {
             using(SqlConnection connection = new SqlConnection("Data Source=SQL5025.myASP.NET;Initial Catalog=DB_A0ADFA_HPCareDBContext;User Id=DB_A0ADFA_HPCareDBContext_admin;Password=hpcare2016;")) {
-                //using(SqlConnection connection = new SqlConnection("Data Source=MÁRCIA\\SQLSERVER; Initial Catalog =HPCareDBContext; Integrated Security=true")) {
-                //SELECT      kft.* 
-                //FROM Users INNER JOIN
-                //         Users AS Users_1 ON Users.User_id = Users_1.User_id CROSS JOIN
-                //         ClinicRegistryManagers INNER JOIN
-                //         MCDTManagers ON ClinicRegistryManagers.ClinicRegistryManagerId = MCDTManagers.clinicRegistryManager_ClinicRegistryManagerId INNER JOIN
-                //         MCDTStaffManagers ON MCDTManagers.MCDTStaffManager_MCDTStaffManager_id = MCDTStaffManagers.MCDTStaffManager_id INNER JOIN
-                //         MCDTs ON MCDTStaffManagers.mcdt_MCDT_ID = MCDTs.MCDT_ID inner join KFT on kft.MCDT_ID = mcdts.MCDT_ID and users.User_id = 4;
                 SqlCommand command = new SqlCommand("select mcdt_date, " + mcdtType + ".* from mcdts, " + mcdtType + " where mcdts.mcdt_id = " + mcdtType + ".mcdt_id and MCDT_date > '" + (startDate.Year + "/" + startDate.Month + "/" + startDate.Day) + "' and mcdt_Date < '" + (endDate.Year + "/" + endDate.Month + "/" + endDate.Day) + "';", connection);
 
                 command.CommandType = CommandType.Text;
@@ -199,6 +193,14 @@ namespace PresentationLayer.Controllers {
                 return columns;
             }
         }
+
+        // ******** até aqui *******//
+
+
+
+
+
+
 
         public ActionResult SpecificGraphMonitorization() {
             return PartialView();
@@ -234,6 +236,109 @@ namespace PresentationLayer.Controllers {
             list.Add(25);
             return Json(list, JsonRequestBehavior.AllowGet);
         }
+
+        // *************************************************************** //
+
+        /// <summary>
+        /// devolve as datas dos mcdt's que sao passadas na lista 
+        /// </summary>
+        /// <returns></returns>
+        public JsonResult TesteDate() {
+            //public JsonResult TesteDate(List<int> listIds) {
+            List<int> listIds = new List<int>();
+            listIds.Add(1);
+            listIds.Add(2);
+            listIds.Add(3);
+            List<DateTime> dates = new List<DateTime>();
+            MCDT mcdt;
+
+            foreach(var item in listIds) {
+                mcdt = db.MCDTs.Find(item);
+                dates.Add((DateTime)mcdt.MCDT_date);
+            }
+            return Json(dates, JsonRequestBehavior.AllowGet);
+        }
+
+        /// <summary>
+        /// metodo auxiliar que vai buscar o nome das colunas de cada mcdt. (Exemplo: KFT -> bun, creatinine, uricAcid)
+        /// </summary>
+        /// <returns></returns>
+        private List<string> TesteColumnNames(string discriminator) {
+            //public JsonResult TesteColumnNames(string discriminator) {
+            discriminator = "KFT";
+            List<string> columns = new List<string>();
+
+            using(SqlConnection connection = new SqlConnection("Data Source=SQL5025.myASP.NET;Initial Catalog=DB_A0ADFA_HPCareDBContext;User Id=DB_A0ADFA_HPCareDBContext_admin;Password=hpcare2016;")) {
+                SqlCommand command = new SqlCommand("select " + discriminator + ".* from " + discriminator + ";", connection);
+
+                command.CommandType = CommandType.Text;
+                command.Connection = connection;
+                connection.Open();
+                DbDataReader dbDataReader = command.ExecuteReader();
+
+                for(int i = 1; i < dbDataReader.FieldCount; i++) { //comeca na posicao 1 para que o MCDT_ID nao seja adicionado à lista de column names
+                    columns.Add(dbDataReader.GetName(i));
+                }
+                dbDataReader.Close();
+            }
+
+            return columns;
+        }
+
+        public JsonResult TesteColumnsNamesJson(string discrimininator) {
+            //public JsonRequestBehavior TesteColumnsNamesJson(string discriminator) {
+            discrimininator = "KFT";
+            List<string> columnsNames = TesteColumnNames(discrimininator);
+            return Json(columnsNames, JsonRequestBehavior.AllowGet);
+        }
+
+        /// <summary>
+        /// metodo que devolve os valores de cada row dos mcdts que são passados na lista
+        /// </summary>
+        /// <returns></returns>
+        //public JsonResult TesteValores(List<int> mcdtsIds, string discriminator) {
+        public JsonResult TesteValores() {
+            List<int> listIds = new List<int>();
+            listIds.Add(1);
+            listIds.Add(2);
+            listIds.Add(4);
+            string discriminator = "KFT";
+            List<double> valoresMcdts = new List<double>();
+            List<string> nomeColunas = TesteColumnNames(discriminator);
+            var counter = 0;// var auxiliar que conta o nome de rows que existem 
+
+            foreach(var item in listIds) {
+                using(SqlConnection connection = new SqlConnection("Data Source=SQL5025.myASP.NET;Initial Catalog=DB_A0ADFA_HPCareDBContext;User Id=DB_A0ADFA_HPCareDBContext_admin;Password=hpcare2016;")) {
+
+                    SqlCommand command = new SqlCommand("select " + discriminator + ".* from " + discriminator + ", mcdts where mcdts.mcdt_id = " + discriminator + ".mcdt_id and " + nomeColunas.First() + " != '' and mcdts.mcdt_id = " + item + ";", connection);
+
+                    command.CommandType = CommandType.Text;
+                    command.Connection = connection;
+                    connection.Open();
+                    DbDataReader dbDataReader = command.ExecuteReader();
+
+                    while(dbDataReader.Read()) {
+                        for(int i = 1; i < dbDataReader.FieldCount; i++) {// comeca no 1 para que o id nao seja introduzido na lista de valores
+                            valoresMcdts.Add(dbDataReader.GetDouble(i));
+                        }
+                        counter++;
+                    }
+                    dbDataReader.Close();
+                }
+            }
+            valoresMcdts.Add(counter);
+
+            return Json(valoresMcdts, JsonRequestBehavior.AllowGet);
+        }
+
+
+
+
+
+      
+
+
+
 
     }
 }

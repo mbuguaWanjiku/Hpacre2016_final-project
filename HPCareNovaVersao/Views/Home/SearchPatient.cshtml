@@ -2,12 +2,12 @@
 <div class="col-md-1">
 </div>
 
-<div class="panel panel-widget col-md-10" ng-controller="SearchPatient">
+<div class="panel panel-widget col-md-10" ng-controller="HomeController">
     <div class="progressbar-heading grids-heading">
         <h2>Search patient</h2>
     </div>
     <form name="searchPatientForm" ng-submit="getDetails()">
-        <div class="form-control-wrapper" ng-controller="SearchPatient">
+        <div class="form-control-wrapper">
             <input type="text" id="searchPatient" name="search" ng-model="Search" class="form-control floating-label"
                    placeholder="SearchPatient" ng-minlength="5" ng-maxlength="15" required
                    ng-class="{errorinput:submitted && searchPatientForm.searchPatientDescription.$invalid}">

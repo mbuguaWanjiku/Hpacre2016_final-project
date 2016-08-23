@@ -1,4 +1,4 @@
-﻿app.controller("SearchPatient", function ($scope,$state,HomeService,alert) {
+﻿app.controller("homeController", function ($scope, $state, HomeService, alert) {
 
     $scope.Search = "";
     $scope.getDetails = function () {
@@ -11,19 +11,19 @@
             alert.warning('Error in getting records');
         });
     }
-       
-        });
+
+});
 
 
-        app.factory('HomeService', function ($http) {
-            var fac = {};
-    
-            fac.SearchPatient = function (id) {
-                alert(id);
-                return $http.get('../Home/Search?search='+ id)
-                
-            }
+app.factory('HomeService', function ($http) {
+    var fac = {};
+
+    fac.SearchPatient = function (id) {
+        alert(id);
+        return $http.get('../Home/Search?search=' + id)
+
+    }
 
 
-            return fac;
-        });
+    return fac;
+});
