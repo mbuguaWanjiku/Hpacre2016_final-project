@@ -16,41 +16,65 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Web;
 
-namespace BusinessLayer {
-    public class SingletonClinicRegistry {
-
+namespace BusinessLayer
+{
+    public class SingletonClinicRegistry
+    {
         private static ClinicRegistryManager singletonInstance;
-
-        private SingletonClinicRegistry() {
+        private SingletonClinicRegistry()
+        {
 
         }
-
-        public static ClinicRegistryManager GetInstance(HPCareDBContext context) {
+        public static ClinicRegistryManager GetInstance(HPCareDBContext context)
+        {
             Patient patient = context.Users.Find(HttpContext.Current.Session["patientId"]) as Patient;
             //get information about the current clinic logged in
             CurrentUserId currentStaff = new CurrentUserId();
             int currentIdStaff = currentStaff.AccessDatabase(HttpContext.Current.User.Identity.Name);
             Users staff = currentStaff.ReturnCurrentUser(currentIdStaff);
-           
-            //Staff staff1 = context.Users.Find(1) as Staff;
-            if(singletonInstance == null) {
-
-                singletonInstance = new ClinicRegistryManager { ClinicRegistryManagerId = AccessDatabase(patient, staff, context).ClinicRegistryManagerId };
+          
+            if (existRegistry(patient, context))
+            {
+                singletonInstance = GetEXisting(patient, context);
             }
-
+            else
+            {
+                singletonInstance = new ClinicRegistryManager { ClinicRegistryManagerId = AccessDatabase(patient, staff, context).ClinicRegistryManagerId };
+                Visit visit = new Visit { Visit_Date = DateTime.Now };
+                context.VisitManagers.Add(new VisitManager { visit = visit, PatientVisitRegistry = singletonInstance });
+            }
             return context.ClinicRegistryManagers.Find(singletonInstance.ClinicRegistryManagerId);
         }
-
-        public static ClinicRegistryManager AccessDatabase(Patient patient, Users staff, HPCareDBContext context) {
-            using(SqlConnection connection = new SqlConnection("Data Source=SQL5025.myASP.NET;Initial Catalog=DB_A0ADFA_HPCareDBContext;User Id=DB_A0ADFA_HPCareDBContext_admin;Password=hpcare2016;")) {
-
+        /// <summary>
+        /// If the patient already have a day´s registry a new instance
+        /// should not be created
+        /// </summary>
+        /// <returns></returns>
+        private static bool existRegistry(Patient patient, HPCareDBContext context)
+        {
+            int num = context.VisitManagers.Where(x => x.VisitRegistry.PatientVisitsRegistry.FirstOrDefault().patient.User_id
+             == patient.User_id && x.visit.Visit_Date == DateTime.Today).Count();
+            return (num == 0);
+        }
+        /// <summary>
+        /// Get existing day´s registry
+        /// </summary>
+        /// <param name="patient"></param>
+        /// <param name="context"></param>
+        /// <returns>clinical registry instance</returns>
+        private static ClinicRegistryManager GetEXisting(Patient patient, HPCareDBContext context)
+        {
+            return context.ClinicRegistryManagers.Where(x => x.Clinic_patient.User_id == patient.User_id).FirstOrDefault();
+        }
+        private static ClinicRegistryManager AccessDatabase(Patient patient, Users staff, HPCareDBContext context)
+        {
+            using (SqlConnection connection = new SqlConnection("Data Source=SQL5025.myASP.NET;Initial Catalog=DB_A0ADFA_HPCareDBContext;User Id=DB_A0ADFA_HPCareDBContext_admin;Password=hpcare2016;"))
+            {
                 SqlCommand command = new SqlCommand("insert into ClinicRegistryManagers (Clinic_patient_User_id, Staff_doctor_User_id) values ( " + patient.User_id + ", " + staff.User_id + "); select scope_identity();", connection);
-
                 command.CommandType = CommandType.Text;
                 command.Connection = connection;
                 connection.Open();
                 int id = System.Convert.ToInt32(command.ExecuteScalar());
-
                 return new ClinicRegistryManager { ClinicRegistryManagerId = id };
             }
 
