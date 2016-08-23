@@ -175,11 +175,11 @@ SmartPhone Compatible web template, free WebDesigns for Nokia, Samsung, LG, Sony
                             </li>
 
                             <li>
-                                <div ui-sref="New Patient"><a href="#" style="margin-left:18px;"><i class="fa fa-plus"></i>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Add Patient Info</a></div>
+                                <div ui-sref="addPatientInfo"><a href="#" style="margin-left:18px;"><i class="fa fa-plus"></i>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Add Patient Info</a></div>
                             </li>
 
                             <li>
-                                <div ui-sref="Patient Details"><a href="#" style="margin-left:18px;"><i class="fa fa-list-alt"></i>&nbsp;&nbsp;&nbsp;&nbsp;Consult Patient Info</a></div>
+                                <div ui-sref="consultPatientInfo"><a href="#" style="margin-left:18px;"><i class="fa fa-list-alt"></i>&nbsp;&nbsp;&nbsp;&nbsp;Consult Patient Info</a></div>
                             </li>
 
                             <li>
@@ -198,17 +198,14 @@ SmartPhone Compatible web template, free WebDesigns for Nokia, Samsung, LG, Sony
             <div class="header-left">
                 <!--logo -->
                 <div class="logo">
-
-                 
-                    <!--<a href="index.html">-->
-                    <a ui-sref="VisitManager">
+                    <a>
+                    <!--<a ui-sref="VisitManager">-->
                         <ul>
-                            <!--<li><img src="images/logo1.png" alt="" /></li>-->
+                          
                             <li><h1>HPCare</h1></li>
                             <div class="clearfix"> </div>
                         </ul>
                     </a>
-
                 </div>
                 <!--//logo-->
                 <div class="header-right header-right-grid">
@@ -410,10 +407,10 @@ SmartPhone Compatible web template, free WebDesigns for Nokia, Samsung, LG, Sony
         <!-- //header-ends -->
         <!-- main content start-->
         <div id="page-wrapper">
-            <div class="main-page  "style="margin-top:13%;">
+            <div class="main-page  " style="margin-top:13%;" ng-controller="homeController">
 
 
-                <div data-ui-view="">
+                <div data-ui-view="" ng-init="visitManagerModal()">
 
                 </div>
 
@@ -473,15 +470,14 @@ SmartPhone Compatible web template, free WebDesigns for Nokia, Samsung, LG, Sony
 
 
 
-   
+
     <script type="text/javascript" src="/Scripts/plugins.js"></script>
     <!--//max-plugin-->
     <!--scrolling js-->
     <script src="/Scripts/jquery.nicescroll.js"></script>
     <script src="/Scripts/scripts.js"></script>
-    
-    <!--<script src="/Scripts/jquery.fn.gantt.js"></script>-->
 
+    <!--<script src="/Scripts/jquery.fn.gantt.js"></script>-->
     <!-- //status -->
     <script>
         $('#logout').click(function (e) {
