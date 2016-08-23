@@ -1,10 +1,10 @@
 ﻿app.config(function ($stateProvider, $urlRouterProvider) {
-    //$urlRouterProvider.when("", "");
+    $urlRouterProvider.otherwise('/');
     $stateProvider
-       .state("searchPatient", {
-           url: "/searchPatient",
-           templateUrl: "../Home/SearchPatient"
-       })
+     .state("VisitManager", {
+         url: "VisitManager",
+         templateUrl:"VisitManager.html"
+     })
 
        .state("prescribeMCDT", {
            url: "/prescribeMCDT",
@@ -129,11 +129,11 @@
     })
 
 
-
-
-
-
     ;
 
 
 });
+
+app.run(['$state', function ($state) {
+    $state.transitionTo('VisitManager');
+}])
