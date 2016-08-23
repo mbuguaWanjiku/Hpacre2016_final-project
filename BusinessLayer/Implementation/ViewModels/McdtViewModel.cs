@@ -5,27 +5,39 @@ using System.Text;
 using System.Threading.Tasks;
 
 namespace BusinessLayer.Implementation.ViewModels {
-    public class RegularExamsVM {
-        public int Mcdt_id {
+    public class McdtViewModel {
+
+        public int McdtId {
             get; set;
         }
-        public DateTime MCDT_date {
+
+        public string UserName {
             get; set;
         }
-        public Nullable<DateTime> LabExam_data_in {
+
+        public int UserId {
             get; set;
         }
-        public Nullable<DateTime> LabExam_data_out {
+
+        public int McdtType {
             get; set;
         }
-        public int MCDT_units_Id {
+
+        public DateTime McdtDate {
             get; set;
         }
-        public string Staff_User_id {
+
+        public DateTime LabDateIn {
             get; set;
         }
+
+        public DateTime LabDateOut {
+            get; set;
+        }
+
         public string Discriminator {
             get; set;
         }
+
     }
 }

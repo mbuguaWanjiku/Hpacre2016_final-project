@@ -37,72 +37,8 @@ namespace PresentationLayer.Controllers {
         }
 
         public JsonResult ListPatientLabExamsJson() {
-            var labExamsQuery = from mcdt in db.MCDTs
-                                from staff in db.MCDTStaffManagers
-                                from manager in db.MCDTManagers
-                                from clinic in db.ClinicRegistryManagers
-                                from lab in db.LabExams
-                                from users in db.Users
-                                where mcdt.MCDT_ID == staff.mcdt.MCDT_ID
-                                && manager.MCDTStaffManager.MCDTStaffManager_id == staff.MCDTStaffManager_id
-                                && clinic.ClinicRegistryManagerId == manager.clinicRegistryManager.ClinicRegistryManagerId
-                                && clinic.Clinic_patient.User_id == users.User_id
-                                && mcdt.MCDT_ID == lab.MCDT_ID
-                                //&& lab.LabExam_data_in == null
-                                //&& lab.LabExam_date_out == null
-                                select new {
-                                    mcdt.MCDT_ID,
-                                    users.Name,
-                                    users.User_id,
-                                    mcdt.MCDT_type,
-                                    McdtDate = mcdt.MCDT_date.Value.Day + "/" + mcdt.MCDT_date.Value.Month + "/" + mcdt.MCDT_date.Value.Year,
-                                    LabDateIn = lab.LabExam_data_in.Value.Day + "/" + lab.LabExam_data_in.Value.Month + "/" + lab.LabExam_data_in.Value.Year,
-                                    LabDateOut = lab.LabExam_date_out.Value.Day + "/" + lab.LabExam_date_out.Value.Month + "/" + lab.LabExam_date_out.Value.Year,
-                                };
-
-            return Json(labExamsQuery, JsonRequestBehavior.AllowGet);
+            return Json(impLabExams.ListMcdts(), JsonRequestBehavior.AllowGet);
         }
-
-        //public JsonResult PatientLabExamsJson(int id) {
-        //    var labExamsQuery = from mcdt in db.MCDTs
-        //                        from staff in db.MCDTStaffManagers
-        //                        from manager in db.MCDTManagers
-        //                        from clinic in db.ClinicRegistryManagers
-        //                        from lab in db.LabExams
-        //                        from users in db.Users
-        //                        where mcdt.MCDT_ID == staff.mcdt.MCDT_ID
-        //                        && manager.MCDTStaffManager.MCDTStaffManager_id == staff.MCDTStaffManager_id
-        //                        && clinic.ClinicRegistryManagerId == manager.clinicRegistryManager.ClinicRegistryManagerId
-        //                        && mcdt.MCDT_ID == lab.MCDT_ID
-        //                        && users.User_id == clinic.Clinic_patient.User_id
-        //                        && users.User_id == id
-        //                        select new {
-        //                            mcdt.MCDT_ID,
-        //                            mcdt.MCDT_type,
-        //                            McdtDate = mcdt.MCDT_date.Value.Day + "/" + mcdt.MCDT_date.Value.Month + "/" + mcdt.MCDT_date.Value.Year,
-        //                            LabDateIn = lab.LabExam_data_in.Value.Day + "/" + lab.LabExam_data_in.Value.Month + "/" + lab.LabExam_data_in.Value.Year,
-        //                            LabDateOut = lab.LabExam_date_out.Value.Day + "/" + lab.LabExam_date_out.Value.Month + "/" + lab.LabExam_date_out.Value.Year,
-        //                            users.Name,
-        //                        };
-
-        //    return Json(labExamsQuery, JsonRequestBehavior.AllowGet);
-        //}
-
-        //public JsonResult GetKFt(int id) {
-        //    var list = from m in db.MCDTs
-        //               from k in db.MCDTs.OfType<KFT>()
-        //               where m.MCDT_ID == k.MCDT_ID &&
-        //               m.MCDT_ID == id
-        //               select new {
-        //                   m.MCDT_ID,
-        //                   McdtDate = m.MCDT_date.Value.Day + "/" + m.MCDT_date.Value.Month + "/" + m.MCDT_date.Value.Year,
-        //                   k.BUN,
-        //                   k.Creatinine,
-        //                   k.uricAcid
-        //               };
-
-        //    return Json(list, JsonRequestBehavior.AllowGet);
-        //}
 
         [HttpPost]
         public void saveKftResults(List<KFT> kftList) {

@@ -21,14 +21,14 @@ namespace PresentationLayer.Controllers {
 
         public ActionResult Index() {
             if(User.IsInRole("Admin")) {
-                return RedirectToAction("DashboardAdmin", "Home/");
+                return Redirect("Hpcare/HomeAdmin.html");
             } else if(User.IsInRole("Clinic")) {
                 return Redirect("Hpcare/Home.html");
                 //  return RedirectToAction("DashboardClinic2", "Home/");
             } else if(User.IsInRole("LabTec")) {
                 return Redirect("Hpcare/HomeLabTec.html");
             } else if(User.IsInRole("Patient")) {
-                return RedirectToAction("DashboardPatient", "Home/");
+                return Redirect("Hpcare/HomePatient.html");
             }
 
 

@@ -23,12 +23,12 @@
                             </thead>
                             <tbody>
                                 <tr ng-repeat="LabExams in mcdtsList">
-                                    <td><span ng-click="getPatientMcdts(LabExams.User_id)" class="fa fa-plus"></span></td>
-                                    <td> {{LabExams.Name}} </td>
-                                    <td> {{LabExams.MCDT_type}} </td>
-                                    <td> {{LabExams.McdtDate}} </td>
-                                    <td> {{LabExams.LabDateIn}} </td>
-                                    <td> {{LabExams.LabDateOut}} </td>
+                                    <td><span ng-click="getPatientMcdts(LabExams.UserId)" class="fa fa-plus"></span></td>
+                                    <td> {{LabExams.UserName}} </td>
+                                    <td> {{LabExams.Discriminator}} </td>
+                                    <td> {{LabExams.McdtDate | jsonDate :'dd-MM-yyyy'}} </td>
+                                    <td> {{(LabExams.LabDateIn | jsonDate :'dd-MM-yyyy')  == "01-01-1970" ? "" : (LabExams.LabDateIn | jsonDate: 'dd-MM-yyyy')}} </td>
+                                    <td> {{(LabExams.LabDateOut | jsonDate :'dd-MM-yyyy')  == "01-01-1970" ? "" : (LabExams.LabDateOut | jsonDate: 'dd-MM-yyyy')}} </td>
                                 </tr>
                             </tbody>
                         </table>
@@ -46,12 +46,12 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                <tr ng-repeat="LabExams in mcdtsList" ng-show="LabExams.User_id == id">
-                                    <td><a ng-click="getMcdtType(LabExams.MCDT_ID, LabExams.MCDT_type)"><span class="fa fa-list-alt" style="color:black;"></span></a></td>
-                                    <td> {{LabExams.MCDT_type}} </td>
-                                    <td> {{LabExams.McdtDate}} </td>
-                                    <td> {{LabExams.LabDateIn}} </td>
-                                    <td> {{LabExams.LabDateOut}} </td>
+                                <tr ng-repeat="LabExams in mcdtsList" ng-show="LabExams.UserId == id">
+                                    <td><a ng-click="getMcdtType(LabExams.McdtId, LabExams.McdtType)"><span class="fa fa-list-alt" style="color:black;"></span></a></td>
+                                    <td> {{LabExams.Discriminator}} </td>
+                                    <td> {{LabExams.McdtDate | jsonDate :'dd-MM-yyyy'}} </td>
+                                    <td> {{(LabExams.LabDateIn | jsonDate :'dd-MM-yyyy')  == "01-01-1970" ? "" : (LabExams.LabDateIn | jsonDate: 'dd-MM-yyyy')}} </td>
+                                    <td> {{(LabExams.LabDateOut | jsonDate :'dd-MM-yyyy')  == "01-01-1970" ? "" : (LabExams.LabDateOut | jsonDate: 'dd-MM-yyyy')}} </td>
                                 </tr>
                             </tbody>
                         </table>

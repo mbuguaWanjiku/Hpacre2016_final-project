@@ -57,6 +57,7 @@ app.controller("LabExamsController", function ($scope, LabExamsFactory, alert) {
         LabExams.BUN = $scope.LabExams.BUN;
         LabExams.Creatinine = $scope.LabExams.Creatinine;
         LabExams.uricAcid = $scope.LabExams.uricAcid;
+        alert.warning(mcdtId);
         LabExams.MCDT_ID = mcdtId;
 
         tempArray.push(LabExams);
@@ -224,14 +225,6 @@ app.factory('LabExamsFactory', function ($http) {
     fac.GetListAllMcdts = function () {
         return $http.get('../LabExams/ListPatientLabExamsJson');
     }
-
-    //fac.GetPatientMcdts = function (id) {
-    //    return $http.get('../LabExams/PatientLabExamsJson?id=' + id);
-    //}
-
-    //fac.Getkft = function (id) {
-    //    return $http.get('../LabExams/GetKFt?id=' + id);
-    //}
 
     fac.saveKft = function () {
         var informations = JSON.stringify({ 'kftList': tempArray });

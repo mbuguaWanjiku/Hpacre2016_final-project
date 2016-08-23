@@ -24,13 +24,14 @@ namespace BusinessLayer.Implementation {/// <summary>
         public int Intervention_type_id {
             get; set;
         }
+
         public string Intervention_type_description {
             get; set;
         }
+
         public int TreatmentPlan {
             get; set;
         }
-
-
+        
     }
 }
