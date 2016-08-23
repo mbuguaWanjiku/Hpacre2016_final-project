@@ -11,8 +11,8 @@
             alert.warning('Error in getting records');
         });
     }
-
-});
+       
+        });
 
 
 app.factory('HomeService', function ($http) {

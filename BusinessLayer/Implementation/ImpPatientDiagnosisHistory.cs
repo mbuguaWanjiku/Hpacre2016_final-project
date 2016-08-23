@@ -8,6 +8,7 @@ using DataLayer.Entities.Visitas;
 using System.Data.Common;
 using System.Data;
 using System.Data.SqlClient;
+using System;
 
 namespace BusinessLayer.Implementation {
     public class ImpPatientDiagnosisHistory {
@@ -96,7 +97,7 @@ namespace BusinessLayer.Implementation {
                 {
                 DbCommand dbCommand = dbConnection.CreateCommand();
                 dbCommand.CommandType = CommandType.Text;
-                string query = " SELECT CID_Category.Description, CID_DiseaseCode.DiseaseCode, CIDCodes.Version, Diseases.Disease_start_date, Diseases.Disease_end_date FROM CID_Category INNER JOIN  CID_DiseaseCode ON CID_Category.CID_CategorID = CID_DiseaseCode.CIDCategory_CID_CategorID INNER JOIN CIDCodes ON CID_DiseaseCode.DiseaseCID_ID = CIDCodes.CID_DiseaseCode_DiseaseCID_ID INNER JOIN Diagnosis ON CIDCodes.CIDCOD_id = Diagnosis.Diagnosis_CID_code_CIDCOD_id INNER JOIN Diseases ON Diagnosis.Diagnosis_disease_Disease_id = Diseases.Disease_id  AND Disease_is_active = 0 AND Diagnosis.Diagnosis_id = " + diagnosisID;
+                string query = " SELECT CID_Category.Description, CID_DiseaseCode.DiseaseCode, CIDCodes.Version, Diseases.Disease_start_date, Diseases.Disease_end_date, Diagnosis.ClinicRegistry_Manager_ClinicRegistryManagerId FROM CID_Category INNER JOIN  CID_DiseaseCode ON CID_Category.CID_CategorID = CID_DiseaseCode.CIDCategory_CID_CategorID INNER JOIN CIDCodes ON CID_DiseaseCode.DiseaseCID_ID = CIDCodes.CID_DiseaseCode_DiseaseCID_ID INNER JOIN Diagnosis ON CIDCodes.CIDCOD_id = Diagnosis.Diagnosis_CID_code_CIDCOD_id INNER JOIN Diseases ON Diagnosis.Diagnosis_disease_Disease_id = Diseases.Disease_id  AND Disease_is_active = 0 AND Diagnosis.Diagnosis_id = " + diagnosisID;
                 dbCommand.CommandText = query;
                 dbConnection.Open();
                 DbDataReader dbDataReader = dbCommand.ExecuteReader();
@@ -109,8 +110,8 @@ namespace BusinessLayer.Implementation {
                     patientDiagnosis.DiseaseCIDCode = dbDataReader.GetString(1);
                     patientDiagnosis.Version = dbDataReader.GetString(2);
                     patientDiagnosis.StartDate = dbDataReader.GetDateTime(3);
-                    patientDiagnosis.EndDate = dbDataReader.GetDateTime(3);
-
+                    patientDiagnosis.EndDate = dbDataReader.GetDateTime(4);
+                    patientDiagnosis.PhysicianName = setPhysicianName(dbDataReader.GetInt32(5));
                 }
                 dbDataReader.Close();
 
@@ -118,6 +119,9 @@ namespace BusinessLayer.Implementation {
             return patientDiagnosis;
         }
 
-
+        private string setPhysicianName(int id)
+        {
+           return db.ClinicRegistryManagers.Where(x => x.ClinicRegistryManagerId == id).FirstOrDefault().Staff_doctor.Name;
+        }
     }
 }
