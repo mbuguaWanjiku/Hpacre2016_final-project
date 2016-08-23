@@ -1,28 +1,18 @@
 ﻿app.config(function ($stateProvider, $urlRouterProvider) {
-<<<<<<< HEAD
     //$urlRouterProvider.when("", "");
     $urlRouterProvider.otherwise('/');
     $stateProvider
      .state("VisitManager", {
-           url: "VisitManager.html",
-           templateUrl: "VisitManager.html"
-       })
-
-       .state("searchPatient", {
-=======
-    $urlRouterProvider.otherwise('/');
-    $stateProvider
-     .state("VisitManager", {
-         url: "VisitManager",
-         templateUrl:"VisitManager.html"
+         url: "VisitManager.html",
+         templateUrl: "VisitManager.html"
      })
 
-      .state("searchPatient", {
->>>>>>> origin/master
+       .state("searchPatient", {
            url: "/searchPatient",
-         
+
            templateUrl: "../Home/SearchPatient"
        })
+
        .state("prescribeMCDT", {
            url: "/prescribeMCDT",
            templateUrl: "../MCDTs/PrescribeMCDT"
@@ -146,24 +136,15 @@
     })
 
 
-<<<<<<< HEAD
 
 
 
 
-    
 
-=======
-    ;
->>>>>>> origin/master
+
 
 });
 
-<<<<<<< HEAD
-=======
-});
-
->>>>>>> origin/master
 app.run(['$state', function ($state) {
     $state.transitionTo('VisitManager');
 }])
