@@ -164,14 +164,14 @@ app.controller("SpecificController", function ($scope, $interval, GraphsSpecific
                 new Chart(document.getElementById("line").getContext("2d")).Line(lineChartData);
 
             }, function (error) {
-                alert("error");
+                alert.warning("Something went wrong ! Please try again.");
             });
 
             var patientZero = new StatisticsObject("Control Line", "rgba(0, 255, 0, 0.1)", "rgb(255, 0, 0)", "rgb(255, 0, 0)", "#fff", tempArray);
             lineChartData.datasets.push(patientZero);
 
         }, function (error) {
-            alert("error");
+            alert.warning("Something went wrong ! Please try again.");
         });
 
     }

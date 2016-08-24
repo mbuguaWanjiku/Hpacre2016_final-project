@@ -11,16 +11,20 @@ using BusinessLayer.Implementation.ViewModels;
 using System.Data.SqlClient;
 using System.Data;
 using System.Data.Common;
+using DataLayer.Entities;
+using System.Web;
 
 namespace BusinessLayer.Implementation {
     public class impLabExams : ILabExams {
 
         private HPCareDBContext db;
         private List<McdtViewModel> listMcdtVM;
+        private CurrentUserId currentUser;
 
         public impLabExams(HPCareDBContext db) {
             this.db = db;
             listMcdtVM = new List<McdtViewModel>();
+            currentUser = new CurrentUserId();
         }
 
         public void saveKft(List<KFT> kftList) {
@@ -138,7 +142,23 @@ namespace BusinessLayer.Implementation {
                 wbcs.LabExam_date_out = DateTime.Now;
             }
 
+            InsertStaffId(currentUser.AccessDatabase(HttpContext.Current.User.Identity.Name), wbcs);
+
             db.SaveChanges();
+        }
+
+        /// <summary>
+        /// metodo que faz insert do id do labTec depois de ele inserir os dados do LabExam
+        /// </summary>
+        private void InsertStaffId(int staffId, LabExams lab) {
+
+            using(SqlConnection connection = new SqlConnection("Data Source=SQL5025.myASP.NET;Initial Catalog=DB_A0ADFA_HPCareDBContext;User Id=DB_A0ADFA_HPCareDBContext_admin;Password=hpcare2016;")) {
+                SqlCommand command = new SqlCommand("update mcdtstaffmanagers set Staff_User_id = " + staffId + " where mcdt_MCDT_ID = " + lab.MCDT_ID + ";", connection);
+                command.CommandType = CommandType.Text;
+                command.Connection = connection;
+                connection.Open();
+                command.ExecuteNonQuery();
+            }
         }
 
         public List<McdtViewModel> ListMcdts() {
