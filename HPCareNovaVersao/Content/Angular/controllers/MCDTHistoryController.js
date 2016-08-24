@@ -371,30 +371,30 @@ app.factory('regularExamHistoryFactory', function ($http) {
     // **************** Graficos ********************** //
 
     fac.GetDates = function (arrayMcdtIds) {
-        //var response = $http({
-        //    method: 'GET',
-        //    url: "../LabExams/TesteDateJson",
-        //    params: {
-        //        listIds: JSON.stringify(arrayMcdtIds)
-        //    }
-        //});
-        //return response;
-
-        //return $http.get("../LabExams/TesteDateJson?listIds=" + arrayMcdtIds);
-        return $.ajax({
-            type: "GET",
-            traditional: true,
+        var response = $http({
+            method: 'GET',
             url: "../LabExams/TesteDateJson",
-            data: { listIds: arrayMcdtIds },
-            success: function (returndata) {
-                alert(returndata);
-                return returndata;
-                //alert("Done");
-            },
-            error: function (returndata) {
-                //alert("Error:\n" + returndata.responseText);
+            params: {
+                listIds: JSON.stringify(arrayMcdtIds)
             }
         });
+        return response;
+
+        //return $http.get("../LabExams/TesteDateJson?listIds=" + arrayMcdtIds);
+        //$.ajax({
+        //    type: "GET",
+        //    traditional: true,
+        //    url: "../LabExams/TesteDateJson",
+        //    data: { listIds: arrayMcdtIds },
+        //    success: function (returndata) {
+        //        alert(returndata);
+        //        return returndata;
+        //        //alert("Done");
+        //    },
+        //    error: function (returndata) {
+        //        //alert("Error:\n" + returndata.responseText);
+        //    }
+        //});
 
     }
 
@@ -403,30 +403,30 @@ app.factory('regularExamHistoryFactory', function ($http) {
     }
 
     fac.GetValores = function (listaIds, nomeMcdt) {
-        //var response = $http({
-        //    method: 'GET',
-        //    url: "../LabExams/TesteValores",
-        //    params: {
-        //        mcdtsIds: JSON.stringify(listaIds),
-        //        discriminator: nomeMcdt
-        //    }
-        //});
-        //return response;
-        //return $http.get("../LabExams/TesteValoresJson?mcdtsIds=" + JSON.stringify(listaIds) + "&discriminator=" + nomeMcdt);
-        $.ajax({
-            type: "GET",
-            traditional: true,
+        var response = $http({
+            method: 'GET',
             url: "../LabExams/TesteValores",
-            data: { mcdtsIds: listaIds, discriminator: nomeMcdt },
-            success: function (returndata) {
-                alert(returndata);
-                return returndata;
-                //alert("Done");
-            },
-            error: function (returndata) {
-                //alert("Error:\n" + returndata.responseText);
+            params: {
+                mcdtsIds: JSON.stringify(listaIds),
+                discriminator: nomeMcdt
             }
         });
+        return response;
+        //return $http.get("../LabExams/TesteValoresJson?mcdtsIds=" + JSON.stringify(listaIds) + "&discriminator=" + nomeMcdt);
+        //$.ajax({
+        //    type: "GET",
+        //    traditional: true,
+        //    url: "../LabExams/TesteValores",
+        //    data: { mcdtsIds: listaIds, discriminator: nomeMcdt },
+        //    success: function (returndata) {
+        //        alert(returndata);
+        //        return returndata;
+        //        //alert("Done");
+        //    },
+        //    error: function (returndata) {
+        //        //alert("Error:\n" + returndata.responseText);
+        //    }
+        //});
     }
 
     return fac;
