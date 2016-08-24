@@ -1,5 +1,4 @@
-﻿//var app = angular.module("myApp", ['ui.router']);
-
+﻿
 var app = angular.module('myApp', ['mwl.calendar', 'ngAnimate', 'ui.bootstrap', 'colorpicker.module','ui.router'  ]);
 
   app.filter('jsonDate', ['$filter', function ($filter) {
@@ -12,6 +11,7 @@ var app = angular.module('myApp', ['mwl.calendar', 'ngAnimate', 'ui.bootstrap', 
      
   }]);
 
+ 
   app.run(function($rootScope){
 
     $rootScope

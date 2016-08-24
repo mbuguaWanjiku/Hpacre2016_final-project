@@ -62,8 +62,9 @@
                                             <tr ng-repeat="regularExamKFT in regularExamHistoryKFT | limitTo:rowLimit | orderBy:sortColumn" class="active">
                                                 <td style="width:2%">{{$index + 1}}</td>
                                                 <td>
-                                                    {{regularExamKFT.MCDT_date | jsonDate :'dd-M-yyyy H:mm' }}
+                                                    {{regularExamKFT.MCDT_date | jsonDate :'dd-M-yyyy '  == "10-10-1920" ? "" : (regularExamKFT.MCDT_date | jsonDate: 'dd-MM-yyyy')}}
                                                 </td>
+                                                
                                                 <td>
                                                     {{regularExamKFT.LabExam_data_in | jsonDate :'dd-M-yyyy H:mm' }}
                                                 </td>
@@ -95,7 +96,7 @@
                                                                 </li>
                                                                 <li>
                                                                     <a>
-                                                                        <i class="glyphicon glyphicon-picture " style="color:blue">Graph</i>
+                                                                        <i class="glyphicon glyphicon-picture " style="color:blue" ng-click="showGraph(rowLimit,sortColumn)">Graph</i>
                                                                         
                                                                     </a>
                                                                 </li>
