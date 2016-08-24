@@ -40,18 +40,21 @@ app.factory('alert', function ($uibModal) {
     }
 
     fac.visitManager = function () {
-      
-    return $uibModal.open({
-        templateUrl: 'VisitManager.html',
+
+        return $uibModal.open({
+            backdrop: 'static',
+            //keyboard: false,
+            templateUrl: 'VisitManager.html',
             controller: function () {
                 var vm = this;
-                
+             
+
             },
             controllerAs: 'vm'
         });
 
 
-          }
+    }
 
 
 
@@ -80,7 +83,7 @@ app.factory('alert', function ($uibModal) {
         });
     }
 
-     fac.kft = function (message) {
+    fac.kft = function (message) {
         return $uibModal.open({
             templateUrl: '../Content/Angular/ModalViewsContent/modalKft.html',
             controller: function () {
