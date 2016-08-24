@@ -243,12 +243,12 @@ namespace PresentationLayer.Controllers {
         /// devolve as datas dos mcdt's que sao passadas na lista 
         /// </summary>
         /// <returns></returns>
-        public JsonResult TesteDate() {
-            //public JsonResult TesteDate(List<int> listIds) {
-            List<int> listIds = new List<int>();
-            listIds.Add(1);
-            listIds.Add(2);
-            listIds.Add(3);
+        public JsonResult TesteDateJson(List<int> listIds) {
+            ////public JsonResult TesteDate(List<int> listIds) {
+            //List<int> listIds = new List<int>();
+            //listIds.Add(1);
+            //listIds.Add(2);
+            //listIds.Add(3);
             List<DateTime> dates = new List<DateTime>();
             MCDT mcdt;
 
@@ -296,18 +296,18 @@ namespace PresentationLayer.Controllers {
         /// metodo que devolve os valores de cada row dos mcdts que são passados na lista
         /// </summary>
         /// <returns></returns>
-        //public JsonResult TesteValores(List<int> mcdtsIds, string discriminator) {
-        public JsonResult TesteValores() {
-            List<int> listIds = new List<int>();
-            listIds.Add(1);
-            listIds.Add(2);
-            listIds.Add(4);
-            string discriminator = "KFT";
+        public JsonResult TesteValores(List<int> mcdtsIds, string discriminator) {
+            //public JsonResult TesteValoresJson() {
+            //    List<int> listIds = new List<int>();
+            //    listIds.Add(1);
+            //    listIds.Add(2);
+            //    listIds.Add(4);
+            //    string discriminator = "KFT";
             List<double> valoresMcdts = new List<double>();
             List<string> nomeColunas = TesteColumnNames(discriminator);
             var counter = 0;// var auxiliar que conta o nome de rows que existem 
 
-            foreach(var item in listIds) {
+            foreach(var item in mcdtsIds) {
                 using(SqlConnection connection = new SqlConnection("Data Source=SQL5025.myASP.NET;Initial Catalog=DB_A0ADFA_HPCareDBContext;User Id=DB_A0ADFA_HPCareDBContext_admin;Password=hpcare2016;")) {
 
                     SqlCommand command = new SqlCommand("select " + discriminator + ".* from " + discriminator + ", mcdts where mcdts.mcdt_id = " + discriminator + ".mcdt_id and " + nomeColunas.First() + " != '' and mcdts.mcdt_id = " + item + ";", connection);
@@ -330,15 +330,6 @@ namespace PresentationLayer.Controllers {
 
             return Json(valoresMcdts, JsonRequestBehavior.AllowGet);
         }
-
-
-
-
-
-      
-
-
-
 
     }
 }

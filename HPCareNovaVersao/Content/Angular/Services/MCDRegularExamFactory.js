@@ -1,15 +1,15 @@
-﻿app.factory('regularExamHistoryFactory', function ($http) {
-    var fac = {};
+﻿//app.factory('regularExamHistoryFactory', function ($http) {
+//    var fac = {};
 
-    fac.regularExamHistory = function (type) {
+//    fac.regularExamHistory = function (type) {
         
-        return $http.get("../RegularExamsHistory/GetRegularExamsJson?discriminator="+type);
-    };
+//        return $http.get("../RegularExamsHistory/GetRegularExamsJson?discriminator="+type);
+//    };
 
-    fac.getSpecificMCDT = function (id) {
-        return $http.get("../RegularExamsHistory/GetMcdt?id=" + id);
-    }
+//    fac.getSpecificMCDT = function (id) {
+//        return $http.get("../RegularExamsHistory/GetMcdt?id=" + id);
+//    }
 
 
-    return fac;
-});
+//    return fac;
+//});
