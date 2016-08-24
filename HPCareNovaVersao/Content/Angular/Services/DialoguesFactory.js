@@ -39,6 +39,36 @@ app.factory('alert', function ($uibModal) {
         });
     }
 
+    fac.visitManager = function () {
+      
+    return $uibModal.open({
+        templateUrl: 'VisitManager.html',
+            controller: function () {
+                var vm = this;
+                
+            },
+            controllerAs: 'vm'
+        });
+
+
+          }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
     fac.med = function (message) {
         return $uibModal.open({
             templateUrl: '../Content/Angular/ModalViewsContent/modalMed.html',
