@@ -1,7 +1,6 @@
 ﻿var category = null;
 var subCategory = null;
 
-
 //****** Grafico *******//
 var selectedDescription = 'LFT';
 var columnsNames = null;
@@ -108,11 +107,10 @@ app.controller("SpecificController", function ($scope, $interval, GraphsSpecific
             $scope.McdtListLevel2 = [];
         }
     }
-
+    
     $scope.processLevel2 = function () {
         category = $scope.Mcdt.cat;
         subCategory = $scope.Mcdt.desc;
-        //alert(category + " _ " + subCategory);
     }
 
     function getList(selected) {
@@ -141,7 +139,7 @@ app.controller("SpecificController", function ($scope, $interval, GraphsSpecific
 
 
 
-    function drawGraphs() {
+    function drawGraphsSpecific() {
 
         var getPZero = GraphsSpecificFactory.GetPatientZero();
         getPZero.then(function (d) {
@@ -177,10 +175,17 @@ app.controller("SpecificController", function ($scope, $interval, GraphsSpecific
     }
 
     $scope.clickedElement = function () {
-        alert.graphs();
+        alert.specificGraphs();
         lineChartData.labels = [];
         lineChartData.datasets = [];
-        drawGraphs();
+        drawGraphsSpecific();
+    }
+
+    $scope.clickedElement2 = function () {
+        //alert.specificGraphs();
+        lineChartData.labels = [];
+        lineChartData.datasets = [];
+        drawGraphsSpecific();
     }
 
 });

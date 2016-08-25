@@ -236,6 +236,7 @@
     <Content Include="Content\Angular\controllers\SpecificGraphMonitorization.js" />
     <Content Include="Content\Angular\controllers\StaffController.js" />
     <Content Include="Content\Angular\controllers\VisitManagerController.js" />
+    <Content Include="Content\Angular\ModalViewsContent\modalSpecificControlGraph.html" />
     <Content Include="Content\Angular\ModalViewsContent\modalControlGraph.html" />
     <Content Include="Content\Angular\ModalViewsContent\modalLymphocyte.html" />
     <Content Include="Content\Angular\ModalViewsContent\modalPlatelets.html" />
