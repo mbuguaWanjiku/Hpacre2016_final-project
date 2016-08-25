@@ -243,16 +243,21 @@ namespace PresentationLayer.Controllers {
         /// devolve as datas dos mcdt's que sao passadas na lista 
         /// </summary>
         /// <returns></returns>
-        public JsonResult TesteDateJson(List<int> listIds) {
-            ////public JsonResult TesteDate(List<int> listIds) {
-            //List<int> listIds = new List<int>();
-            //listIds.Add(1);
-            //listIds.Add(2);
-            //listIds.Add(3);
+        [HttpGet]
+        public JsonResult TesteDateJson(string listIds) {
+            var split = listIds.Split(',');
+            var result = split;
+            List<int> mcdtsIdsList = new List<int>();
+
+            for(int j = 0; j < result.Length - 1; j++) {
+                mcdtsIdsList.Add(Convert.ToInt32(result[j]));
+            }
+            var aux = mcdtsIdsList;
+
             List<DateTime> dates = new List<DateTime>();
             MCDT mcdt;
 
-            foreach(var item in listIds) {
+            foreach(var item in mcdtsIdsList) {
                 mcdt = db.MCDTs.Find(item);
                 dates.Add((DateTime)mcdt.MCDT_date);
             }
@@ -263,9 +268,8 @@ namespace PresentationLayer.Controllers {
         /// metodo auxiliar que vai buscar o nome das colunas de cada mcdt. (Exemplo: KFT -> bun, creatinine, uricAcid)
         /// </summary>
         /// <returns></returns>
+
         private List<string> TesteColumnNames(string discriminator) {
-            //public JsonResult TesteColumnNames(string discriminator) {
-            discriminator = "KFT";
             List<string> columns = new List<string>();
 
             using(SqlConnection connection = new SqlConnection("Data Source=SQL5025.myASP.NET;Initial Catalog=DB_A0ADFA_HPCareDBContext;User Id=DB_A0ADFA_HPCareDBContext_admin;Password=hpcare2016;")) {
@@ -285,9 +289,8 @@ namespace PresentationLayer.Controllers {
             return columns;
         }
 
+        [HttpGet]
         public JsonResult TesteColumnsNamesJson(string discrimininator) {
-            //public JsonRequestBehavior TesteColumnsNamesJson(string discriminator) {
-            discrimininator = "KFT";
             List<string> columnsNames = TesteColumnNames(discrimininator);
             return Json(columnsNames, JsonRequestBehavior.AllowGet);
         }
@@ -296,18 +299,22 @@ namespace PresentationLayer.Controllers {
         /// metodo que devolve os valores de cada row dos mcdts que são passados na lista
         /// </summary>
         /// <returns></returns>
-        public JsonResult TesteValores(List<int> mcdtsIds, string discriminator) {
-            //public JsonResult TesteValoresJson() {
-            //    List<int> listIds = new List<int>();
-            //    listIds.Add(1);
-            //    listIds.Add(2);
-            //    listIds.Add(4);
-            //    string discriminator = "KFT";
+        [HttpGet]
+        public JsonResult TesteValores(string mcdtsIds, string discriminator) {
+            var split = mcdtsIds.Split(',');
+            var result = split;
+            List<int> mcdtsIdsList = new List<int>();
+
+            for(int j = 0; j < result.Length - 1; j++) {
+                mcdtsIdsList.Add(Convert.ToInt32(result[j]));
+            }
+            var aux = mcdtsIdsList;
+
             List<double> valoresMcdts = new List<double>();
             List<string> nomeColunas = TesteColumnNames(discriminator);
             var counter = 0;// var auxiliar que conta o nome de rows que existem 
 
-            foreach(var item in mcdtsIds) {
+            foreach(var item in mcdtsIdsList) {
                 using(SqlConnection connection = new SqlConnection("Data Source=SQL5025.myASP.NET;Initial Catalog=DB_A0ADFA_HPCareDBContext;User Id=DB_A0ADFA_HPCareDBContext_admin;Password=hpcare2016;")) {
 
                     SqlCommand command = new SqlCommand("select " + discriminator + ".* from " + discriminator + ", mcdts where mcdts.mcdt_id = " + discriminator + ".mcdt_id and " + nomeColunas.First() + " != '' and mcdts.mcdt_id = " + item + ";", connection);

@@ -1,9 +1,10 @@
 ﻿app.controller("RegularExamHistoryController", function ($scope, $filter, regularExamHistoryFactory, showResultModal, alert) {
     var arrayIds = [];
-
+    var mcdtEscolhido = null;
+    var stringIds = '';
+    var arraySorted = null;
 
     $scope.showText = function (option) {
-        //alert(JSON.stringify(option))
         var mcdt = regularExamHistoryFactory.getSpecificMCDT(option.Mcdt_id);
         mcdt.then(function (dt) {
             showResultModal.Text(dt.data[0], option.Discriminator);
@@ -14,19 +15,48 @@
     };
     $scope.rowLimit = 20;
     $scope.sortColumn = "MCDT_date";
-    $scope.showGraph = function (size, sortOrder) {
-        //alert(size + sortOrder);
+    $scope.showGraph = function (size, sortOrder, discriminator) {
+        mcdtEscolhido = discriminator[0].Discriminator;
+        //var stringConcat = '$scope.regularExamHistory' + mcdtEscolhido;
 
-        var arraySorted = $filter('orderBy')($scope.regularExamHistoryKFT, sortOrder);
+        arraySorted = null;
+        stringIds = '';
+
+        // Mudar isto //
+        switch (mcdtEscolhido) {
+            case 'KFT':
+                arraySorted = $filter('orderBy')($scope.regularExamHistoryKFT, sortOrder);
+                break;
+            case 'LFT':
+                arraySorted = $filter('orderBy')($scope.regularExamHistoryLFT, sortOrder);
+                break;
+            case 'RBCS':
+                arraySorted = $filter('orderBy')($scope.regularExamHistoryRBCS, sortOrder);
+                break;
+            case 'RBCIndice':
+                arraySorted = $filter('orderBy')($scope.regularExamHistoryRBCIndice, sortOrder);
+                break;
+            case 'LymphocytesSubsets':
+                arraySorted = $filter('orderBy')($scope.regularExamHistoryLymphocytesSubsets, sortOrder);
+                break;
+            case 'ViralLoad':
+                arraySorted = $filter('orderBy')($scope.regularExamHistoryViralLoad, sortOrder);
+                break;
+            case 'PlateletsCount':
+                arraySorted = $filter('orderBy')($scope.regularExamHistoryPlateletsCount, sortOrder);
+                break;
+            case 'WBCS':
+                arraySorted = $filter('orderBy')($scope.regularExamHistoryWBCS, sortOrder);
+                break;
+        }
 
         for (var i = 0; i < arraySorted.length; i++) {
-            arrayIds.push(arraySorted[i].Mcdt_id);
+            stringIds += arraySorted[i].Mcdt_id;
+            stringIds += ',';
         }
-        //alert(JSON.stringify(arrayIds));
+
         $scope.clickedElement();
-
     }
-
 
     /****************************************************************************************************************/
 
@@ -57,8 +87,6 @@
         datasets: []
     };
 
-
-
     function getRandomColor() {
         var letters = '0123456789ABCDEF';
         var color = '#';
@@ -70,16 +98,8 @@
 
     //*********************************************************//
 
-    //app.controller("GraphsController", function ($scope, GraphsFactory, $interval) {
-
-    //document.getElementById("date-start").value = '2016/01/01';
-    //document.getElementById("date-end").value = todayDate.getFullYear() + "/" + (todayDate.getMonth() + 1) + "/" + todayDate.getDay();
-
     function drawGraphs() {
-        //startDate = document.getElementById("date-start").value;
-        //endDate = document.getElementById("date-end").value;
-
-        var getLabels = regularExamHistoryFactory.GetDates(arrayIds);
+        var getLabels = regularExamHistoryFactory.GetDates(stringIds);
 
         getLabels.then(function (dt) {
             $scope.dates = dt.data;//data de cada mcdt_date todos KFTS
@@ -97,10 +117,10 @@
             alert.warning("error");
         });
 
-        var getColumnsNames = regularExamHistoryFactory.GetColumnNames('KFT');
+        var getColumnsNames = regularExamHistoryFactory.GetColumnNames(mcdtEscolhido);
         getColumnsNames.then(function (data) {
 
-            var getData = regularExamHistoryFactory.GetValores(arrayIds, 'KFT');
+            var getData = regularExamHistoryFactory.GetValores(stringIds, mcdtEscolhido);
             getData.then(function (dt) {
                 //dt = todo kfts
                 var columnsNumber = (dt.data.length - 1) / (dt.data[dt.data.length - 1]); //numero de colunas 
@@ -131,226 +151,99 @@
 
     }
 
-    //function Tipo(description) {
-    //    this.description = description;
-    //}
-    //Tipo.prototype.constructor = Object.create(Tipo.prototype);
-
-    //$scope.mcdtList = [];
-
-    //$scope.mcdtList.push(new Tipo('KFT'));
-    //$scope.mcdtList.push(new Tipo('LFT'));
-    //$scope.mcdtList.push(new Tipo('LymphocytesSubsets'));
-    //$scope.mcdtList.push(new Tipo('PlateletsCount'));
-    //$scope.mcdtList.push(new Tipo('RBCIndices'));
-    //$scope.mcdtList.push(new Tipo('RBCs'));
-    //$scope.mcdtList.push(new Tipo('ViralLoad'));
-    //$scope.mcdtList.push(new Tipo('WBCS'));
-
     $scope.LabExams = null;
 
     $scope.clickedElement = function () {
-        //selectedDescription = $scope.LabExams.description;
-
         alert.graphs();
 
         lineChartData.labels = [];
         lineChartData.datasets = [];
+        arraySorted = [];
+
         drawGraphs();
     }
 
-    //});
 
     //*********************************************************//
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-    var getDatakft = regularExamHistoryFactory.regularExamHistory("KFT");
-    getDatakft.then(function (mcdtHistory) {
-        $scope.regularExamHistoryKFT = mcdtHistory.data;
-
-    }, function () {
-        alert.warning('Error in getting records');
-    });
-
-    var getDataLft = regularExamHistoryFactory.regularExamHistory("LFT");
-    getDataLft.then(function (mcdtHistory) {
-        $scope.regularExamHistoryLFT = mcdtHistory.data;
-
-    }, function () {
-        alert.warning('Error in getting records');
-    });
-
-    var getDataRbc = regularExamHistoryFactory.regularExamHistory("RBCS");
-    getDataRbc.then(function (mcdtHistory) {
-        $scope.regularExamHistoryRBCS = mcdtHistory.data;
-
-    }, function () {
-        alert.warning('Error in getting records');
-    });
-
-    var getDataRbcs = regularExamHistoryFactory.regularExamHistory("RBCIndices");
-    getDataRbcs.then(function (mcdtHistory) {
-        $scope.regularExamHistoryRBCIndices = mcdtHistory.data;
-
-    }, function () {
-        alert.warning('Error in getting records');
-    });
-
-    var getDataLymp = regularExamHistoryFactory.regularExamHistory("LymphocytesSubsets");
-    getDataLymp.then(function (mcdtHistory) {
-        $scope.regularExamHistoryLymphocytesSubsets = mcdtHistory.data;
-
-    }, function () {
-        alert.warning('Error in getting records');
-    });
-
-    var getDataVL = regularExamHistoryFactory.regularExamHistory("ViralLoad");
-    getDataVL.then(function (mcdtHistory) {
-        $scope.regularExamHistoryViralLoad = mcdtHistory.data;
-
-    }, function () {
-        alert.warning('Error in getting records');
-    });
-
-    var getDataPC = regularExamHistoryFactory.regularExamHistory("PlateletsCount");
-    getDataPC.then(function (mcdtHistory) {
-        $scope.regularExamHistoryPlateletsCount = mcdtHistory.data;
-
-    }, function () {
-        alert.warning('Error in getting records');
-    });
-
-
-    var getDataWBCS = regularExamHistoryFactory.regularExamHistory("WBCS");
-    getDataWBCS.then(function (mcdtHistory) {
-        $scope.regularExamHistoryWBCS = mcdtHistory.data;
-
-    }, function () {
-        alert.warning('Error in getting records');
-    });
-
-
-
-
+    $scope.initKft = function () {
+        var getDatakft = regularExamHistoryFactory.regularExamHistory("KFT");
+        getDatakft.then(function (mcdtHistory) {
+            $scope.regularExamHistoryKFT = mcdtHistory.data;
+
+        }, function () {
+            alert.warning('Error in getting records');
+        });
+    }
+
+    $scope.initLft = function () {
+        var getDataLft = regularExamHistoryFactory.regularExamHistory("LFT");
+        getDataLft.then(function (mcdtHistory) {
+            $scope.regularExamHistoryLFT = mcdtHistory.data;
+
+        }, function () {
+            alert.warning('Error in getting records');
+        });
+    }
+
+    $scope.initRbcs = function () {
+        var getDataRbc = regularExamHistoryFactory.regularExamHistory("RBCS");
+        getDataRbc.then(function (mcdtHistory) {
+            $scope.regularExamHistoryRBCS = mcdtHistory.data;
+
+        }, function () {
+            alert.warning('Error in getting records');
+        });
+    }
+
+    $scope.initRbcI = function () {
+        var getDataRbcs = regularExamHistoryFactory.regularExamHistory("RBCIndices");
+        getDataRbcs.then(function (mcdtHistory) {
+            $scope.regularExamHistoryRBCIndices = mcdtHistory.data;
+
+        }, function () {
+            alert.warning('Error in getting records');
+        });
+    }
+
+    $scope.initLymp = function () {
+        var getDataLymp = regularExamHistoryFactory.regularExamHistory("LymphocytesSubsets");
+        getDataLymp.then(function (mcdtHistory) {
+            $scope.regularExamHistoryLymphocytesSubsets = mcdtHistory.data;
+
+        }, function () {
+            alert.warning('Error in getting records');
+        });
+    }
+
+    $scope.initViral = function () {
+        var getDataVL = regularExamHistoryFactory.regularExamHistory("ViralLoad");
+        getDataVL.then(function (mcdtHistory) {
+            $scope.regularExamHistoryViralLoad = mcdtHistory.data;
+
+        }, function () {
+            alert.warning('Error in getting records');
+        });
+    }
+
+    $scope.initPlatelets = function () {
+        var getDataPC = regularExamHistoryFactory.regularExamHistory("PlateletsCount");
+        getDataPC.then(function (mcdtHistory) {
+            $scope.regularExamHistoryPlateletsCount = mcdtHistory.data;
+
+        }, function () {
+            alert.warning('Error in getting records');
+        });
+    }
+
+    $scope.initWbcs = function () {
+        var getDataWBCS = regularExamHistoryFactory.regularExamHistory("WBCS");
+        getDataWBCS.then(function (mcdtHistory) {
+            $scope.regularExamHistoryWBCS = mcdtHistory.data;
+
+        }, function () {
+            alert.warning('Error in getting records');
+        });
+    }
 });
 
 app.factory('regularExamHistoryFactory', function ($http) {
@@ -371,31 +264,7 @@ app.factory('regularExamHistoryFactory', function ($http) {
     // **************** Graficos ********************** //
 
     fac.GetDates = function (arrayMcdtIds) {
-        var response = $http({
-            method: 'GET',
-            url: "../LabExams/TesteDateJson",
-            params: {
-                listIds: JSON.stringify(arrayMcdtIds)
-            }
-        });
-        return response;
-
-        //return $http.get("../LabExams/TesteDateJson?listIds=" + arrayMcdtIds);
-        //$.ajax({
-        //    type: "GET",
-        //    traditional: true,
-        //    url: "../LabExams/TesteDateJson",
-        //    data: { listIds: arrayMcdtIds },
-        //    success: function (returndata) {
-        //        alert(returndata);
-        //        return returndata;
-        //        //alert("Done");
-        //    },
-        //    error: function (returndata) {
-        //        //alert("Error:\n" + returndata.responseText);
-        //    }
-        //});
-
+        return $http.get("../LabExams/TesteDateJson?listIds=" + arrayMcdtIds);
     }
 
     fac.GetColumnNames = function (coluna) {
@@ -403,30 +272,7 @@ app.factory('regularExamHistoryFactory', function ($http) {
     }
 
     fac.GetValores = function (listaIds, nomeMcdt) {
-        var response = $http({
-            method: 'GET',
-            url: "../LabExams/TesteValores",
-            params: {
-                mcdtsIds: JSON.stringify(listaIds),
-                discriminator: nomeMcdt
-            }
-        });
-        return response;
-        //return $http.get("../LabExams/TesteValoresJson?mcdtsIds=" + JSON.stringify(listaIds) + "&discriminator=" + nomeMcdt);
-        //$.ajax({
-        //    type: "GET",
-        //    traditional: true,
-        //    url: "../LabExams/TesteValores",
-        //    data: { mcdtsIds: listaIds, discriminator: nomeMcdt },
-        //    success: function (returndata) {
-        //        alert(returndata);
-        //        return returndata;
-        //        //alert("Done");
-        //    },
-        //    error: function (returndata) {
-        //        //alert("Error:\n" + returndata.responseText);
-        //    }
-        //});
+        return $http.get("../LabExams/TesteValores?mcdtsIds=" + listaIds + "&discriminator=" + nomeMcdt);
     }
 
     return fac;

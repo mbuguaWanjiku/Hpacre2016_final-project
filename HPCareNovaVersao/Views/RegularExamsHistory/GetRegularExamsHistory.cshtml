@@ -14,7 +14,7 @@
                 <div class="inbox-row widget-shadow">
                     <a role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseNine" aria-expanded="true" aria-controls="collapsenine">
                         
-                        <div class="mail active"><p>kft results</p></div>
+                        <div class="mail active"><p ng-click="initKft()">KFT</p></div>
                      </a>
                         <div class="mail-right">
                             <div class="dropdown">
@@ -24,8 +24,7 @@
 
                             </div>
                         </div>
-                        <div class="mail-right"><p>29 Dec</p></div>
-                       
+                        @*<div class="mail-right"><p>29 Dec</p></div>*@
 
                         <div class="clearfix"> </div>
 
@@ -96,8 +95,7 @@
                                                                 </li>
                                                                 <li>
                                                                     <a>
-                                                                        <i class="glyphicon glyphicon-picture " style="color:blue" ng-click="showGraph(rowLimit,sortColumn)">Graph</i>
-                                                                        
+                                                                        <i class="glyphicon glyphicon-picture " style="color:blue" ng-click="showGraph(rowLimit,sortColumn, regularExamHistoryKFT)">Graph</i>
                                                                     </a>
                                                                 </li>
 
@@ -118,7 +116,7 @@
 
 
                     <a role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseTen" aria-expanded="true" aria-controls="collapseTen">
-                        <div class="mail"><p>LFT</p></div>
+                        <div class="mail"><p ng-click="initLft()">LFT</p></div>
                     </a>
                     <div class="mail-right">
                         <div class="dropdown">
@@ -127,7 +125,7 @@
                             </a>
                         </div>
                     </div>
-                    <div class="mail-right"><p>28 Dec</p></div>
+                    @*<div class="mail-right"><p>28 Dec</p></div>*@
                     <div class="clearfix"> </div>
                     <div id="collapseTen" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingten">
                         <div class="mail-body">
@@ -143,7 +141,7 @@
                                     </select><span></span>
                                     <input type="number" step="2" min="0" max="20" ng-model="rowLimit" placeholder="rows" style="width:140px" />
                                 </div>
-                                <table class=" table table-condensed  form-control-wrapper">
+                                <table class="table table-condensed  form-control-wrapper">
                                     <caption>Patient active diseases</caption>
                                     <thead>
                                         <tr>
@@ -189,7 +187,7 @@
                                                             </li>
                                                             <li>
                                                                 <a>
-                                                                    <i class="glyphicon glyphicon-picture " style="color:blue">Graph</i>
+                                                                    <i class="glyphicon glyphicon-picture " style="color:blue" ng-click="showGraph(rowLimit,sortColumn, regularExamHistoryLFT)">Graph</i>
 
                                                                 </a>
                                                             </li>
@@ -211,7 +209,7 @@
 
 
                     <a role="button" data-toggle="collapse" data-parent="#accordion" href="#collapse11" aria-expanded="true" aria-controls="collapse11">
-                        <div class="mail"><p>LymphocytesSubsets History </p></div>
+                        <div class="mail"><p ng-click="initLymp()">LymphocytesSubsets </p></div>
                     </a>
                     <div class="mail-right">
                         <div class="dropdown">
@@ -221,7 +219,7 @@
 
                         </div>
                     </div>
-                    <div class="mail-right"><p>28 Dec</p></div>
+                  @*  <div class="mail-right"><p>28 Dec</p></div>*@
                     <div class="clearfix"> </div>
                     <div id="collapse11" class="panel-collapse collapse" role="tabpanel" aria-labelledby="heading11">
                         <div class="mail-body">
@@ -285,7 +283,7 @@
                                                             </li>
                                                             <li>
                                                                 <a>
-                                                                    <i class="glyphicon glyphicon-picture " style="color:blue">Graph</i>
+                                                                    <i class="glyphicon glyphicon-picture " style="color:blue" ng-click="showGraph(rowLimit,sortColumn, regularExamHistoryLymphocytesSubsets)">Graph</i>
 
                                                                 </a>
                                                             </li>
@@ -307,7 +305,7 @@
 
 
                     <a role="button" data-toggle="collapse" data-parent="#accordion" href="#collapse12" aria-expanded="true" aria-controls="collapse12">
-                        <div class="mail"><p>PlateletsCount</p></div>
+                        <div class="mail"><p ng-click="initPlatelets()">PlateletsCount</p></div>
                     </a>
                     <div class="mail-right">
                         <div class="dropdown">
@@ -380,7 +378,7 @@
                                                             </li>
                                                             <li>
                                                                 <a>
-                                                                    <i class="glyphicon glyphicon-picture " style="color:blue">Graph</i>
+                                                                    <i class="glyphicon glyphicon-picture " style="color:blue" ng-click="showGraph(rowLimit,sortColumn, regularExamHistoryPlateletsCount)">Graph</i>
 
                                                                 </a>
                                                             </li>
@@ -403,7 +401,7 @@
                 <div class="inbox-row widget-shadow">
 
                     <a role="button" data-toggle="collapse" data-parent="#accordion" href="#collapse13" aria-expanded="true" aria-controls="collapse13">
-                        <div class="mail"><p> RBCIndices </p></div>
+                        <div class="mail"><p ng-click="initRbcI()"> RBCIndices </p></div>
                     </a>
                     <div class="mail-right">
                         <div class="dropdown">
@@ -413,7 +411,7 @@
 
                         </div>
                     </div>
-                    <div class="mail-right"><p>26 Dec</p></div>
+                    @*<div class="mail-right"><p>26 Dec</p></div>*@
                     <div class="clearfix"> </div>
                     <div id="collapse13" class="panel-collapse collapse" role="tabpanel" aria-labelledby="heading13">
 
@@ -476,7 +474,7 @@
                                                             </li>
                                                             <li>
                                                                 <a>
-                                                                    <i class="glyphicon glyphicon-picture " style="color:blue">Graph</i>
+                                                                    <i class="glyphicon glyphicon-picture " style="color:blue" ng-click="showGraph(rowLimit,sortColumn, regularExamHistoryRBCIndices)">Graph</i>
 
                                                                 </a>
                                                             </li>
@@ -497,7 +495,7 @@
                 <div class="inbox-row widget-shadow">
 
                     <a role="button" data-toggle="collapse" data-parent="#accordion" href="#collapse14" aria-expanded="true" aria-controls="collapse14">
-                        <div class="mail"><p>RBCS</p></div>
+                        <div class="mail"><p ng-click="initRbcs()">RBCS</p></div>
                     </a>
                     <div class="mail-right">
                         <div class="dropdown">
@@ -507,7 +505,7 @@
 
                         </div>
                     </div>
-                    <div class="mail-right"><p>26 Dec</p></div>
+                    @*<div class="mail-right"><p>26 Dec</p></div>*@
                     <div class="clearfix"> </div>
                     <div id="collapse14" class="panel-collapse collapse" role="tabpanel" aria-labelledby="heading14">
                         <div class="mail-body">
@@ -570,7 +568,7 @@
                                                             </li>
                                                             <li>
                                                                 <a>
-                                                                    <i class="glyphicon glyphicon-picture " style="color:blue">Graph</i>
+                                                                    <i class="glyphicon glyphicon-picture " style="color:blue" ng-click="showGraph(rowLimit,sortColumn, regularExamHistoryRBCS)">Graph</i>
 
                                                                 </a>
                                                             </li>
@@ -591,7 +589,7 @@
                 <div class="inbox-row widget-shadow">
 
                     <a role="button" data-toggle="collapse" data-parent="#accordion" href="#collapse15" aria-expanded="true" aria-controls="collapse15">
-                        <div class="mail"><p>WBCS</p></div>
+                        <div class="mail"><p ng-click="initWbcs()">WBCS</p></div>
                     </a>
                     <div class="mail-right">
                         <div class="dropdown">
@@ -600,7 +598,7 @@
                             </a>
                         </div>
                     </div>
-                    <div class="mail-right"><p>26 Dec</p></div>
+                    @*<div class="mail-right"><p>26 Dec</p></div>*@
                     <div class="clearfix"> </div>
                     <div id="collapse15" class="panel-collapse collapse" role="tabpanel" aria-labelledby="heading15">
                         <div class="mail-body">
@@ -616,7 +614,7 @@
                                     </select><span></span>
                                     <input type="number" step="2" min="0" max="20" ng-model="rowLimit" placeholder="rows" style="width:140px" />
                                 </div>
-                                <table class=" table table-condensed  form-control-wrapper">
+                                <table class="table table-condensed  form-control-wrapper">
                                     <caption>Patient active diseases</caption>
                                     <thead>
                                         <tr>
@@ -662,7 +660,7 @@
                                                             </li>
                                                             <li>
                                                                 <a>
-                                                                    <i class="glyphicon glyphicon-picture " style="color:blue">Graph</i>
+                                                                    <i class="glyphicon glyphicon-picture " style="color:blue" ng-click="showGraph(rowLimit,sortColumn, regularExamHistoryWBCS)">Graph</i>
 
                                                                 </a>
                                                             </li>
@@ -683,22 +681,19 @@
                 <div class="inbox-row widget-shadow">
 
                     <a role="button" data-toggle="collapse" data-parent="#accordion" href="#collapse16" aria-expanded="true" aria-controls="collapse16">
-                        <div class="mail"><p>ViralLoad</p></div>
+                        <div class="mail"><p ng-click="initViral()">ViralLoad</p></div>
                     </a>
                     <div class="mail-right">
                         <div class="dropdown">
                             <a href="#" data-toggle="dropdown" aria-expanded="false">
                                 <p><i class="fa fa-ellipsis-v mail-icon"></i></p>
                             </a>
-
                         </div>
                     </div>
                     <div class="mail-right"><p>25 Dec</p></div>
                     <div class="clearfix"> </div>
                     <div id="collapse16" class="panel-collapse collapse" role="tabpanel" aria-labelledby="heading16">
                         <div class="mail-body">
-
-
 
                             <div class="well">
                                 <div class="panel-widget">
@@ -712,7 +707,7 @@
                                     </select><span></span>
                                     <input type="number" step="2" min="0" max="20" ng-model="rowLimit" placeholder="rows" style="width:140px" />
                                 </div>
-                                <table class=" table table-condensed  form-control-wrapper">
+                                <table class="table table-condensed  form-control-wrapper">
                                     <caption>Patient active diseases</caption>
                                     <thead>
                                         <tr>
@@ -725,7 +720,7 @@
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        <tr ng-repeat="regularExam in regularExamHistoryViralLoad| limitTo:rowLimit | orderBy:sortColumn" class="active">
+                                        <tr ng-repeat="regularExam in regularExamHistoryViralLoad | limitTo:rowLimit | orderBy:sortColumn" class="active">
                                             <td style="width:2%">{{$index + 1}}</td>
                                             <td>
                                                 {{regularExam.MCDT_date | jsonDate :'dd-M-yyyy H:mm' }}
@@ -758,8 +753,7 @@
                                                             </li>
                                                             <li>
                                                                 <a>
-                                                                    <i class="glyphicon glyphicon-picture " style="color:blue">Graph</i>
-
+                                                                    <i class="glyphicon glyphicon-picture " style="color:blue" ng-click="showGraph(rowLimit,sortColumn, regularExamHistoryViralLoad)">Graph</i>
                                                                 </a>
                                                             </li>
 
@@ -772,8 +766,6 @@
                                 </table>
                             </div>
                             <!---END VIRAL LOAD-->
-
-
 
                         </div>
                     </div>
