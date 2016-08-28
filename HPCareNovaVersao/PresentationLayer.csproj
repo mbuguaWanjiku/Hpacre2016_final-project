@@ -225,11 +225,14 @@
     <Compile Include="Startup.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Content\Angular\controllers\HelpController.js" />
     <Content Include="Content\Angular\controllers\DiagnosisHistoryController.js" />
     <Content Include="Content\Angular\controllers\HomeController.js" />
     <Content Include="Content\Angular\controllers\MCDTController.js" />
     <Content Include="Content\Angular\controllers\MCDTHistoryController.js" />
     <Content Include="Content\Angular\controllers\MedicationHistoryController.js" />
+    <Content Include="Content\Angular\controllers\AdminController.js" />
+    <Content Include="Content\Angular\controllers\NumberLabExamsController.js" />
     <Content Include="Content\Angular\controllers\PatientController.js" />
     <Content Include="Content\Angular\controllers\PatientInformationsController.js" />
     <Content Include="Content\Angular\controllers\PatientTemplateInfo.js" />
@@ -309,6 +312,7 @@
     <Content Include="Images\3.png" />
     <Content Include="Images\404.png" />
     <Content Include="Images\a.png" />
+    <Content Include="Images\favicon.ico" />
     <Content Include="Images\grid.png" />
     <Content Include="Images\Homepage\a1.png" />
     <Content Include="Images\Homepage\a2.png" />
@@ -1341,6 +1345,9 @@
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
     <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationIcon>Images\favicon.ico</ApplicationIcon>
   </PropertyGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <Import Project="$(VSToolsPath)\WebApplications\Microsoft.WebApplication.targets" Condition="'$(VSToolsPath)' != ''" />

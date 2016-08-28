@@ -2,13 +2,14 @@
 <!DOCTYPE HTML>
 <html>
 <head>
-    <title>Baxster an Admin Panel Category Flat Bootstrap Responsive Website Template | Home :: w3layouts</title>
+    <title>HPCare</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <meta name="keywords" content="Baxster Responsive web template, Bootstrap Web Templates, Flat Web Templates, Android Compatible web template,
-SmartPhone Compatible web template, free WebDesigns for Nokia, Samsung, LG, SonyEricsson, Motorola web design" />
+    <!--<meta name="keywords" content="Baxster Responsive web template, Bootstrap Web Templates, Flat Web Templates, Android Compatible web template,
+    SmartPhone Compatible web template, free WebDesigns for Nokia, Samsung, LG, SonyEricsson, Motorola web design" />-->
     <script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); } </script>
 
+    <link rel="shortcut icon" type="image/ico" href="../Images/favicon.ico">
     <!--Angular scripts-->
 
     <script src="/Scripts/angular.js"></script>
@@ -38,26 +39,26 @@ SmartPhone Compatible web template, free WebDesigns for Nokia, Samsung, LG, Sony
     <script src="../Content/Angular/controllers/DiagnosisClassificationController.js"></script>
     <script src="../Content/Angular/controllers/DiagnosisHistoryController.js"></script>
 
-    <script src="../Content/Angular/controllers/MedicationController.js"></script>
+    <!--<script src="../Content/Angular/controllers/MedicationController.js"></script>
     <script src="../Content/Angular/Services/MedicationHistoryFactory.js"></script>
     <script src="../Content/Angular/controllers/MedicationHistoryController.js"></script>
-    <script src="../Content/Angular/controllers/HomeController.js"></script>
+    <script src="../Content/Angular/controllers/HomeController.js"></script>-->
 
-    <script src="../Content/Angular/controllers/MCDTController.js"></script>
+    <!--<script src="../Content/Angular/controllers/MCDTController.js"></script>-->
     <script src="../Content/Angular/Services/DialoguesFactory.js"></script>
     <script src="../Content/TreatmentPlan/indexController.js"></script>
-    <script src="../Content/TreatmentPlan/TreatmentPlanMedController.js"></script>
+    <!--<script src="../Content/TreatmentPlan/TreatmentPlanMedController.js"></script>-->
 
-    <script src="../Content/Angular/Services/MCDRegularExamFactory.js"></script>
+    <!--<script src="../Content/Angular/Services/MCDRegularExamFactory.js"></script>
     <script src="../Content/Angular/Services/RegularLabResultsModalFactory.js"></script>
-    <script src="../Content/Angular/controllers/MCDTHistoryController.js"></script>
+    <script src="../Content/Angular/controllers/MCDTHistoryController.js"></script>-->
 
     <script src="../Content/Angular/controllers/PatientInformationsController.js"></script>
-    <script src="../Content/Angular/controllers/StaffController.js"></script>
+    <!--<script src="../Content/Angular/controllers/StaffController.js"></script>-->
     <script src="../Content/Angular/controllers/PatientController.js"></script>
 
-    <script src="../Content/Angular/controllers/GraphsObjectsController.js"></script>
-    <script src="../Content/Angular/controllers/SpecificGraphMonitorization.js"></script>
+    <!--<script src="../Content/Angular/controllers/GraphsObjectsController.js"></script>
+    <script src="../Content/Angular/controllers/SpecificGraphMonitorization.js"></script>-->
 
     <script src="../Content/Angular/controllers/PatientTemplateInfo.js"></script>
 
@@ -128,21 +129,8 @@ SmartPhone Compatible web template, free WebDesigns for Nokia, Samsung, LG, Sony
                                 <div ui-sref="patientMedications"> <a href="#" style="margin-left:18px;"><i class="fa fa-medkit"></i>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Medications<span class="fa arrow"></span></a></div>
                             </li>
 
-                            <!--<li>
-                                <a href="#" class="elements"><i class="fa fa-stethoscope nav_icon"></i>&nbsp;Treatment <span class="fa arrow"></span></a>
-                                <ul class="nav nav-second-level collapse">
-                                    <li>
-                                        <div ui-sref="classifyDisease"> <a href="#" style="margin-left:50px;">&nbsp;Medications</a></div>
-                                    </li>
-                                    <li>
-                                        <div ui-sref="updateDiseaseStatus"> <a href="#" style="margin-left:50px;">&nbsp;Hospital Admissions</a></div>
-                                    </li>
-                                    <li>
-                                        <div ui-sref="diagnosisHistory"> <a href="#" style="margin-left:50px;">&nbsp;Diagnosis History</a></div>
-                                    </li>
-                                </ul>
-                            </li>-->
-
+                         
+                          
                         </ul>
                     </div>
                     <!-- //sidebar-collapse -->
@@ -164,174 +152,10 @@ SmartPhone Compatible web template, free WebDesigns for Nokia, Samsung, LG, Sony
                     </a>
                 </div>
                 <!--//logo-->
-                <div class="header-right header-right-grid">
-                    <div class="profile_details_left">
-                        <!--notifications of menu start -->
-                        <ul class="nofitications-dropdown">
-                            <li class="dropdown head-dpdn">
-                                <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-envelope"></i><span class="badge">3</span></a>
-                                <ul class="dropdown-menu anti-dropdown-menu">
-                                    <li>
-                                        <div class="notification_header">
-                                            <h3>You have 3 new messages</h3>
-                                        </div>
-                                    </li>
-                                    <li>
-                                        <a href="#">
-                                            <div class="user_img"><img src="/images/1.png" alt=""></div>
-                                            <div class="notification_desc">
-                                                <p>Lorem ipsum dolor amet</p>
-                                                <p><span>1 hour ago</span></p>
-                                            </div>
-                                            <div class="clearfix"></div>
-                                        </a>
-                                    </li>
-                                    <li class="odd">
-                                        <a href="#">
-                                            <div class="user_img"><img src="/images/2.png" alt=""></div>
-                                            <div class="notification_desc">
-                                                <p>Lorem ipsum dolor amet </p>
-                                                <p><span>1 hour ago</span></p>
-                                            </div>
-                                            <div class="clearfix"></div>
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a href="#">
-                                            <div class="user_img"><img src="/images/3.png" alt=""></div>
-                                            <div class="notification_desc">
-                                                <p>Lorem ipsum dolor amet </p>
-                                                <p><span>1 hour ago</span></p>
-                                            </div>
-                                            <div class="clearfix"></div>
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <div class="notification_bottom">
-                                            <a href="#">See all messages</a>
-                                        </div>
-                                    </li>
-                                </ul>
-                            </li>
-                            <li class="dropdown head-dpdn">
-                                <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-expanded="false"><i class="fa fa-bell"></i><span class="badge blue">3</span></a>
-                                <ul class="dropdown-menu anti-dropdown-menu">
-                                    <li>
-                                        <div class="notification_header">
-                                            <h3>You have 3 new notification</h3>
-                                        </div>
-                                    </li>
-                                    <li>
-                                        <a href="#">
-                                            <div class="user_img"><img src="/images/2.png" alt=""></div>
-                                            <div class="notification_desc">
-                                                <p>Lorem ipsum dolor amet</p>
-                                                <p><span>1 hour ago</span></p>
-                                            </div>
-                                            <div class="clearfix"></div>
-                                        </a>
-                                    </li>
-                                    <li class="odd">
-                                        <a href="#">
-                                            <div class="user_img"><img src="/images/1.png" alt=""></div>
-                                            <div class="notification_desc">
-                                                <p>Lorem ipsum dolor amet </p>
-                                                <p><span>1 hour ago</span></p>
-                                            </div>
-                                            <div class="clearfix"></div>
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a href="#">
-                                            <div class="user_img"><img src="/images/3.png" alt=""></div>
-                                            <div class="notification_desc">
-                                                <p>Lorem ipsum dolor amet </p>
-                                                <p><span>1 hour ago</span></p>
-                                            </div>
-                                            <div class="clearfix"></div>
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <div class="notification_bottom">
-                                            <a href="#">See all notifications</a>
-                                        </div>
-                                    </li>
-                                </ul>
-                            </li>
-                            <li class="dropdown head-dpdn">
-                                <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-expanded="false"><i class="fa fa-tasks"></i><span class="badge blue1">15</span></a>
-                                <ul class="dropdown-menu anti-dropdown-menu">
-                                    <li>
-                                        <div class="notification_header">
-                                            <h3>You have 8 pending task</h3>
-                                        </div>
-                                    </li>
-                                    <li>
-                                        <a href="#">
-                                            <div class="task-info">
-                                                <span class="task-desc">Database update</span><span class="percentage">40%</span>
-                                                <div class="clearfix"></div>
-                                            </div>
-                                            <div class="progress progress-striped active">
-                                                <div class="bar yellow" style="width:40%;"></div>
-                                            </div>
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a href="#">
-                                            <div class="task-info">
-                                                <span class="task-desc">Dashboard done</span><span class="percentage">90%</span>
-                                                <div class="clearfix"></div>
-                                            </div>
-                                            <div class="progress progress-striped active">
-                                                <div class="bar green" style="width:90%;"></div>
-                                            </div>
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a href="#">
-                                            <div class="task-info">
-                                                <span class="task-desc">Mobile App</span><span class="percentage">33%</span>
-                                                <div class="clearfix"></div>
-                                            </div>
-                                            <div class="progress progress-striped active">
-                                                <div class="bar red" style="width: 33%;"></div>
-                                            </div>
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a href="#">
-                                            <div class="task-info">
-                                                <span class="task-desc">Issues fixed</span><span class="percentage">80%</span>
-                                                <div class="clearfix"></div>
-                                            </div>
-                                            <div class="progress progress-striped active">
-                                                <div class="bar  blue" style="width: 80%;"></div>
-                                            </div>
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <div class="notification_bottom">
-                                            <a href="#">See all pending tasks</a>
-                                        </div>
-                                    </li>
-                                </ul>
-                            </li>
-                        </ul>
-                        <div class="clearfix"> </div>
-                    </div>
-                </div>
-
 
                 <div class="clearfix"> </div>
             </div>
-            <!--search-box-->
-            <div class="search-box">
-                <form class="input">
-                    <input class="sb-search-input input__field--madoka" placeholder="Search..." type="search" id="input-31" />
-                </form>
-            </div>
-            <!--//end-search-box-->
+          
             <div class="header-right">
 
                 <!--notification menu end -->
@@ -345,10 +169,8 @@ SmartPhone Compatible web template, free WebDesigns for Nokia, Samsung, LG, Sony
                                 </div>
                             </a>
                             <ul class="dropdown-menu drp-mnu">
-                                <li> <a href="#"><i class="fa fa-cog"></i> Settings</a> </li>
-                                <li><div ui-sref="clinicProfile"><a href="#"><i class="fa fa-user"></i> Profile</a></div></li>
-                                <!--<li> <a href="#"><i class="fa fa-user"></i> Profile</a> </li>-->
-                                <li> <a href="#" id="logout"> Logout</a> </li>
+                                <li> <a href="#"><i class="fa fa-question-circle-o"></i> Help</a> </li>
+                                <li><div ui-sref="logout"><a href="#"><i class="fa fa-sign-out"></i>Logout</a></div></li>
                             </ul>
                         </li>
                     </ul>
@@ -381,7 +203,7 @@ SmartPhone Compatible web template, free WebDesigns for Nokia, Samsung, LG, Sony
                 <!-- container -->
                 <div class="container">
                     <div class="copyright">
-                        <p>© 2016 Baxster . All Rights Reserved . Design by <a href="http://w3layouts.com/">W3layouts</a></p>
+                        <p>© 2016 HPCare</p>
                     </div>
 
 
@@ -435,27 +257,6 @@ SmartPhone Compatible web template, free WebDesigns for Nokia, Samsung, LG, Sony
 
     <!--<script src="/Scripts/jquery.fn.gantt.js"></script>-->
     <!-- //status -->
-    <script>
-        $('#logout').click(function (e) {
-            if (!window.confirm("Are you sure you want to logout?"))
-                return;
-
-            e.preventDefault();
-
-            $.ajax({
-                type: 'POST',
-                url: '../Account/LogOff',
-                dataType: 'script',
-                success: function () {
-                    //alert("sucess");
-                    document.location.href = "/";
-                },
-                error: function (req, status, err) {
-                    alert(err);
-                }
-            });
-        });
-    </script>
-
+   
 </body>
 </html>

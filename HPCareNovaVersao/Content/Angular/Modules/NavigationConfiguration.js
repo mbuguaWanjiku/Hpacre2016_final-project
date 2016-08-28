@@ -131,5 +131,29 @@
         templateUrl: "../Patient/PatientMedications"
     })
 
+    // ************ Admin template **************** //
+
+
+
+    .state("addUser", {
+        url: "/addUser",
+        templateUrl: "../Account/Register"
+    })
+
+    .state("listUsers", {
+        url: "/listUsers",
+        templateUrl: "../Home/Users"
+    })
+
+
+
+    .state('logout', {
+        url: '/logout',
+        controller: function ($window) {
+            $window.localStorage.clear();
+            $window.location.href = '/';
+        },
+    })    
+
 });
 

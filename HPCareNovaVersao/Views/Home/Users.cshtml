@@ -1,27 +1,31 @@
-﻿
-@{
-    Layout = null;
-}
+﻿<div class="row">
+    <div class="col-md-1"></div>
+    <div class="panel panel-widget col-md-10">
+        <div class="col-md-12" ng-controller="AdminController" ng-init="InitUsers()">
+            <div class="progressbar-heading grids-heading">
+                <h2>Users</h2>
+            </div>
+            <div class="col-md-12">
+                <table class="table table-hover">
+                    <thead>
+                        <tr>
+                            <th>Name</th>
+                            <th>User Type</th>
+                            <th>User Identification</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr ng-repeat="Users in allUsers">
+                            <td> {{Users.Name}}</td>
+                            <td> {{Users.UserType}}</td>
+                            <td> {{Users.User_identification}}</td>
 
-<!DOCTYPE html>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
 
-<html>
-<head>
-    <meta name="viewport" content="width=device-width" />
-    <title>Users</title>
-</head>
-<body>
-    <div> 
-
-        <table>
-            @foreach (var v in ViewBag.users) {
-
-            <tr>
-                <td>@v.UserName</td>
-            </tr>
-            }
-
-        </table>
     </div>
-</body>
-</html>
+    <div class="col-md-1"></div>
+</div>

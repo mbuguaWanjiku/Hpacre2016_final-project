@@ -1,1 +1,35 @@
-﻿Patient Medications
+﻿<div class="row">
+    <div class="col-md-1"></div>
+    <div class="panel panel-widget col-md-10">
+        <div class="progressbar-heading grids-heading">
+            <h2>My Medications History</h2>
+        </div>
+        <div class="col-md-12" ng-controller="PatientTemplateMedicationHistory" ng-init="Init()">
+            <div class="row">
+
+                <div class="col-md-12">
+                    <table class="table table-hover">
+                        <thead>
+                            <tr>
+                                <th>Drug Name</th>
+                                <th>Drug Category</th>
+                                <th>Start Date</th>
+                                <th>End Date</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr ng-repeat="MedicationHistoryVm in listMedications">
+                                <td> {{MedicationHistoryVm.DrugName}}</td>
+                                <td> {{MedicationHistoryVm.Drugcategory}}</td>
+                                <td> {{MedicationHistoryVm.StartDate}}</td>
+                                <td> {{MedicationHistoryVm.EndDate }}</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+    </div>
+    <div class="col-md-1"></div>
+</div>

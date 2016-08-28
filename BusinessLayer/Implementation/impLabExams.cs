@@ -31,7 +31,7 @@ namespace BusinessLayer.Implementation {
             KFT kft = db.MCDTs.Find(kftList.Single().MCDT_ID) as KFT;
             kft.LabExam_data_in = DateTime.Now;
 
-            foreach(KFT k in kftList) {
+            foreach (KFT k in kftList) {
                 kft.BUN = k.BUN;
                 kft.Creatinine = k.Creatinine;
                 kft.uricAcid = k.uricAcid;
@@ -45,7 +45,7 @@ namespace BusinessLayer.Implementation {
             LFT lft = db.MCDTs.Find(lftList.First().MCDT_ID) as LFT;
             lft.LabExam_data_in = DateTime.Now;
 
-            foreach(LFT l in lftList) {
+            foreach (LFT l in lftList) {
                 lft.Alkaline = l.Alkaline;
                 lft.AST = l.AST;
                 lft.Bilirubin = l.Bilirubin;
@@ -62,7 +62,7 @@ namespace BusinessLayer.Implementation {
             LymphocytesSubsets lymphocytes = db.MCDTs.Find(lymList.Single().MCDT_ID) as LymphocytesSubsets;
             lymphocytes.LabExam_data_in = DateTime.Now;
 
-            foreach(LymphocytesSubsets l in lymList) {
+            foreach (LymphocytesSubsets l in lymList) {
                 lymphocytes.CD3 = l.CD3;
                 lymphocytes.CD4 = l.CD4;
                 lymphocytes.CD8 = l.CD8;
@@ -79,7 +79,7 @@ namespace BusinessLayer.Implementation {
             PlateletsCount platelets = db.MCDTs.Find(platList.Single().MCDT_ID) as PlateletsCount;
             platelets.LabExam_data_in = DateTime.Now;
 
-            foreach(PlateletsCount p in platList) {
+            foreach (PlateletsCount p in platList) {
                 platelets.Count = p.Count;
                 platelets.LabExam_date_out = DateTime.Now;
             }
@@ -91,7 +91,7 @@ namespace BusinessLayer.Implementation {
             RBCIndices rbcIndices = db.MCDTs.Find(rbcIndicesList.Single().MCDT_ID) as RBCIndices;
             rbcIndices.LabExam_data_in = DateTime.Now;
 
-            foreach(RBCIndices r in rbcIndicesList) {
+            foreach (RBCIndices r in rbcIndicesList) {
                 rbcIndices.Amylase = r.Amylase;
                 rbcIndices.Cholesterol = r.Cholesterol;
                 rbcIndices.CPK = r.CPK;
@@ -109,7 +109,7 @@ namespace BusinessLayer.Implementation {
             RBCS rbcs = db.MCDTs.Find(rbcsList.Single().MCDT_ID) as RBCS;
             rbcs.LabExam_data_in = DateTime.Now;
 
-            foreach(RBCS r in rbcsList) {
+            foreach (RBCS r in rbcsList) {
                 rbcs.HB = r.HB;
                 rbcs.HCT = r.HCT;
                 rbcs.LabExam_date_out = DateTime.Now;
@@ -122,7 +122,7 @@ namespace BusinessLayer.Implementation {
             ViralLoad viral = db.MCDTs.Find(viralList.Single().MCDT_ID) as ViralLoad;
             viral.LabExam_data_in = DateTime.Now;
 
-            foreach(ViralLoad v in viralList) {
+            foreach (ViralLoad v in viralList) {
                 viral.value = v.value;
                 viral.LabExam_date_out = DateTime.Now;
             }
@@ -134,7 +134,7 @@ namespace BusinessLayer.Implementation {
             WBCS wbcs = db.MCDTs.Find(wbcsList.Single().MCDT_ID) as WBCS;
             wbcs.LabExam_data_in = DateTime.Now;
 
-            foreach(WBCS w in wbcsList) {
+            foreach (WBCS w in wbcsList) {
                 wbcs.Basophil = w.Basophil;
                 wbcs.Eosinophil = w.Eosinophil;
                 wbcs.Monocytes = w.Monocytes;
@@ -152,7 +152,7 @@ namespace BusinessLayer.Implementation {
         /// </summary>
         private void InsertStaffId(int staffId, LabExams lab) {
 
-            using(SqlConnection connection = new SqlConnection("Data Source=SQL5025.myASP.NET;Initial Catalog=DB_A0ADFA_HPCareDBContext;User Id=DB_A0ADFA_HPCareDBContext_admin;Password=hpcare2016;")) {
+            using (SqlConnection connection = new SqlConnection("Data Source=SQL5025.myASP.NET;Initial Catalog=DB_A0ADFA_HPCareDBContext;User Id=DB_A0ADFA_HPCareDBContext_admin;Password=hpcare2016;")) {
                 SqlCommand command = new SqlCommand("update mcdtstaffmanagers set Staff_User_id = " + staffId + " where mcdt_MCDT_ID = " + lab.MCDT_ID + ";", connection);
                 command.CommandType = CommandType.Text;
                 command.Connection = connection;
@@ -167,15 +167,12 @@ namespace BusinessLayer.Implementation {
         }
 
         private void AccessDatabase() {
-            using(SqlConnection connection = new SqlConnection("Data Source=SQL5025.myASP.NET;Initial Catalog=DB_A0ADFA_HPCareDBContext;User Id=DB_A0ADFA_HPCareDBContext_admin;Password=hpcare2016;")) {
-                //using(SqlConnection connection = new SqlConnection("Data Source=MÁRCIA\\SQLSERVER; Initial Catalog =HPCareDBContext; Integrated Security=true")) {
-                //using (SqlConnection connection = new SqlConnection("Data Source= WANJIKU\\NEWSQLEXPRESS ; Initial Catalog =HPCareDBContext;Integrated Security=SSPI"))
-                //{
-                SqlCommand command = new SqlCommand("SELECT MCDTs.MCDT_ID, MCDTs.MCDT_type, MCDTs.MCDT_date, MCDTs.LabExam_data_in, MCDTs.LabExam_date_out, Users.User_id," + 
-                    " Users.Name , MCDTs.Discriminator FROM ClinicRegistryManagers INNER JOIN MCDTManagers ON ClinicRegistryManagers.ClinicRegistryManagerId = MCDTManagers.clinicRegistryManager_ClinicRegistryManagerId " + 
+            using (SqlConnection connection = new SqlConnection("Data Source=SQL5025.myASP.NET;Initial Catalog=DB_A0ADFA_HPCareDBContext;User Id=DB_A0ADFA_HPCareDBContext_admin;Password=hpcare2016;")) {
+                SqlCommand command = new SqlCommand("SELECT MCDTs.MCDT_ID, MCDTs.MCDT_type, MCDTs.MCDT_date, MCDTs.LabExam_data_in, MCDTs.LabExam_date_out, Users.User_id," +
+                    " Users.Name , MCDTs.Discriminator FROM ClinicRegistryManagers INNER JOIN MCDTManagers ON ClinicRegistryManagers.ClinicRegistryManagerId = MCDTManagers.clinicRegistryManager_ClinicRegistryManagerId " +
                     "INNER JOIN MCDTStaffManagers ON MCDTManagers.MCDTStaffManager_MCDTStaffManager_id = MCDTStaffManagers.MCDTStaffManager_id INNER JOIN MCDTs ON " +
                     "MCDTStaffManagers.mcdt_MCDT_ID = MCDTs.MCDT_ID INNER JOIN Patient ON ClinicRegistryManagers.Clinic_patient_User_id = Patient.User_id INNER JOIN " +
-                    "Users ON Patient.User_id = Users.User_id", connection);
+                    "Users ON Patient.User_id = Users.User_id and mcdts.labexam_data_in is null", connection);
                 command.CommandType = CommandType.Text;
                 command.Connection = connection;
                 connection.Open();
@@ -183,7 +180,7 @@ namespace BusinessLayer.Implementation {
                 DbDataReader dbDataReader = command.ExecuteReader();
                 McdtViewModel viewModel;
 
-                while(dbDataReader.Read()) {
+                while (dbDataReader.Read()) {
                     viewModel = new McdtViewModel {
                         McdtId = dbDataReader.GetInt32(0),
                         McdtType = dbDataReader.GetInt32(1),
@@ -201,6 +198,46 @@ namespace BusinessLayer.Implementation {
 
         private DateTime GetDateDefault(DbDataReader reader, int colIndex) {
             return (reader.IsDBNull(colIndex) ? new DateTime(1970, 01, 01) : reader.GetDateTime(colIndex));
+        }
+
+        public int NumberLabExamsNull() {
+            int number = 0;
+            using (SqlConnection connection = new SqlConnection("Data Source=SQL5025.myASP.NET;Initial Catalog=DB_A0ADFA_HPCareDBContext;User Id=DB_A0ADFA_HPCareDBContext_admin;Password=hpcare2016;")) {
+                SqlCommand command = new SqlCommand("SELECT count(*) FROM ClinicRegistryManagers INNER JOIN MCDTManagers ON ClinicRegistryManagers.ClinicRegistryManagerId = MCDTManagers.clinicRegistryManager_ClinicRegistryManagerId  " +
+                  "  INNER JOIN MCDTStaffManagers ON MCDTManagers.MCDTStaffManager_MCDTStaffManager_id = MCDTStaffManagers.MCDTStaffManager_id INNER JOIN MCDTs ON " +
+                   " MCDTStaffManagers.mcdt_MCDT_ID = MCDTs.MCDT_ID INNER JOIN Patient ON ClinicRegistryManagers.Clinic_patient_User_id = Patient.User_id INNER JOIN " +
+                  "  Users ON Patient.User_id = Users.User_id and mcdts.labexam_data_in is null;", connection);
+                command.CommandType = CommandType.Text;
+                command.Connection = connection;
+                connection.Open();
+                DbDataReader dbDataReader = command.ExecuteReader();
+
+                while (dbDataReader.Read()) {
+                    number = dbDataReader.GetInt32(0);
+                }
+
+            }
+            return number;
+        }
+
+        public int NumberLabExams() {
+            int number = 0;
+            using (SqlConnection connection = new SqlConnection("Data Source=SQL5025.myASP.NET;Initial Catalog=DB_A0ADFA_HPCareDBContext;User Id=DB_A0ADFA_HPCareDBContext_admin;Password=hpcare2016;")) {
+                SqlCommand command = new SqlCommand("SELECT count(*) FROM ClinicRegistryManagers INNER JOIN MCDTManagers ON ClinicRegistryManagers.ClinicRegistryManagerId = MCDTManagers.clinicRegistryManager_ClinicRegistryManagerId  " +
+                  "  INNER JOIN MCDTStaffManagers ON MCDTManagers.MCDTStaffManager_MCDTStaffManager_id = MCDTStaffManagers.MCDTStaffManager_id INNER JOIN MCDTs ON " +
+                   " MCDTStaffManagers.mcdt_MCDT_ID = MCDTs.MCDT_ID INNER JOIN Patient ON ClinicRegistryManagers.Clinic_patient_User_id = Patient.User_id INNER JOIN " +
+                  "  Users ON Patient.User_id = Users.User_id", connection);
+                command.CommandType = CommandType.Text;
+                command.Connection = connection;
+                connection.Open();
+                DbDataReader dbDataReader = command.ExecuteReader();
+
+                while (dbDataReader.Read()) {
+                    number = dbDataReader.GetInt32(0);
+                }
+
+            }
+            return number;
         }
     }
 }

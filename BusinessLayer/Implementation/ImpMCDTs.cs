@@ -24,7 +24,6 @@ namespace BusinessLayer.Implementation {
             foreach(string mcdt in listPrsecribedMCDT) {
                 if(mcdt.Equals("Physical")) {
                     newUnregularMcdt = new PhysicalExam { MCDT_date = DateTime.Now };
-
                     CreateMCDT(newUnregularMcdt);
                 } else if(mcdt.Equals("Pyschiatric")) {
                     newUnregularMcdt = new PsychiatricExam { MCDT_date = DateTime.Now };
@@ -41,7 +40,6 @@ namespace BusinessLayer.Implementation {
                 } else if(mcdt.Equals("RBCS")) {
                     labExam = db.LabExams.Add(new RBCS { MCDT_date = DateTime.Now, MCDT_type = MCDTType.RBCS });
                     CreateMCDT(labExam);
-
                 } else if(mcdt.Equals("PlateletsCount")) {
                     labExam = db.LabExams.Add(new PlateletsCount { MCDT_date = DateTime.Now, MCDT_type = MCDTType.PlateletsCount });
                     CreateMCDT(labExam);

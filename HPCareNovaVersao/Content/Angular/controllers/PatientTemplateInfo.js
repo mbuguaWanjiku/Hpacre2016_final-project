@@ -1,5 +1,5 @@
 ﻿
-app.controller("PatientTemplateInfo", function ($scope, PatientTemplateInformationFactory) {
+app.controller("PatientTemplateInfo", function ($scope, PatientTemplateInformationFactory, alert) {
 
     $scope.FamilyHistoryCategories = null;
     $scope.RiskFactorsCategories = null;
@@ -17,21 +17,21 @@ app.controller("PatientTemplateInfo", function ($scope, PatientTemplateInformati
         familyHistories.then(function (dt) {
             $scope.PatientFamilyHistoryCategories = dt.data;
         }, function (error) {
-            alert("erro");
+            alert.warning("Something went wrong while getting the records ! Please try again. ");
         });
 
         var riskFactors = PatientTemplateInformationFactory.GetPatientRiskFactors();
         riskFactors.then(function (dt) {
             $scope.PatientRiskFactorsCategories = dt.data;
         }, function (error) {
-            alert("erro");
+            alert.warning("Something went wrong while getting the records ! Please try again. ");
         });
 
         var allergies = PatientTemplateInformationFactory.GetPatientAllergies();
         allergies.then(function (dt) {
             $scope.PatientAllergyCategories = dt.data;
         }, function (error) {
-            alert("erro");
+           alert.warning("Something went wrong while getting the records ! Please try again. ");
         });
 
         var patientInformation = PatientTemplateInformationFactory.GetPatientFullInformations();
@@ -39,7 +39,7 @@ app.controller("PatientTemplateInfo", function ($scope, PatientTemplateInformati
             $scope.PatientFullInformation = dt.data;
             $scope.InitInformation();
         }, function (error) {
-            alert("erro");
+            alert.warning("Something went wrong while getting the records ! Please try again. ");
         });
 
     }
@@ -58,7 +58,7 @@ app.controller("PatientTemplateInfo", function ($scope, PatientTemplateInformati
 
 
 
-app.controller("PatientTemplateDiseasesHistory", function ($scope, PatientTemplateInformationFactory) {
+app.controller("PatientTemplateDiseasesHistory", function ($scope, PatientTemplateInformationFactory, alert) {
 
     $scope.listDisease = null;
     $scope.PatientDiseaseHistoryVM = null;
@@ -68,7 +68,41 @@ app.controller("PatientTemplateDiseasesHistory", function ($scope, PatientTempla
         getData.then(function (dt) {
             $scope.listDisease = dt.data;
         }, function (error) {
-            alert("erro");
+            alert.warning("Something went wrong while getting the records ! Please try again. ");
+        });
+
+    }
+
+});
+
+app.controller("PatientTemplateMcdtsHistory", function ($scope, PatientTemplateInformationFactory, alert) {
+
+    $scope.McdtViewModel = null;
+    $scope.listMcdts = null;
+
+    $scope.Init = function () {
+        var getData = PatientTemplateInformationFactory.GetPatientMcdts();
+        getData.then(function (dt) {
+            $scope.listMcdts = dt.data;
+        }, function (error) {
+            alert.warning("Something went wrong while getting the records ! Please try again. ");
+        });
+
+    }
+
+});
+
+app.controller("PatientTemplateMedicationHistory", function ($scope, PatientTemplateInformationFactory, alert) {
+
+    $scope.MedicationHistoryVm = null;
+    $scope.listMedications = null;
+
+    $scope.Init = function () {
+        var getData = PatientTemplateInformationFactory.GetPatientMedication();
+        getData.then(function (dt) {
+            $scope.listMedications = dt.data;
+        }, function (error) {
+            alert.warning("Something went wrong while getting the records ! Please try again. ");
         });
 
     }
@@ -96,6 +130,14 @@ app.factory('PatientTemplateInformationFactory', function ($http) {
 
     fac.GetPatientDiseaseHistory = function () {
         return $http.get('../Patient/GetPatientDiseasesHistoryJson');
+    }
+
+    fac.GetPatientMcdts = function () {
+        return $http.get('../Patient/GetPatientMcdtsJson');
+    }
+
+    fac.GetPatientMedication = function () {
+        return $http.get('../Patient/GetPatientMedicationHistoryJson');
     }
 
     return fac;

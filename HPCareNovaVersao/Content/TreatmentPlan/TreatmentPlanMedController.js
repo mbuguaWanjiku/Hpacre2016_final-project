@@ -150,7 +150,7 @@ app.controller('TreatmentPlanMedCtrl', function ($scope, moment, alert, calendar
                 resizable: true
             });
             TreatmentService.AddIntervention();
-            alert.success("addede Intervention  " + (index + 1));
+            alert.success("Added Intervention  " + (index + 1));
         }
 
         if (existUnSet()) {

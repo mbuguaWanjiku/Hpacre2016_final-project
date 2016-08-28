@@ -2,11 +2,32 @@
 
 <div class="col-md-1"></div>
 <div class="panel panel-widget col-md-10">
+    <ul class="nofitications-dropdown pull-right" style="margin-top:-4%;margin-right:-3%;">
+
+        <li class="dropdown head-dpdn">
+            <a class="dropdown-toggle" data-toggle="dropdown" aria-expanded="false"><i class="fa fa-question-circle-o"></i></a>
+            <ul class="dropdown-menu anti-dropdown-menu">
+                <li>
+                    <div class="notification_header">
+                        <h3>Search Patient</h3>
+                    </div>
+                </li>
+                <li>
+                    <a href="#">
+                        <div class="task-info" ng-controller="HelpController">
+                            <span class="task-desc">{{helpPatientDiagnosisHistory}}</span>
+                            <div class="clearfix"></div>
+                        </div>
+                    </a>
+                </li>
+            </ul>
+        </li>
+    </ul>
     <div class="progressbar-heading grids-heading">
         <h2>Diagnosis History</h2>
     </div>
 
-    <div class="well col-md-12">
+    <div class="col-md-12">
         <div class="selected dropDownOptions" ng-controller="DiagnosisHistoryController">
 
             <table class="table table-hover form-control-wrapper">

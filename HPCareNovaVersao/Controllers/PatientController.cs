@@ -16,11 +16,13 @@ namespace PresentationLayer.Controllers {
         private impPatient impPatient;
         private ImpPatientDiagnosisHistory impHistory;
         private ImpMedicationHistory impMedication;
+        CurrentUserId current;
 
         public PatientController() {
             impPatient = new impPatient(db);
             impHistory = new ImpPatientDiagnosisHistory();
             impMedication = new ImpMedicationHistory();
+            current = new CurrentUserId();
         }
 
         // ************** Get Patient Informations do Clinic ***************** //
@@ -148,12 +150,19 @@ namespace PresentationLayer.Controllers {
             return PartialView();
         }
 
+        public JsonResult GetPatientMcdtsJson() {
+            CurrentUserId current = new CurrentUserId();
+            Patient patient = db.Users.Find(current.AccessDatabase(User.Identity.GetUserName())) as Patient;
+
+            var list = impPatient.GetPatientMcdtsHistory(patient.User_id);
+            return Json(list, JsonRequestBehavior.AllowGet);
+        }
+
         public ActionResult PatientDiseaseHistory() {
             return PartialView();
         }
 
         public JsonResult GetPatientDiseasesHistoryJson() {
-            CurrentUserId current = new CurrentUserId();
             Patient patient = db.Users.Find(current.AccessDatabase(User.Identity.GetUserName())) as Patient;
             var list = impHistory.GetDiagnosisHistory(patient);
             return Json(list, JsonRequestBehavior.AllowGet);
@@ -163,8 +172,10 @@ namespace PresentationLayer.Controllers {
             return PartialView();
         }
 
-        //public JsonResult GetPatientMedicationHistoryJson() {
-        //    return Json(impMedication.GetPatientMedicationHistory())
-        //}
+        public JsonResult GetPatientMedicationHistoryJson() {
+            Patient patient = db.Users.Find(current.AccessDatabase(User.Identity.GetUserName())) as Patient;
+            return Json(impPatient.GetPatientMedicationHistory(patient.User_id), JsonRequestBehavior.AllowGet);
+        }
+
     }
 }

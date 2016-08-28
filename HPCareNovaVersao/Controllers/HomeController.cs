@@ -1,6 +1,7 @@
 ﻿using BusinessLayer;
 using BusinessLayer.Implementation;
 using DataLayer.Entities;
+using DataLayer.Entities.MCDTEntities;
 using DataLayer.EntityFramework;
 using HPCareNovaVersao;
 using Microsoft.AspNet.Identity;
@@ -17,6 +18,7 @@ using System.Web.Mvc;
 namespace PresentationLayer.Controllers {
     public class HomeController : Controller {
 
+
         HPCareDBContext context = new HPCareDBContext();
 
         public ActionResult Index() {
@@ -24,21 +26,12 @@ namespace PresentationLayer.Controllers {
                 return Redirect("Hpcare/HomeAdmin.html");
             } else if(User.IsInRole("Clinic")) {
                 return Redirect("Hpcare/Home.html");
-                //  return RedirectToAction("DashboardClinic2", "Home/");
             } else if(User.IsInRole("LabTec")) {
                 return Redirect("Hpcare/HomeLabTec.html");
             } else if(User.IsInRole("Patient")) {
                 return Redirect("Hpcare/HomePatient.html");
             }
-
-
-            //Patient p = new Patient { User_id = 2 };
-            //Staff s = new Staff { User_id = 1 };
-            //int aux = SingletonClinicRegistry.GetInstance(p, s, context).ClinicRegistryManagerId;
-            //int aux3 = SingletonClinicRegistry.GetInstance(p, s, context).ClinicRegistryManagerId;
-            //int aux4 = aux3 + 2;
             return View();
-
         }
 
         public ActionResult About() {
@@ -54,42 +47,59 @@ namespace PresentationLayer.Controllers {
         }
 
         public ActionResult Users() {
-            HPCareDBContext context = new HPCareDBContext();
-
-            var users = context.Users.ToList();
-            ViewBag.users = users;
-            return View();
+            List<int> lista = new List<int>();
+            return PartialView();
         }
 
-        public ActionResult DashboardAdmin() {
-            return View();
+        public JsonResult AllUsers() {
+            return Json(context.Users.ToList(), JsonRequestBehavior.AllowGet);
         }
 
-        public ActionResult DashboardClinic() {
-            return View();
+        public JsonResult NumberUsers() {
+            return Json(context.Users.ToList().Count, JsonRequestBehavior.AllowGet);
         }
 
-        public ActionResult DashboardLabTec() {
-            CurrentUserId user = new CurrentUserId();
-            ViewBag.aux = user.AccessDatabase(User.Identity.GetUserName());
-
-            return View();
+        public JsonResult NumberSpecificUsers(int i) {
+            return Json(context.Users.Where(a => a.UserType == i).ToList().Count, JsonRequestBehavior.AllowGet);
+        }
+      
+        public JsonResult NumberMcdts() {
+            return Json(context.MCDTs.ToList().Count, JsonRequestBehavior.AllowGet);
         }
 
-        public ActionResult DashboardPatient() {
-            return View();
+        public JsonResult NumberSpecificMcdt(MCDTType i) {
+            return Json(context.MCDTs.Where(a => a.MCDT_type == i).ToList().Count, JsonRequestBehavior.AllowGet);
         }
 
-        public ActionResult Success() {
-            return View();
-        }
+        //public ActionResult DashboardAdmin() {
+        //    return View();
+        //}
 
-        public ActionResult DashboardClinic2() {
-            //CurrentUserId user = new CurrentUserId();
-            //ViewBag.aux = user.AccessDatabase(User.Identity.GetUserName());
+        //public ActionResult DashboardClinic() {
+        //    return View();
+        //}
 
-            return View();
-        }
+        //public ActionResult DashboardLabTec() {
+        //    CurrentUserId user = new CurrentUserId();
+        //    ViewBag.aux = user.AccessDatabase(User.Identity.GetUserName());
+
+        //    return View();
+        //}
+
+        //public ActionResult DashboardPatient() {
+        //    return View();
+        //}
+
+        //public ActionResult Success() {
+        //    return View();
+        //}
+
+        //public ActionResult DashboardClinic2() {
+        //    //CurrentUserId user = new CurrentUserId();
+        //    //ViewBag.aux = user.AccessDatabase(User.Identity.GetUserName());
+
+        //    return View();
+        //}
 
         public ActionResult SearchPatient(string search) {
             //PatientId(search);

@@ -11,8 +11,15 @@
             alert.warning('Error in getting records');
         });
     }
-       
-        });
+
+    $scope.visitManagerModal = function () {
+        alert.visitManager();
+    }
+
+
+});
+
+
 
 
 app.factory('HomeService', function ($http) {
@@ -21,9 +28,7 @@ app.factory('HomeService', function ($http) {
     fac.SearchPatient = function (id) {
         alert(id);
         return $http.get('../Home/Search?search=' + id)
-
     }
-
 
     return fac;
 });

@@ -7,7 +7,14 @@
 <html>
 
 <head>
-    <title> HPCare </title>
+    <title>HPCare</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <!--<meta name="keywords" content="Baxster Responsive web template, Bootstrap Web Templates, Flat Web Templates, Android Compatible web template,
+    SmartPhone Compatible web template, free WebDesigns for Nokia, Samsung, LG, SonyEricsson, Motorola web design" />-->
+    <script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); } </script>
+
+    <link rel="shortcut icon" type="image/ico" href="../Images/favicon.ico">
     <link href="~/Content/style.css" rel="stylesheet" />
     <link href="../Content/Homepage/bootstrap.css" rel="stylesheet" type="text/css" media="all">
     <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
@@ -15,10 +22,7 @@
     <!-- Custom Theme files -->
     <link href="../Content/Homepage/style.css" rel="stylesheet" type="text/css" media="all" />
     <!-- Custom Theme files -->
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <meta name="keywords" content="Appliance Responsive web template, Bootstrap Web Templates, Flat Web Templates, Android Compatible web template,
-Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, SonyEricsson, Motorola web design" />
+
     <script type="application/x-javascript">
         addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); }
     </script>
@@ -240,13 +244,13 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
     <div class="features" id="features">
         <div class="container">
             <div class="features-main">
-                
+
                 <div class="features-bottom">
                     <div class="col-md-2 features-left">
                     </div>
                     <div class="col-md-8 features-main">
                         <div class="fea-block-rit wow bounceInRight" data-wow-delay="0.1s">
-                          
+
                             <div class="login-body">
                                 <div class="login-heading">
                                     <h1>Login</h1>
@@ -254,19 +258,20 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 
                                 <div class="login-info">
 
-                                    @using(Html.BeginForm("Login", "Account", new {
+                                    @using (Html.BeginForm("Login", "Account", new {
                                         ReturnUrl = ViewBag.ReturnUrl
                                     }, FormMethod.Post, new {
                                         @class = "login-info",
-                                        role = "form"
+                                        role = "form",
                                     })) {
 
                                         @Html.AntiForgeryToken()
-                                        @Html.TextBoxFor(m => m.UserName, new {
+                                        @Html.TextBoxFor(m => m.UserName, "", new {
                                        @class = "user",
-                                       placeholder = "Email",
+                                       @placeholder = "Email",
                                        required = "",
-                                       name = "email"
+                                       name = "email",
+                                       @style = "color: black;"
                                    })
                                         @Html.ValidationMessageFor(m => m.UserName, "", new {
                                        @class = "text-danger"
@@ -275,7 +280,8 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                                         @Html.PasswordFor(m => m.Password, new {
                                        @class = "lock",
                                        placeholder = "Password",
-                                       name = "password"
+                                       name = "password",
+                                       @style = "color:black;"
                                    })
                                         @Html.ValidationMessageFor(m => m.Password, "", new {
                                        @class = "text-danger"
@@ -303,7 +309,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                         </div>
                     </div>
                     @*<div class="col-md-2 features-left">
-                    </div>*@
+                        </div>*@
                     <div class="clearfix"> </div>
                 </div>
                 <div class="clearfix"> </div>
