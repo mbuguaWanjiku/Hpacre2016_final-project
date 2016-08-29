@@ -39,7 +39,7 @@ namespace BusinessLayer.Implementation
         /// check the patient have an existing treatment plan
         /// </summary>
         /// <returns></returns>
-        private bool existPlan()
+        public bool existPlan()
         {
             int count = db.TreatmentPlans.Where(x => x.Patient_TreatmentPlan.User_id == patient.User_id).Count();
             return (count > 1);

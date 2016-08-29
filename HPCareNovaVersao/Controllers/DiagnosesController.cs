@@ -22,7 +22,7 @@ namespace PresentationLayer.Controllers {
         private impDiagnosis impDiagnosis;
 
         public DiagnosisController() {
-            impDiagnosis = new impDiagnosis();
+            impDiagnosis = new impDiagnosis(db);
             db.Configuration.ProxyCreationEnabled = false;
         }
 

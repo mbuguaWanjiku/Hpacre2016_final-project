@@ -14,12 +14,15 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace DataLayer.EntityFramework {
-    public class HPCareDBContext : DbContext {
+namespace DataLayer.EntityFramework
+{
+    public class HPCareDBContext : DbContext
+    {
 
         public HPCareDBContext() : base("HPCareDBContext") { }
 
-        protected override void OnModelCreating(DbModelBuilder modelBuilder) {
+        protected override void OnModelCreating(DbModelBuilder modelBuilder)
+        {
             modelBuilder.Entity<KFT>().ToTable("KFT");
             modelBuilder.Entity<LFT>().ToTable("LFT");
             modelBuilder.Entity<LymphocytesSubsets>().ToTable("LymphocytesSubsets");
@@ -37,27 +40,33 @@ namespace DataLayer.EntityFramework {
             modelBuilder.Entity<SubsequentVisit>().ToTable("SubsequentVisit");
         }
 
-        public DbSet<Gender> Genders {
+        public virtual DbSet<Gender> Genders
+        {
             get; set;
         }
 
-        public DbSet<MaritalStatus> MaritalStatus {
+        public virtual DbSet<MaritalStatus> MaritalStatus
+        {
             get; set;
         }
 
-        public DbSet<ProfessionalsType> ProfessionalTypes {
+        public virtual DbSet<ProfessionalsType> ProfessionalTypes
+        {
             get; set;
         }
 
-        public DbSet<CID_DiseaseCode> CID_DiseaseCodes {
+        public virtual DbSet<CID_DiseaseCode> CID_DiseaseCodes
+        {
             get; set;
         }
 
-        public DbSet<CID_Category> CID_Categories {
+        public virtual DbSet<CID_Category> CID_Categories
+        {
             get; set;
         }
 
-        public DbSet<CIDCode> CIDCodes {
+        public virtual DbSet<CIDCode> CIDCodes
+        {
             get; set;
         }
         /*
@@ -65,11 +74,13 @@ namespace DataLayer.EntityFramework {
             get; set;
         }
         */
-        public DbSet<Diagnosis> Diagnoses {
+        public virtual DbSet<Diagnosis> Diagnoses
+        {
             get; set;
         }
 
-        public DbSet<Disease> Diseases {
+        public virtual DbSet<Disease> Diseases
+        {
             get; set;
         }
 
@@ -77,139 +88,173 @@ namespace DataLayer.EntityFramework {
             get; set;
         }*/
 
-        public DbSet<LabExams> LabExams {
+        public virtual DbSet<LabExams> LabExams
+        {
             get; set;
         }
 
-        public DbSet<RegularExam> RegularExams {
+        public virtual DbSet<RegularExam> RegularExams
+        {
             get; set;
         }
 
-        public DbSet<MCDT> MCDTs {
+        public DbSet<MCDT> MCDTs
+        {
             get; set;
         }
 
-        public DbSet<MCDTManager> MCDTManagers {
+        public virtual DbSet<MCDTManager> MCDTManagers
+        {
             get; set;
         }
 
-        public DbSet<MCDTStaffManager> MCDTStaffManagers {
+        public virtual DbSet<MCDTStaffManager> MCDTStaffManagers
+        {
             get; set;
         }
 
-        public DbSet<Admission> Admissions {
+        public virtual DbSet<Admission> Admissions
+        {
             get; set;
         }
 
-        public DbSet<Intervention> Interventions {
+        public virtual DbSet<Intervention> Interventions
+        {
             get; set;
         }
 
-        public DbSet<NextOfKin> NextOfKins {
+        public DbSet<NextOfKin> NextOfKins
+        {
             get; set;
         }
 
-        public DbSet<NextOfKinManager> NextOfKinManagers {
+        public DbSet<NextOfKinManager> NextOfKinManagers
+        {
             get; set;
         }
 
-        public DbSet<TreatmentPlan> TreatmentPlans {
+        public DbSet<TreatmentPlan> TreatmentPlans
+        {
             get; set;
         }
 
-        public DbSet<TreatmentCategory> TreatmentCategories {
+        public DbSet<TreatmentCategory> TreatmentCategories
+        {
             get; set;
         }
 
-        public DbSet<TreatmentType> TreatmentTypes {
+        public DbSet<TreatmentType> TreatmentTypes
+        {
             get; set;
         }
 
-        public DbSet<Drug> Drugs {
+        public virtual DbSet<Drug> Drugs
+        {
             get; set;
         }
 
-        public DbSet<DrugCategory> DrugCategories {
+        public virtual DbSet<DrugCategory> DrugCategories
+        {
             get; set;
         }
 
-        public DbSet<DrugIssuance> DrugInssuances {
+        public virtual DbSet<DrugIssuance> DrugInssuances
+        {
             get; set;
         }
 
-        public DbSet<DrugManager> DrugManagers {
+        public virtual DbSet<DrugManager> DrugManagers
+        {
             get; set;
         }
 
-        public DbSet<DrugAdministration> DrugAdministrations {
+        public virtual DbSet<DrugAdministration> DrugAdministrations
+        {
             get; set;
         }
 
-        public DbSet<DrugFrequency> DrugFrequencies {
+        public virtual DbSet<DrugFrequency> DrugFrequencies
+        {
             get; set;
         }
 
-        public DbSet<Dosage> DrugDosages {
+        public virtual DbSet<Dosage> DrugDosages
+        {
             get; set;
         }
 
-        public DbSet<Therapy> Therapies {
+        public virtual DbSet<Therapy> Therapies
+        {
             get; set;
         }
 
-        public DbSet<TherapyManager> TherapyManagers {
+        public virtual DbSet<TherapyManager> TherapyManagers
+        {
             get; set;
         }
 
-        public DbSet<Users> Users {
+        public virtual DbSet<Users> Users
+        {
             get; set;
         }
 
-        public DbSet<AgeGroup> AgeGroups {
+        public virtual DbSet<AgeGroup> AgeGroups
+        {
             get; set;
         }
 
-        public DbSet<Allergies> Allergies {
+        public virtual DbSet<Allergies> Allergies
+        {
             get; set;
         }
 
-        public DbSet<AllergiesManager> AllergiesManagers {
+        public virtual DbSet<AllergiesManager> AllergiesManagers
+        {
             get; set;
         }
 
-        public DbSet<AllergyCategory> AllergyCategories {
+        public virtual DbSet<AllergyCategory> AllergyCategories
+        {
             get; set;
         }
 
-        public DbSet<FamilyHistory> FamilyHistories {
+        public virtual DbSet<FamilyHistory> FamilyHistories
+        {
             get; set;
         }
 
-        public DbSet<FamilyHistoryManager> FamilyHistoryManagers {
+        public virtual DbSet<FamilyHistoryManager> FamilyHistoryManagers
+        {
             get; set;
         }
 
-        public DbSet<FamilyHistoryCategory> FamilyHistoryCategories {
+        public virtual DbSet<FamilyHistoryCategory> FamilyHistoryCategories
+        {
             get; set;
         }
 
-        public DbSet<RiskFactors> RiskFactors {
+        public virtual DbSet<RiskFactors> RiskFactors
+        {
             get; set;
         }
 
-        public DbSet<RiskFactorsManager> RiskFactorsManagers {
+        public virtual DbSet<RiskFactorsManager> RiskFactorsManagers
+        {
             get; set;
         }
 
-        public DbSet<RiskFactorsCategory> RiskFactorsCategories {
+        public virtual DbSet<RiskFactorsCategory> RiskFactorsCategories
+        {
             get; set;
         }
 
-        public DbSet<ClinicRegistryManager> ClinicRegistryManagers {
+        public virtual DbSet<ClinicRegistryManager> ClinicRegistryManagers
+        {
             get; set;
         }
 
-        public DbSet<Visit> Visits {
+        public DbSet<Visit> Visits
+        {
             get; set;
         }
         /*
@@ -217,7 +262,8 @@ namespace DataLayer.EntityFramework {
             get; set;
         }*/
 
-        public DbSet<VisitManager> VisitManagers {
+        public virtual DbSet<VisitManager> VisitManagers
+        {
             get; set;
         }
 

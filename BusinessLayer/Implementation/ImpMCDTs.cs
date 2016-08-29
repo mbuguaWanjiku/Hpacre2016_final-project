@@ -11,12 +11,11 @@ using System.Threading.Tasks;
 
 namespace BusinessLayer.Implementation {
     public class ImpMCDTs : IMCDTs {
-        private HPCareDBContext db = new HPCareDBContext();
+        private HPCareDBContext db;
 
-        public ImpMCDTs() {
-
+        public ImpMCDTs(HPCareDBContext db) {
+            db = new HPCareDBContext();
         }
-
         public void SavePrescribedMCDT(List<string> listPrsecribedMCDT) {
 
             MCDT newUnregularMcdt;
