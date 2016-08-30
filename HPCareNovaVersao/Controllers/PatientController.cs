@@ -32,24 +32,19 @@ namespace PresentationLayer.Controllers {
         }
 
         public JsonResult GetPatientAllergies() {
-            //return Json(impPatient.GetPatientAllergies(patientQueFoiProcurado), JsonRequestBehavior.AllowGet);
-            return Json(impPatient.GetPatientAllergies(2), JsonRequestBehavior.AllowGet);
+            return Json(impPatient.GetPatientAllergies((int) Session["patientId"]), JsonRequestBehavior.AllowGet);
         }
 
         public JsonResult GetPatientRiskFactors() {
-            //return Json(impPatient.GetPatientRiskFactors(patientQueFoiProcurado), JsonRequestBehavior.AllowGet);
-            return Json(impPatient.GetPatientRiskFactors(2), JsonRequestBehavior.AllowGet);
+            return Json(impPatient.GetPatientRiskFactors((int)Session["patientId"]), JsonRequestBehavior.AllowGet);
         }
 
         public JsonResult GetPatientFamilyHistory() {
-            //return Json(impPatient.GetPatientFamilyHistory(patientQueFoiProcurado), JsonRequestBehavior.AllowGet);
-            return Json(impPatient.GetPatientFamilyHistory(2), JsonRequestBehavior.AllowGet);
+            return Json(impPatient.GetPatientFamilyHistory((int) Session["patientId"]), JsonRequestBehavior.AllowGet);
         }
 
-
         public JsonResult GetPatientInformations() {
-            //return Json(impPatient.GetPatientInformation(patientQueFoiProcurado), JsonRequestBehavior.AllowGet);
-            return Json(impPatient.GetPatientInformation(2), JsonRequestBehavior.AllowGet);
+            return Json(impPatient.GetPatientInformation((int) Session["patientId"]), JsonRequestBehavior.AllowGet);
         }
 
         // ****************** "Criacao" do Patient ***************** //
@@ -123,23 +118,19 @@ namespace PresentationLayer.Controllers {
         }
 
         public JsonResult GetPatientTemplateInformation() {
-            //return Json(impPatient.GetPatientInformation(currentUserLogged), JsonRequestBehavior.AllowGet);
-            return Json(impPatient.GetPatientInformation(2), JsonRequestBehavior.AllowGet);
+            return Json(impPatient.GetPatientInformation(current.AccessDatabase(User.Identity.Name)), JsonRequestBehavior.AllowGet);
         }
 
         public JsonResult GetPatientTemplateAllergies() {
-            //return Json(impPatient.GetPatientInformation(currentUserLogged), JsonRequestBehavior.AllowGet);
-            return Json(impPatient.GetPatientAllergies(2), JsonRequestBehavior.AllowGet);
+            return Json(impPatient.GetPatientAllergies(current.AccessDatabase(User.Identity.Name)), JsonRequestBehavior.AllowGet);
         }
 
         public JsonResult GetPatientTemplateRisks() {
-            //return Json(impPatient.GetPatientInformation(currentUserLogged), JsonRequestBehavior.AllowGet);
-            return Json(impPatient.GetPatientRiskFactors(2), JsonRequestBehavior.AllowGet);
+            return Json(impPatient.GetPatientRiskFactors(current.AccessDatabase(User.Identity.Name)), JsonRequestBehavior.AllowGet);
         }
 
         public JsonResult GetPatientTemplateFamilyHistory() {
-            //return Json(impPatient.GetPatientInformation(currentUserLogged), JsonRequestBehavior.AllowGet);
-            return Json(impPatient.GetPatientFamilyHistory(2), JsonRequestBehavior.AllowGet);
+            return Json(impPatient.GetPatientFamilyHistory(current.AccessDatabase(User.Identity.Name)), JsonRequestBehavior.AllowGet);
         }
 
         public ActionResult PatientTreatmentPlan() {

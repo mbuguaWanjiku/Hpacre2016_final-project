@@ -40,7 +40,7 @@ app.controller("StaffInformationsController", function ($scope, StaffInformation
             alert.warning("Error in getting the information !");
         });
 
-    }
+    };
 
     $scope.InitInformation = function () {
         $scope.Name = $scope.StaffFullInformation[0].Name;
@@ -51,7 +51,7 @@ app.controller("StaffInformationsController", function ($scope, StaffInformation
         $scope.Telephone = $scope.StaffFullInformation[0].Telephone;
         $scope.Identification = $scope.StaffFullInformation[0].User_identification;
         $scope.ProfessionalName = $scope.StaffFullInformation[0].ProfessionalType.ProfessionalName;
-    }
+    };
 
     $scope.SaveInformation = function (g, m) {
         var Staff = new Object();
@@ -66,14 +66,14 @@ app.controller("StaffInformationsController", function ($scope, StaffInformation
         if (staffDetails.length > 0) {
             var getData = StaffInformationFactory.saveStaffInformations(staffDetails);
             getData.then(function (message) {
-                alert.success("Patient info added with success !");
+                alert.success("New info added with success !");
                 staffDetails = [];
             }, function () {
                 alert.warning("Something went wrong ! Please try again. ");
             });
         }
 
-    }
+    };
 
 });
 
@@ -84,19 +84,19 @@ app.factory('StaffInformationFactory', function ($http) {
 
     fac.GetStaffFullInformations = function () {
         return $http.get('../Staffs/GetStaffInformation');
-    }
+    };
 
     fac.GetGender = function () {
         return $http.get('../Staffs/GetGender');
-    }
+    };
 
     fac.GetMaritalStatus = function () {
         return $http.get('../Staffs/GetMaritalStatus');
-    }
+    };
 
     fac.GetProfessionalTypes = function () {
         return $http.get('../Staffs/GetProfessionalTypes');
-    }
+    };
 
     fac.saveStaffInformations = function (listInformations) {
         var informations = JSON.stringify({ 'staffInformations': staffDetails });
@@ -104,10 +104,10 @@ app.factory('StaffInformationFactory', function ($http) {
             method: "post",
             url: "../Staffs/SaveStaffInformations",
             data: informations,
-            dataType: "json",
+            dataType: "json"
         });
         return response;
-    }
+    };
 
     return fac;
 });

@@ -14,9 +14,11 @@ namespace PresentationLayer.Controllers {
     public class StaffsController : Controller {
         private HPCareDBContext db = new HPCareDBContext();
         private impStaff impStaff;
+        private CurrentUserId current;
 
         public StaffsController() {
             impStaff = new impStaff(db);
+            current = new CurrentUserId();
         }
 
         public ActionResult ListClinicInformation() {
@@ -24,7 +26,7 @@ namespace PresentationLayer.Controllers {
         }
 
         public JsonResult GetStaffInformation() {
-            Staff staff = db.Users.Find(1) as Staff; //current user id
+            Staff staff = db.Users.Find(current.AccessDatabase(User.Identity.Name)) as Staff; 
             var list = from u in db.Users
                        from p in db.Users.OfType<Staff>()
                        where u.User_id == staff.User_id &&
@@ -61,7 +63,7 @@ namespace PresentationLayer.Controllers {
 
         [HttpPost]
         public void SaveStaffInformations(List<Staff> staffInformations) {
-            impStaff.saveStaffInformations(staffInformations);
+            impStaff.saveStaffInformations(staffInformations, current.AccessDatabase(User.Identity.Name));
         }
 
         protected override void Dispose(bool disposing) {

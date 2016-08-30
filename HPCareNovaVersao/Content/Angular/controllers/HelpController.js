@@ -8,7 +8,7 @@
     $scope.helpListMdts = 'list mcdts';
     $scope.helpUpdateDiseaseStatus = 'update disease status ';
     $scope.helpPatientDiagnosisHistory = 'patient diagnosis history';
-    $scope.helpPrescribeMcdt = 'presribe mcdt';
+    $scope.helpPrescribeMcdt = 'prescribe mcdt';
     $scope.helpTreatmentPlan = 'treatment plan';
 
 });

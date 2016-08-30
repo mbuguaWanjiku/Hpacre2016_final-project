@@ -8,6 +8,6 @@ using System.Threading.Tasks;
 namespace BusinessLayer.Interfaces {
     interface IStaff {
 
-        void saveStaffInformations(List<Staff> staffInformation);
+        void saveStaffInformations(List<Staff> staffInformation, int staffId);
     }
 }

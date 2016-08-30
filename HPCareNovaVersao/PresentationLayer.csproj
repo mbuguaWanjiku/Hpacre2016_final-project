@@ -236,7 +236,6 @@
     <Content Include="Content\Angular\controllers\PatientController.js" />
     <Content Include="Content\Angular\controllers\PatientInformationsController.js" />
     <Content Include="Content\Angular\controllers\PatientTemplateInfo.js" />
-    <Content Include="Content\Angular\controllers\SpecificGraphMonitorization.js" />
     <Content Include="Content\Angular\controllers\StaffController.js" />
     <Content Include="Content\Angular\controllers\VisitManagerController.js" />
     <Content Include="Content\Angular\ModalViewsContent\modalSpecificControlGraph.html" />
@@ -265,7 +264,6 @@
     <Content Include="Content\Angular\Services\RegularLabResultsModalFactory.js" />
     <Content Include="Content\Angular\Services\TreatmentPlanFactory.js" />
     <Content Include="Content\Graphs\bootstrap.css" />
-    <Content Include="Content\Angular\controllers\GraphsObjectsController.js" />
     <Content Include="Content\Graphs\style.css" />
     <Content Include="Content\animate.css" />
     <Content Include="Content\atlas.css" />
@@ -292,9 +290,6 @@
     <Content Include="Content\TreatmentPlan\indexController.js" />
     <Content Include="Content\TreatmentPlan\TreatmentPlanMed.html" />
     <Content Include="Content\TreatmentPlan\TreatmentPlanMedController.js" />
-    <Content Include="Content_Ajax\bootstrap.css" />
-    <Content Include="Content_Ajax\bootstrap.min.css" />
-    <Content Include="Content_Ajax\Site.css" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\fontawesome-webfont.svg" />
     <Content Include="Global.asax" />
@@ -314,6 +309,7 @@
     <Content Include="Images\a.png" />
     <Content Include="Images\favicon.ico" />
     <Content Include="Images\grid.png" />
+    <Content Include="Images\Homepage\404.png" />
     <Content Include="Images\Homepage\a1.png" />
     <Content Include="Images\Homepage\a2.png" />
     <Content Include="Images\Homepage\a3.png" />
@@ -1199,7 +1195,6 @@
     <Content Include="Scripts_Ajax\respond.js" />
     <Content Include="Scripts_Ajax\respond.min.js" />
     <None Include="Scripts_Ajax\_references.js" />
-    <Content Include="Views\Home\Hpcare.html" />
     <Content Include="Views\Shared\404.html" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>
@@ -1210,32 +1205,9 @@
     <Content Include="Web.Release.config">
       <DependentUpon>Web.config</DependentUpon>
     </Content>
-    <Content Include="Views\Interventions\Create.cshtml" />
-    <Content Include="Views\Interventions\Delete.cshtml" />
-    <Content Include="Views\Interventions\Details.cshtml" />
-    <Content Include="Views\Interventions\Edit.cshtml" />
-    <Content Include="Views\Interventions\Index.cshtml" />
-    <Content Include="Views\LabExams\Create.cshtml" />
-    <Content Include="Views\LabExams\Delete.cshtml" />
-    <Content Include="Views\LabExams\Details.cshtml" />
-    <Content Include="Views\LabExams\Edit.cshtml" />
-    <Content Include="Views\LabExams\Index.cshtml" />
-    <Content Include="Views\LabExams\ListPatientLabExams.cshtml" />
-    <Content Include="Views\LabExams\PatientExams.cshtml" />
-    <Content Include="Views\LabExams\CreateRBCS.cshtml" />
-    <Content Include="Views\WBCS\Edit.cshtml" />
-    <Content Include="Views\KFTs\Edit.cshtml" />
-    <Content Include="Views\LFTs\Edit.cshtml" />
-    <Content Include="Views\LymphocytesSubsets\Edit.cshtml" />
-    <Content Include="Views\PlateletsCounts\Edit.cshtml" />
-    <Content Include="Views\RBCIndices\Edit.cshtml" />
-    <Content Include="Views\RBCSs\Edit.cshtml" />
-    <Content Include="Views\ViralLoads\Edit.cshtml" />
-    <Content Include="Views\Home\DashboardPatient.cshtml" />
     <Content Include="Views\Shared\Patient.cshtml" />
     <Content Include="Views\Shared\Clinic2.cshtml" />
     <Content Include="Views\Diagnosis\GetPatientDiagnosisHistory.cshtml" />
-    <Content Include="Views\Home\DashboardClinic2.cshtml" />
     <Content Include="Views\Diagnosis\UpdateDiseaseStatus.cshtml" />
     <Content Include="Views\MCDTs\PrescribeMCDT.cshtml" />
     <Content Include="Views\Home\SearchPatient.cshtml" />
@@ -1245,11 +1217,8 @@
     <Content Include="Views\Users\Edit.cshtml" />
     <Content Include="Views\Users\Index.cshtml" />
     <Content Include="Views\Medication\PrescribeMedication.cshtml" />
-    <Content Include="Views\Therapy\PrescribeTherapy.cshtml" />
     <Content Include="Views\Diagnosis\ClassifyDisease_CID.cshtml" />
-    <Content Include="Views\Home\Demo.cshtml" />
     <Content Include="Views\Shared\Clinic.cshtml" />
-    <Content Include="Views\LabExams\GetPatientLabResults.cshtml" />
     <Content Include="Views\LabExams\MonitorizationGraphs.cshtml" />
     <Content Include="Views\LabExams\SpecificGraphMonitorization.cshtml" />
     <Content Include="Views\Patient\AddPatientInformation.cshtml" />
@@ -1267,7 +1236,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Views\VisitManager\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />
@@ -1306,21 +1274,11 @@
     <Content Include="Views\Account\_ExternalLoginsListPartial.cshtml" />
     <Content Include="Views\Home\About.cshtml" />
     <Content Include="Views\Home\Contact.cshtml" />
-    <Content Include="Views\Home\DashboardAdmin.cshtml" />
-    <Content Include="Views\Home\DashboardClinic.cshtml" />
-    <Content Include="Views\Home\DashboardLabTec.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Home\Users.cshtml" />
     <Content Include="Views\Shared\Admin.cshtml" />
     <Content Include="Views\Shared\LabTec.cshtml" />
     <Content Include="Views\Shared\_LayoutLogin.cshtml" />
-    <Content Include="Views\Home\Success.cshtml" />
-    <Content Include="Views\TreatmentPlans\Create.cshtml" />
-    <Content Include="Views\TreatmentPlans\Delete.cshtml" />
-    <Content Include="Views\TreatmentPlans\Details.cshtml" />
-    <Content Include="Views\TreatmentPlans\Edit.cshtml" />
-    <Content Include="Views\TreatmentPlans\Index.cshtml" />
-    <Content Include="Views\TreatmentPlans\PatientTreatmentPlan.cshtml" />
     <Content Include="Views\Roles\Create.cshtml" />
     <Content Include="Views\Roles\Edit.cshtml" />
     <Content Include="Views\Roles\Index.cshtml" />
