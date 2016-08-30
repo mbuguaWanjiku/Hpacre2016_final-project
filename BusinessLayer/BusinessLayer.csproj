@@ -52,6 +52,7 @@
     <Compile Include="Implementation\ImpMedicationHistory.cs" />
     <Compile Include="Implementation\impPatient.cs" />
     <Compile Include="Implementation\ImpPatientDiagnosisHistory.cs" />
+    <Compile Include="Implementation\impPatientViewModel.cs" />
     <Compile Include="Implementation\ImpRegularExamsHistory.cs" />
     <Compile Include="Implementation\impStaff.cs" />
     <Compile Include="Implementation\ImpTherapy.cs" />

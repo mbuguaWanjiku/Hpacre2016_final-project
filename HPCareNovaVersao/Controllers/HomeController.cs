@@ -1,5 +1,6 @@
 ﻿using BusinessLayer;
 using BusinessLayer.Implementation;
+using BusinessLayer.Implementation.ViewModels;
 using DataLayer.Entities;
 using DataLayer.Entities.MCDTEntities;
 using DataLayer.EntityFramework;
@@ -17,7 +18,6 @@ using System.Web.Mvc;
 
 namespace PresentationLayer.Controllers {
     public class HomeController : Controller {
-
 
         HPCareDBContext context = new HPCareDBContext();
 
@@ -71,38 +71,7 @@ namespace PresentationLayer.Controllers {
             return Json(context.MCDTs.Where(a => a.MCDT_type == i).ToList().Count, JsonRequestBehavior.AllowGet);
         }
 
-        //public ActionResult DashboardAdmin() {
-        //    return View();
-        //}
-
-        //public ActionResult DashboardClinic() {
-        //    return View();
-        //}
-
-        //public ActionResult DashboardLabTec() {
-        //    CurrentUserId user = new CurrentUserId();
-        //    ViewBag.aux = user.AccessDatabase(User.Identity.GetUserName());
-
-        //    return View();
-        //}
-
-        //public ActionResult DashboardPatient() {
-        //    return View();
-        //}
-
-        //public ActionResult Success() {
-        //    return View();
-        //}
-
-        //public ActionResult DashboardClinic2() {
-        //    //CurrentUserId user = new CurrentUserId();
-        //    //ViewBag.aux = user.AccessDatabase(User.Identity.GetUserName());
-
-        //    return View();
-        //}
-
         public ActionResult SearchPatient(string search) {
-            //PatientId(search);
             return PartialView();
         }
 
@@ -110,7 +79,7 @@ namespace PresentationLayer.Controllers {
             ImpHome homeImplementation = new ImpHome();
             //string aux = Request.QueryString["search"];
             string aux = search;
-            Users patient = homeImplementation.AccessDatabase(aux);
+            PatientViewModel patient = homeImplementation.AccessDatabase(aux);
             Session["patientId"] = patient.User_id;
 
             return Json(patient, JsonRequestBehavior.AllowGet);
