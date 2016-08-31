@@ -13,11 +13,11 @@ namespace DataLayer.Entities.Visitas {
             get; set;
         }
 
-        public DateTime Visit_Date {
+        public DateTime? Visit_Date {
             get; set;
         }
 
-        public DateTime Visit_Hour {
+        public DateTime? Visit_Hour {
             get; set;
         }
        

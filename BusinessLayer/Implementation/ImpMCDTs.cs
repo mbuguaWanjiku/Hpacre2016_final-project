@@ -11,11 +11,12 @@ using System.Threading.Tasks;
 
 namespace BusinessLayer.Implementation {
     public class ImpMCDTs : IMCDTs {
-        private HPCareDBContext db;
+        private HPCareDBContext db ;
 
         public ImpMCDTs(HPCareDBContext db) {
-            db = new HPCareDBContext();
+            this.db = new HPCareDBContext();
         }
+
         public void SavePrescribedMCDT(List<string> listPrsecribedMCDT) {
 
             MCDT newUnregularMcdt;
@@ -28,28 +29,28 @@ namespace BusinessLayer.Implementation {
                     newUnregularMcdt = new PsychiatricExam { MCDT_date = DateTime.Now };
                     CreateMCDT(newUnregularMcdt);
                 } else if(mcdt.Equals("KFT")) {
-                    labExam = db.LabExams.Add(new KFT { MCDT_date = DateTime.Now, MCDT_type = MCDTType.KFT });
+                    labExam = new KFT { MCDT_date = DateTime.Now, MCDT_type = MCDTType.KFT };
                     CreateMCDT(labExam);
                 } else if(mcdt.Equals("LFT")) {
-                    labExam = db.LabExams.Add(new KFT { MCDT_date = DateTime.Now, MCDT_type = MCDTType.LFT });
+                    labExam = new KFT { MCDT_date = DateTime.Now, MCDT_type = MCDTType.LFT };
                     CreateMCDT(labExam);
                 } else if(mcdt.Equals("LymphocytesSubsets")) {
-                    labExam = db.LabExams.Add(new LymphocytesSubsets { MCDT_date = DateTime.Now, MCDT_type = MCDTType.LymphocytesSubsets });
+                    labExam = new LymphocytesSubsets { MCDT_date = DateTime.Now, MCDT_type = MCDTType.LymphocytesSubsets };
                     CreateMCDT(labExam);
                 } else if(mcdt.Equals("RBCS")) {
-                    labExam = db.LabExams.Add(new RBCS { MCDT_date = DateTime.Now, MCDT_type = MCDTType.RBCS });
+                    labExam = new RBCS { MCDT_date = DateTime.Now, MCDT_type = MCDTType.RBCS };
                     CreateMCDT(labExam);
                 } else if(mcdt.Equals("PlateletsCount")) {
-                    labExam = db.LabExams.Add(new PlateletsCount { MCDT_date = DateTime.Now, MCDT_type = MCDTType.PlateletsCount });
+                    labExam = new PlateletsCount { MCDT_date = DateTime.Now, MCDT_type = MCDTType.PlateletsCount };
                     CreateMCDT(labExam);
                 } else if(mcdt.Equals("RBCIndices")) {
-                    labExam = db.LabExams.Add(new RBCIndices { MCDT_date = DateTime.Now, MCDT_type = MCDTType.RBCIndices });
+                    labExam = new RBCIndices { MCDT_date = DateTime.Now, MCDT_type = MCDTType.RBCIndices };
                     CreateMCDT(labExam);
                 } else if(mcdt.Equals("WBCS")) {
-                    labExam = db.LabExams.Add(new WBCS { MCDT_date = DateTime.Now, MCDT_type = MCDTType.WBCS }) as WBCS;
+                    labExam = new WBCS { MCDT_date = DateTime.Now, MCDT_type = MCDTType.WBCS };
                     CreateMCDT(labExam);
                 } else if(mcdt.Equals("ViralLoad")) {
-                    labExam = db.LabExams.Add(new ViralLoad { MCDT_date = DateTime.Now, MCDT_type = MCDTType.ViralLoad });
+                    labExam = new ViralLoad { MCDT_date = DateTime.Now, MCDT_type = MCDTType.ViralLoad };
                     CreateMCDT(labExam);
                 }
 

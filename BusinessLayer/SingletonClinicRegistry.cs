@@ -32,17 +32,20 @@ namespace BusinessLayer
             CurrentUserId currentStaff = new CurrentUserId();
             int currentIdStaff = currentStaff.AccessDatabase(HttpContext.Current.User.Identity.Name);
             Users staff = currentStaff.ReturnCurrentUser(currentIdStaff);
-          
-            if (existRegistry(patient, context))
+
+            if (!existRegistry(patient, context) && singletonInstance == null)
             {
                 singletonInstance = GetEXisting(patient, context);
             }
-            else
-            {
-                singletonInstance = new ClinicRegistryManager { ClinicRegistryManagerId = AccessDatabase(patient, staff, context).ClinicRegistryManagerId };
-                Visit visit = new Visit { Visit_Date = DateTime.Now };
-                context.VisitManagers.Add(new VisitManager { visit = visit, PatientVisitRegistry = singletonInstance });
-            }
+            else         
+                if (singletonInstance == null)
+                {
+                    singletonInstance = new ClinicRegistryManager { ClinicRegistryManagerId = AccessDatabase(patient, staff, context).ClinicRegistryManagerId };
+                    Visit visit = new Visit { Visit_Date = DateTime.Today.Date};
+                    context.VisitManagers.Add(new VisitManager { visit = visit, PatientVisitRegistry = singletonInstance });
+                context.SaveChanges();
+                }
+            
             return context.ClinicRegistryManagers.Find(singletonInstance.ClinicRegistryManagerId);
         }
         /// <summary>
@@ -53,7 +56,7 @@ namespace BusinessLayer
         private static bool existRegistry(Patient patient, HPCareDBContext context)
         {
             int num = context.VisitManagers.Where(x => x.VisitRegistry.PatientVisitsRegistry.FirstOrDefault().patient.User_id
-             == patient.User_id && x.visit.Visit_Date == DateTime.Today).Count();
+             == patient.User_id && x.visit.Visit_Date == DateTime.Today.Date).Count();
             return (num == 0);
         }
         /// <summary>
