@@ -1,6 +1,6 @@
 ﻿
 <div class="col-md-1"></div>
-<div class="panel panel-widget col-md-10">
+<div class="panel panel-widget col-md-10 form-horizontal">
     <ul class="nofitications-dropdown pull-right" style="margin-top:-4%;margin-right:-3%;">
 
         <li class="dropdown head-dpdn">
@@ -25,10 +25,11 @@
     <div class="progressbar-heading grids-heading">
         <h2>Drug Prescription</h2>
     </div>
-    <div class="row">
-        <div class="well form-control-wrapper dropdown dropdown-toggle col-md-4" ng-controller="MedicationController as vm">
+
+
+        <div class="well form-control-wrapper dropdown dropdown-toggle col-md-10" ng-controller="MedicationController as vm">
             @*<label for="drug_category">Drug Category</label>*@
-            <form id="drugsForm">
+            @*<form id="drugsForm">*@
                 <select id="drug_category"
                         ng-init="CategoryList"
                         ng-model="category"
@@ -36,28 +37,28 @@
                         ng-change="GetDrug()">
                     <option value="" selected="selected">Select Category</option>
                 </select>
-                <br />
+                @*<br />*@
                 @*<label for="drug">Drug Name</label>*@
                 <select id="drug"
                         ng-model="Drug"
                         ng-options="dg as dg.Drug_name for dg in DrugList " ng-change="debug(drug)">
                     <option value="" selected="selected">Select Drug</option>
                 </select>
-                <br />
+                @*<br />*@
                 @*<label for="dosage">Drug Dosage</label>*@
                 <select id="dosage"
                         ng-model="Dosage"
                         ng-options="dos as dos.Description for dos in drugDosageList">
                     <option value="" selected="selected">Select Dosage</option>
                 </select>
-                <br />
+                @*<br />*@
                 @*<label for="frequency">Drug Frequency</label>*@
                 <select id="frequency"
                         ng-model="Frequency"
                         ng-options="freq as freq.Description for freq in drugFrequenciesList">
                     <option value="" selected="selected">Select Frequency</option>
                 </select>
-                <br />
+                @*<br />*@
                 @*<label for="admin">Drug Administration</label>*@
                 <select id="admin"
                         ng-model="Administration"
@@ -67,63 +68,68 @@
 
                 <br />
                 @*<div class="well">*@
-                <div class="form-control-wrapper" style="width:200px" ng-controller="MedicationController as vm">
-
-                    <p class="input-group">
-                        <input type="text"
-                               class="form-control"
-                               readonly
-                               uib-datepicker-popup="dd MMMM yyyy"
-                               ng-model="vm.event.startsAt"
-                               is-open="vm.event.startOpen"
-                               close-text="Close">
-                        <span class="input-group-btn">
-                            <button type="button"
-                                    class="btn btn-default"
-                                    ng-click="vm.toggle($event, 'startOpen', vm.event)">
-                                <i class="glyphicon glyphicon-calendar"></i>
-                            </button>
-                        </span>
-                    </p>
-                    <div uib-timepicker
-                         ng-model="vm.event.startsAt"
-                         hour-step="1"
-                         minute-step="15"
-                         show-meridian="true">
-                    </div>
-
-                    <p class="input-group">
-                        <input type="text"
-                               class="form-control"
-                               readonly
-                               uib-datepicker-popup="dd MMMM yyyy"
-                               ng-model="vm.event.endsAt"
-                               is-open="vm.event.endOpen"
-                               close-text="Close">
-                        <span class="input-group-btn">
-                            <button type="button"
-                                    class="btn btn-default"
-                                    ng-click="vm.toggle($event, 'endOpen', vm.event)">
-                                <i class="glyphicon glyphicon-calendar"></i>
-                            </button>
-                        </span>
-                    </p>
-                    <div uib-timepicker
-                         ng-model="vm.event.endsAt"
-                         hour-step="1"
-                         minute-step="15"
-                         show-meridian="true">
-                    </div>
-
-
-                    <div class="modal-footer">
-                        @*<button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>*@
-                        <button type="submit" class="btn btn-primary" ng-click="saveToBasket(Drug,category,Administration,Dosage,Frequency)" ng-disabled="drugForm.$invalid">Add To Basket</button>
-                    </div>
+                <div class="well pull-left" style="width:200px" ng-controller="MedicationController as vm">
+                    <label>Start date</label>
+                        <p class="input-group">
+                            <input type="text"
+                                   class="form-control"
+                                   readonly
+                                   uib-datepicker-popup="dd MMMM yyyy"
+                                   ng-model="vm.event.startsAt"
+                                   is-open="vm.event.startOpen"
+                                   min-date="vm.event.startsAt"
+                                   close-text="Close">
+                            <span class="input-group-btn">
+                                <button type="button"
+                                        class="btn btn-default"
+                                        ng-click="vm.toggle($event, 'startOpen', vm.event)">
+                                    <i class="glyphicon glyphicon-calendar"></i>
+                                </button>
+                            </span>
+                        </p>
+                        <div uib-timepicker
+                             ng-model="vm.event.startsAt"
+                             hour-step="1"
+                             minute-step="15"
+                             show-meridian="true">
+                        </div>
+                   </div>
+                        <div class="well pull-right" style="width:200px" ng-controller="MedicationController as vm">
+                            <label>End date</label>
+                            <p class="input-group">
+                                <input type="text"
+                                       class="form-control"
+                                       readonly
+                                       uib-datepicker-popup="dd MMMM yyyy"
+                                       ng-model="vm.event.endsAt"
+                                       is-open="vm.event.endOpen"
+                                       min-date="vm.event.startsAt"
+                                       close-text="Close">
+                                <span class="input-group-btn">
+                                    <button type="button"
+                                            class="btn btn-default"
+                                            ng-click="vm.toggle($event, 'endOpen', vm.event)">
+                                        <i class="glyphicon glyphicon-calendar"></i>
+                                    </button>
+                                </span>
+                            </p>
+                            <div uib-timepicker
+                                 ng-model="vm.event.endsAt"
+                                 hour-step="1"
+                                 minute-step="15"
+                                 show-meridian="true">
+                            </div>
+                        </div>
+                         
+                  
+                @*</form>*@
                 </div>
-            </form>
-        </div>
+    <div class="modal-footer">
+        @*<button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>*@
+        <button type="submit" class="btn btn-primary" ng-click="saveToBasket(Drug,category,Administration,Dosage,Frequency)" >Add To Basket</button>
     </div>
+       
+
     <!-- //date-picker -->
 
     <div class="row">

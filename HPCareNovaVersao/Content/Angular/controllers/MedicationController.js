@@ -8,7 +8,7 @@ app.controller("MedicationController", function ($scope, $interval, alert, Medic
     vm.event = new Object();
     vm.event.startsAt = moment().startOf('day').toDate();
     vm.event.endsAt = moment().endOf('day').toDate();
-
+    vm.mindate = new Date();
     vm.toggle = function ($event, field, event) {
         $event.preventDefault();
         $event.stopPropagation();

@@ -352,11 +352,14 @@ namespace PresentationLayer.Controllers {
         //[ValidateAntiForgeryToken]
         public ActionResult LogOff() {
             AuthenticationManager.SignOut(DefaultAuthenticationTypes.ApplicationCookie);
-            //var AutheticationManager = HttpContext.GetOwinContext().Authentication;
-            //AuthenticationManager.SignOut();
+            var AutheticationManager = HttpContext.GetOwinContext().Authentication;
+            AuthenticationManager.SignOut();
+
             //return RedirectToRoute("../Home");
             //return RedirectToLocal("~/");
-            return RedirectToAction("Index", "Home");
+
+            return PartialView("~/Views/Home/Index.cshtml");
+            //return RedirectToAction("Index", "Home");
         }
 
         //

@@ -109,16 +109,48 @@
                     <span class="devide-line"> </span>
                     <div class="about-block">
                         <div class="changer-left wow bounceInLeft" data-wow-delay="0.1s">
-                            <h3>Apps</h3>
+                            <h3>The developers</h3>
+                            <h2>John Mbugua</h2>
                             <p>
-                                Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam,
-                                eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. Nemo enim ipsam
-                                voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem
-                                sequi nesciunt.
+                                I am a native Kenyan and a resident in Portugal for the past 6 years. On my final year of O-levels at Miguel Torga Massama
+                                I developed a curiosity of learning how things work and the quench led me to IPS Setubal. The First academic year was challenging which is normal to any CS student, however along the way I have learnt the coding gradually. You may be curious to know my favorite programming
+                                Language!! , at the moment I consider myself<strong> a jerk of all but a master of none</strong> with an incline on .NET and JavaScript
+
+                                @*Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam,
+                                    eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. Nemo enim ipsam
+                                    voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem
+                                    sequi nesciunt.*@
                             </p>
                         </div>
                         <div class="changer-right wow bounceInRight" data-wow-delay="0.1s">
-                            <img src="../Images/Homepage/a1.png" alt="">
+                            <h2>Implementation Overview</h2>
+                            <p>
+                                This appliaction have two modules namely the backoffice and the front office.
+                                The front office was developed using Windows Presentation Foundation (WPF)  while the front office have
+                                a <strong>bunch</strong> of tecnologíes.
+                            </p>
+                            <ul>
+                                <li>
+                                    <h>
+                                        Let´s dive on front office ,we hate MS automation so took the following decision:
+                                    </h>
+                              
+                                
+                                    <ul>
+                                        <li>Code first development contrary to database first which comes with .edmx junk</li>
+                                        <li>
+                                            MVC is a smart architecture if well implemented, considering our application has more
+                                            than 20 entities we opted for three tier architecture
+                                        </li>
+                                        <li>
+                                            We opted to spice the views with angularJS for the purpose of two-way binding which the obvious attraction
+                                            to the angularJS novices, after realized the power of angular instead of the spicing we used 99% angular
+                                        </li>
+                                        <li>ahh this is suppossed to be an overview so we shall not talk more of test automation using selenium ,Nunit,ExtentReports and Moq etc.</li>
+                                    </ul>
+                                </li>
+                            </ul>
+                            @*<img src="../Images/Homepage/a1.png">*@
                         </div>
                         <div class="clearfix"> </div>
                         <div class="ch-bott1">
@@ -127,7 +159,7 @@
                     </div>
                     <div class="about-block-snd">
                         <div class="changer-left-snd wow bounceInLeft" data-wow-delay="0.1s">
-                            <img src="../Images/Homepage/a3.png" alt="">
+                            <img src="../Images/Homepage/jm2.jpg" alt="" class="img-circle" style="width:50%;height:50%">
                         </div>
                         <div class="changer-right-snd wow bounceInRight" data-wow-delay="0.1s">
                             <h3>Social Icons</h3>
@@ -145,7 +177,7 @@
                     </div>
                     <div class="about-block">
                         <div class="changer-left-trd wow bounceInLeft" data-wow-delay="0.1s">
-                            <h3>Dropbox</h3>
+                            <h3>Márcia Costa</h3>
                             <p>
                                 Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam,
                                 eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. Nemo enim ipsam
@@ -171,7 +203,7 @@
         <div class="container">
             <div class="service-main">
                 <div class="ser-top">
-                    <h3>Services</h3>
+                    <h3>Project BackGround</h3>
                 </div>
                 <div class="service-bottom">
                     <div class="col-md-5 ser-left wow bounceInLeft" data-wow-delay="0.1s">
@@ -258,32 +290,39 @@
 
                                 <div class="login-info">
 
-                                    @using (Html.BeginForm("Login", "Account", new {
+                                    @using (Html.BeginForm("Login", "Account", new
+                                    {
                                         ReturnUrl = ViewBag.ReturnUrl
-                                    }, FormMethod.Post, new {
+                                    }, FormMethod.Post, new
+                                    {
                                         @class = "login-info",
                                         role = "form",
-                                    })) {
+                                    }))
+                                    {
 
                                         @Html.AntiForgeryToken()
-                                        @Html.TextBoxFor(m => m.UserName, "", new {
+                                        @Html.TextBoxFor(m => m.UserName, "", new
+                                   {
                                        @class = "user",
                                        @placeholder = "Email",
                                        required = "",
                                        name = "email",
                                        @style = "color: black;"
                                    })
-                                        @Html.ValidationMessageFor(m => m.UserName, "", new {
+                                        @Html.ValidationMessageFor(m => m.UserName, "", new
+                                   {
                                        @class = "text-danger"
                                    })
 
-                                        @Html.PasswordFor(m => m.Password, new {
+                                        @Html.PasswordFor(m => m.Password, new
+                                   {
                                        @class = "lock",
                                        placeholder = "Password",
                                        name = "password",
                                        @style = "color:black;"
                                    })
-                                        @Html.ValidationMessageFor(m => m.Password, "", new {
+                                        @Html.ValidationMessageFor(m => m.Password, "", new
+                                   {
                                        @class = "text-danger"
                                    })
 

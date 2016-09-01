@@ -1,6 +1,6 @@
 ﻿app.config(function ($stateProvider, $urlRouterProvider) {
     //$urlRouterProvider.when("", "");
-    $urlRouterProvider.otherwise('/');
+    //$urlRouterProvider.otherwise('/');
     $stateProvider
     
        .state("searchPatient", {
@@ -147,15 +147,26 @@
         templateUrl: "../Home/Users"
     })
 
-
-
+  
     .state('logout', {
-        url: '/logout',
-        controller: function ($window) {
-            $window.localStorage.clear();
-            $window.location.href = '/';
+    url: '/logout',
+    templateUrl: '',
+    resolve : {
+        logOut : function(logOutService) {
+            return logOutService.logOut();
         },
-    })    
+    },
+    controller: 'logOutController',
+})
+
+
+    //.state('logout', {
+    //    url: '/logout',
+    //    controller: function ($window) {
+    //        $window.localStorage.clear();
+    //        $window.location.href = '/';
+    //    },
+    //})    
 
 });
 

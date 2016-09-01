@@ -228,6 +228,7 @@
     <Content Include="Content\Angular\controllers\HelpController.js" />
     <Content Include="Content\Angular\controllers\DiagnosisHistoryController.js" />
     <Content Include="Content\Angular\controllers\HomeController.js" />
+    <Content Include="Content\Angular\controllers\LogOutController.js" />
     <Content Include="Content\Angular\controllers\MCDTController.js" />
     <Content Include="Content\Angular\controllers\MCDTHistoryController.js" />
     <Content Include="Content\Angular\controllers\MedicationHistoryController.js" />
@@ -326,6 +327,7 @@
     <Content Include="Images\Homepage\ftr-icon-bg.png" />
     <Content Include="Images\Homepage\ftr-icons.png" />
     <Content Include="Images\Homepage\icon.png" />
+    <Content Include="Images\Homepage\jm2.jpg" />
     <Content Include="Images\Homepage\quota.png" />
     <Content Include="Images\Homepage\ser-lft.png" />
     <Content Include="Images\Homepage\sign.png" />
