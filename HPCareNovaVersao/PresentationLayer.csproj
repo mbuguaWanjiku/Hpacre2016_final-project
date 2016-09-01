@@ -313,10 +313,12 @@
     <Content Include="Images\comingSoon.jpg" />
     <Content Include="Images\favicon.ico" />
     <Content Include="Images\grid.png" />
+    <Content Include="Images\Homepage\.net.jpg" />
     <Content Include="Images\Homepage\404.png" />
     <Content Include="Images\Homepage\a1.png" />
     <Content Include="Images\Homepage\a2.png" />
     <Content Include="Images\Homepage\a3.png" />
+    <Content Include="Images\Homepage\angular.png" />
     <Content Include="Images\Homepage\ap1.png" />
     <Content Include="Images\Homepage\ap2.png" />
     <Content Include="Images\Homepage\ap3.png" />
