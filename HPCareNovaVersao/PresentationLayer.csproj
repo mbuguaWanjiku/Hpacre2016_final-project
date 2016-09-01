@@ -290,6 +290,8 @@
     <Content Include="Content\TreatmentPlan\indexController.js" />
     <Content Include="Content\TreatmentPlan\TreatmentPlanMed.html" />
     <Content Include="Content\TreatmentPlan\TreatmentPlanMedController.js" />
+    <Content Include="Content\TreatmentPlan\TreatmentPlanPatient.html" />
+    <Content Include="Content\TreatmentPlan\TreatmentPlanPatientController.js" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\fontawesome-webfont.svg" />
     <Content Include="Global.asax" />
@@ -307,6 +309,7 @@
     <Content Include="Images\3.png" />
     <Content Include="Images\404.png" />
     <Content Include="Images\a.png" />
+    <Content Include="Images\comingSoon.jpg" />
     <Content Include="Images\favicon.ico" />
     <Content Include="Images\grid.png" />
     <Content Include="Images\Homepage\404.png" />

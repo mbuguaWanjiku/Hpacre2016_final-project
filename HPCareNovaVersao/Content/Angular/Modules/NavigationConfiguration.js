@@ -111,10 +111,7 @@
         templateUrl: "../Patient/PatientProfilePage"
     })
 
-    .state("patientTreatmentPlan", {
-        url: "/patientTreatmentPlan",
-        templateUrl: "../Patient/PatientTreatmentPlan"
-    })
+   
 
     .state("patientMcdts", {
         url: "/patientMcdts",
@@ -131,6 +128,11 @@
         templateUrl: "../Patient/PatientMedications"
     })
 
+
+     .state("patientTreatmentPlan", {
+        url: "/TreatmentPlanPatient",
+        templateUrl: "../Content/TreatmentPlan/TreatmentPlanPatient.html"
+    })
     // ************ Admin template **************** //
 
 

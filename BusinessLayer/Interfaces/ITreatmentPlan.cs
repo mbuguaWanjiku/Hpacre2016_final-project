@@ -1,4 +1,5 @@
 ﻿using BusinessLayer.Implementation;
+using DataLayer.Entities;
 using DataLayer.Entities.PatientEntities;
 using System;
 using System.Collections.Generic;
@@ -12,7 +13,7 @@ namespace BusinessLayer.Interfaces {
         List<TreatmentCategoryVM> getTreatmentTypeCategories();
         List<TreatmentTypeVM> getTreatmentType(int id);
         void SaveInterventions(List<string> interventions);
-        List<InterventionVM> GetInterventions();
+        List<InterventionVM> GetInterventions(Users logged);
         void AddIntervention();
         void DeleteIntervention(int id);
     }

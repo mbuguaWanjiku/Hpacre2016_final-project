@@ -64,9 +64,14 @@ namespace BusinessLayer.Implementation
             db.SaveChanges();
         }
 
-        public List<InterventionVM> GetInterventions()
+        public List<InterventionVM> GetInterventions(Users logged)
         {
-            ClinicRegistryManager registry = SingletonClinicRegistry.GetInstance(db);
+            if(logged.UserType == 4)
+            {
+                patient = logged as Patient;
+            }
+            //ClinicRegistryManager registry = SingletonClinicRegistry.GetInstance(db);
+            
             List<Intervention> list =
               db.Interventions.Where(x => x.Treatment.Patient_TreatmentPlan.User_id == patient.User_id).ToList();//use session value
             List<InterventionVM> listInterventions = new List<InterventionVM>();
@@ -87,6 +92,7 @@ namespace BusinessLayer.Implementation
             return listInterventions;
 
         }
+
         public List<TreatmentTypeVM> getTreatmentType(int id)
         {
             List<TreatmentType> listType = db.TreatmentTypes.Where(x => x.TreatmentCategory.id == id).ToList();

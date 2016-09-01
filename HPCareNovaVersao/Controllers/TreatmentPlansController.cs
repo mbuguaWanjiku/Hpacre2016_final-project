@@ -11,6 +11,7 @@ using DataLayer.EntityFramework;
 using System.Web.Services.Description;
 using System.Globalization;
 using BusinessLayer.Implementation;
+using DataLayer.Entities;
 
 namespace PresentationLayer.Controllers {
     public class TreatmentPlansController : Controller {
@@ -41,7 +42,9 @@ namespace PresentationLayer.Controllers {
         }
         [HttpGet]
         public JsonResult GetInterventions() {
-            return Json(impTreatmentPlan.GetInterventions(), JsonRequestBehavior.AllowGet);
+            int id = new CurrentUserId().AccessDatabase(User.Identity.Name);
+            Users logged = db.Users.Find(id);
+            return Json(impTreatmentPlan.GetInterventions(logged), JsonRequestBehavior.AllowGet);
         }
 
         //[HttpPost]

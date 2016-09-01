@@ -1,6 +1,5 @@
 ﻿
-app.controller('TreatmentPlanMedCtrl', function ($scope, moment, alert, calendarConfig, TreatmentServiceMed) {
-
+app.controller('TreatmentPlanPatientCtrl', function ($scope, moment, alert, calendarConfig, TreatmentServiceMed) {
     var vm = this;
     vm.events = [];//create and configuration module
     vm.type = null;
@@ -15,20 +14,20 @@ app.controller('TreatmentPlanMedCtrl', function ($scope, moment, alert, calendar
     vm.viewDate = new Date();
     /****************************************************/
     var actions = [];
-  
-    var editMed = {
-        label: '<i class=\'glyphicon glyphicon-pencil\'></i>',
-        onClick: function (args) {
-            alert.med("Observations");
-        }
-    };
-    actions.push(editMed)
-    var editPat = {
-        label: '<i class=\'glyphicon glyphicon-pencil\'></i>',
-        onClick: function (args) {
-            alert.show('Edited', args.calendarEvent);
-        }
-    };
+
+    //var editMed = {
+    //    label: '<i class=\'glyphicon glyphicon-pencil\'></i>',
+    //    onClick: function (args) {
+    //        alert.med("Observations");
+    //    }
+    //};
+    //actions.push(editMed)
+    //var editPat = {
+    //    label: '<i class=\'glyphicon glyphicon-pencil\'></i>',
+    //    onClick: function (args) {
+    //        alert.show('Edited', args.calendarEvent);
+    //    }
+    //};
 
 
 
@@ -63,8 +62,8 @@ app.controller('TreatmentPlanMedCtrl', function ($scope, moment, alert, calendar
         vm.events = [];
         var getData = TreatmentServiceMed.GetInterventionsDB();
         getData.then(function (dt) {
-            for (var k = 0; k < dt.data.length; k++) {
-                arrayEvents.push(dt.data[k]);
+            for (var j = 0; j < dt.data.length; j++) {
+                arrayEvents.push(dt.data[j]);
             }
             var startAt, endAt, Intervention_id, id, type, primary, secondary;
             for (var i = 0; i < arrayEvents.length; i++) {
@@ -99,22 +98,22 @@ app.controller('TreatmentPlanMedCtrl', function ($scope, moment, alert, calendar
     }
 
     addInterventionsToEvents();
-   
+
 });
 
 
 app.factory('TreatmentServiceMed', function ($http) {
     var fac = {};
-   
+
     fac.GetInterventionsDB = function () {
 
         return $http.get("../TreatmentPlans/GetInterventions");
 
     }
-   
-      return fac;
-    });
 
-  
-    
+    return fac;
+});
+
+
+
 

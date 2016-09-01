@@ -43,7 +43,7 @@ namespace BusinessLayer
                     singletonInstance = new ClinicRegistryManager { ClinicRegistryManagerId = AccessDatabase(patient, staff, context).ClinicRegistryManagerId };
                     Visit visit = new Visit { Visit_Date = DateTime.Today.Date};
                     context.VisitManagers.Add(new VisitManager { visit = visit, PatientVisitRegistry = singletonInstance });
-                context.SaveChanges();
+                    context.SaveChanges();
                 }
             
             return context.ClinicRegistryManagers.Find(singletonInstance.ClinicRegistryManagerId);
