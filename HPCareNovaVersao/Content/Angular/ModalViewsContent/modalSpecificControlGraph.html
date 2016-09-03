@@ -5,7 +5,7 @@
 </div>
 <div class="modal-body">
     <div ng-controller="RegularExamHistoryController">
-        <select id="MCDTid_level1"
+        <!--<select id="MCDTid_level1"
                 class="form-control"
                 name="MCDTdropdown1"
                 ng-model="Mcdt"
@@ -14,15 +14,14 @@
                 ng-disabled="Mcdt.desc != categoria">
             <option value="" selected="selected">Choose</option>
         </select>
-        <br />
+        <br />-->
 
         <select id="MCDTid_level2"
                 class="form-control"
                 name="MCDTdropdown2"
-                ng-model="Mcdt"
-                ng-hide="Mcdt.desc == null"
-                ng-options="cg as cg.desc for cg in McdtListLevel2"
-                ng-change="clickedElement2(Mcdt.desc, Mcdt.cat)">
+                ng-model="Element"
+                ng-options="cg as cg.mcdtProp for cg in McdtComponents"
+                >
             <option value="" selected="selected">Choose</option>
         </select>
 
@@ -31,3 +30,5 @@
         </div>
     </div>
 </div>
+
+<!--ng-change="clickedElement2(Mcdt.desc, Mcdt.cat)"-->

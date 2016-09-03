@@ -2,10 +2,10 @@
 var subCategory = null;
 var ids = '';
 app.controller("RegularExamHistoryController", function ($scope, $filter, regularExamHistoryFactory, showResultModal, alert) {
-    var mcdtEscolhido = null;
+    var choosedMcdt = null;
     var stringIds = '';
     var arraySorted = null;
-   
+
     $scope.showText = function (option) {
         var mcdt = regularExamHistoryFactory.getSpecificMCDT(option.Mcdt_id);
         mcdt.then(function (dt) {
@@ -18,14 +18,14 @@ app.controller("RegularExamHistoryController", function ($scope, $filter, regula
     $scope.rowLimit = 20;
     $scope.sortColumn = "MCDT_date";
 
-    $scope.showGraph = function (size, sortOrder, discriminator) {
-        mcdtEscolhido = discriminator[0].Discriminator;
+    $scope.showGraph = function (size, sortOrder, option) {
+        choosedMcdt = option[0].Discriminator;
 
         arraySorted = null;
         stringIds = '';
 
         // Mudar isto //
-        switch (mcdtEscolhido) {
+        switch (choosedMcdt) {
             case 'KFT':
                 arraySorted = $filter('orderBy')($scope.regularExamHistoryKFT, sortOrder);
                 break;
@@ -114,10 +114,10 @@ app.controller("RegularExamHistoryController", function ($scope, $filter, regula
             alert.warning("error");
         });
 
-        var getColumnsNames = regularExamHistoryFactory.GetColumnNames(mcdtEscolhido);
+        var getColumnsNames = regularExamHistoryFactory.GetColumnNames(choosedMcdt);
         getColumnsNames.then(function (data) {
 
-            var getData = regularExamHistoryFactory.GetValores(stringIds, mcdtEscolhido);
+            var getData = regularExamHistoryFactory.GetValores(stringIds, choosedMcdt);
             getData.then(function (dt) {
                 //dt = todo kfts
                 var columnsNumber = (dt.data.length - 1) / (dt.data[dt.data.length - 1]); //numero de colunas 
@@ -163,14 +163,14 @@ app.controller("RegularExamHistoryController", function ($scope, $filter, regula
 
     // ***************** Specific Graphs ********************* //
 
-    $scope.showGraphEspecific = function (size, sortOrder, discriminator) {
-        mcdtEscolhido = discriminator[0].Discriminator;
+    $scope.showGraphEspecific = function (size, sortOrder, option) {
+        choosedMcdt = option[0].Discriminator;
         //reset das vars 
         arraySorted = null;
         stringIds = '';
 
         // Mudar isto //
-        switch (mcdtEscolhido) {
+        switch (choosedMcdt) {
             case 'KFT':
                 arraySorted = $filter('orderBy')($scope.regularExamHistoryKFT, sortOrder);
                 break;
@@ -202,98 +202,123 @@ app.controller("RegularExamHistoryController", function ($scope, $filter, regula
             stringIds += ',';
         }
         ids = stringIds;
-        category = mcdtEscolhido;
+        category = choosedMcdt;
         $scope.clickedElement1();
-    }
 
-    $scope.MCDTS = [];
-    $scope.McdtListLevel1 = [];
 
-    $scope.Mcdt = function (desc, cat) {
-        this.desc = desc;
-        this.cat = cat;
-    }
 
-    function createMCDTS() {
-        $scope.MCDTS.push(new $scope.Mcdt("BUN", "KFT"));
-        $scope.MCDTS.push(new $scope.Mcdt("Creatinine", "KFT"));
-        $scope.MCDTS.push(new $scope.Mcdt("uricAcid", "KFT"));
-
-        $scope.MCDTS.push(new $scope.Mcdt("SGT", "LFT"));
-        $scope.MCDTS.push(new $scope.Mcdt("AST", "LFT"));
-        $scope.MCDTS.push(new $scope.Mcdt("LDH", "LFT"));
-        $scope.MCDTS.push(new $scope.Mcdt("Alkaline", "LFT"));
-        $scope.MCDTS.push(new $scope.Mcdt("Bilirubin", "LFT"));
-
-        $scope.MCDTS.push(new $scope.Mcdt("Lymphocytes_units", "LymphocytesSubsets"));
-        $scope.MCDTS.push(new $scope.Mcdt("CD3", "LymphocytesSubsets"));
-        $scope.MCDTS.push(new $scope.Mcdt("CD4", "LymphocytesSubsets"));
-        $scope.MCDTS.push(new $scope.Mcdt("CD8", "LymphocytesSubsets"));
-        $scope.MCDTS.push(new $scope.Mcdt("T_lymphocytes", "LymphocytesSubsets"));
-
-        $scope.MCDTS.push(new $scope.Mcdt("HB", "RBCS"));
-        $scope.MCDTS.push(new $scope.Mcdt("HCT", "RBCS"));
-
-        $scope.MCDTS.push(new $scope.Mcdt("Count", "PlateletsCount"));
-
-        $scope.MCDTS.push(new $scope.Mcdt("MCH", "RBCIndices"));
-        $scope.MCDTS.push(new $scope.Mcdt("MCHC", "RBCIndices"));
-        $scope.MCDTS.push(new $scope.Mcdt("MCV", "RBCIndices"));
-        $scope.MCDTS.push(new $scope.Mcdt("Amylase", "RBCIndices"));
-        $scope.MCDTS.push(new $scope.Mcdt("Cholesterol", "RBCIndices"));
-        $scope.MCDTS.push(new $scope.Mcdt("CPK", "RBCIndices"));
-        $scope.MCDTS.push(new $scope.Mcdt("Globulin", "RBCIndices"));
-
-        $scope.MCDTS.push(new $scope.Mcdt("Basophil", "WBCS"));
-        $scope.MCDTS.push(new $scope.Mcdt("Eosinophil", "WBCS"));
-        $scope.MCDTS.push(new $scope.Mcdt("Monocytes", "WBCS"));
-        $scope.MCDTS.push(new $scope.Mcdt("Neutrophil", "WBCS"));
-
-        $scope.MCDTS.push(new $scope.Mcdt("value", "ViralLoad"));
-    }
-
-    createMCDTS();
-
-    $scope.processLevel1 = function () {
-        if ($scope.Mcdt.desc === "KFT") {
-            $scope.McdtListLevel2 = getList("KFT");
-        } else if ($scope.Mcdt.desc === "LFT") {
-            $scope.McdtListLevel2 = getList("LFT");
-        } else if ($scope.Mcdt.desc === "LymphocytesSubsets") {
-            $scope.McdtListLevel2 = getList("LymphocytesSubsets");
-        } else if ($scope.Mcdt.desc === "RBCS") {
-            $scope.McdtListLevel2 = getList("RBCS");
-        } else if ($scope.Mcdt.desc === "PlateletsCount") {
-            $scope.McdtListLevel2 = getList("PlateletsCount");
-        } else if ($scope.Mcdt.desc === "RBCIndices") {
-            $scope.McdtListLevel2 = getList("RBCIndices");
-        } else if ($scope.Mcdt.desc === "WBCS") {
-            $scope.McdtListLevel2 = getList("WBCS");
-        } else if ($scope.Mcdt.desc === "ViralLoad") {
-            $scope.McdtListLevel2 = getList("ViralLoad");
-        } else {
-            $scope.McdtListLevel2 = [];
-        }
-    }
-
-    function getList(selected) {
-        var lista = [];
-        $scope.MCDTS.forEach(function (arrayElem) {
-            if (arrayElem.cat === selected) {
-                lista.push(arrayElem);
+        function getList() {
+            var Element = function (mcdtProp) {
+                this.mcdtProp = mcdtProp;
             }
-        });
-        return lista;
+
+            var getColumnsNames = regularExamHistoryFactory.GetColumnNames(choosedMcdt);
+
+            var McdtComponents = [];
+            McdtComponents.push(new Element('teste'));
+            getColumnsNames.then(function (dt) {
+                for (var i = 0; i < dt.length; i++) {
+                    McdtComponents.push(new Element(dt[i]));
+                }
+            });
+
+            alert.warning(McdtComponents);
+        }
+        getList();
     }
 
-    $scope.McdtListLevel1.push(new $scope.Mcdt("LFT", "main"));
-    $scope.McdtListLevel1.push(new $scope.Mcdt("KFT", "main"));
-    $scope.McdtListLevel1.push(new $scope.Mcdt("LymphocytesSubsets", "main"));
-    $scope.McdtListLevel1.push(new $scope.Mcdt("RBCS", "main"));
-    $scope.McdtListLevel1.push(new $scope.Mcdt("PlateletsCount", "main"));
-    $scope.McdtListLevel1.push(new $scope.Mcdt("RBCIndices", "main"));
-    $scope.McdtListLevel1.push(new $scope.Mcdt("WBCS", "main"));
-    $scope.McdtListLevel1.push(new $scope.Mcdt("ViralLoad", "main"));
+
+    //function getList(selected) {
+    //    var lista = [];
+    //    $scope.MCDTS.forEach(function (arrayElem) {
+    //        if (arrayElem.cat === selected) {
+    //            lista.push(arrayElem);
+    //        }
+    //    });
+    //    return lista;
+    //}
+
+
+    //$scope.MCDTS = [];
+    //$scope.McdtListLevel1 = [];
+
+    //$scope.Mcdt = function (desc, cat) {
+    //    this.desc = desc;
+    //    this.cat = cat;
+    //}
+
+    //function createMCDTS() {
+    //    $scope.MCDTS.push(new $scope.Mcdt("BUN", "KFT"));
+    //    $scope.MCDTS.push(new $scope.Mcdt("Creatinine", "KFT"));
+    //    $scope.MCDTS.push(new $scope.Mcdt("uricAcid", "KFT"));
+
+    //    $scope.MCDTS.push(new $scope.Mcdt("SGT", "LFT"));
+    //    $scope.MCDTS.push(new $scope.Mcdt("AST", "LFT"));
+    //    $scope.MCDTS.push(new $scope.Mcdt("LDH", "LFT"));
+    //    $scope.MCDTS.push(new $scope.Mcdt("Alkaline", "LFT"));
+    //    $scope.MCDTS.push(new $scope.Mcdt("Bilirubin", "LFT"));
+
+    //    $scope.MCDTS.push(new $scope.Mcdt("Lymphocytes_units", "LymphocytesSubsets"));
+    //    $scope.MCDTS.push(new $scope.Mcdt("CD3", "LymphocytesSubsets"));
+    //    $scope.MCDTS.push(new $scope.Mcdt("CD4", "LymphocytesSubsets"));
+    //    $scope.MCDTS.push(new $scope.Mcdt("CD8", "LymphocytesSubsets"));
+    //    $scope.MCDTS.push(new $scope.Mcdt("T_lymphocytes", "LymphocytesSubsets"));
+
+    //    $scope.MCDTS.push(new $scope.Mcdt("HB", "RBCS"));
+    //    $scope.MCDTS.push(new $scope.Mcdt("HCT", "RBCS"));
+
+    //    $scope.MCDTS.push(new $scope.Mcdt("Count", "PlateletsCount"));
+
+    //    $scope.MCDTS.push(new $scope.Mcdt("MCH", "RBCIndices"));
+    //    $scope.MCDTS.push(new $scope.Mcdt("MCHC", "RBCIndices"));
+    //    $scope.MCDTS.push(new $scope.Mcdt("MCV", "RBCIndices"));
+    //    $scope.MCDTS.push(new $scope.Mcdt("Amylase", "RBCIndices"));
+    //    $scope.MCDTS.push(new $scope.Mcdt("Cholesterol", "RBCIndices"));
+    //    $scope.MCDTS.push(new $scope.Mcdt("CPK", "RBCIndices"));
+    //    $scope.MCDTS.push(new $scope.Mcdt("Globulin", "RBCIndices"));
+
+    //    $scope.MCDTS.push(new $scope.Mcdt("Basophil", "WBCS"));
+    //    $scope.MCDTS.push(new $scope.Mcdt("Eosinophil", "WBCS"));
+    //    $scope.MCDTS.push(new $scope.Mcdt("Monocytes", "WBCS"));
+    //    $scope.MCDTS.push(new $scope.Mcdt("Neutrophil", "WBCS"));
+
+    //    $scope.MCDTS.push(new $scope.Mcdt("value", "ViralLoad"));
+    //}
+
+    //createMCDTS();
+
+    //$scope.processLevel1 = function () {
+    //    if ($scope.Mcdt.desc === "KFT") {
+    //        $scope.McdtListLevel2 = getList("KFT");
+    //    } else if ($scope.Mcdt.desc === "LFT") {
+    //        $scope.McdtListLevel2 = getList("LFT");
+    //    } else if ($scope.Mcdt.desc === "LymphocytesSubsets") {
+    //        $scope.McdtListLevel2 = getList("LymphocytesSubsets");
+    //    } else if ($scope.Mcdt.desc === "RBCS") {
+    //        $scope.McdtListLevel2 = getList("RBCS");
+    //    } else if ($scope.Mcdt.desc === "PlateletsCount") {
+    //        $scope.McdtListLevel2 = getList("PlateletsCount");
+    //    } else if ($scope.Mcdt.desc === "RBCIndices") {
+    //        $scope.McdtListLevel2 = getList("RBCIndices");
+    //    } else if ($scope.Mcdt.desc === "WBCS") {
+    //        $scope.McdtListLevel2 = getList("WBCS");
+    //    } else if ($scope.Mcdt.desc === "ViralLoad") {
+    //        $scope.McdtListLevel2 = getList("ViralLoad");
+    //    } else {
+    //        $scope.McdtListLevel2 = [];
+    //    }
+    //}
+
+
+
+    //$scope.McdtListLevel1.push(new $scope.Mcdt("LFT", "main"));
+    //$scope.McdtListLevel1.push(new $scope.Mcdt("KFT", "main"));
+    //$scope.McdtListLevel1.push(new $scope.Mcdt("LymphocytesSubsets", "main"));
+    //$scope.McdtListLevel1.push(new $scope.Mcdt("RBCS", "main"));
+    //$scope.McdtListLevel1.push(new $scope.Mcdt("PlateletsCount", "main"));
+    //$scope.McdtListLevel1.push(new $scope.Mcdt("RBCIndices", "main"));
+    //$scope.McdtListLevel1.push(new $scope.Mcdt("WBCS", "main"));
+    //$scope.McdtListLevel1.push(new $scope.Mcdt("ViralLoad", "main"));
 
 
 
@@ -335,7 +360,7 @@ app.controller("RegularExamHistoryController", function ($scope, $filter, regula
     }
 
     $scope.clickedElement1 = function () {
-        alert.specificGraphs();
+        //alert.specificGraphs();
 
         lineChartData.labels = [];
         lineChartData.datasets = [];
@@ -454,7 +479,6 @@ app.factory('regularExamHistoryFactory', function ($http) {
     var fac = {};
 
     fac.regularExamHistory = function (type) {
-
         return $http.get("../RegularExamsHistory/GetRegularExamsJson?discriminator=" + type);
     };
 
@@ -471,8 +495,8 @@ app.factory('regularExamHistoryFactory', function ($http) {
         return $http.get("../LabExams/TesteDateJson?listIds=" + arrayMcdtIds);
     }
 
-    fac.GetColumnNames = function (coluna) {
-        return $http.get("../LabExams/TesteColumnsNamesJson?discrimininator=" + coluna);
+    fac.GetColumnNames = function (componente) {
+        return $http.get("../LabExams/TesteColumnsNamesJson?discrimininator=" + componente);
     }
 
     fac.GetValores = function (listaIds, nomeMcdt) {

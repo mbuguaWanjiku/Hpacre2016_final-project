@@ -1,4 +1,5 @@
-﻿using System;
+﻿using DataLayer.Entities.MCDT;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -27,5 +28,6 @@ namespace BusinessLayer.Implementation.ViewModels {
         public string Discriminator {
             get; set;
         }
+        //    public MCDT mcdt { get; set; }
     }
 }
