@@ -11,6 +11,7 @@ using System.Data;
 using BusinessLayer.Implementation.ViewModels;
 using System.Data.Common;
 using System.Web;
+using DataLayer.Entities.UserEntities;
 
 namespace BusinessLayer.Implementation {
     public class impPatient : IPatient {
@@ -179,7 +180,7 @@ namespace BusinessLayer.Implementation {
 
             var list = from r in db.RiskFactorsManagers
                        from risk in db.RiskFactors
-                       where r.RiskFactorsManager_PatientId.User_id == p.User_id 
+                       where r.RiskFactorsManager_PatientId.User_id == p.User_id
                        && risk.RiskFActors_id == r.RiskFactorsManager_id
                        select new {
                            risk.RiskFactorName
@@ -230,35 +231,38 @@ namespace BusinessLayer.Implementation {
         }
 
         private void AccessGetPatientInformations(int idPatient) {
-            Patient p = db.Users.Find(idPatient) as Patient; //ir buscar ao session
-            PatientInformationViewModel viewModel;
+            using (SqlConnection connection = new SqlConnection("Data Source=SQL5025.myASP.NET;Initial Catalog=DB_A0ADFA_HPCareDBContext;User Id=DB_A0ADFA_HPCareDBContext_admin;Password=hpcare2016;")) {
+                SqlCommand command = new SqlCommand("select address, email, genderName, maritalstatusname, name, telephone, user_identification " +
+                    " from users, genders, maritalstatus where gender_genderid = genderid and MaritalStatus_MaritalStatusId = MaritalStatusId and user_id = " + idPatient + ";", connection);
+                command.CommandType = CommandType.Text;
+                command.Connection = connection;
+                connection.Open();
 
-            var list = from u in db.Users
-                       where u.User_id == p.User_id
-                       select new {
-                           u.Address,
-                           u.Email,
-                           u.gender,
-                           u.MaritalStatus,
-                           u.Name,
-                           u.Telephone,
-                           u.User_identification
-                       };
+                DbDataReader dbDataReader = command.ExecuteReader();
+                PatientInformationViewModel viewModel;
 
-            foreach (var item in list) {
-                viewModel = new PatientInformationViewModel {
-                    Address = item.Address,
-                    Email = item.Email,
-                    gender = item.gender.GenderName,
-                    MaritalStatus = item.MaritalStatus.MaritalStatusName,
-                    Name = item.Name,
-                    Telephone = item.Telephone,
-                    User_identification = item.User_identification
-                };
-                patientInformationList.Add(viewModel);
+                while (dbDataReader.Read()) {
+                    viewModel = new PatientInformationViewModel {
+                        Address = GetStringSafely(dbDataReader, 0),
+                        Email = GetStringSafely(dbDataReader, 1),
+                        gender = GetStringSafely(dbDataReader, 2),
+                        MaritalStatus = GetStringSafely(dbDataReader, 3),
+                        Name = GetStringSafely(dbDataReader, 4),
+                        Telephone = GetStringSafely(dbDataReader, 5),
+                        User_identification = GetStringSafely(dbDataReader, 6)
+                    };
+                    patientInformationList.Add(viewModel);
+                }
             }
-
         }
+
+        private string GetStringSafely(DbDataReader reader, int colIndex) {
+            return (reader.IsDBNull(colIndex) ? "-" : reader.GetString(colIndex));
+        }
+        private DateTime GetDateDefault(DbDataReader reader, int colIndex) {
+            return (reader.IsDBNull(colIndex) ? new DateTime(1970, 01, 01) : reader.GetDateTime(colIndex));
+        }
+
 
         public List<McdtViewModel> GetPatientMcdtsHistory(int idPatient) {
             AccessGetPatientMcdtsHistory(idPatient);
