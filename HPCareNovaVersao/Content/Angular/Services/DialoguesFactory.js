@@ -176,6 +176,7 @@ app.factory('alert', function ($uibModal) {
             templateUrl: '../Content/Angular/ModalViewsContent/modalControlGraph.html',
             controller: function () {
                 var vm = this;
+
                 vm.observations = message;
             },
             controllerAs: 'vm'
@@ -188,6 +189,9 @@ app.factory('alert', function ($uibModal) {
             controller: function () {
                 var vm = this;
                 vm.observations = message;
+
+              
+
             },
             controllerAs: 'vm'
         });

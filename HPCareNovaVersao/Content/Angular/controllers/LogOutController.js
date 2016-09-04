@@ -3,7 +3,7 @@
    
     logOutService.logOut().success(function () {
        alert("success");
- $window.location.reload();
+
 
     });
 });

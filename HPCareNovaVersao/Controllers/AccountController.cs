@@ -353,13 +353,14 @@ namespace PresentationLayer.Controllers {
         public ActionResult LogOff() {
             AuthenticationManager.SignOut(DefaultAuthenticationTypes.ApplicationCookie);
             var AutheticationManager = HttpContext.GetOwinContext().Authentication;
-            AuthenticationManager.SignOut();
-
+            AuthenticationManager.SignOut(DefaultAuthenticationTypes.ApplicationCookie);
+            Session.Abandon();
+            Response.Cookies.Clear();
             //return RedirectToRoute("../Home");
             //return RedirectToLocal("~/");
 
-            return PartialView("~/Views/Home/Index.cshtml");
-            //return RedirectToAction("Index", "Home");
+
+            return RedirectToAction("Index", "Home");
         }
 
         //

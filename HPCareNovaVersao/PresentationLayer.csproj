@@ -284,6 +284,7 @@
     <Content Include="Content\HpCareStyle.css" />
     <Content Include="Content\jqcandlestick.css" />
     <Content Include="Content\jqvmap.css" />
+    <Content Include="Content\login\index.html" />
     <Content Include="Content\style.css" />
     <Content Include="Content\TreatmentPlan\calendarContols.html" />
     <Content Include="Content\TreatmentPlan\Helpers.js" />

@@ -1,11 +1,16 @@
 ﻿var category = null;
 var subCategory = null;
 var ids = '';
-app.controller("RegularExamHistoryController", function ($scope, $filter, regularExamHistoryFactory, showResultModal, alert) {
+var buffer = [];
+app.controller("RegularExamHistoryController", function ($scope, $filter, $interval, regularExamHistoryFactory, showResultModal, alert) {
     var choosedMcdt = null;
     var stringIds = '';
     var arraySorted = null;
-
+   
+    $interval(function () {
+        $scope.McdtComponents = buffer;
+    }, 500);
+       
     $scope.showText = function (option) {
         var mcdt = regularExamHistoryFactory.getSpecificMCDT(option.Mcdt_id);
         mcdt.then(function (dt) {
@@ -212,117 +217,20 @@ app.controller("RegularExamHistoryController", function ($scope, $filter, regula
                 this.mcdtProp = mcdtProp;
             }
 
-            var getColumnsNames = regularExamHistoryFactory.GetColumnNames(choosedMcdt);
-
-            var McdtComponents = [];
-            McdtComponents.push(new Element('teste'));
-            getColumnsNames.then(function (dt) {
-                for (var i = 0; i < dt.length; i++) {
-                    McdtComponents.push(new Element(dt[i]));
+            var getColumnsNames = regularExamHistoryFactory.GetColumnNames(choosedMcdt);     
+            getColumnsNames.then(function (dt) {           
+                for (var i = 0; i < dt.data.length; i++) {          
+                    buffer.push(new Element(dt.data[i]));
                 }
+                //alert(JSON.stringify($scope.McdtComponents));
             });
-
-            alert.warning(McdtComponents);
+          
+           
         }
         getList();
     }
 
 
-    //function getList(selected) {
-    //    var lista = [];
-    //    $scope.MCDTS.forEach(function (arrayElem) {
-    //        if (arrayElem.cat === selected) {
-    //            lista.push(arrayElem);
-    //        }
-    //    });
-    //    return lista;
-    //}
-
-
-    //$scope.MCDTS = [];
-    //$scope.McdtListLevel1 = [];
-
-    //$scope.Mcdt = function (desc, cat) {
-    //    this.desc = desc;
-    //    this.cat = cat;
-    //}
-
-    //function createMCDTS() {
-    //    $scope.MCDTS.push(new $scope.Mcdt("BUN", "KFT"));
-    //    $scope.MCDTS.push(new $scope.Mcdt("Creatinine", "KFT"));
-    //    $scope.MCDTS.push(new $scope.Mcdt("uricAcid", "KFT"));
-
-    //    $scope.MCDTS.push(new $scope.Mcdt("SGT", "LFT"));
-    //    $scope.MCDTS.push(new $scope.Mcdt("AST", "LFT"));
-    //    $scope.MCDTS.push(new $scope.Mcdt("LDH", "LFT"));
-    //    $scope.MCDTS.push(new $scope.Mcdt("Alkaline", "LFT"));
-    //    $scope.MCDTS.push(new $scope.Mcdt("Bilirubin", "LFT"));
-
-    //    $scope.MCDTS.push(new $scope.Mcdt("Lymphocytes_units", "LymphocytesSubsets"));
-    //    $scope.MCDTS.push(new $scope.Mcdt("CD3", "LymphocytesSubsets"));
-    //    $scope.MCDTS.push(new $scope.Mcdt("CD4", "LymphocytesSubsets"));
-    //    $scope.MCDTS.push(new $scope.Mcdt("CD8", "LymphocytesSubsets"));
-    //    $scope.MCDTS.push(new $scope.Mcdt("T_lymphocytes", "LymphocytesSubsets"));
-
-    //    $scope.MCDTS.push(new $scope.Mcdt("HB", "RBCS"));
-    //    $scope.MCDTS.push(new $scope.Mcdt("HCT", "RBCS"));
-
-    //    $scope.MCDTS.push(new $scope.Mcdt("Count", "PlateletsCount"));
-
-    //    $scope.MCDTS.push(new $scope.Mcdt("MCH", "RBCIndices"));
-    //    $scope.MCDTS.push(new $scope.Mcdt("MCHC", "RBCIndices"));
-    //    $scope.MCDTS.push(new $scope.Mcdt("MCV", "RBCIndices"));
-    //    $scope.MCDTS.push(new $scope.Mcdt("Amylase", "RBCIndices"));
-    //    $scope.MCDTS.push(new $scope.Mcdt("Cholesterol", "RBCIndices"));
-    //    $scope.MCDTS.push(new $scope.Mcdt("CPK", "RBCIndices"));
-    //    $scope.MCDTS.push(new $scope.Mcdt("Globulin", "RBCIndices"));
-
-    //    $scope.MCDTS.push(new $scope.Mcdt("Basophil", "WBCS"));
-    //    $scope.MCDTS.push(new $scope.Mcdt("Eosinophil", "WBCS"));
-    //    $scope.MCDTS.push(new $scope.Mcdt("Monocytes", "WBCS"));
-    //    $scope.MCDTS.push(new $scope.Mcdt("Neutrophil", "WBCS"));
-
-    //    $scope.MCDTS.push(new $scope.Mcdt("value", "ViralLoad"));
-    //}
-
-    //createMCDTS();
-
-    //$scope.processLevel1 = function () {
-    //    if ($scope.Mcdt.desc === "KFT") {
-    //        $scope.McdtListLevel2 = getList("KFT");
-    //    } else if ($scope.Mcdt.desc === "LFT") {
-    //        $scope.McdtListLevel2 = getList("LFT");
-    //    } else if ($scope.Mcdt.desc === "LymphocytesSubsets") {
-    //        $scope.McdtListLevel2 = getList("LymphocytesSubsets");
-    //    } else if ($scope.Mcdt.desc === "RBCS") {
-    //        $scope.McdtListLevel2 = getList("RBCS");
-    //    } else if ($scope.Mcdt.desc === "PlateletsCount") {
-    //        $scope.McdtListLevel2 = getList("PlateletsCount");
-    //    } else if ($scope.Mcdt.desc === "RBCIndices") {
-    //        $scope.McdtListLevel2 = getList("RBCIndices");
-    //    } else if ($scope.Mcdt.desc === "WBCS") {
-    //        $scope.McdtListLevel2 = getList("WBCS");
-    //    } else if ($scope.Mcdt.desc === "ViralLoad") {
-    //        $scope.McdtListLevel2 = getList("ViralLoad");
-    //    } else {
-    //        $scope.McdtListLevel2 = [];
-    //    }
-    //}
-
-
-
-    //$scope.McdtListLevel1.push(new $scope.Mcdt("LFT", "main"));
-    //$scope.McdtListLevel1.push(new $scope.Mcdt("KFT", "main"));
-    //$scope.McdtListLevel1.push(new $scope.Mcdt("LymphocytesSubsets", "main"));
-    //$scope.McdtListLevel1.push(new $scope.Mcdt("RBCS", "main"));
-    //$scope.McdtListLevel1.push(new $scope.Mcdt("PlateletsCount", "main"));
-    //$scope.McdtListLevel1.push(new $scope.Mcdt("RBCIndices", "main"));
-    //$scope.McdtListLevel1.push(new $scope.Mcdt("WBCS", "main"));
-    //$scope.McdtListLevel1.push(new $scope.Mcdt("ViralLoad", "main"));
-
-
-
-    //**************** Parte do Grafico Especifico ***************************//
 
 
     function drawGraphsSpecific() {
@@ -360,7 +268,7 @@ app.controller("RegularExamHistoryController", function ($scope, $filter, regula
     }
 
     $scope.clickedElement1 = function () {
-        //alert.specificGraphs();
+        alert.specificGraphs();
 
         lineChartData.labels = [];
         lineChartData.datasets = [];
@@ -410,7 +318,7 @@ app.controller("RegularExamHistoryController", function ($scope, $filter, regula
             $scope.regularExamHistoryRBCS = mcdtHistory.data;
 
         }, function () {
-            alert.warning('Error in getting records');
+            //alert.warning('Error in getting records');
         });
     }
 
@@ -422,7 +330,7 @@ app.controller("RegularExamHistoryController", function ($scope, $filter, regula
             $scope.regularExamHistoryRBCIndices = mcdtHistory.data;
 
         }, function () {
-            alert.warning('Error in getting records');
+            //alert.warning('Error in getting records');
         });
     }
 
@@ -434,7 +342,7 @@ app.controller("RegularExamHistoryController", function ($scope, $filter, regula
             $scope.regularExamHistoryLymphocytesSubsets = mcdtHistory.data;
 
         }, function () {
-            alert.warning('Error in getting records');
+            //alert.warning('Error in getting records');
         });
     }
 
@@ -446,7 +354,7 @@ app.controller("RegularExamHistoryController", function ($scope, $filter, regula
             $scope.regularExamHistoryViralLoad = mcdtHistory.data;
 
         }, function () {
-            alert.warning('Error in getting records');
+            //alert.warning('Error in getting records');
         });
     }
 
@@ -458,7 +366,7 @@ app.controller("RegularExamHistoryController", function ($scope, $filter, regula
             $scope.regularExamHistoryPlateletsCount = mcdtHistory.data;
 
         }, function () {
-            alert.warning('Error in getting records');
+        //    alert.warning('Error in getting records');
         });
     }
 
@@ -470,7 +378,7 @@ app.controller("RegularExamHistoryController", function ($scope, $filter, regula
             $scope.regularExamHistoryWBCS = mcdtHistory.data;
 
         }, function () {
-            alert.warning('Error in getting records');
+            //alert.warning('Error in getting records');
         });
     }
 });

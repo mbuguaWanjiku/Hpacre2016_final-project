@@ -4,26 +4,28 @@
     <h4 class="modal-title" id="myModalLabel">Monitorization </h4>
 </div>
 <div class="modal-body">
-    <div ng-controller="RegularExamHistoryController">
-        <!--<select id="MCDTid_level1"
+    <div ng-controller="RegularExamHistoryController ">
+        <select id="MCDTid_level1"
                 class="form-control"
                 name="MCDTdropdown1"
-                ng-model="Mcdt"
-                ng-options="cg as cg.desc for cg in McdtListLevel1"
-                ng-change="processLevel1()"
-                ng-disabled="Mcdt.desc != categoria">
-            <option value="" selected="selected">Choose</option>
+                ng-model="Element"
+                ng-options="cg as cg.mcdtProp for cg in McdtComponents"
+                ng-change="clickedElement2(cg)"
+                    >
+              <option value="" selected="selected">Choose</option>
+               
+          
         </select>
-        <br />-->
+        <br />
 
-        <select id="MCDTid_level2"
+        <!--<select id="MCDTid_level2"
                 class="form-control"
                 name="MCDTdropdown2"
                 ng-model="Element"
                 ng-options="cg as cg.mcdtProp for cg in McdtComponents"
                 >
             <option value="" selected="selected">Choose</option>
-        </select>
+        </select>-->
 
         <div class="chrt-page-grids" ng-controller="RegularExamHistoryController">
             <canvas id="line" height="300" width="400" style="width: 400px; height: 300px;"></canvas>
@@ -31,4 +33,4 @@
     </div>
 </div>
 
-<!--ng-change="clickedElement2(Mcdt.desc, Mcdt.cat)"-->
+
