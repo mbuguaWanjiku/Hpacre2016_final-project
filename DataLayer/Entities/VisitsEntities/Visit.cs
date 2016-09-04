@@ -17,7 +17,7 @@ namespace DataLayer.Entities.Visitas {
             get; set;
         }
 
-        public DateTime? Visit_Hour {
+        public TimeSpan? Visit_Hour {
             get; set;
         }
        

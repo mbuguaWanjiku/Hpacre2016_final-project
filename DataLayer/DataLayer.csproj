@@ -123,6 +123,7 @@
     <Compile Include="Entities\VisitsEntities\FirstVisit.cs" />
     <Compile Include="Entities\VisitsEntities\HomeVisit.cs" />
     <Compile Include="Entities\VisitsEntities\HomeVisitManager.cs" />
+    <Compile Include="Entities\VisitsEntities\Observations.cs" />
     <Compile Include="Entities\VisitsEntities\Registry.cs" />
     <Compile Include="Entities\VisitsEntities\SubsequentVisit.cs" />
     <Compile Include="Entities\VisitsEntities\Visit.cs" />

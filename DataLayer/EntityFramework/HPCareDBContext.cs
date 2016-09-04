@@ -7,6 +7,7 @@ using DataLayer.Entities.TreatmentEntities;
 using DataLayer.Entities.UserEntities;
 using DataLayer.Entities.Visitas;
 using DataLayer.Entities.Visits;
+using DataLayer.Entities.VisitsEntities;
 using System;
 using System.Collections.Generic;
 using System.Data.Entity;
@@ -212,6 +213,9 @@ namespace DataLayer.EntityFramework {
             get; set;
         }
 
-
+        public virtual DbSet<Observations> Observations
+        {
+            get; set;
+        }
     }
 }
