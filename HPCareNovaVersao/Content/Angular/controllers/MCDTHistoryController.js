@@ -222,7 +222,7 @@ app.controller("RegularExamHistoryController", function ($scope, $filter, $inter
                 for (var i = 0; i < dt.data.length; i++) {          
                     buffer.push(new Element(dt.data[i]));
                 }
-                //alert(JSON.stringify($scope.McdtComponents));
+                
             });
           
            
