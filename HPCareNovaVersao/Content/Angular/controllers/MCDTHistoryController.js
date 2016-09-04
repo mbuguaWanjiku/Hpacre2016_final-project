@@ -124,7 +124,7 @@ app.controller("RegularExamHistoryController", function ($scope, $filter, $inter
 
             var getData = regularExamHistoryFactory.GetValores(stringIds, choosedMcdt);
             getData.then(function (dt) {
-                //dt = todo kfts
+               
                 var columnsNumber = (dt.data.length - 1) / (dt.data[dt.data.length - 1]); //numero de colunas 
                 var rowsNumber = dt.data[dt.data.length - 1]; //numero de rows
                 var rest = 0;
