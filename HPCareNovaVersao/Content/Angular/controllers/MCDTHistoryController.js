@@ -231,6 +231,62 @@ app.controller("RegularExamHistoryController", function ($scope, $filter, $inter
     }
 
 
+    //function getList(selected) {
+    //    var lista = [];
+    //    $scope.MCDTS.forEach(function (arrayElem) {
+    //        if (arrayElem.cat === selected) {
+    //            lista.push(arrayElem);
+    //        }
+    //    });
+    //    return lista;
+    //}
+
+
+    //$scope.MCDTS = [];
+    //$scope.McdtListLevel1 = [];
+
+    //$scope.Mcdt = function (desc, cat) {
+    //    this.desc = desc;
+    //    this.cat = cat;
+    //}
+
+    //function createMCDTS() {
+    //    $scope.MCDTS.push(new $scope.Mcdt("BUN", "KFT"));
+    //    $scope.MCDTS.push(new $scope.Mcdt("Creatinine", "KFT"));
+    //    $scope.MCDTS.push(new $scope.Mcdt("uricAcid", "KFT"));
+
+    //    $scope.MCDTS.push(new $scope.Mcdt("SGT", "LFT"));
+    //    $scope.MCDTS.push(new $scope.Mcdt("AST", "LFT"));
+    //    $scope.MCDTS.push(new $scope.Mcdt("LDH", "LFT"));
+    //    $scope.MCDTS.push(new $scope.Mcdt("Alkaline", "LFT"));
+    //    $scope.MCDTS.push(new $scope.Mcdt("Bilirubin", "LFT"));
+
+    //    $scope.MCDTS.push(new $scope.Mcdt("Lymphocytes_units", "LymphocytesSubsets"));
+    //    $scope.MCDTS.push(new $scope.Mcdt("CD3", "LymphocytesSubsets"));
+    //    $scope.MCDTS.push(new $scope.Mcdt("CD4", "LymphocytesSubsets"));
+    //    $scope.MCDTS.push(new $scope.Mcdt("CD8", "LymphocytesSubsets"));
+    //    $scope.MCDTS.push(new $scope.Mcdt("T_lymphocytes", "LymphocytesSubsets"));
+
+    //    $scope.MCDTS.push(new $scope.Mcdt("HB", "RBCS"));
+    //    $scope.MCDTS.push(new $scope.Mcdt("HCT", "RBCS"));
+
+    //    $scope.MCDTS.push(new $scope.Mcdt("Count", "PlateletsCount"));
+
+    //    $scope.MCDTS.push(new $scope.Mcdt("MCH", "RBCIndices"));
+    //    $scope.MCDTS.push(new $scope.Mcdt("MCHC", "RBCIndices"));
+    //    $scope.MCDTS.push(new $scope.Mcdt("MCV", "RBCIndices"));
+    //    $scope.MCDTS.push(new $scope.Mcdt("Amylase", "RBCIndices"));
+    //    $scope.MCDTS.push(new $scope.Mcdt("Cholesterol", "RBCIndices"));
+    //    $scope.MCDTS.push(new $scope.Mcdt("CPK", "RBCIndices"));
+    //    $scope.MCDTS.push(new $scope.Mcdt("Globulin", "RBCIndices"));
+
+    //    $scope.MCDTS.push(new $scope.Mcdt("Basophil", "WBCS"));
+    //    $scope.MCDTS.push(new $scope.Mcdt("Eosinophil", "WBCS"));
+    //    $scope.MCDTS.push(new $scope.Mcdt("Monocytes", "WBCS"));
+    //    $scope.MCDTS.push(new $scope.Mcdt("Neutrophil", "WBCS"));
+
+    //    $scope.MCDTS.push(new $scope.Mcdt("value", "ViralLoad"));
+    //}
 
 
     function drawGraphsSpecific() {
