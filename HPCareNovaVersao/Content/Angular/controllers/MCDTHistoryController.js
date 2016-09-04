@@ -213,6 +213,7 @@ app.controller("RegularExamHistoryController", function ($scope, $filter, $inter
 
 
         function getList() {
+            $scope.McdtComponents = []//refreshing
             var Element = function (mcdtProp) {
                 this.mcdtProp = mcdtProp;
             }
