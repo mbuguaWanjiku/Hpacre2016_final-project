@@ -70,7 +70,7 @@ namespace BusinessLayer.Implementation {
                 lymphocytes.CD3 = l.CD3;
                 lymphocytes.CD4 = l.CD4;
                 lymphocytes.CD8 = l.CD8;
-                //lymphocytes.Lymphocytes_units = l.Lymphocytes_units;
+                lymphocytes.Lymphocytes_units = 1;
                 lymphocytes.T_lymphocytes = l.T_lymphocytes;
                 lymphocytes.LabExam_date_out = DateTime.Now;
             }
