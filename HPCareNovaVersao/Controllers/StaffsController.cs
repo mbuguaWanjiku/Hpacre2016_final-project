@@ -27,22 +27,8 @@ namespace PresentationLayer.Controllers {
 
         public JsonResult GetStaffInformation() {
             Staff staff = db.Users.Find(current.AccessDatabase(User.Identity.Name)) as Staff; 
-            var list = from u in db.Users
-                       from p in db.Users.OfType<Staff>()
-                       where u.User_id == staff.User_id &&
-                       u.User_id == p.User_id
-                       select new {
-                           u.Name,
-                           u.Address,
-                           u.Email,
-                           u.gender.GenderName,
-                           u.MaritalStatus.MaritalStatusName,
-                           u.Telephone,
-                           u.User_identification,
-                           p.ProfessionalType
-                       };
 
-            return Json(list, JsonRequestBehavior.AllowGet);
+            return Json(impStaff.GetStaffInformations(staff.User_id), JsonRequestBehavior.AllowGet);
         }
 
         public JsonResult GetGender() {
@@ -51,10 +37,6 @@ namespace PresentationLayer.Controllers {
 
         public JsonResult GetMaritalStatus() {
             return Json(db.MaritalStatus.ToList(), JsonRequestBehavior.AllowGet);
-        }
-
-        public JsonResult GetProfessionalTypes() {
-            return Json(db.ProfessionalTypes.ToList(), JsonRequestBehavior.AllowGet);
         }
 
         public ActionResult ListLabTecInformation() {

@@ -32,7 +32,7 @@ namespace BusinessLayer.Implementation {
                     labExam = new KFT { MCDT_date = DateTime.Now, MCDT_type = MCDTType.KFT };
                     CreateMCDT(labExam);
                 } else if(mcdt.Equals("LFT")) {
-                    labExam = new KFT { MCDT_date = DateTime.Now, MCDT_type = MCDTType.LFT };
+                    labExam = new LFT { MCDT_date = DateTime.Now, MCDT_type = MCDTType.LFT };
                     CreateMCDT(labExam);
                 } else if(mcdt.Equals("LymphocytesSubsets")) {
                     labExam = new LymphocytesSubsets { MCDT_date = DateTime.Now, MCDT_type = MCDTType.LymphocytesSubsets };

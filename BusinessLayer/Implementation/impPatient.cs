@@ -145,7 +145,7 @@ namespace BusinessLayer.Implementation {
         }
 
         private void AccessGetPatientAllergies(int patientId) {
-            Patient p = db.Users.Find(patientId) as Patient; //ir buscar ao session
+            Patient p = db.Users.Find(patientId) as Patient; 
             AllergiesViewModel viewModel;
 
             var list = from a in db.AllergiesManagers
@@ -259,6 +259,7 @@ namespace BusinessLayer.Implementation {
         private string GetStringSafely(DbDataReader reader, int colIndex) {
             return (reader.IsDBNull(colIndex) ? "-" : reader.GetString(colIndex));
         }
+
         private DateTime GetDateDefault(DbDataReader reader, int colIndex) {
             return (reader.IsDBNull(colIndex) ? new DateTime(1970, 01, 01) : reader.GetDateTime(colIndex));
         }

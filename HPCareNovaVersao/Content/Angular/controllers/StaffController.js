@@ -2,7 +2,7 @@
 app.controller("StaffInformationsController", function ($scope, StaffInformationFactory, alert) {
 
     $scope.StaffFullInformation = null;
-    $scope.Staff = null;
+    $scope.StaffViewModel = null;
     $scope.Genders = null;
     $scope.Marital = null;
     $scope.Professional = null;
@@ -13,7 +13,7 @@ app.controller("StaffInformationsController", function ($scope, StaffInformation
         var staffInformation = StaffInformationFactory.GetStaffFullInformations();
         staffInformation.then(function (dt) {
             $scope.StaffFullInformation = dt.data;
-            alert.warning(JSON.stringify($scope.StaffFullInformation));
+            //alert.warning(JSON.stringify($scope.StaffFullInformation));
             $scope.InitInformation();
         }, function (error) {
             alert.warning("Error in getting the information !");
@@ -33,13 +33,6 @@ app.controller("StaffInformationsController", function ($scope, StaffInformation
             alert.warning("Error in getting the information !");
         });
 
-        var types = StaffInformationFactory.GetProfessionalTypes();
-        types.then(function (dt) {
-            $scope.Professional = dt.data;
-        }, function (error) {
-            alert.warning("Error in getting the information !");
-        });
-
     };
 
     $scope.InitInformation = function () {
@@ -50,7 +43,7 @@ app.controller("StaffInformationsController", function ($scope, StaffInformation
         $scope.Email = $scope.StaffFullInformation[0].Email;
         $scope.Telephone = $scope.StaffFullInformation[0].Telephone;
         $scope.Identification = $scope.StaffFullInformation[0].User_identification;
-        $scope.ProfessionalName = $scope.StaffFullInformation[0].ProfessionalType.ProfessionalName;
+        $scope.ProfessionalName = $scope.StaffFullInformation[0].ProfessionalType;
     };
 
     $scope.SaveInformation = function (g, m) {
@@ -92,10 +85,6 @@ app.factory('StaffInformationFactory', function ($http) {
 
     fac.GetMaritalStatus = function () {
         return $http.get('../Staffs/GetMaritalStatus');
-    };
-
-    fac.GetProfessionalTypes = function () {
-        return $http.get('../Staffs/GetProfessionalTypes');
     };
 
     fac.saveStaffInformations = function (listInformations) {

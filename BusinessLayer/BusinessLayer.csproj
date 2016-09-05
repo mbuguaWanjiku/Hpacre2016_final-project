@@ -67,6 +67,7 @@
     <Compile Include="Implementation\ViewModels\RegularExamsVM.cs" />
     <Compile Include="Implementation\ViewModels\PatientViewModel.cs" />
     <Compile Include="Implementation\ViewModels\RiskFactorsViewModel.cs" />
+    <Compile Include="Implementation\ViewModels\StaffViewModel.cs" />
     <Compile Include="Implementation\ViewModels\TreatmentCategoryVM.cs" />
     <Compile Include="Implementation\ViewModels\TreatmentTypeVM.cs" />
     <Compile Include="Interfaces\ILabExams.cs" />
