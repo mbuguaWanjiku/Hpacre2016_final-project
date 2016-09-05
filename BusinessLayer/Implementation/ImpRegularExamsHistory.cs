@@ -65,7 +65,7 @@ namespace BusinessLayer.Implementation
                                  "MCDTManagers ON ClinicRegistryManagers.ClinicRegistryManagerId = MCDTManagers.clinicRegistryManager_ClinicRegistryManagerId "+
                                   "INNER JOIN MCDTStaffManagers ON MCDTManagers.MCDTStaffManager_MCDTStaffManager_id = MCDTStaffManagers.MCDTStaffManager_id INNER JOIN "+
                                  " MCDTs ON MCDTStaffManagers.mcdt_MCDT_ID = MCDTs.MCDT_ID"+
-                                 " and Discriminator = '"+discriminator+"' AND clinicRegistryManager_ClinicRegistryManagerId = " + 7 +
+                                 " and Discriminator = '"+discriminator+"' AND clinicRegistryManager_ClinicRegistryManagerId = " + clinicalReg +
                                   "AND LabExam_data_in != '' AND  LabExam_date_out != ''";
                 dbCommand.CommandText = query;
                 dbConnection.Open();

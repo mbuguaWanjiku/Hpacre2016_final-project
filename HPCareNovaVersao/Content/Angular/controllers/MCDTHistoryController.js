@@ -25,7 +25,7 @@ app.controller("RegularExamHistoryController", function ($scope, $filter, $inter
 
     $scope.showGraph = function (size, sortOrder, option) {
         choosedMcdt = option[0].Discriminator;
-
+        category = choosedMcdt;
         arraySorted = null;
         stringIds = '';
 
@@ -170,6 +170,7 @@ app.controller("RegularExamHistoryController", function ($scope, $filter, $inter
 
     $scope.showGraphEspecific = function (size, sortOrder, option) {
         choosedMcdt = option[0].Discriminator;
+        category = choosedMcdt;
         //reset das vars 
         arraySorted = null;
         stringIds = '';
@@ -332,9 +333,8 @@ app.controller("RegularExamHistoryController", function ($scope, $filter, $inter
         drawGraphsSpecific();
     }
 
-    $scope.clickedElement2 = function (desc, cat) {
-        category = cat;
-        subCategory = desc;
+    $scope.clickedElement2 = function () {
+        subCategory = $scope.Element.mcdtProp;
 
         lineChartData.labels = [];
         lineChartData.datasets = [];

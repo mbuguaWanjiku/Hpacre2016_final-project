@@ -38,6 +38,8 @@ namespace BusinessLayer.Implementation {
                 kft.LabExam_date_out = DateTime.Now;
             }
 
+            InsertStaffId(currentUser.AccessDatabase(HttpContext.Current.User.Identity.Name), kft);
+
             db.SaveChanges();
         }
 
@@ -53,6 +55,8 @@ namespace BusinessLayer.Implementation {
                 lft.SGT = l.SGT;
                 lft.LabExam_date_out = DateTime.Now;
             }
+
+            InsertStaffId(currentUser.AccessDatabase(HttpContext.Current.User.Identity.Name), lft);
 
             db.SaveChanges();
 
@@ -71,6 +75,8 @@ namespace BusinessLayer.Implementation {
                 lymphocytes.LabExam_date_out = DateTime.Now;
             }
 
+            InsertStaffId(currentUser.AccessDatabase(HttpContext.Current.User.Identity.Name), lymphocytes);
+
             db.SaveChanges();
 
         }
@@ -83,6 +89,8 @@ namespace BusinessLayer.Implementation {
                 platelets.Count = p.Count;
                 platelets.LabExam_date_out = DateTime.Now;
             }
+
+            InsertStaffId(currentUser.AccessDatabase(HttpContext.Current.User.Identity.Name), platelets);
 
             db.SaveChanges();
         }
@@ -102,6 +110,8 @@ namespace BusinessLayer.Implementation {
                 rbcIndices.LabExam_date_out = DateTime.Now;
             }
 
+            InsertStaffId(currentUser.AccessDatabase(HttpContext.Current.User.Identity.Name), rbcIndices);
+
             db.SaveChanges();
         }
 
@@ -115,6 +125,8 @@ namespace BusinessLayer.Implementation {
                 rbcs.LabExam_date_out = DateTime.Now;
             }
 
+            InsertStaffId(currentUser.AccessDatabase(HttpContext.Current.User.Identity.Name), rbcs);
+
             db.SaveChanges();
         }
 
@@ -126,6 +138,8 @@ namespace BusinessLayer.Implementation {
                 viral.value = v.value;
                 viral.LabExam_date_out = DateTime.Now;
             }
+
+            InsertStaffId(currentUser.AccessDatabase(HttpContext.Current.User.Identity.Name), viral);
 
             db.SaveChanges();
         }
@@ -170,9 +184,9 @@ namespace BusinessLayer.Implementation {
             using (SqlConnection connection = new SqlConnection("Data Source=SQL5025.myASP.NET;Initial Catalog=DB_A0ADFA_HPCareDBContext;User Id=DB_A0ADFA_HPCareDBContext_admin;Password=hpcare2016;")) {
                 SqlCommand command = new SqlCommand("SELECT MCDTs.MCDT_ID, MCDTs.MCDT_type, MCDTs.MCDT_date, MCDTs.LabExam_data_in, MCDTs.LabExam_date_out, Users.User_id," +
                     " Users.Name , MCDTs.Discriminator FROM ClinicRegistryManagers INNER JOIN MCDTManagers ON ClinicRegistryManagers.ClinicRegistryManagerId = MCDTManagers.clinicRegistryManager_ClinicRegistryManagerId " +
-                    "INNER JOIN MCDTStaffManagers ON MCDTManagers.MCDTStaffManager_MCDTStaffManager_id = MCDTStaffManagers.MCDTStaffManager_id INNER JOIN MCDTs ON " +
-                    "MCDTStaffManagers.mcdt_MCDT_ID = MCDTs.MCDT_ID INNER JOIN Patient ON ClinicRegistryManagers.Clinic_patient_User_id = Patient.User_id INNER JOIN " +
-                    "Users ON Patient.User_id = Users.User_id and mcdts.labexam_data_in is null", connection);
+                    " INNER JOIN MCDTStaffManagers ON MCDTManagers.MCDTStaffManager_MCDTStaffManager_id = MCDTStaffManagers.MCDTStaffManager_id INNER JOIN MCDTs ON " +
+                    " MCDTStaffManagers.mcdt_MCDT_ID = MCDTs.MCDT_ID INNER JOIN Patient ON ClinicRegistryManagers.Clinic_patient_User_id = Patient.User_id INNER JOIN " +
+                    " Users ON Patient.User_id = Users.User_id and mcdts.labexam_data_in is null;", connection);
                 command.CommandType = CommandType.Text;
                 command.Connection = connection;
                 connection.Open();
@@ -226,7 +240,7 @@ namespace BusinessLayer.Implementation {
                 SqlCommand command = new SqlCommand("SELECT count(*) FROM ClinicRegistryManagers INNER JOIN MCDTManagers ON ClinicRegistryManagers.ClinicRegistryManagerId = MCDTManagers.clinicRegistryManager_ClinicRegistryManagerId  " +
                   "  INNER JOIN MCDTStaffManagers ON MCDTManagers.MCDTStaffManager_MCDTStaffManager_id = MCDTStaffManagers.MCDTStaffManager_id INNER JOIN MCDTs ON " +
                    " MCDTStaffManagers.mcdt_MCDT_ID = MCDTs.MCDT_ID INNER JOIN Patient ON ClinicRegistryManagers.Clinic_patient_User_id = Patient.User_id INNER JOIN " +
-                  "  Users ON Patient.User_id = Users.User_id", connection);
+                  "  Users ON Patient.User_id = Users.User_id;", connection);
                 command.CommandType = CommandType.Text;
                 command.Connection = connection;
                 connection.Open();

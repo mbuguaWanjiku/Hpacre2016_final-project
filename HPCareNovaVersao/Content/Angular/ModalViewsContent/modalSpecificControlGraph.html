@@ -10,7 +10,7 @@
                 name="MCDTdropdown1"
                 ng-model="Element"
                 ng-options="cg as cg.mcdtProp for cg in McdtComponents"
-                ng-change="clickedElement2(cg)"
+                ng-change="clickedElement2()"
                     >
               <option value="" selected="selected">Choose</option>
                
@@ -18,14 +18,7 @@
         </select>
         <br />
 
-        <!--<select id="MCDTid_level2"
-                class="form-control"
-                name="MCDTdropdown2"
-                ng-model="Element"
-                ng-options="cg as cg.mcdtProp for cg in McdtComponents"
-                >
-            <option value="" selected="selected">Choose</option>
-        </select>-->
+ 
 
         <div class="chrt-page-grids" ng-controller="RegularExamHistoryController">
             <canvas id="line" height="300" width="400" style="width: 400px; height: 300px;"></canvas>
