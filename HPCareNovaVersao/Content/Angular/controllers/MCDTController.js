@@ -20,11 +20,11 @@ app.controller("MCDTController", function ($scope, $interval, MCDTService) {
         $scope.MCDTS.push(new $scope.Mcdt("KFT", "Regular"));
         $scope.MCDTS.push(new $scope.Mcdt("LFT", "Regular"));
         $scope.MCDTS.push(new $scope.Mcdt("LymphocytesSubsets", "Regular"));
-        $scope.MCDTS.push(new $scope.Mcdt("RBCS", "Regular"));
         $scope.MCDTS.push(new $scope.Mcdt("PlateletsCount", "Regular"));
+        $scope.MCDTS.push(new $scope.Mcdt("RBCS", "Regular"));
         $scope.MCDTS.push(new $scope.Mcdt("RBCIndices", "Regular"));
-        $scope.MCDTS.push(new $scope.Mcdt("WBCS", "Regular"));
         $scope.MCDTS.push(new $scope.Mcdt("ViralLoad", "Regular"));
+        $scope.MCDTS.push(new $scope.Mcdt("WBCS", "Regular"));
         $scope.MCDTS.push(new $scope.Mcdt("XRAY", "Specific"));
     }
     createMCDTS();
