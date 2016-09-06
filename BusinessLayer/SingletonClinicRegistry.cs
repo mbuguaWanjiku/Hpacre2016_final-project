@@ -31,17 +31,12 @@ namespace BusinessLayer
             //get information about the current clinic logged in
             CurrentUserId currentStaff = new CurrentUserId();
             int currentIdStaff = currentStaff.AccessDatabase(HttpContext.Current.User.Identity.Name);
-            Users staff = currentStaff.ReturnCurrentUser(currentIdStaff);
-
-            if (!existRegistry(patient, context) && singletonInstance == null)
-            {
-                singletonInstance = GetEXisting(patient, context);
-            }
-            else         
+            //Users staff = currentStaff.ReturnCurrentUser(currentIdStaff);
+            Users staff = context.Users.Find(currentIdStaff) as Staff;         
                 if (singletonInstance == null)
                 {
                     singletonInstance = new ClinicRegistryManager { ClinicRegistryManagerId = AccessDatabase(patient, staff, context).ClinicRegistryManagerId };
-                    Visit visit = new Visit { Visit_Date = DateTime.Today.Date};
+                    Visit visit = new Visit { Visit_Date = DateTime.Today.Date,Visit_Hour = DateTime.Now.TimeOfDay};
                     context.VisitManagers.Add(new VisitManager { visit = visit, PatientVisitRegistry = singletonInstance });
                     context.SaveChanges();
                 }
@@ -53,22 +48,7 @@ namespace BusinessLayer
         /// should not be created
         /// </summary>
         /// <returns></returns>
-        private static bool existRegistry(Patient patient, HPCareDBContext context)
-        {
-            int num = context.VisitManagers.Where(x => x.VisitRegistry.PatientVisitsRegistry.FirstOrDefault().patient.User_id
-             == patient.User_id && x.visit.Visit_Date == DateTime.Today.Date).Count();
-            return (num == 0);
-        }
-        /// <summary>
-        /// Get existing day´s registry
-        /// </summary>
-        /// <param name="patient"></param>
-        /// <param name="context"></param>
-        /// <returns>clinical registry instance</returns>
-        private static ClinicRegistryManager GetEXisting(Patient patient, HPCareDBContext context)
-        {
-            return context.ClinicRegistryManagers.Where(x => x.Clinic_patient.User_id == patient.User_id).FirstOrDefault();
-        }
+     
         private static ClinicRegistryManager AccessDatabase(Patient patient, Users staff, HPCareDBContext context)
         {
             using (SqlConnection connection = new SqlConnection("Data Source=SQL5025.myASP.NET;Initial Catalog=DB_A0ADFA_HPCareDBContext;User Id=DB_A0ADFA_HPCareDBContext_admin;Password=hpcare2016;"))
