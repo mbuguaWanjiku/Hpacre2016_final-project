@@ -80,7 +80,7 @@ app.controller("MedicationController", function ($scope, $interval, alert, Medic
 
     $scope.saveToBasket = function (drug, category, admin, dosage, freq) {
 
-
+        
         var dateValid = moment(vm.event.endsAt).isAfter(vm.event.startsAt);
         if (!dateValid) {
             alert.warning("Invalid dates-startDate is after endDate")

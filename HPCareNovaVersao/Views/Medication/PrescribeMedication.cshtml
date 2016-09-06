@@ -1,6 +1,6 @@
 ﻿
 <div class="col-md-1"></div>
-<div class="panel panel-widget col-md-10 form-horizontal">
+<div class="panel panel-widget col-md-10 form-horizontal" ng-controller="MedicationController as vm">
     <ul class="nofitications-dropdown pull-right" style="margin-top:-4%;margin-right:-3%;">
 
         <li class="dropdown head-dpdn">
@@ -27,7 +27,7 @@
     </div>
 
 
-        <div class="well form-control-wrapper dropdown dropdown-toggle col-md-10" ng-controller="MedicationController as vm">
+        <div class="well form-control-wrapper dropdown dropdown-toggle col-md-10">
             @*<label for="drug_category">Drug Category</label>*@
             @*<form id="drugsForm">*@
                 <select id="drug_category"
