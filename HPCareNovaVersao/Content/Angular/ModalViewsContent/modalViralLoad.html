@@ -1,16 +1,19 @@
 ﻿
 <div class="modal-header">
     <!--<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>-->
-    <h4 class="modal-title" id="myModalLabel">Add Viral Load Lab Exam Results</h4>
+    <h4 class="modal-title" id="myModalLabel">Enter Viral Load Lab Exam Results</h4>
 </div>
 <div class="modal-body">
-    <div class="form-body" ng-controller="LabExamsController">
+    <div class="form-body" ng-controller="LabExamsController" ng-init="initViralLoad()">
         <form class="form-horizontal">
 
             <div class="form-group">
                 <label for="focusedinput5" class="col-md-2 control-label">Value</label>
-                <div class="col-md-8">
+                <div class="col-md-7">
                     <input type="text" class="form-control" id="focusedinput5" ng-model="LabExams.value" />
+                </div>
+                <div class="col-sm-3">
+                    <p class="help-block">Min: {{ValuesMin[0]}} - Max: {{ValuesMax[0]}}</p>
                 </div>
             </div>
 
