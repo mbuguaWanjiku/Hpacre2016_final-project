@@ -1,6 +1,6 @@
 ﻿var CIDclassificationVW = [];
 var CIDclassificationDB = [];
-app.controller("DiagnosisController", function ($scope, $interval, DiagnosisService) {
+app.controller("DiagnosisController", function ($scope, $interval,alert, DiagnosisService) {
     $scope.CidCode = null;
     $scope.category = null;
     $scope.CIDclassificationBuffer = [];
@@ -12,10 +12,9 @@ app.controller("DiagnosisController", function ($scope, $interval, DiagnosisServ
     // Populate Category
     var getData = DiagnosisService.GetCategory();
     getData.then(function (dt) {
-        alert("passed");
         $scope.CategoryList = dt.data;
     }, function (error) {
-        alert("error in obtaining CIDCODE category");
+        alert.warning("error in obtaining CIDCODE category");
 
     });
 
@@ -29,24 +28,32 @@ app.controller("DiagnosisController", function ($scope, $interval, DiagnosisServ
             $scope.CodeList = d.data;
             $scope.StateTextToShow = "Select State";
         }, function (error) {
-            alert('Error!');
+            alert.warning('Error in getting data!');
         });
     }
     $scope.saveToBasket = function () {
         var DiseaseCID = new Object();
         DiseaseCID.DiseaseCode = $scope.CidCode.DiseaseCode;
         DiseaseCID.CIDCategory = $scope.category;
+
+        for (var i = 0; i < CIDclassificationVW.length; i++) {      
+            if (DiseaseCID.DiseaseCode === CIDclassificationVW[i].DiseaseCode) {
+                alert.warning(DiseaseCID.DiseaseCode+" already exists");
+                return;
+            }
+        }
+
         CIDclassificationVW.push(DiseaseCID);
 
     }
     $scope.saveCIDCODE = function () {
         if ($scope.CIDclassificationBuffer.length > 0) {
             var getData = DiagnosisService.SaveCIDclassificationDB($scope.CIDclassificationBuffer);
-            alert("passed22222222222222222")
+
             getData.then(function (msg) {
-                alert('CIDCODE posted');
+                alert.success('diagnosis posted');
             }, function () {
-                alert('CIDCODE posting problem');
+                alert.warning('diagnosis posting problem');
             });
         }
     }
@@ -71,7 +78,6 @@ app.factory('DiagnosisService', function ($http) {
 
 
     fac.SaveCIDclassificationDB = function (CIDclassification) {
-        alert("callled calssification");
         var CIDclassificationData = JSON.stringify({ 'CIDclassification': CIDclassificationVW });
         var response = $http({
             method: "post",

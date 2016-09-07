@@ -14,7 +14,7 @@ namespace DataLayer.Entities.MCDT {
             get; set;
         }
 
-        public Units MCDT_units {
+        public  Units MCDT_units {
             get; set;
         }
 
@@ -22,7 +22,7 @@ namespace DataLayer.Entities.MCDT {
         //    get; set;
         //}
 
-        public MCDTType MCDT_type {
+        public  MCDTType MCDT_type {
             get; set;
         }
 

@@ -84,6 +84,8 @@ namespace DataLayer.EntityFramework {
             get; set;
         }
 
+       
+
         public virtual DbSet<MCDTManager> MCDTManagers {
             get; set;
         }

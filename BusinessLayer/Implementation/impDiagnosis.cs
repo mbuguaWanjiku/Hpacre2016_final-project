@@ -18,11 +18,11 @@ namespace BusinessLayer.Implementation
     public class impDiagnosis : IDiagnosis
     {
 
-        private HPCareDBContext db;
+        HPCareDBContext db;
 
         public impDiagnosis(HPCareDBContext db)
         {
-            db = new HPCareDBContext();
+            this.db = new HPCareDBContext();
         }
 
         public string DeactivateDisease(Disease disease)
@@ -62,21 +62,17 @@ namespace BusinessLayer.Implementation
             }
         }
         private void saveDiagnosisAUX(CID_DiseaseCode disCode)
-        {
-            CIDCode diseaseCode = new CIDCode { Version = "CID10", CID_DiseaseCode = disCode };
-            int cidCodeID = db.CIDCodes.Add(diseaseCode).CIDCOD_id;
+        {        
+            CIDCode diseaseCode = db.CIDCodes.Where(x => x.CID_DiseaseCode.DiseaseCode == disCode.DiseaseCode &&
+            x.CID_DiseaseCode.CIDCategory.CID_CategorID == disCode.CIDCategory.CID_CategorID).FirstOrDefault();
             Disease disease = new Disease { Disease_start_date = DateTime.Now, Disease_is_active = true };
-            int diseaseID = db.Diseases.Add(disease).Disease_id;
-
             ClinicRegistryManager registry = SingletonClinicRegistry.GetInstance(db);
             try
             {
                 Diagnosis diagnosis = new Diagnosis { Diagnosis_CID_code = diseaseCode, Diagnosis_disease = disease, ClinicRegistry_Manager = registry };
-                diagnosis.Diagnosis_CID_code.CIDCOD_id = cidCodeID;
-                diagnosis.Diagnosis_disease.Disease_id = diseaseID;
                 db.Diagnoses.Add(diagnosis);
                 db.SaveChanges();
-                db.Entry(diagnosis).State = EntityState.Detached;
+                //db.Entry(diagnosis).State = EntityState.Detached;
             }
             catch (System.Data.Entity.Validation.DbEntityValidationException dbEx)
             {

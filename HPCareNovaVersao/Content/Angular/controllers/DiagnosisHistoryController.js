@@ -1,13 +1,16 @@
 ﻿app.controller("DiagnosisHistoryController", function ($scope, myService) {
 
+    $scope.rowLimit = 20;
+    $scope.sortColumn = "StartDate";
+
     GetPatientDiseases();
-    
+
     function GetPatientDiseases() {
         debugger;
         var getData = myService.getDiseases();
         debugger;
         getData.then(function (Patientdisease) {
-            $scope.diseases = Patientdisease.data;         
+            $scope.diseases = Patientdisease.data;
             alert(Patientdisease.data);
         }, function () {
             alert('Error in getting records');
@@ -24,7 +27,7 @@
         });
     }
 
-     GetDiagnosisHistory();
+    GetDiagnosisHistory();
     //To Get All Records 
     function GetDiagnosisHistory() {
         debugger;

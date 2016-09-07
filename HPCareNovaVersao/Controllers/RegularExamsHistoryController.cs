@@ -1,4 +1,5 @@
 ﻿using BusinessLayer.Implementation;
+using DataLayer.Entities.MCDT;
 using DataLayer.EntityFramework;
 using System;
 using System.Collections.Generic;
@@ -30,7 +31,9 @@ namespace PresentationLayer.Controllers
         }
         public JsonResult GetMcdt(int id)
         {
-            return Json(db.MCDTs.Where(x=>x.MCDT_ID ==id).ToList(), JsonRequestBehavior.AllowGet);
+            List<MCDT> mcdt = db.MCDTs.Where(x => x.MCDT_ID == id).ToList();
+            mcdt.FirstOrDefault().MCDT_units = new Units { Description = "debug" };
+            return Json(mcdt, JsonRequestBehavior.AllowGet);
         }
     }
 }
