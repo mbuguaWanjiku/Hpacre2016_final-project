@@ -50,7 +50,6 @@
 
             <div class="mail-body">
 
-                @*<div class="well">*@
                 <div class="panel-widget">
                     <span class="glyphicon glyphicon-filter"></span>
 
@@ -74,7 +73,7 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <tr ng-repeat="regularExamKFT in regularExamHistoryKFT | limitTo:rowLimit | orderBy:sortColumn" @*class="active"*@>
+                        <tr ng-repeat="regularExamKFT in regularExamHistoryKFT | limitTo:rowLimit | orderBy:sortColumn">
                             <td style="width:2%">{{$index + 1}}</td>
                             <td>
                                 {{regularExamKFT.MCDT_date | jsonDate :'dd-M-yyyy '  == "10-10-1920" ? "" : (regularExamKFT.MCDT_date | jsonDate: 'dd-MM-yyyy')}}
@@ -91,7 +90,7 @@
                             </td>
 
                             <td>
-                                <div class="mail-right" @*style="background:#353f4f"*@>
+                                <div class="mail-right">
                                     <div class="dropdown">
                                         <a href="#" data-toggle="dropdown" aria-expanded="false">
                                             <p><i class="fa fa-ellipsis-v mail-icon"></i></p>
@@ -104,12 +103,12 @@
                                             </li>
                                             <li>
                                                 <a>
-                                                    <i class="fa fa-line-chart" @*style="color:black"*@ ng-click="showGraph(rowLimit,sortColumn, regularExamHistoryKFT)">Graph</i>
+                                                    <i class="fa fa-line-chart" ng-click="showGraph(rowLimit,sortColumn, regularExamHistoryKFT)">Graph</i>
                                                 </a>
                                             </li>
                                             <li>
                                                 <a>
-                                                    <i class="fa fa-line-chart" @*style="color:black"*@ ng-click="showGraphEspecific(rowLimit,sortColumn, regularExamHistoryKFT)">Control Line Graph</i>
+                                                    <i class="fa fa-line-chart" ng-click="showGraphEspecific(rowLimit,sortColumn, regularExamHistoryKFT)">Control Line Graph</i>
                                                 </a>
                                             </li>
                                         </ul>
@@ -120,8 +119,6 @@
                     </tbody>
                 </table>
                 </div>
-
-            @*</div>*@
         </div>
     </div>
     <!----END KFT-->
@@ -140,7 +137,6 @@
         <div class="clearfix"> </div>
         <div id="collapseTen" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingten">
             <div class="mail-body">
-               @* <div class="well">*@
                     <div class="panel-widget">
                         <span class="glyphicon glyphicon-filter"></span>
 
@@ -153,7 +149,7 @@
                         <input type="number" step="2" min="0" max="20" ng-model="rowLimit" placeholder="rows" style="width:140px" />
                     </div>
                     <table class="table table-hover">
-                        <caption>LFT</caption>>
+                        <caption>LFT</caption>
                         <thead>
                             <tr>
                                 <th>No</th>
@@ -164,7 +160,7 @@
                             </tr>
                         </thead>
                         <tbody>
-                            <tr ng-repeat="regularExam in regularExamHistoryLFT | limitTo:rowLimit | orderBy:sortColumn" @*class="active"*@>
+                            <tr ng-repeat="regularExam in regularExamHistoryLFT | limitTo:rowLimit | orderBy:sortColumn" >
                                 <td style="width:2%">{{$index + 1}}</td>
                                 <td>
                                     {{regularExam.MCDT_date | jsonDate :'dd-M-yyyy H:mm' }}
@@ -188,13 +184,11 @@
                                                 <li ng-click="showText(regularExam)">
                                                     <a role="button" data-toggle="collapse" data-parent="#accordion">
                                                         <i class="glyphicon glyphicon-pencil">Text</i>
-
                                                     </a>
                                                 </li>
                                                 <li>
                                                     <a>
                                                         <i class="fa fa-line-chart " ng-click="showGraph(rowLimit,sortColumn, regularExamHistoryLFT)">Graph</i>
-
                                                     </a>
                                                 </li>
                                                 <li>
@@ -209,8 +203,6 @@
                             </tr>
                         </tbody>
                     </table>
-                @*</div>*@
-
             </div>
         </div>
     </div>
@@ -226,14 +218,12 @@
                 <a href="#" data-toggle="dropdown" aria-expanded="false">
                     <p><i class="fa fa-ellipsis-v mail-icon"></i></p>
                 </a>
-
             </div>
         </div>
         <div class="clearfix"> </div>
         <div id="collapse11" class="panel-collapse collapse" role="tabpanel" aria-labelledby="heading11">
             <div class="mail-body">
 
-             @*   <div class="well">*@
                     <div class="panel-widget">
                         <span class="glyphicon glyphicon-filter"></span>
 
@@ -257,7 +247,7 @@
                             </tr>
                         </thead>
                         <tbody>
-                            <tr ng-repeat="regularExam in regularExamHistoryLymphocytesSubsets | limitTo:rowLimit | orderBy:sortColumn" @*class="active"*@>
+                            <tr ng-repeat="regularExam in regularExamHistoryLymphocytesSubsets | limitTo:rowLimit | orderBy:sortColumn" >
                                 <td style="width:2%">{{$index + 1}}</td>
                                 <td>
                                     {{regularExam.MCDT_date | jsonDate :'dd-M-yyyy H:mm' }}
@@ -302,7 +292,6 @@
                             </tr>
                         </tbody>
                     </table>
-                @*</div>*@
 
             </div>
         </div>
@@ -326,7 +315,6 @@
         <div id="collapse12" class="panel-collapse collapse" role="tabpanel" aria-labelledby="heading12">
             <div class="mail-body">
 
-              @*  <div class="well">*@
                     <div class="panel-widget">
                         <span class="glyphicon glyphicon-filter"></span>
 
@@ -350,7 +338,7 @@
                             </tr>
                         </thead>
                         <tbody>
-                            <tr ng-repeat="regularExam in regularExamHistoryPlateletsCount | limitTo:rowLimit | orderBy:sortColumn" @*class="active"*@>
+                            <tr ng-repeat="regularExam in regularExamHistoryPlateletsCount | limitTo:rowLimit | orderBy:sortColumn" >
                                 <td style="width:2%">{{$index + 1}}</td>
                                 <td>
                                     {{regularExam.MCDT_date | jsonDate :'dd-M-yyyy H:mm' }}
@@ -374,13 +362,11 @@
                                                 <li ng-click="showText(regularExam)">
                                                     <a role="button" data-toggle="collapse" data-parent="#accordion">
                                                         <i class="glyphicon glyphicon-pencil ">Text</i>
-
                                                     </a>
                                                 </li>
                                                 <li>
                                                     <a>
                                                         <i class="fa fa-line-chart " ng-click="showGraph(rowLimit,sortColumn, regularExamHistoryPlateletsCount)">Graph</i>
-
                                                     </a>
                                                 </li>
                                                 <li>
@@ -395,7 +381,6 @@
                             </tr>
                         </tbody>
                     </table>
-                @*</div>*@
 
             </div>
         </div>
@@ -420,7 +405,6 @@
         <div id="collapse13" class="panel-collapse collapse" role="tabpanel" aria-labelledby="heading13">
 
             <div class="mail-body">
-              @*  <div class="well">*@
                     <div class="panel-widget">
                         <span class="glyphicon glyphicon-filter"></span>
 
@@ -444,7 +428,7 @@
                             </tr>
                         </thead>
                         <tbody>
-                            <tr ng-repeat="regularExam in regularExamHistoryRBCIndices | limitTo:rowLimit | orderBy:sortColumn" @*class="active"*@>
+                            <tr ng-repeat="regularExam in regularExamHistoryRBCIndices | limitTo:rowLimit | orderBy:sortColumn">
                                 <td style="width:2%">{{$index + 1}}</td>
                                 <td>
                                     {{regularExam.MCDT_date | jsonDate :'dd-M-yyyy H:mm' }}
@@ -489,7 +473,6 @@
                             </tr>
                         </tbody>
                     </table>
-                @*</div>*@
             </div>
         </div>
     </div>
@@ -512,7 +495,6 @@
         <div id="collapse14" class="panel-collapse collapse" role="tabpanel" aria-labelledby="heading14">
             <div class="mail-body">
 
-              @*  <div class="well">*@
                     <div class="panel-widget">
                         <span class="glyphicon glyphicon-filter"></span>
 
@@ -536,7 +518,7 @@
                             </tr>
                         </thead>
                         <tbody>
-                            <tr ng-repeat="regularExam in regularExamHistoryRBCS | limitTo:rowLimit | orderBy:sortColumn" @*class="active"*@>
+                            <tr ng-repeat="regularExam in regularExamHistoryRBCS | limitTo:rowLimit | orderBy:sortColumn" >
                                 <td style="width:2%">{{$index + 1}}</td>
                                 <td>
                                     {{regularExam.MCDT_date | jsonDate :'dd-M-yyyy H:mm' }}
@@ -566,7 +548,6 @@
                                                 <li>
                                                     <a>
                                                         <i class="fa fa-line-chart " ng-click="showGraph(rowLimit,sortColumn, regularExamHistoryRBCS)">Graph</i>
-
                                                     </a>
                                                 </li>
                                                 <li>
@@ -581,7 +562,6 @@
                             </tr>
                         </tbody>
                     </table>
-                @*</div>*@
             </div>
         </div>
     </div>
@@ -602,7 +582,6 @@
         <div class="clearfix"> </div>
         <div id="collapse15" class="panel-collapse collapse" role="tabpanel" aria-labelledby="heading15">
             <div class="mail-body">
-                @*<div class="well">*@
                     <div class="panel-widget">
                         <span class="glyphicon glyphicon-filter"></span>
 
@@ -626,7 +605,7 @@
                             </tr>
                         </thead>
                         <tbody>
-                            <tr ng-repeat="regularExam in regularExamHistoryWBCS | limitTo:rowLimit | orderBy:sortColumn" @*class="active"*@>
+                            <tr ng-repeat="regularExam in regularExamHistoryWBCS | limitTo:rowLimit | orderBy:sortColumn" >
                                 <td style="width:2%">{{$index + 1}}</td>
                                 <td>
                                     {{regularExam.MCDT_date | jsonDate :'dd-M-yyyy H:mm' }}
@@ -671,7 +650,6 @@
                             </tr>
                         </tbody>
                     </table>
-                @*</div>*@
             </div>
         </div>
     </div>
@@ -693,7 +671,6 @@
         <div id="collapse16" class="panel-collapse collapse" role="tabpanel" aria-labelledby="heading16">
             <div class="mail-body">
 
-               @* <div class="well">*@
                     <div class="panel-widget">
                         <span class="glyphicon glyphicon-filter"></span>
 
@@ -717,7 +694,7 @@
                             </tr>
                         </thead>
                         <tbody>
-                            <tr ng-repeat="regularExam in regularExamHistoryViralLoad | limitTo:rowLimit | orderBy:sortColumn" @*class="active"*@>
+                            <tr ng-repeat="regularExam in regularExamHistoryViralLoad | limitTo:rowLimit | orderBy:sortColumn" >
                                 <td style="width:2%">{{$index + 1}}</td>
                                 <td>
                                     {{regularExam.MCDT_date | jsonDate :'dd-M-yyyy H:mm' }}
@@ -761,15 +738,12 @@
                             </tr>
                         </tbody>
                     </table>
-                @*</div>*@
                 <!---END VIRAL LOAD-->
 
             </div>
         </div>
     </div>
 </div>
-@*</div>
-        </div>
-    </div>*@
+
 
 <div class="col-md-1"></div>
