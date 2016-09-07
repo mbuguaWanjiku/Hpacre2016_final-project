@@ -44,6 +44,12 @@
              templateUrl: "../Medication/PrescribeMedicationHistory"
          })
 
+         .state("observations", {
+             url: "/observations",
+             templateUrl: "../Observation/CreateObservation"
+         })
+
+
 
     // ****************** Graphs ****************************//
     .state("mcdtResults", {

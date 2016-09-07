@@ -12,7 +12,6 @@ namespace DataLayer.Entities.VisitsEntities
     {
         [Key]
         public int observations_ID { get; set; }
-
         public string subject { get; set; }
         public string ObservationBody { get; set; }
         public ClinicRegistryManager clinicalRegistry { get; set; }
