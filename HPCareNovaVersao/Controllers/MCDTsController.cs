@@ -30,7 +30,7 @@ namespace HPCareNovaVersao.Controllers {
         public string SavePrescribedMCDT(string[] MCDTS) {
             List<string> listMcdts = MCDTS.ToList();
             new ImpMCDTs(db).SavePrescribedMCDT(listMcdts);
-            return "hitted ";
+            return "posted ";
         }
 
 

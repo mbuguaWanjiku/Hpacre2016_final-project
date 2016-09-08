@@ -50,6 +50,7 @@
     <Compile Include="Implementation\ImpMCDTs.cs" />
     <Compile Include="Implementation\ImpMedication.cs" />
     <Compile Include="Implementation\ImpMedicationHistory.cs" />
+    <Compile Include="Implementation\ImpObservations.cs" />
     <Compile Include="Implementation\impPatient.cs" />
     <Compile Include="Implementation\ImpPatientDiagnosisHistory.cs" />
     <Compile Include="Implementation\impPatientViewModel.cs" />
@@ -62,6 +63,7 @@
     <Compile Include="Implementation\ViewModels\InterventionVM.cs" />
     <Compile Include="Implementation\ViewModels\McdtViewModel.cs" />
     <Compile Include="Implementation\ViewModels\MedicationHistoryVM.cs" />
+    <Compile Include="Implementation\ViewModels\ObservationsVM.cs" />
     <Compile Include="Implementation\ViewModels\PatientDiseaseHistoryVM.cs" />
     <Compile Include="Implementation\ViewModels\PatientInformationViewModel.cs" />
     <Compile Include="Implementation\ViewModels\RegularExamsVM.cs" />

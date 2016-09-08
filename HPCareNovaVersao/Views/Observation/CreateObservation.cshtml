@@ -1,32 +1,22 @@
 ﻿
 
-                    <div class="panel panel-widget">
-                        <div class="pull-left compose-left">
-                            <div class="folder widget-shadow">
-                                <ul>
-                                    <li class="head">observations</li>
-                                    <li><a href="inbox.html"><i class="fa fa-inbox"></i>new <span>52</span></a></li>
-                                    <li><a href="#"><i class="fa fa fa-envelope-o"></i>archive </a></li>
-                                 
-                                </ul>
-                            </div>
-                        </div>
-                     
+                    <div class="panel panel-widget"ng-controller="observationController as vm">                    
                 <div class="col-md-10 pull-right">
                     <div class="panel panel-widget">
                         <div class="compose-right widget-shadow">
                             <div class="panel-default">
                                 <div class="panel-heading">
                                     Compose new 
+                                    <div ui-sref="observationsHistory" class="pull-right"><a href="#"><i class="fa fa fa-envelope" style="color:red"></i>archive </a></div>
                                 </div>
                                 <div class="panel-body">
                                     <div class="alert alert-info">
                                         Please fill details 
                                     </div>
-                                    <form class="com-mail">
+                                    <form class="com-mail" name="obsForm" ng-init="setForm(obsForm)">
                                        
-                                        <input type="text" class="form-control1 control3" placeholder="Subject :">
-                                        <textarea rows="6" class="form-control1 control2" placeholder="Observation :"></textarea>
+                                        <input type="text" class="form-control1 control3" placeholder="Subject :"  ng-model="vm.subject" maxlength="50" max="10" required>
+                                        <textarea rows="6" class="form-control1 control2" placeholder="Observation :" ng-model="vm.observationBody" required></textarea>
                                         <div class="form-group">
                                             <div class="btn btn-default btn-file">
                                                 <i class="fa fa-paperclip"></i> Attachment
@@ -34,7 +24,7 @@
                                             </div>
                                             <p class="help-block">Max. 32MB</p>
                                         </div>
-                                        <input type="submit" value="Send Message">
+                                        <button type="submit" class="btn btn-primary" ng-click="vm.saveToBD()" ng-disabled="obsForm.$invalid" >save</button>
                                     </form>
                                 </div>
                             </div>

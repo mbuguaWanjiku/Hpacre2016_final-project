@@ -43,12 +43,15 @@
              url: "/medicationHistory",
              templateUrl: "../Medication/PrescribeMedicationHistory"
          })
-
+         /********************************observations***************/
          .state("observations", {
              url: "/observations",
              templateUrl: "../Observation/CreateObservation"
          })
-
+          .state("observationsHistory", {
+             url: "/observationsHistory",
+             templateUrl: "../Observation/ObservationsHistory"
+         })
 
 
     // ****************** Graphs ****************************//

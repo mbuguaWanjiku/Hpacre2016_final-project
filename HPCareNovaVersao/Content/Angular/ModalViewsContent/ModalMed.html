@@ -1,4 +1,4 @@
-﻿<div class="panel panel-widget forms-panel">
+﻿<div class="panel panel-widget forms-panel" ng-controller="observationController as vm">
     <div class="forms">
         <div class="form-grids form-grids-right">
             <div class="widget-shadow " data-example-id="basic-forms">
@@ -6,18 +6,21 @@
                     <h4>Observations Form</h4>
                 </div>
                 <div class="form-body">
-                    <form class="form-horizontal">
+                    <form class="form-horizontal" name="medForm">
                         <div class="form-group">
+                            <label for="subject" class="col-sm-2 control-label">subject</label>
+                            <div class="col-sm-9">
+                                <input type="text" class="form-control" id="obsData" placeholder="subject" required  ng-model="vm.subject"/>
+                            </div>
+
                             <label for="Observations" class="col-sm-2 control-label">Report</label>
                             <div class="col-sm-9">
-                                <textarea type="text" class="form-control" id="obsData" placeholder="Observations" required>
+                                <textarea type="text" class="form-control"  placeholder="Observations" required ng-model ="vm.observationBody">
                                 </textarea>
                             </div>
-                            <div>
-                                <img src="/Images/comingSoon.jpg" alt="coming soon" style="width:50%;height:50%" />
-                            </div>
-                            <div class="modal-footer">
-                                <button type="button" class="btn btn-primary" >submit</button>
+                              <br/><br/>
+                            <div class=" pull-left">
+                                <button type="button" class="btn btn-primary" ng-disabled="medForm.$invalid" ng-click="vm.saveToBD();$close()" >submit</button>
    
                             </div>
                         </div>

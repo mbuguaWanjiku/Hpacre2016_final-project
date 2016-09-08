@@ -52,9 +52,20 @@ app.factory('alert', function ($uibModal) {
             },
             controllerAs: 'vm'
         });
-
-
     }
+    fac.showObservation = function (obs) {
+     
+        return $uibModal.open({
+            templateUrl: '../Content/Angular/ModalViewsContent/modalObservation.html',
+            controller: function () {
+                var vm = this;
+                vm.observation = obs
+
+            },
+            controllerAs: 'vm'
+        });
+    }
+    
 
 
 

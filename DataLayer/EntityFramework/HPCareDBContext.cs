@@ -206,7 +206,7 @@ namespace DataLayer.EntityFramework {
             get; set;
         }
 
-        public DbSet<Visit> Visits {
+        public virtual DbSet<Visit> Visits {
             get; set;
         }
 

@@ -18,11 +18,11 @@ namespace BusinessLayer.Implementation
     public class impDiagnosis : IDiagnosis
     {
 
-        HPCareDBContext db;
+       private HPCareDBContext db;
 
         public impDiagnosis(HPCareDBContext db)
         {
-            this.db = new HPCareDBContext();
+            this.db = db;
         }
 
         public string DeactivateDisease(Disease disease)

@@ -17,7 +17,7 @@ namespace DataLayer.Entities.Visitas {
             get; set;
         }
 
-        public Visit visit {
+        public virtual Visit visit {
             get; set;
         }
         //redudant
