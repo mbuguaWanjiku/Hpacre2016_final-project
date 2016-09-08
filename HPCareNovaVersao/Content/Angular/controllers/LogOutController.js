@@ -2,7 +2,7 @@
     $scope.controllerName = "logOutController";
    
     logOutService.logOut().success(function () {
-       alert("success");
+        window.location = 'http://localhost:55094';
 
 
     });
