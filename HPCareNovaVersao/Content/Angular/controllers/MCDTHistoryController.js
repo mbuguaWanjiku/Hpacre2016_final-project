@@ -6,11 +6,11 @@ app.controller("RegularExamHistoryController", function ($scope, $filter, $inter
     var choosedMcdt = null;
     var stringIds = '';
     var arraySorted = null;
-   
+
     $interval(function () {
         $scope.McdtComponents = buffer;
     }, 500);
-       
+
     $scope.showText = function (option) {
         var mcdt = regularExamHistoryFactory.getSpecificMCDT(option.Mcdt_id);
         mcdt.then(function (dt) {
@@ -124,7 +124,7 @@ app.controller("RegularExamHistoryController", function ($scope, $filter, $inter
 
             var getData = regularExamHistoryFactory.GetValores(stringIds, choosedMcdt);
             getData.then(function (dt) {
-               
+
                 var columnsNumber = (dt.data.length - 1) / (dt.data[dt.data.length - 1]); //numero de colunas 
                 var rowsNumber = dt.data[dt.data.length - 1]; //numero de rows
                 var rest = 0;
@@ -220,47 +220,65 @@ app.controller("RegularExamHistoryController", function ($scope, $filter, $inter
                 this.mcdtProp = mcdtProp;
             }
 
-            var getColumnsNames = regularExamHistoryFactory.GetColumnNames(choosedMcdt);     
-            getColumnsNames.then(function (dt) {           
-                for (var i = 0; i < dt.data.length; i++) {          
+            var getColumnsNames = regularExamHistoryFactory.GetColumnNames(choosedMcdt);
+            getColumnsNames.then(function (dt) {
+                for (var i = 0; i < dt.data.length; i++) {
                     buffer.push(new Element(dt.data[i]));
                 }
-                
+
             });
-          
-           
+
+
         }
         getList();
     }
 
     function drawGraphsSpecific() {
 
-        var getPZero = regularExamHistoryFactory.GetPatientZero();
-        getPZero.then(function (d) {
+        var getPZeroMax = regularExamHistoryFactory.GetPatientZeroMax(category, subCategory);
+        getPZeroMax.then(function (max) {
 
-            var tempArray = [];
+            var tempArrayMax = [];
+            var tempArrayMin = [];
 
             //dados do parametro do mcdt escolhido
             var getData = regularExamHistoryFactory.GetValues(category, subCategory, ids);
             getData.then(function (dt) {
-                //Criar os labels 
-                var numberRows = dt.data.length;
-                for (var i = 0; i < numberRows; i++) {
-                    lineChartData.labels.push(" ");
-                    tempArray.push(d.data);
-                }
-                var color = getRandomColor();
-                //criacao das linhas dos graficos 
-                var insert = new StatisticsObject(subCategory, "rgba(51, 51, 51, 0)", color, color, "#fff", dt.data);
-                lineChartData.datasets.push(insert);
-                new Chart(document.getElementById("line").getContext("2d")).Line(lineChartData);
+
+                var getPZeroMin = regularExamHistoryFactory.GetPatientZeroMin(category, subCategory);
+                getPZeroMin.then(function (min) {
+                    //Criar os labels 
+                    var numberRowsMax = dt.data.length;
+                    for (var i = 0; i < numberRowsMax; i++) {
+                        lineChartData.labels.push(" ");
+                        tempArrayMax.push(max.data);
+                    }
+                    lineChartData.labels = [];
+                    var numberRowsMin = dt.data.length;
+                    for (var i = 0; i < numberRowsMin; i++) {
+                        lineChartData.labels.push(" ");
+                        tempArrayMin.push(min.data);
+                    }
+
+                    var color = getRandomColor();
+                    //criacao das linhas dos graficos 
+                    var insert = new StatisticsObject(subCategory, "rgba(51, 51, 51, 0)", color, color, "#fff", dt.data);
+                    lineChartData.datasets.push(insert);
+                    new Chart(document.getElementById("line").getContext("2d")).Line(lineChartData);
+
+                }, function (error) {
+                    alert.warning("Something went wrong ! Please try again.");
+                });
+
+                var patientZeroMin = new StatisticsObject("Control Line - Min", "rgba(255, 255, 255, 1)", "rgb(255, 0, 0)", "rgb(255, 0, 0)", "#fff", tempArrayMin);
+                lineChartData.datasets.push(patientZeroMin);
 
             }, function (error) {
                 alert.warning("Something went wrong ! Please try again.");
             });
 
-            var patientZero = new StatisticsObject("Control Line", "rgba(0, 255, 0, 0.1)", "rgb(255, 0, 0)", "rgb(255, 0, 0)", "#fff", tempArray);
-            lineChartData.datasets.push(patientZero);
+            var patientZeroMax = new StatisticsObject("Control Line - Max", "rgba(0, 255, 0, 0.1)", "rgb(255, 0, 0)", "rgb(255, 0, 0)", "#fff", tempArrayMax);
+            lineChartData.datasets.push(patientZeroMax);
 
         }, function (error) {
             alert.warning("Something went wrong ! Please try again.");
@@ -365,7 +383,7 @@ app.controller("RegularExamHistoryController", function ($scope, $filter, $inter
             $scope.regularExamHistoryPlateletsCount = mcdtHistory.data;
 
         }, function () {
-        //    alert.warning('Error in getting records');
+            //    alert.warning('Error in getting records');
         });
     }
 
@@ -421,8 +439,13 @@ app.factory('regularExamHistoryFactory', function ($http) {
         return $http.get('../LabExams/SpecificMonitorizationJson?discriminator=' + discriminator + "&specificParameter=" + specificParameter + "&listaIds=" + listaIds);
     }
 
-    fac.GetPatientZero = function () {
-        return $http.get('../LabExams/PatientZero');
+    fac.GetPatientZeroMax = function (discriminator, component) {
+        return $http.get('../LabExams/PatientZeroMax?discriminator=' + discriminator + "&component=" + component);
     }
+
+    fac.GetPatientZeroMin = function (discriminator, component) {
+        return $http.get('../LabExams/PatientZeroMin?discriminator=' + discriminator + "&component=" + component);
+    }
+
     return fac;
 });

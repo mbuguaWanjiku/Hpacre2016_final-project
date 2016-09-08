@@ -1,6 +1,6 @@
 ﻿var tempArray = [];
 var mcdtId = null;
-app.controller("LabExamsController", function ($scope, LabExamsFactory, alert) {
+app.controller("LabExamsController", function ($scope, LabExamsFactory, alert, $timeout) {
     $scope.mcdtsList = [];
     $scope.LabExams = null;
     $scope.id = null;//user id
@@ -12,22 +12,93 @@ app.controller("LabExamsController", function ($scope, LabExamsFactory, alert) {
         }, function (error) {
             alert.warning("Something went wrong while getting the records ! Please try again. ");
         });
+    };
+
+    $scope.initKFT = function () {
+        ResetBuffers();
+        ValuesMax('KFT');
+        ValuesMin('KFT');
+    };
+
+    $scope.initLFT = function () {
+        ResetBuffers();
+        ValuesMax('LFT');
+        ValuesMin('LFT');
+    };
+
+    $scope.initLymphocytesSubsets = function () {
+        ResetBuffers();
+        ValuesMax('LymphocytesSubsets');
+        ValuesMin('LymphocytesSubsets');
+    };
+
+    $scope.initPlateletsCount = function () {
+        ResetBuffers();
+        ValuesMax('PlateletsCount');
+        ValuesMin('PlateletsCount');
+    };
+
+    $scope.initRBCIndices = function () {
+       ResetBuffers();
+       ValuesMax('RBCIndices');
+       ValuesMin('RBCIndices');
+    };
+
+    $scope.initRBCS = function () {
+        ResetBuffers();
+        ValuesMax('RBCS');
+        ValuesMin('RBCS');
+    };
+
+    $scope.initViralLoad = function () {
+        ResetBuffers();
+        ValuesMax('ViralLoad');
+        ValuesMin('ViralLoad');
+    };
+
+    $scope.initWBCS = function () {
+        ResetBuffers();
+        ValuesMax('WBCS');
+        ValuesMin('WBCS');
+    };
+
+    function ResetBuffers() {
+        $scope.ValuesMax = [];
+        $scope.ValuesMin = [];
+    }
+
+    function ValuesMax(discriminator) {
+        var max = LabExamsFactory.GetPatientZeroMax(discriminator);
+        max.then(function (dt) {
+            $scope.ValuesMax = dt.data;
+        }, function (error) {
+            alert.warning("Something went wrong while getting the records ! Please try again. ");
+        });
+    }
+
+    function ValuesMin(discriminator) {
+        var min = LabExamsFactory.GetPatientZeroMin(discriminator);
+        min.then(function (dt) {
+            $scope.ValuesMin = dt.data;
+        }, function (error) {
+            alert.warning("Something went wrong while getting the records ! Please try again. ");
+        });
     }
 
     $scope.getPatientMcdts = function (userId) {
         $scope.id = userId;
-    }
+    };
 
     $scope.goBack = function () {
         $scope.id = null;
-    }
+    };
 
     // *********************************************************** //
     $scope.getMcdtType = function (id, mcdtType) {
         mcdtId = id;
         switch (mcdtType) {
             case 0:
-               alert.kft("");
+                alert.kft("");
                 break;
             case 1:
                 alert.lft("");
@@ -53,7 +124,7 @@ app.controller("LabExamsController", function ($scope, LabExamsFactory, alert) {
     }
 
     $scope.SaveKft = function () {
-        var LabExams = new Object ();
+        var LabExams = new Object();
         LabExams.BUN = $scope.LabExams.BUN;
         LabExams.Creatinine = $scope.LabExams.Creatinine;
         LabExams.uricAcid = $scope.LabExams.uricAcid;
@@ -74,7 +145,7 @@ app.controller("LabExamsController", function ($scope, LabExamsFactory, alert) {
     }
 
     $scope.SaveLft = function () {
-        var LabExams = new Object ();
+        var LabExams = new Object();
         LabExams.SGT = $scope.LabExams.SGT;
         LabExams.AST = $scope.LabExams.AST;
         LabExams.LDH = $scope.LabExams.LDH;
@@ -226,6 +297,14 @@ app.factory('LabExamsFactory', function ($http) {
         return $http.get('../LabExams/ListPatientLabExamsJson');
     }
 
+    fac.GetPatientZeroMax = function (discriminator) {
+        return $http.get('../LabExams/GetPatientZeroResultsMax?discriminator=' + discriminator);
+    }
+
+    fac.GetPatientZeroMin = function (discriminator) {
+        return $http.get('../LabExams/GetPatientZeroResultsMin?discriminator=' + discriminator);
+    }
+
     fac.saveKft = function () {
         var informations = JSON.stringify({ 'kftList': tempArray });
         var response = $http({
@@ -317,9 +396,3 @@ app.factory('LabExamsFactory', function ($http) {
     return fac;
 });
 
-
-
-//select * from wbcs;
-//--select * from ViralLoad;
-//--select * from RBCS;
-//select * from RBCIndices;
