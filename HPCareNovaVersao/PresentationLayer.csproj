@@ -242,7 +242,6 @@
     <Content Include="Content\Angular\controllers\PatientInformationsController.js" />
     <Content Include="Content\Angular\controllers\PatientTemplateInfo.js" />
     <Content Include="Content\Angular\controllers\StaffController.js" />
-    <Content Include="Content\Angular\controllers\VisitManagerController.js" />
     <Content Include="Content\Angular\ModalViewsContent\modalSpecificControlGraph.html" />
     <Content Include="Content\Angular\ModalViewsContent\modalControlGraph.html" />
     <Content Include="Content\Angular\ModalViewsContent\modalLymphocyte.html" />
@@ -291,7 +290,6 @@
     <Content Include="Content\HpCareStyle.css" />
     <Content Include="Content\jqcandlestick.css" />
     <Content Include="Content\jqvmap.css" />
-    <Content Include="Content\login\index.html" />
     <Content Include="Content\style.css" />
     <Content Include="Content\TreatmentPlan\calendarContols.html" />
     <Content Include="Content\TreatmentPlan\Helpers.js" />

@@ -6,16 +6,26 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace DataLayer.Entities.VisitsEntities
-{
-    public class Observations
-    {
+namespace DataLayer.Entities.VisitsEntities {
+    public class Observations {
         [Key]
-        public int observations_ID { get; set; }
-        public string subject { get; set; }
-        public string ObservationBody { get; set; }
+        public int observations_ID {
+            get; set;
+        }
+        public string subject {
+            get; set;
+        }
+        public string ObservationBody {
+            get; set;
+        }
         //public bool Classified { get; set; }
-        public ClinicRegistryManager clinicalRegistry { get; set; }
+        public ClinicRegistryManager clinicalRegistry {
+            get; set;
+        }
+
+        public bool IsClassified {
+            get; set;
+        }
 
     }
 }

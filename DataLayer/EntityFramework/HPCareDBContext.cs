@@ -34,8 +34,6 @@ namespace DataLayer.EntityFramework {
             modelBuilder.Entity<RegularExam>().ToTable("RegularExam");
             modelBuilder.Entity<Staff>().ToTable("Staff");
             modelBuilder.Entity<Patient>().ToTable("Patient");
-            modelBuilder.Entity<FirstVisit>().ToTable("FirstVisit");
-            modelBuilder.Entity<SubsequentVisit>().ToTable("SubsequentVisit");
         }
 
         public virtual DbSet<Gender> Genders {
@@ -69,9 +67,7 @@ namespace DataLayer.EntityFramework {
         public virtual DbSet<Disease> Diseases {
             get; set;
         }
-
-
-
+        
         public virtual DbSet<LabExams> LabExams {
             get; set;
         }
@@ -83,8 +79,6 @@ namespace DataLayer.EntityFramework {
         public DbSet<MCDT> MCDTs {
             get; set;
         }
-
-       
 
         public virtual DbSet<MCDTManager> MCDTManagers {
             get; set;
@@ -209,7 +203,6 @@ namespace DataLayer.EntityFramework {
         public virtual DbSet<Visit> Visits {
             get; set;
         }
-
 
         public virtual DbSet<VisitManager> VisitManagers {
             get; set;

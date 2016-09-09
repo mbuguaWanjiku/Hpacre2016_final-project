@@ -61,7 +61,6 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Class1.cs" />
     <Compile Include="Entities\DiagnosisEntities\CIDCode.cs" />
     <Compile Include="Entities\DiagnosisEntities\CID_Category.cs" />
     <Compile Include="Entities\DiagnosisEntities\CID_DiseaseCode.cs" />
@@ -120,12 +119,9 @@
     <Compile Include="Entities\UserEntities\Staff.cs" />
     <Compile Include="Entities\UserEntities\User.cs" />
     <Compile Include="Entities\VisitsEntities\ClinicRegistryManager.cs" />
-    <Compile Include="Entities\VisitsEntities\FirstVisit.cs" />
     <Compile Include="Entities\VisitsEntities\HomeVisit.cs" />
     <Compile Include="Entities\VisitsEntities\HomeVisitManager.cs" />
     <Compile Include="Entities\VisitsEntities\Observations.cs" />
-    <Compile Include="Entities\VisitsEntities\Registry.cs" />
-    <Compile Include="Entities\VisitsEntities\SubsequentVisit.cs" />
     <Compile Include="Entities\VisitsEntities\Visit.cs" />
     <Compile Include="Entities\VisitsEntities\VisitManager.cs" />
     <Compile Include="EntityFramework\HPCareDBContext.cs" />

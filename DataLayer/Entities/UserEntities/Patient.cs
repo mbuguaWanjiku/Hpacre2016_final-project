@@ -32,5 +32,13 @@ namespace DataLayer.Entities {
             get; set;
         }
 
+        public bool IsAlive {
+            get; set;
+        }
+
+        public DateTime Patient_DOB {
+            get; set;
+        }
+
     }
 }
