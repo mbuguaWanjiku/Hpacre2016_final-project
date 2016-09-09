@@ -98,28 +98,28 @@ app.controller("LabExamsController", function ($scope, LabExamsFactory, alert, $
         mcdtId = id;
         switch (mcdtType) {
             case 0:
-                alert.kft("");
+                alertMcdt.kft("");
                 break;
             case 1:
-                alert.lft("");
+                alertMcdt.lft("");
                 break;
             case 2:
-                alert.lymphocyte("");
+                alertMcdt.lymphocyte("");
                 break;
             case 3:
-                alert.platelets("");
+                alertMcdt.platelets("");
                 break;
             case 4:
-                alert.rbcIndices("");
+                alertMcdt.rbcIndices("");
                 break;
             case 5:
-                alert.rbcs("");
+                alertMcdt.rbcs("");
                 break;
             case 6:
-                alert.viral("");
+                alertMcdt.viral("");
                 break;
             default:
-                alert.wbcs("");
+                alertMcdt.wbcs("");
         }
     }
 
