@@ -35,8 +35,8 @@ namespace BusinessLayer.Implementation
                     id = GetIntSafely(dbDataReader, 0);
                 }
                 dbDataReader.Close();
-
-                return new impPatientViewModel().getPatientInformation(id);
+                return (id == 0 ? null : new impPatientViewModel().getPatientInformation(id));
+                //return new impPatientViewModel().getPatientInformation(id);
                 //return new HPCareDBContext().Users.Find(id);
             }
         }

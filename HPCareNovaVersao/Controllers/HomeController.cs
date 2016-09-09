@@ -75,14 +75,19 @@ namespace PresentationLayer.Controllers {
             return PartialView();
         }
 
-        public JsonResult Search(string search) {
+        public bool Search(string search) {
             ImpHome homeImplementation = new ImpHome();
             //string aux = Request.QueryString["search"];
             string aux = search;
             PatientViewModel patient = homeImplementation.AccessDatabase(aux);
-            Session["patientId"] = patient.User_id;
-
-            return Json(patient, JsonRequestBehavior.AllowGet);
+            if (patient !=null)
+            {
+                Session["patientId"] = patient.User_id;
+                return true;
+            }
+         
+            return false;
+            //return Json(patient, JsonRequestBehavior.AllowGet);
         }
 
        

@@ -39,20 +39,20 @@ app.factory('alert', function ($uibModal) {
         });
     }
 
-    fac.visitManager = function () {
+    //fac.visitManager = function () {
 
-        return $uibModal.open({
-            backdrop: 'static',
-            //keyboard: false,
-            templateUrl: 'VisitManager.html',
-            controller: function () {
-                var vm = this;
+    //    return $uibModal.open({
+    //        backdrop: 'static',
+    //        //keyboard: false,
+    //        templateUrl: 'VisitManager.html',
+    //        controller: function () {
+    //            var vm = this;
              
 
-            },
-            controllerAs: 'vm'
-        });
-    }
+    //        },
+    //        controllerAs: 'vm'
+    //    });
+    //}
     fac.showObservation = function (obs) {
      
         return $uibModal.open({
@@ -65,7 +65,8 @@ app.factory('alert', function ($uibModal) {
             controllerAs: 'vm'
         });
     }
-    
+  
+
 
 
 

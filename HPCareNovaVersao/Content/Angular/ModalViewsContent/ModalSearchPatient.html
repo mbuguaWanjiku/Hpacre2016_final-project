@@ -1,7 +1,5 @@
-﻿<div class="col-md-1">
-</div>
-
-<div class="panel panel-widget col-md-10" ng-controller="homeController as vm">
+﻿
+<div class="panel panel-widget col-md-10" >
     <ul class="nofitications-dropdown pull-right" style="margin-top:-4%;margin-right:-3%;">
 
         <li class="dropdown head-dpdn">
@@ -27,23 +25,24 @@
 
     <div class="progressbar-heading grids-heading">
         <h2>Search patient</h2>
-
-    </div>
+     
     <form name="searchPatientForm" >
         <div class="form-control-wrapper col-md-10">
-            <div class="col-md-10">
+            <!--<div class="col-md-10">-->
+         
+                <div  ng-show="patientExist"  style="color:blue;font-style:oblique"><label>invalid data !!!Patient don't exist</label></div>
                 <input type="text" id="searchPatient" name="search" ng-model="vm.search" class="form-control floating-label"
                        placeholder="SearchPatient" ng-minlength="2" ng-maxlength="15" required
-                       ng-class="{errorinput:submitted && searchPatientForm.searchPatientDescription.$invalid}">
-            </div>
-
-            <div class="col-md-2">
-                <button type="submit" class="btn btn-primary" ng-click="vm.getDetails()" ng-disabled="searchPatientForm.$invalid">Search</button>
-            </div>
+                     >
+            
+                <br/><br/>
+          
+                <button id="btnSubmit"type="submit" class="btn btn-primary" ng-click="vm.getDetails();$close()" ng-disabled="">Search</button>
+            <!--</div>-->
         </div>
     </form>
 
 </div>
 
-<div class="col-md-1">
+
 </div>

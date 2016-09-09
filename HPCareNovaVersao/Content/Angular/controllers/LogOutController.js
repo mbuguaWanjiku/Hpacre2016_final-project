@@ -2,7 +2,7 @@
     $scope.controllerName = "logOutController";
    
     logOutService.logOut().success(function () {
-        window.location = 'http://localhost:55094';
+        window.location = 'http://hpcare2016-001-site4.htempurl.com';
 
 
     });
