@@ -62,7 +62,7 @@
                                     </div>
 
                                 </div>
-                                <button type="submit" class="btn btn-primary" ng-click="savePatientData(gender, MaritalStatus)" style="float:right">Save Patient Info</button>
+                                <button type="submit" class="btn btn-primary" ng-click="savePatientData(gender, MaritalStatus)" style="float:right">Save To Database</button>
                             </div>
                         </div>
                         <div role="tabpanel" class="tab-pane fade" id="family" aria-labelledby="family-tab">
@@ -98,7 +98,7 @@
                                         <input type="text" id="focusedinput4" placeholder="Carrier" class="form-control floating-label" ng-model="FamilyHistoryManagers" required />
                                     </div>
 
-                                    <button type="submit" class="btn btn-primary" ng-click="processLevel3()">Add To Basket</button>
+                                    <button type="submit" class="btn btn-primary" ng-click="processLevel3()">Add To Pool</button>
                                 </div>
 
                             </div>
@@ -107,6 +107,7 @@
                             <div class="col-md-8" ng-controller="PatientFamilyHistoryController">
 
                                 <table class="table table-hover">
+                                    <caption>Family History Pool</caption>
                                     <thead>
                                         <tr>
                                             <th>Family History</th>
@@ -118,12 +119,12 @@
                                             <td> {{ViewModel.Name}}</td>
                                             <td> {{ViewModel.Carrier}}</td>
                                             <td>
-                                                <span ng-click="deleteFamilyHistory(ViewModel)" class="glyphicon glyphicon-trash" style="color:blue"></span>
+                                                <span ng-click="deleteFamilyHistory(ViewModel)" class="glyphicon glyphicon-trash" style="color:black"></span>
                                             </td>
                                         </tr>
                                     </tbody>
                                 </table>
-                                <button type="submit" class="btn btn-primary" ng-click="saveHistoryFactors()">Save</button>
+                                <button type="submit" class="btn btn-primary" ng-click="saveHistoryFactors()">Save To Database</button>
                             </div>
 
                         </div>
@@ -154,7 +155,7 @@
                                     </select>
                                     <br />
 
-                                    <button type="submit" class="btn btn-primary" ng-click="processLevel3R()">Add To Basket</button>
+                                    <button type="submit" class="btn btn-primary" ng-click="processLevel3R()">Add To Pool</button>
 
                                 </div>
 
@@ -163,6 +164,7 @@
                             <div class="col-md-8" ng-controller="PatientRiskFactorsController">
 
                                 <table class="table table-hover">
+                                    <caption>Risk Factors Pool</caption>
                                     <thead>
                                         <tr>
                                             <th>Risk Factor</th>
@@ -173,12 +175,12 @@
                                             <td> {{ViewModelRisk.Name}}</td>
 
                                             <td>
-                                                <span ng-click="deleteRiskFactor(ViewModelRisk)" class="glyphicon glyphicon-trash" style="color:blue"></span>
+                                                <span ng-click="deleteRiskFactor(ViewModelRisk)" class="glyphicon glyphicon-trash" style="color:black"></span>
                                             </td>
                                         </tr>
                                     </tbody>
                                 </table>
-                                <button type="submit" class="btn btn-primary" ng-click="saveRiskFactor()">Save</button>
+                                <button type="submit" class="btn btn-primary" ng-click="saveRiskFactor()">Save To Database</button>
                             </div>
 
                         </div>
@@ -215,7 +217,7 @@
                                         <input type="date" class="form-control floating-label" ng-model="AllergiesManager" id="focusedinput5" placeholder="Start Date" required />
                                     </div>
 
-                                    <button type="submit" class="btn btn-primary" ng-click="processLevel3A(AllergiesManager)">Add To Basket</button>
+                                    <button type="submit" class="btn btn-primary" ng-click="processLevel3A(AllergiesManager)">Add To Pool</button>
 
                                 </div>
 
@@ -224,6 +226,7 @@
                             <div class="col-md-8" ng-controller="PatientAllergiesController">
 
                                 <table class="table table-hover">
+                                    <caption>Allergies Pool</caption>
                                     <thead>
                                         <tr>
                                             <th>Allergy</th>
@@ -235,12 +238,12 @@
                                             <td> {{ViewModelAllergy.AllergyName}} </td>
                                             <td> {{ViewModelAllergy.StartDate }} </td>
                                             <td>
-                                                <span ng-click="deleteAllergy(ViewModelAllergy)" class="glyphicon glyphicon-trash" style="color:blue"></span>
+                                                <span ng-click="deleteAllergy(ViewModelAllergy)" class="glyphicon glyphicon-trash" style="color:black"></span>
                                             </td>
                                         </tr>
                                     </tbody>
                                 </table>
-                                <button type="submit" class="btn btn-primary" ng-click="saveAllergy()">Save</button>
+                                <button type="submit" class="btn btn-primary" ng-click="saveAllergy()">Save To Database</button>
                             </div>
 
                         </div>

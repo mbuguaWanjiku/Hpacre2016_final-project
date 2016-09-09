@@ -112,6 +112,7 @@
     <Compile Include="Entities\UserEntities\MaritalStatus.cs" />
     <Compile Include="Entities\UserEntities\Patient.cs" />
     <Compile Include="Entities\UserEntities\Person.cs" />
+    <Compile Include="Entities\UserEntities\Photo.cs" />
     <Compile Include="Entities\UserEntities\ProfessionalsType.cs" />
     <Compile Include="Entities\UserEntities\RiskFactors.cs" />
     <Compile Include="Entities\UserEntities\RiskFactorsManager.cs" />

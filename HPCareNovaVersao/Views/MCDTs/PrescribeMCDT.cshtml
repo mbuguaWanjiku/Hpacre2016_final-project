@@ -29,7 +29,7 @@
 
         <div id="mcdtDropDown" class="form-control-wrapper dropdown dropdown-toggle">
 
-            <label>Choose MCDT</label><br />
+            <label>Add MCDT to Pool</label><br />
 
             <select id="MCDTid_level1"
                     class="form-control"
@@ -71,7 +71,7 @@
 
     <div class="col-md-8" ng-controller="MCDTController">
         <table class="table table-hover">
-            <caption>Prescribed MCDTS</caption>
+            <caption>Prescribed MCDTS Pool</caption>
             <thead>
                 <tr>
                     <th>Type</th>
@@ -91,14 +91,14 @@
                         {{mcdt.desc}}
                     </td>
                     <td>
-                        <span ng-click="deleteMCDT(mcdt)" class="glyphicon glyphicon-trash" style="color:blue"></span>
+                        <span ng-click="deleteMCDT(mcdt)" class="glyphicon glyphicon-trash" style="color:black"></span>
 
                     </td>
                 </tr>
             </tbody>
         </table>
         <div class="modal-footer">
-            <button type="submit" class="btn btn-primary" ng-click="saveMcdts()">Save MCDTS</button>
+            <button type="submit" class="btn btn-primary" ng-click="saveMcdts()">Save To Database</button>
         </div>
     </div>
 

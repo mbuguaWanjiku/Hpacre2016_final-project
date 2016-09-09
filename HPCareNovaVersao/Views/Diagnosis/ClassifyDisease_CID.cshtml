@@ -46,7 +46,7 @@
                 </select>
 
                 <div class="modal-footer">
-                    <button type="submit" class="btn btn-primary" ng-click="" ng-disabled="diagnosisForm.$invalid">Add To Basket</button>
+                    <button type="submit" class="btn btn-primary" ng-click="" ng-disabled="diagnosisForm.$invalid">Add To Pool</button>
                 </div>
                 <br />
             </div>
@@ -58,7 +58,7 @@
     <div class="col-md-8  pull-right" ng-controller="DiagnosisController">
 
         <table class="table table-hover">
-            <caption>Disease CID Classification</caption>
+            <caption>CID Disease Classification Pool</caption>
             <thead>
                 <tr>
                     <th>Category</th>
@@ -72,14 +72,14 @@
                     <td> {{DiseaseCID.CIDCategory.Description}} </td>
                     <td> {{DiseaseCID.DiseaseCode}} </td>
                     <td>
-                        <span ng-click="deleteCIDCODE(DiseaseCID)" class="glyphicon glyphicon-trash" style="color:blue"></span>
+                        <span ng-click="deleteCIDCODE(DiseaseCID)" class="glyphicon glyphicon-trash" style="color:black"></span>
                     </td>
                 </tr>
             </tbody>
         </table>
 
         <div class="modal-footer">
-            <button type="submit" class="btn btn-primary" ng-click="saveCIDCODE()">Save CIDCods</button>
+            <button type="submit" class="btn btn-primary" ng-click="saveCIDCODE()">Save To Database</button>
         </div>
     </div>
     <canvas id="viewport" width="10" height="10"></canvas>

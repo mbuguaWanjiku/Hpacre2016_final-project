@@ -38,16 +38,16 @@
                     <option value="StartDate" selected="selected">StartDate</option>
                    
                     <option value="EndDate">EndDate</option>
-                    <option value="DiseaseCIDCategory">CID Category</option>
-                    <option value="DiseaseCIDCode">Disease CID</option>
+                    <option value="DiseaseCIDCategory">ICD Category</option>
+                    <option value="DiseaseCIDCode">Disease ICD</option>
                 </select><span></span>
                 <input type="number" step="2" min="0" max="20" ng-model="vm.rowLimit" placeholder="rows" style="width:140px" />
             </div>
 
             <table class="table table-hover form-control-wrapper">
-                <caption>Patient inactive diseases</caption>
+                <caption>Inactive Diseases Pool</caption>
                 <thead>
-                    <tr><td>No</td>
+                    <tr><td>Nr</td>
                         <th>Start Date</th>
                         <th>End Date</th>
                         <th>ICD Version</th>
