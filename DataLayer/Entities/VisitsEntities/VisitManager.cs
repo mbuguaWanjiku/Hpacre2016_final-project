@@ -29,10 +29,6 @@ namespace DataLayer.Entities.Visitas {
             get; set;
         }
 
-        //redudant
-        public virtual Registry VisitRegistry {
-            get; set;
-        }
     }
 
 }

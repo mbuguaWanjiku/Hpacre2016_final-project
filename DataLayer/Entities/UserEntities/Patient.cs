@@ -36,7 +36,7 @@ namespace DataLayer.Entities {
             get; set;
         }
 
-        public DateTime Patient_DOB {
+        public DateTime? Patient_DOB {
             get; set;
         }
 
