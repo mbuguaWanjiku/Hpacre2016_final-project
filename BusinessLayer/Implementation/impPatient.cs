@@ -270,6 +270,10 @@ namespace BusinessLayer.Implementation {
             return patientMcdtHistory;
         }
 
+        /// <summary>
+        /// Accesses the get patient MCDTS history.
+        /// </summary>
+        /// <param name="idPatient">The identifier patient.</param>
         private void AccessGetPatientMcdtsHistory(int idPatient) {
             using (SqlConnection connection = new SqlConnection("Data Source=SQL5025.myASP.NET;Initial Catalog=DB_A0ADFA_HPCareDBContext;User Id=DB_A0ADFA_HPCareDBContext_admin;Password=hpcare2016;")) {
                 SqlCommand command = new SqlCommand("SELECT MCDTs.MCDT_date, MCDTs.Discriminator FROM ClinicRegistryManagers INNER JOIN MCDTManagers ON ClinicRegistryManagers.ClinicRegistryManagerId = MCDTManagers.clinicRegistryManager_ClinicRegistryManagerId " +

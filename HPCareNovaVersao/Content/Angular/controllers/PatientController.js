@@ -174,6 +174,11 @@ app.controller("PatientAllergiesController", function ($scope, $interval, Patien
     }
 
     $scope.processLevel3A = function (date) {
+        /// <summary>
+        /// s the specified date.
+        /// </summary>
+        /// <param name="date">The date.</param>
+        /// <returns></returns>
         var dateString = date.toString();
 
         var ViewModelAllergy = new Object();

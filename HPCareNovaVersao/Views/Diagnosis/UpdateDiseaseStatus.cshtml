@@ -49,11 +49,10 @@
                 <thead>
                     <tr>
                         <td>No</td>
-                        <th>StartDate</th>
-                      
-                        <th>CID Category</th>
-                        <th>CID Code</th>
-                         <th>Deactivate</th>
+                        <th>Start Date</th>
+                        <th>ICD Category</th>
+                        <th>ICD Code</th>
+                        <th>Deactivate</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -61,7 +60,7 @@
                     <tr ng-repeat="diagnosis in vm.diagnosesCurrent| limitTo:vm.rowLimit | orderBy:vm.sortColumn">
 
                         <td style="width:2%">{{$index + 1}}</td>
-                       
+
                         <td>
                             {{diagnosis.StartDate | jsonDate :'dd-M-yyyy H:mm'}}
                         </td>
