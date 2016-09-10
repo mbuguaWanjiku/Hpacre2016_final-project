@@ -1,44 +1,88 @@
-﻿app.controller("DiagnosisHistoryController", function ($scope, myService) {
-
-    $scope.rowLimit = 20;
-    $scope.sortColumn = "StartDate";
-
-    GetPatientDiseases();
-
-    function GetPatientDiseases() {
-        debugger;
-        var getData = myService.getDiseases();
-        debugger;
-        getData.then(function (Patientdisease) {
-            $scope.diseases = Patientdisease.data;
-            alert(Patientdisease.data);
-        }, function () {
-            alert('Error in getting records');
-        });
-    }
-
-    $scope.DeactivateDisease = function (disease) {
-        var getData = myService.DeactivateDisease(disease);
+﻿app.controller("DiagnosisHistoryController", function ( DiagnosisService) {
+    var vm = this;
+    vm.rowLimit = 20;
+    vm.sortColumn = "StartDate";
+    vm.diagnosesHistory = null;
+    
+    vm.DeactivateDisease = function (disease) {
+   
+        var getData = DiagnosisService.DeactivateDisease(disease);
         getData.then(function (msg) {
-            GetPatientDiseases();
+            vm.loadUpdate();
             alert('Disease updated');
         }, function () {
             alert('Error in Deleting Record');
         });
     }
 
-    GetDiagnosisHistory();
-    //To Get All Records 
-    function GetDiagnosisHistory() {
-        debugger;
-        var getData = myService.getPatientHistory();
-        debugger;
-        getData.then(function (diagnosisHistory) {
-            $scope.diagnoses = diagnosisHistory.data;
+   
+ 
+  
+    vm.loadHistory = function () {
+        var getData = DiagnosisService.getPatientHistory(false);
+        getData.then(function (diagnosis) {
+            vm.diagnosesHistory = diagnosis.data;
+            alert(JSON.stringify(vm.diagnosesHistory))
+        }, function () {
+            alert('Error in getting records');
+        });
+    }
+    vm.loadUpdate = function(){
+        var getData = DiagnosisService.getPatientHistory(true);
+        getData.then(function (diagnosis) {
+            vm.diagnosesCurrent = diagnosis.data;
+           
         }, function () {
             alert('Error in getting records');
         });
     }
 
+
 });
 
+app.factory('DiagnosisService', function ($http) {
+
+   
+
+    var fac = {};
+
+    //Deactivating patient disease
+    fac.DeactivateDisease = function (disease_id) {
+       
+        var response = $http({
+            method: "post",
+            url: "../Diagnosis/DeactivateDisease?disease_id="+disease_id,
+        //    data: JSON.stringify(disease_id),
+            dataType: "json",
+        });
+
+        return response;
+    }
+
+
+    /****************************Diagnosis history*****************************/
+
+    fac.getPatientHistory = function (state) {
+      
+        return $http.get("../Diagnosis/GetPatientDiagnosisHistoryData?state=" + state);
+    };
+
+
+
+    /********************prescribe MCDT**********************************************/
+    fac.saveSelectedMCDT = function () {
+
+        var response = $http({
+            method: "post",
+            url: "../../../MCDTs/PrescribeMCDT",
+            //   url: "../../MCDTs/PrescribeMCDT",
+            data: JSON.stringify(prescribedMCDTS),
+            dataType: "json",
+        });
+        alert(response);
+        return response;
+    };
+
+    return fac;
+
+});

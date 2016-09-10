@@ -26,5 +26,9 @@ namespace BusinessLayer.Implementation {
         public string PhysicianName {
             get; set;
         }
+        public int Disease_id
+        {
+            get; set;
+        }
     }
 }

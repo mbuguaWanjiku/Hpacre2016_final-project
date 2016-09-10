@@ -1,6 +1,6 @@
 ﻿var CIDclassificationVW = [];
 var CIDclassificationDB = [];
-app.controller("DiagnosisController", function ($scope, $interval,alert, DiagnosisService) {
+app.controller("DiagnosisController", function ($scope, $interval,alert, CIDService) {
     $scope.CidCode = null;
     $scope.category = null;
     $scope.CIDclassificationBuffer = [];
@@ -10,7 +10,7 @@ app.controller("DiagnosisController", function ($scope, $interval,alert, Diagnos
 
 
     // Populate Category
-    var getData = DiagnosisService.GetCategory();
+    var getData = CIDService.GetCategory();
     getData.then(function (dt) {
         $scope.CategoryList = dt.data;
     }, function (error) {
@@ -24,7 +24,7 @@ app.controller("DiagnosisController", function ($scope, $interval,alert, Diagnos
     $scope.GetCode = function () {
         //Load cidCode
 
-        DiagnosisService.GetCode($scope.category.CID_CategorID).then(function (d) {
+        CIDService.GetCode($scope.category.CID_CategorID).then(function (d) {
             $scope.CodeList = d.data;
             $scope.StateTextToShow = "Select State";
         }, function (error) {
@@ -48,7 +48,7 @@ app.controller("DiagnosisController", function ($scope, $interval,alert, Diagnos
     }
     $scope.saveCIDCODE = function () {
         if ($scope.CIDclassificationBuffer.length > 0) {
-            var getData = DiagnosisService.SaveCIDclassificationDB($scope.CIDclassificationBuffer);
+            var getData = CIDService.SaveCIDclassificationDB($scope.CIDclassificationBuffer);
 
             getData.then(function (msg) {
                 alert.success('diagnosis posted');
@@ -66,7 +66,7 @@ app.controller("DiagnosisController", function ($scope, $interval,alert, Diagnos
 
 
 })
-app.factory('DiagnosisService', function ($http) {
+app.factory('CIDService', function ($http) {
     var fac = {};
     fac.GetCategory = function () {
         return $http.get("../Diagnosis/GetCidCodeCategories");

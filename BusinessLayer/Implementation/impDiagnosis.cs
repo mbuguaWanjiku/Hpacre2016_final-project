@@ -25,12 +25,12 @@ namespace BusinessLayer.Implementation
             this.db = db;
         }
 
-        public string DeactivateDisease(Disease disease)
+        public string DeactivateDisease(int diseaseId)
         {
-            if (disease != null)
+            if (diseaseId > 0)
             {
 
-                Disease diseaseUpdated = db.Diseases.Find(disease.Disease_id);
+                Disease diseaseUpdated = db.Diseases.Find(diseaseId);
                 diseaseUpdated.Disease_is_active = false;
                 diseaseUpdated.Disease_end_date = DateTime.Now;
                 db.Entry(diseaseUpdated).State = EntityState.Modified;

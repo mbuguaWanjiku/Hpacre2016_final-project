@@ -47,8 +47,8 @@ namespace PresentationLayer.Controllers {
         }
 
         [HttpPost]
-        public string DeactivateDisease(Disease disease) {
-            return impDiagnosis.DeactivateDisease(disease);
+        public string DeactivateDisease(int disease_id) {
+            return impDiagnosis.DeactivateDisease(disease_id);
         }
 
         public ActionResult UpdateDiseaseStatus() {
@@ -59,12 +59,17 @@ namespace PresentationLayer.Controllers {
             return PartialView("~/Views/Diagnosis/UpdateDiseaseStatus.cshtml");
         }
 
-        public JsonResult GetPatientActiveDisease() {
-            Patient patient = db.Users.Find((int)Session["patientId"]) as Patient;
+        //public JsonResult GetPatientActiveDisease() {
+        //    //Patient patient = db.Users.Find((int)Session["patientId"]) as Patient;
 
-            var diseaseList = impDiagnosis.getPatientActiveDiseases(patient);
-            return Json(diseaseList, JsonRequestBehavior.AllowGet);
-        }
+        //    //var diseaseList = impDiagnosis.getPatientActiveDiseases(patient);
+        //    //return Json(diseaseList, JsonRequestBehavior.AllowGet);
+        //    ImpPatientDiagnosisHistory history = new ImpPatientDiagnosisHistory(db, 1);
+        //    Patient patient = db.Users.Find((int)Session["patientId"]) as Patient;
+
+        //    List<PatientDiseaseHistoryVM> HistoryList = history.GetDiagnosisHistory(patient);
+        //    return Json(HistoryList, JsonRequestBehavior.AllowGet);
+        //}
 
         public ActionResult GetPatientInActiveDisease() {
             Patient patient = db.Users.Find((int)Session["patientId"]) as Patient;
@@ -76,9 +81,9 @@ namespace PresentationLayer.Controllers {
         public ActionResult GetPatientDiagnosisHistory() {
             return PartialView();
         }
-
-        public JsonResult GetPatientDiagnosisHistoryJson() {
-            ImpPatientDiagnosisHistory history = new ImpPatientDiagnosisHistory();
+        [HttpGet]
+        public JsonResult GetPatientDiagnosisHistoryData(bool state) {
+            ImpPatientDiagnosisHistory history = new ImpPatientDiagnosisHistory(db,state);
             Patient patient = db.Users.Find((int)Session["patientId"]) as Patient;
 
             List<PatientDiseaseHistoryVM> HistoryList = history.GetDiagnosisHistory(patient);

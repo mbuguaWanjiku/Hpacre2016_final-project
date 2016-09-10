@@ -20,7 +20,7 @@ namespace PresentationLayer.Controllers {
 
         public PatientController() {
             impPatient = new impPatient(db);
-            impHistory = new ImpPatientDiagnosisHistory();
+            impHistory = new ImpPatientDiagnosisHistory(db,false);
             impMedication = new ImpMedicationHistory();
             current = new CurrentUserId();
         }

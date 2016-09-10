@@ -43,7 +43,7 @@ namespace HPCareNovaVersao.Tests.Controllers
             impDiagnosis diagnosis = new impDiagnosis(dbContext);
             Disease disease = dbContext.Diseases.FirstOrDefault();
 
-            string results = diagnosis.DeactivateDisease(disease);
+            string results = diagnosis.DeactivateDisease(disease.Disease_id);
             string expected = "Disease Deactivated";
 
             //assert
@@ -59,7 +59,7 @@ namespace HPCareNovaVersao.Tests.Controllers
             impDiagnosis diagnosis = new impDiagnosis(dbContext);
             Disease disease = dbContext.Diseases.FirstOrDefault();
 
-            string results = diagnosis.DeactivateDisease(disease);
+            string results = diagnosis.DeactivateDisease(disease.Disease_id);
             string expected = "null";
 
             //assert
@@ -91,7 +91,7 @@ namespace HPCareNovaVersao.Tests.Controllers
             impDiagnosis diagnosis = new impDiagnosis(dbContext);
             //act
             Disease disease = null;
-            string results = diagnosis.DeactivateDisease(disease);
+            string results = diagnosis.DeactivateDisease(disease.Disease_id);
             string expected = "Invalid data";
             //assert
             test = extentReport.StartTest("Save Diagnosis null instance", "Test empty instance ");

@@ -52,7 +52,7 @@ namespace DataLayer.Entities.Visitas {
             get; set;
         }
 
-        public virtual Staff Staff_doctor {
+        public  Staff Staff_doctor {
             get; set;
         }
 

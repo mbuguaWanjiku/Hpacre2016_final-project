@@ -59,6 +59,7 @@
     <Compile Include="Implementation\ImpTherapy.cs" />
     <Compile Include="Implementation\ImpTreatmentPlan.cs" />
     <Compile Include="Implementation\ViewModels\AllergiesViewModel.cs" />
+    <Compile Include="Implementation\ViewModels\DiseaseVM.cs" />
     <Compile Include="Implementation\ViewModels\FamilyHistoryViewModel.cs" />
     <Compile Include="Implementation\ViewModels\InterventionVM.cs" />
     <Compile Include="Implementation\ViewModels\McdtViewModel.cs" />

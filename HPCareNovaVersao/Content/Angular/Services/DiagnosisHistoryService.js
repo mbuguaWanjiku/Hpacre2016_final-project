@@ -1,59 +1,50 @@
-﻿app.service("myService", function ($http) {
+﻿app.factory('DiagnosisService', function ($http) {
 
-    //get All  patient diseases
-    this.getDiseases = function () {
-      alert("getdisesas")
-        return $http.get("../Diagnosis/GetPatientActiveDisease");
-    };
+    ////get All  patient diseases
+    //this.getDiseases = function () {
 
-  
+    //    return $http.get("../Diagnosis/GetPatientActiveDisease");
+    //};
+
+    var fac = {};
 
     //Deactivating patient disease
-    this.DeactivateDisease = function (disease) {
+    fac.DeactivateDisease = function (disease_Id) {
+        alert(disease_Id);
         var response = $http({
             method: "post",
             url: "../Diagnosis/DeactivateDisease",
-            data: JSON.stringify(disease),
-            dataType: "json",      
+            data: JSON.stringify(disease_Id),
+            dataType: "json",
         });
-        alert(disease +"called");
+
         return response;
     }
 
 
     /****************************Diagnosis history*****************************/
-   
-    this.getPatientHistory = function () {
-        return $http.get("../Diagnosis/GetPatientDiagnosisHistoryJson");
+
+    fac.getPatientHistory = function (state) {
+        alert(state+"debug");
+        return $http.get("../Diagnosis/GetPatientDiagnosisHistoryJson?state=" + state);
     };
 
 
 
-/********************prescribe MCDT**********************************************/
-this.saveSelectedMCDT = function () {
+    /********************prescribe MCDT**********************************************/
+    fac.saveSelectedMCDT = function () {
 
-            var response = $http({
-                method: "post",
-                url: "../../../MCDTs/PrescribeMCDT",
-             //   url: "../../MCDTs/PrescribeMCDT",
-                data: JSON.stringify(prescribedMCDTS),
-                dataType: "json",
-            });
-         alert(response);
-            return response;
-};
-//this.savePrescribedMedication = function (PrescribedMed) {
-
-//    var response = $http({
-//        method: "post",
-//        url: "../../Medication/PrescribeMedication",
-//        //   url: "../../MCDTs/PrescribeMCDT",
-//        data: JSON.stringify(PrescribedMed),
-//        dataType: "json",
-//    });
-//    alert(response);
-//    return response;
-//};
-
-
+        var response = $http({
+            method: "post",
+            url: "../../../MCDTs/PrescribeMCDT",
+            //   url: "../../MCDTs/PrescribeMCDT",
+            data: JSON.stringify(prescribedMCDTS),
+            dataType: "json",
         });
+        alert(response);
+        return response;
+    };
+
+    return fac;
+
+});
