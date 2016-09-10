@@ -57,13 +57,15 @@ namespace BusinessLayer.Implementation
         {
             ObservationsVM vm = null;
             VisitManager vManager = null;
+           
+            db.Entry(registry).Reference(x => x.Staff_doctor).Load();
             List<Observations> obs = db.Observations.Where(x => x.clinicalRegistry.ClinicRegistryManagerId == registry.ClinicRegistryManagerId).ToList();
             int c = obs.Count;
             foreach (Observations item in obs)
             {
                 vManager = db.VisitManagers.Where(x => x.PatientVisitRegistry.ClinicRegistryManagerId == registry.ClinicRegistryManagerId).FirstOrDefault();
 
-                if (!vManager.Equals(null))
+                if (vManager !=null)
                 {
                     vm = new ObservationsVM();
                     vm.Subject = item.subject;

@@ -63,8 +63,7 @@
                         <td style="width:2%">{{$index + 1}}</td>
                        
                         <td>
-                            {{(diagnosis.StartDate | jsonDate :'' ) == "01-01-1970" ? "" : (diagnosis.EndDate | jsonDate: 'dd-MM-yyyy')}}
-                        
+                            {{diagnosis.StartDate | jsonDate :'dd-M-yyyy H:mm'}}
                         </td>
                         <td>
                             {{diagnosis.DiseaseCIDCategory}}
