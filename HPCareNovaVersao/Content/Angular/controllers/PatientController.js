@@ -173,17 +173,17 @@ app.controller("PatientAllergiesController", function ($scope, $interval, Patien
 
     }
 
-    $scope.processLevel3A = function () {
+    $scope.processLevel3A = function (date) {
+        var dateString = date.toString();
+
         var ViewModelAllergy = new Object();
         ViewModelAllergy.AllergyName = $scope.Allergies.Allergy_Name;
-        //ViewModelAllergy.StartDate = $scope.AllergiesManager.Allergy_start_date;
-        //ViewModelAllergy.EndDate = $scope.AllergiesManager.Allergy_end_date;
+        ViewModelAllergy.StartDate = dateString.substring(0, 15);
         tempListAllergyVm.push(ViewModelAllergy);
 
         var AllergiesManager = new Object();
         AllergiesManager.AllergiesManager_AllergiesId = $scope.Allergies.Allergy_id;
-        //AllergiesManager.Allergy_start_date = $scope.AllergiesManager.Allergy_start_date;
-        //AllergiesManager.Allergy_end_date = $scope.AllergiesManager.Allergy_end_date;
+        AllergiesManager.Allergy_start_date = date;
         tempListAllergy.push(AllergiesManager);
     }
 
@@ -227,9 +227,7 @@ app.controller("PatientController", function ($scope, alert, PatientFactory) {
             $scope.Address = $scope.Users[0].Address;
             $scope.Email = $scope.Users[0].Email;
             $scope.Telephone = $scope.Users[0].Telephone;
-            //if (dt.data[0] && dt.data[1] && dt.data[2]) {
-            //    $scope.Aux = true;
-            //}
+
         }, function (error) {
             alert.warning("Something went wrong ! Please try again. ");
         });

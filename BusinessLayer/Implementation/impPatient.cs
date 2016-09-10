@@ -58,7 +58,8 @@ namespace BusinessLayer.Implementation {
 
                 allergiesManager = new AllergiesManager {
                     AllergiesManager_AllergiesId = allergy.AllergiesManager_AllergiesId,
-                    AllergiesManager_PatientId = patient
+                    AllergiesManager_PatientId = patient,
+                    Allergy_start_date = allergy.Allergy_start_date
                 };
 
                 db.AllergiesManagers.Add(allergiesManager);
@@ -145,7 +146,7 @@ namespace BusinessLayer.Implementation {
         }
 
         private void AccessGetPatientAllergies(int patientId) {
-            Patient p = db.Users.Find(patientId) as Patient; 
+            Patient p = db.Users.Find(patientId) as Patient;
             AllergiesViewModel viewModel;
 
             var list = from a in db.AllergiesManagers
@@ -199,7 +200,6 @@ namespace BusinessLayer.Implementation {
             AccessGetPatientFamilyHistory(idPatient);
             return historyList;
         }
-
 
         private void AccessGetPatientFamilyHistory(int patientId) {
             Patient p = db.Users.Find(patientId) as Patient; //ir buscar ao session
@@ -299,7 +299,29 @@ namespace BusinessLayer.Implementation {
         }
 
         private void AccessGetPatientMedicationHistory(int idPatient) {
-            throw new NotImplementedException();
+            using (SqlConnection connection = new SqlConnection("Data Source=SQL5025.myASP.NET;Initial Catalog=DB_A0ADFA_HPCareDBContext;User Id=DB_A0ADFA_HPCareDBContext_admin;Password=hpcare2016;")) {
+                SqlCommand command = new SqlCommand("SELECT Drug_Name, drugcategories.description, Medication_Start_date, Medication_end_date FROM Patient INNER " +
+                    " JOIN ClinicRegistryManagers ON Patient.User_id = ClinicRegistryManagers.Clinic_patient_User_id INNER JOIN Users ON Patient.User_id = Users.User_id INNER  " +
+                    " JOIN Users AS Users_1 ON Patient.User_id = Users_1.User_id CROSS JOIN Drugs INNER JOIN DrugCategories ON Drugs.Category_category_id = " + 
+                    " DrugCategories.category_id INNER JOIN DrugIssuances ON Drugs.Drug_id = DrugIssuances.IssuedDrug_Drug_id and users.user_id = " + idPatient + "; ", connection);
+                command.CommandType = CommandType.Text;
+                command.Connection = connection;
+                connection.Open();
+
+                DbDataReader dbDataReader = command.ExecuteReader();
+                MedicationHistoryVm viewModel;
+
+                while (dbDataReader.Read()) {
+                    viewModel = new MedicationHistoryVm {
+                        DrugName = dbDataReader.GetString(0),
+                        Drugcategory = dbDataReader.GetString(1),
+                        StartDate = dbDataReader.GetDateTime(2),
+                        EndDate = dbDataReader.GetDateTime(3)
+                    };
+                    patientMedicationHistory.Add(viewModel);
+                }
+            }
+
         }
     }
 }

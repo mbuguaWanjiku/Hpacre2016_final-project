@@ -106,7 +106,7 @@
                                     <tbody>
                                         <tr ng-repeat="AllergyCategories in PatientAllergyCategories track by $index">
                                             <td> {{AllergyCategories.Allergy_Name}}</td>
-                                            <td> {{AllergyCategories.Allergy_start_date}}</td>
+                                            <td> {{AllergyCategories.Allergy_start_date | jsonDate :'dd-MM-yyyy' }}</td>
                                             <td> {{AllergyCategories.Allergy_end_date}}</td>
                                         </tr>
                                     </tbody>

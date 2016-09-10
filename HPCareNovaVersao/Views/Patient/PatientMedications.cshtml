@@ -21,8 +21,8 @@
                             <tr ng-repeat="MedicationHistoryVm in listMedications">
                                 <td> {{MedicationHistoryVm.DrugName}}</td>
                                 <td> {{MedicationHistoryVm.Drugcategory}}</td>
-                                <td> {{MedicationHistoryVm.StartDate}}</td>
-                                <td> {{MedicationHistoryVm.EndDate }}</td>
+                                <td> {{MedicationHistoryVm.StartDate | jsonDate :'dd-MM-yyyy' }}</td>
+                                <td> {{MedicationHistoryVm.EndDate | jsonDate :'dd-MM-yyyy' }}</td>
                             </tr>
                         </tbody>
                     </table>
