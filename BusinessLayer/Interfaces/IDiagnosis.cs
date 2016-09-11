@@ -10,7 +10,11 @@ namespace BusinessLayer.Interfaces
 {
     interface IDiagnosis
     {
-       
+
+        /// <summary>
+        /// Saves the diagnosis.
+        /// </summary>
+        /// <param name="classifications">The classifications.</param>
         void SaveDiagnosis(List<CID_DiseaseCode> classifications);
         string DeactivateDisease(int diseaseId);
        

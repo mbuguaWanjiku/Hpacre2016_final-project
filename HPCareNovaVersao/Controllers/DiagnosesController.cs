@@ -21,6 +21,9 @@ namespace PresentationLayer.Controllers {
 
         private impDiagnosis impDiagnosis;
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="DiagnosisController"/> class.
+        /// </summary>
         public DiagnosisController() {
             impDiagnosis = new impDiagnosis(db);
             db.Configuration.ProxyCreationEnabled = false;
@@ -30,10 +33,19 @@ namespace PresentationLayer.Controllers {
             return PartialView();
         }
 
+        /// <summary>
+        /// Classifies the disease cid.
+        /// </summary>
+        /// <returns></returns>
         public ActionResult ClassifyDisease_CID() {
             return PartialView();
         }
 
+        /// <summary>
+        /// Classifies the disease cid.
+        /// </summary>
+        /// <param name="CIDclassification">The ci dclassification.</param>
+        /// <returns></returns>
         [HttpPost]
         public string ClassifyDisease_CID(List<CID_DiseaseCode> CIDclassification) {
 

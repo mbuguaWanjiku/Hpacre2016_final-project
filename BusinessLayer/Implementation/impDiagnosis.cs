@@ -13,18 +13,15 @@ using System.Data.Entity.Infrastructure;
 using BusinessLayer.Implementation;
 using System.Web;
 
-namespace BusinessLayer.Implementation
-{/// <summary>
+namespace BusinessLayer.Implementation {/// <summary>
 /// This class implements patient IDiagnosis interface
 /// the constructor receives context as a parameter
 /// </summary>
-    public class impDiagnosis : IDiagnosis
-    {
+    public class impDiagnosis : IDiagnosis {
 
-       private HPCareDBContext db;
+        private HPCareDBContext db;
 
-        public impDiagnosis(HPCareDBContext db)
-        {
+        public impDiagnosis(HPCareDBContext db) {
             this.db = db;
         }
         /// <summary>
@@ -33,10 +30,8 @@ namespace BusinessLayer.Implementation
         /// </summary>
         /// <param name="diseaseId">The disease id associated to the diagnosis</param>
         /// <returns>success/insuccess message</returns>
-        public string DeactivateDisease(int diseaseId)
-        {
-            if (diseaseId > 0)
-            {
+        public string DeactivateDisease(int diseaseId) {
+            if (diseaseId > 0) {
 
                 Disease diseaseUpdated = db.Diseases.Find(diseaseId);
                 diseaseUpdated.Disease_is_active = false;
@@ -46,9 +41,7 @@ namespace BusinessLayer.Implementation
 
                 return "Disease Deactivated";
 
-            }
-            else
-            {
+            } else {
                 return "Invalid data";
             }
         }
@@ -58,10 +51,8 @@ namespace BusinessLayer.Implementation
         /// 
         /// </summary>
         /// <param name="classifications">Is list if CID codes/code  objects </param>
-        public void SaveDiagnosis(List<CID_DiseaseCode> classifications)
-        {
-            foreach (CID_DiseaseCode diseaseCODE in classifications)
-            {
+        public void SaveDiagnosis(List<CID_DiseaseCode> classifications) {
+            foreach (CID_DiseaseCode diseaseCODE in classifications) {
                 saveDiagnosisAUX(diseaseCODE);
             }
         }
@@ -71,26 +62,20 @@ namespace BusinessLayer.Implementation
         /// to the clincRegistry instance 
         /// </summary>
         /// <param name="disCode">ICD code object</param>
-        private void saveDiagnosisAUX(CID_DiseaseCode disCode)
-        {        
+        private void saveDiagnosisAUX(CID_DiseaseCode disCode) {
             CIDCode diseaseCode = db.CIDCodes.Where(x => x.CID_DiseaseCode.DiseaseCode == disCode.DiseaseCode &&
             x.CID_DiseaseCode.CIDCategory.CID_CategorID == disCode.CIDCategory.CID_CategorID).FirstOrDefault();
             Disease disease = new Disease { Disease_start_date = DateTime.Now, Disease_is_active = true };
             ClinicRegistryManager registry = SingletonClinicRegistry.GetInstance(db);
-            try
-            {
+            try {
                 Diagnosis diagnosis = new Diagnosis { Diagnosis_CID_code = diseaseCode, Diagnosis_disease = disease, ClinicRegistry_Manager = registry };
                 db.Diagnoses.Add(diagnosis);
                 db.SaveChanges();
                 //db.Entry(diagnosis).State = EntityState.Detached;
-            }
-            catch (System.Data.Entity.Validation.DbEntityValidationException dbEx)
-            {
+            } catch (System.Data.Entity.Validation.DbEntityValidationException dbEx) {
                 Exception raise = dbEx;
-                foreach (var validationErrors in dbEx.EntityValidationErrors)
-                {
-                    foreach (var validationError in validationErrors.ValidationErrors)
-                    {
+                foreach (var validationErrors in dbEx.EntityValidationErrors) {
+                    foreach (var validationError in validationErrors.ValidationErrors) {
                         string message = string.Format("{0}:{1}",
                             validationErrors.Entry.Entity.ToString(),
                             validationError.ErrorMessage);

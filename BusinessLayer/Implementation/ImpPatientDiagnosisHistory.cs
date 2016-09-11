@@ -14,8 +14,7 @@ namespace BusinessLayer.Implementation {
     public class ImpPatientDiagnosisHistory {
         private HPCareDBContext db;
         private bool state;
-        public ImpPatientDiagnosisHistory(HPCareDBContext db ,bool state)
-        {
+        public ImpPatientDiagnosisHistory(HPCareDBContext db, bool state) {
             this.db = db;
             this.state = state;
         }
@@ -34,11 +33,10 @@ namespace BusinessLayer.Implementation {
             PatientDiseaseHistoryVM diseaseHistory = null;
             List<PatientDiseaseHistoryVM> listaBuilder = new List<PatientDiseaseHistoryVM>();
 
-            foreach(int diagnosisID in GetPatientDiagnoses(patient)) {
+            foreach (int diagnosisID in GetPatientDiagnoses(patient)) {
                 diseaseHistory = new PatientDiseaseHistoryVM();
                 PatientDiseaseHistoryVM diagnosisHistory = GetDiagnosisHistoryObject(diagnosisID, diseaseHistory);
-                if (diseaseHistory.Disease_id != 0)
-                {
+                if (diseaseHistory.Disease_id != 0) {
                     listaBuilder.Add(diseaseHistory);
                 }
             }
@@ -49,11 +47,11 @@ namespace BusinessLayer.Implementation {
             List<Diagnosis> diagnosisRegistry = new List<Diagnosis>();
             List<int> diagnosisIDs = new List<int>();
 
-            foreach(ClinicRegistryManager registry in GetPatientClinicalRegisties(patient)) {
-                foreach(Diagnosis id in GetClinicalRegistryDiagnoses(registry.ClinicRegistryManagerId)) {
+            foreach (ClinicRegistryManager registry in GetPatientClinicalRegisties(patient)) {
+                foreach (Diagnosis id in GetClinicalRegistryDiagnoses(registry.ClinicRegistryManagerId)) {
 
                     //if(isInactive(id.Diagnosis_id)) {
-                        diagnosisIDs.Add(id.Diagnosis_id);
+                    diagnosisIDs.Add(id.Diagnosis_id);
                     //}
 
                 }
@@ -99,18 +97,18 @@ namespace BusinessLayer.Implementation {
         private PatientDiseaseHistoryVM GetDiagnosisHistoryObject(int diagnosisID, PatientDiseaseHistoryVM patientDiagnosis) {
 
             StringBuilder stringJson = new StringBuilder();
-            using(SqlConnection dbConnection = new SqlConnection("Data Source=SQL5025.myASP.NET;Initial Catalog=DB_A0ADFA_HPCareDBContext;User Id=DB_A0ADFA_HPCareDBContext_admin;Password=hpcare2016;"))
+            using (SqlConnection dbConnection = new SqlConnection("Data Source=SQL5025.myASP.NET;Initial Catalog=DB_A0ADFA_HPCareDBContext;User Id=DB_A0ADFA_HPCareDBContext_admin;Password=hpcare2016;"))
 
                 //using (SqlConnection dbConnection = new SqlConnection("Data Source= WANJIKU\\NEWSQLEXPRESS; Initial Catalog =HPCareDBContext; Integrated Security=SSPI"))
                 {
                 DbCommand dbCommand = dbConnection.CreateCommand();
                 dbCommand.CommandType = CommandType.Text;
-                string query = " SELECT CID_Category.Description, CID_DiseaseCode.DiseaseCode, CIDCodes.Version, Diseases.Disease_start_date, Diseases.Disease_end_date, Diagnosis.ClinicRegistry_Manager_ClinicRegistryManagerId, Disease_id FROM CID_Category INNER JOIN  CID_DiseaseCode ON CID_Category.CID_CategorID = CID_DiseaseCode.CIDCategory_CID_CategorID INNER JOIN CIDCodes ON CID_DiseaseCode.DiseaseCID_ID = CIDCodes.CID_DiseaseCode_DiseaseCID_ID INNER JOIN Diagnosis ON CIDCodes.CIDCOD_id = Diagnosis.Diagnosis_CID_code_CIDCOD_id INNER JOIN Diseases ON Diagnosis.Diagnosis_disease_Disease_id = Diseases.Disease_id  AND Disease_is_active = '"+state+"' AND Diagnosis.Diagnosis_id = " + diagnosisID;
+                string query = " SELECT CID_Category.Description, CID_DiseaseCode.DiseaseCode, CIDCodes.Version, Diseases.Disease_start_date, Diseases.Disease_end_date, Diagnosis.ClinicRegistry_Manager_ClinicRegistryManagerId, Disease_id FROM CID_Category INNER JOIN  CID_DiseaseCode ON CID_Category.CID_CategorID = CID_DiseaseCode.CIDCategory_CID_CategorID INNER JOIN CIDCodes ON CID_DiseaseCode.DiseaseCID_ID = CIDCodes.CID_DiseaseCode_DiseaseCID_ID INNER JOIN Diagnosis ON CIDCodes.CIDCOD_id = Diagnosis.Diagnosis_CID_code_CIDCOD_id INNER JOIN Diseases ON Diagnosis.Diagnosis_disease_Disease_id = Diseases.Disease_id  AND Disease_is_active = '" + state + "' AND Diagnosis.Diagnosis_id = " + diagnosisID;
                 dbCommand.CommandText = query;
                 dbConnection.Open();
                 DbDataReader dbDataReader = dbCommand.ExecuteReader();
-                while(dbDataReader.Read()) {
-                    if(stringJson.Length != 0) {
+                while (dbDataReader.Read()) {
+                    if (stringJson.Length != 0) {
                         stringJson.Append(",");
                     }
 
@@ -128,14 +126,25 @@ namespace BusinessLayer.Implementation {
             return patientDiagnosis;
         }
 
-        private string setPhysicianName(int id)
-        { ClinicRegistryManager registry = db.ClinicRegistryManagers.Where(x => x.ClinicRegistryManagerId == id).FirstOrDefault();
+        /// <summary>
+        /// Sets the name of the physician.
+        /// </summary>
+        /// <param name="id">The identifier.</param>
+        /// <returns></returns>
+        private string setPhysicianName(int id) {
+            ClinicRegistryManager registry = db.ClinicRegistryManagers.Where(x => x.ClinicRegistryManagerId == id).FirstOrDefault();
             db.Entry(registry).Reference(x => x.Staff_doctor).Load();
-           return registry.Staff_doctor.Name;
+            return registry.Staff_doctor.Name;
         }
-        private DateTime GetDateSafely(DbDataReader reader, int colIndex)
-        {
-            return (reader.IsDBNull(colIndex) ? new DateTime(1970,01,01) : reader.GetDateTime(colIndex));
+
+        /// <summary>
+        /// Gets the date safely.
+        /// </summary>
+        /// <param name="reader">The reader.</param>
+        /// <param name="colIndex">Index of the col.</param>
+        /// <returns></returns>
+        private DateTime GetDateSafely(DbDataReader reader, int colIndex) {
+            return (reader.IsDBNull(colIndex) ? new DateTime(1970, 01, 01) : reader.GetDateTime(colIndex));
         }
 
     }
