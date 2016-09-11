@@ -58,7 +58,6 @@
     <Compile Include="Implementation\impPatientViewModel.cs" />
     <Compile Include="Implementation\ImpRegularExamsHistory.cs" />
     <Compile Include="Implementation\impStaff.cs" />
-    <Compile Include="Implementation\ImpTherapy.cs" />
     <Compile Include="Implementation\ImpTreatmentPlan.cs" />
     <Compile Include="Implementation\ViewModels\AllergiesViewModel.cs" />
     <Compile Include="Implementation\ViewModels\DiseaseVM.cs" />
@@ -78,7 +77,6 @@
     <Compile Include="Interfaces\ILabExams.cs" />
     <Compile Include="Interfaces\IPatient.cs" />
     <Compile Include="Interfaces\IStaff.cs" />
-    <Compile Include="Interfaces\ITherapy.cs" />
     <Compile Include="Interfaces\IDiagnosis.cs" />
     <Compile Include="Interfaces\IMCDTs.cs" />
     <Compile Include="Interfaces\IMedication.cs" />

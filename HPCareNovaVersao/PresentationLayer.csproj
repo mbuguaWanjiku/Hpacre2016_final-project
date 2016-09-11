@@ -1197,6 +1197,7 @@
     <Content Include="Scripts\angular-animate.min.js.map" />
     <None Include="Properties\PublishProfiles\Default Settings %282%29.pubxml" />
     <None Include="Properties\PublishProfiles\Default Settings %283%29.pubxml" />
+    <None Include="Properties\PublishProfiles\Default Settings %284%29.pubxml" />
     <None Include="Properties\PublishProfiles\Default Settings.pubxml" />
     <None Include="Properties\PublishProfiles\myasp.pubxml" />
     <None Include="Properties\PublishProfiles\site4.pubxml" />
