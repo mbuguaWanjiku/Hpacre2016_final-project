@@ -14,7 +14,10 @@ using BusinessLayer.Implementation;
 using System.Web;
 
 namespace BusinessLayer.Implementation
-{
+{/// <summary>
+/// This class implements patient IDiagnosis interface
+/// the constructor receives context as a parameter
+/// </summary>
     public class impDiagnosis : IDiagnosis
     {
 
@@ -24,7 +27,12 @@ namespace BusinessLayer.Implementation
         {
             this.db = db;
         }
-
+        /// <summary>
+        /// Deactivate patient's disease/diagnosis by adding the end date hence it pertains 
+        /// to the histrory for future reference
+        /// </summary>
+        /// <param name="diseaseId">The disease id associated to the diagnosis</param>
+        /// <returns>success/insuccess message</returns>
         public string DeactivateDisease(int diseaseId)
         {
             if (diseaseId > 0)
@@ -45,15 +53,11 @@ namespace BusinessLayer.Implementation
             }
         }
 
-        public List<Disease> getPatientActiveDiseases(Patient patient)
-        {
-            return db.Diseases.Where(x => x.Disease_is_active == true).ToList();
-        }
-
-        public List<Disease> getPatientInActiveDiseases(Patient patient)
-        {
-            return db.Diseases.Where(x => x.Disease_is_active == false).ToList();
-        }
+        /// <summary>
+        /// Saves the prescribed diagnosis,uses auxilliary function saveDiagnosisAUX 
+        /// 
+        /// </summary>
+        /// <param name="classifications">Is list if CID codes/code  objects </param>
         public void SaveDiagnosis(List<CID_DiseaseCode> classifications)
         {
             foreach (CID_DiseaseCode diseaseCODE in classifications)
@@ -61,6 +65,12 @@ namespace BusinessLayer.Implementation
                 saveDiagnosisAUX(diseaseCODE);
             }
         }
+        /// <summary>
+        /// is an auxilliary function and receives a single ICD object as a param
+        /// aaociated the code to the disease object and consequently
+        /// to the clincRegistry instance 
+        /// </summary>
+        /// <param name="disCode">ICD code object</param>
         private void saveDiagnosisAUX(CID_DiseaseCode disCode)
         {        
             CIDCode diseaseCode = db.CIDCodes.Where(x => x.CID_DiseaseCode.DiseaseCode == disCode.DiseaseCode &&

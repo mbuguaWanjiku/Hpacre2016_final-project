@@ -11,7 +11,9 @@ using System.Threading.Tasks;
 using System.Web;
 
 namespace BusinessLayer.Implementation
-{
+{/// <summary>
+/// This class configures patient's treatment plan
+/// </summary>
     public class ImpTreatmentPlan : ITreatmentPlan
     {
         private HPCareDBContext db;
@@ -21,7 +23,9 @@ namespace BusinessLayer.Implementation
             patient = db.Users.Find(HttpContext.Current.Session["patientId"]) as Patient;
             this.db = db;
         }
-
+        /// <summary>
+        /// adds an intervention to a new treatment plan or existing one
+        /// </summary>
         public void AddIntervention()
         {
             if (existPlan())
@@ -55,7 +59,9 @@ namespace BusinessLayer.Implementation
             TreatmentType typeDefault = db.TreatmentTypes.Where(x => x.Description == "unset").FirstOrDefault();
             db.Interventions.Add(new Intervention { Treatment = plan, Treatment_type = typeDefault, startsAt = DateTime.Now, endsAt = DateTime.Now });
             db.SaveChanges();
-        }
+        }/// <summary>
+        /// au auxilliary function which adds a default intervention type
+        /// </summary>
         private void AddNewIntervention()
         {
             TreatmentPlan plan = db.TreatmentPlans.Where(x => x.Patient_TreatmentPlan.User_id == patient.User_id).FirstOrDefault();
@@ -63,7 +69,11 @@ namespace BusinessLayer.Implementation
             db.Interventions.Add(new Intervention { Treatment = plan, Treatment_type = typeDefault, startsAt = DateTime.Now, endsAt = DateTime.Now });
             db.SaveChanges();
         }
-
+        /// <summary>
+        /// if the logged user is patient the instance is obtained from the logged user identity otherwise from the session
+        /// </summary>
+        /// <param name="logged">user instance</param>
+        /// <returns>Intervention view model data-startdate,enddate,typeID and description</returns>
         public List<InterventionVM> GetInterventions(Users logged)
         {
             if(logged.UserType == 4)
@@ -92,7 +102,11 @@ namespace BusinessLayer.Implementation
             return listInterventions;
 
         }
-
+        /// <summary>
+        /// Retrieves the treatmentType associated to the category
+        /// </summary>
+        /// <param name="id">categoryid</param>
+        /// <returns>treatement  type</returns>
         public List<TreatmentTypeVM> getTreatmentType(int id)
         {
             List<TreatmentType> listType = db.TreatmentTypes.Where(x => x.TreatmentCategory.id == id).ToList();
@@ -108,6 +122,10 @@ namespace BusinessLayer.Implementation
             }
             return listTypeAux;
         }
+        /// <summary>
+        /// set categories view model
+        /// </summary>
+        /// <returns>treatment category viewmodel</returns>
         public List<TreatmentCategoryVM> getTreatmentTypeCategories()
         {
             List<TreatmentCategory> listCat = db.TreatmentCategories.ToList();
@@ -125,7 +143,10 @@ namespace BusinessLayer.Implementation
 
             return listCatVM;
         }
-
+        /// <summary>
+        /// save the list of interventions
+        /// </summary>
+        /// <param name="interventions">list of interventions objects</param>
         public void SaveInterventions(List<string> interventions)
         {
             TreatmentPlan treatmentPlan = new TreatmentPlan { Patient_TreatmentPlan = patient };
@@ -144,6 +165,10 @@ namespace BusinessLayer.Implementation
             updateIntervention.Treatment_type = type;
             db.SaveChanges();
         }
+        /// <summary>
+        /// deletes the intervention identified by id
+        /// </summary>
+        /// <param name="id">Intervention id</param>
         public void DeleteIntervention(int id)
         {
             db.Interventions.Remove(db.Interventions.Find(id));

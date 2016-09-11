@@ -1,25 +1,28 @@
 ﻿using BusinessLayer.Implementation.ViewModels;
+using BusinessLayer.Interfaces;
 using DataLayer.Entities;
 using DataLayer.Entities.Visitas;
 using DataLayer.Entities.VisitsEntities;
 using DataLayer.EntityFramework;
-using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Web;
 
 namespace BusinessLayer.Implementation
-{
-    public class ImpObservations
+{/// <summary>
+/// This class implements IObservations interface
+/// </summary>
+    public class ImpObservations: IObservations
     {
         HPCareDBContext db;
         public ImpObservations(HPCareDBContext db)
         {
             this.db = db;
         }
-
+        /// <summary>
+        /// Save the received observation either from treatmentplan or observations panel
+        /// </summary>
+        /// <param name="observationList">includes observation body and subject</param>
         public void SaveObservation(List<string> observationList)
         {
             db.Observations.Add(new Observations
@@ -31,10 +34,11 @@ namespace BusinessLayer.Implementation
             db.SaveChanges();
         }
 
-        //    public List<GetObservation()
-        //    {
-        //        throw new NotImplementedException();
-        //}
+       /// <summary>
+       /// an uaxilliary function of which returns the registries associated to the user for the purpose
+       /// of retrieving the associated observation
+       /// </summary>
+       /// <returns></returns>
         private List<ClinicRegistryManager> GetPatientClinicalRegisties()
         {
             Patient patient = db.Users.Find(HttpContext.Current.Session["patientId"]) as Patient;
@@ -42,6 +46,10 @@ namespace BusinessLayer.Implementation
                 db.ClinicRegistryManagers.Where(x => x.Clinic_patient.User_id == patient.User_id).ToList();
             return clinicalRegistries;
         }
+        /// <summary>
+        /// Returns a list  of patient's observations view model
+        /// </summary>
+        /// <returns>List of observations view model</returns>
         public List<ObservationsVM> GetObservations()
         {
             List<ObservationsVM> listVm = new List<ObservationsVM>();
@@ -53,6 +61,12 @@ namespace BusinessLayer.Implementation
             }
             return listVm;
         }
+        /// <summary>
+        /// Created a observations viewmodel of the specified registry/patient
+        /// 
+        /// </summary>
+        /// <param name="registry"></param>
+        /// <returns>the observation viewmodel data-subject,body,date and author</returns>
         private ObservationsVM GetObservationVM(ClinicRegistryManager registry)
         {
             ObservationsVM vm = null;

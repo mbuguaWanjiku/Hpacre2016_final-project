@@ -80,7 +80,7 @@ app.controller("MedicationController", function ($scope, $interval, alert, Medic
 
     $scope.saveToBasket = function (drug, category, admin, dosage, freq) {
 
-        
+       
         var dateValid = moment(vm.event.endsAt).isAfter(vm.event.startsAt);
         if (!dateValid) {
             alert.warning("Invalid dates-startDate is after endDate")
@@ -96,7 +96,7 @@ app.controller("MedicationController", function ($scope, $interval, alert, Medic
         DrugVW.Dos = dosage.Description;
         DrugVW.startDate = vm.event.startsAt;
         DrugVW.endDate = vm.event.endsAt;
-
+       
         PrescribedDrugsVW.push(DrugVW);
         var DrugDB = new Object();
         DrugDB.IssuedDrug = drug;

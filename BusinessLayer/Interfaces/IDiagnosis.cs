@@ -10,10 +10,9 @@ namespace BusinessLayer.Interfaces
 {
     interface IDiagnosis
     {
-        //void InsertDiagnosis(string diseaseCategory, string diseaseCode);
+       
         void SaveDiagnosis(List<CID_DiseaseCode> classifications);
         string DeactivateDisease(int diseaseId);
-        List<Disease> getPatientActiveDiseases(Patient patient);
-        List<Disease> getPatientInActiveDiseases(Patient patient);
+       
     }
 }

@@ -1,4 +1,5 @@
-﻿using DataLayer.Entities;
+﻿using BusinessLayer.Interfaces;
+using DataLayer.Entities;
 using DataLayer.Entities.TreatmentEntities;
 using DataLayer.Entities.Visitas;
 using DataLayer.EntityFramework;
@@ -13,7 +14,11 @@ using System.Threading.Tasks;
 using System.Web;
 
 namespace BusinessLayer.Implementation {
-    public class ImpMedicationHistory {
+    /// <summary>
+    /// This class implements ImedicationHistory interface
+    /// </summary>
+    public class ImpMedicationHistory: ImedicationHistory
+    {
         private HPCareDBContext db;
         private Patient patient;
         public ImpMedicationHistory() {
@@ -21,7 +26,7 @@ namespace BusinessLayer.Implementation {
             patient = db.Users.Find(HttpContext.Current.Session["patientId"]) as Patient;
         }
         /// <summary>
-        /// Getting all patinets clinical registries
+        /// Getting all patients clinical registries
         /// </summary>
         /// <param name="patient"></param>
         /// <returns></returns>
@@ -43,7 +48,10 @@ namespace BusinessLayer.Implementation {
         private List<DrugIssuance> GetListIssuances(DrugManager manager) {
             return (db.DrugInssuances.Where(x => x.Medication_manager.MedicationManager_id == manager.MedicationManager_id)).ToList();
         }
-
+        /// <summary>
+        /// Returns an medications associated to the clinicRegistry/patient
+        /// </summary>
+        /// <returns>List of medications view model</returns>
         public List<MedicationHistoryVm> GetPatientMedicationHistory() {
             List<MedicationHistoryVm> medicationHistoryList = new List<MedicationHistoryVm>();
             MedicationHistoryVm medHistory;
@@ -63,7 +71,12 @@ namespace BusinessLayer.Implementation {
             }
             return medicationHistoryList;
         }
-
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="drugIssuance">drug issuance id</param>
+        /// <param name="medicationHistory">empty medicationHistory viewmodel</param>
+        /// <returns>MedicationHistory view with data-Category,name,startDate and endDate</returns>
         private MedicationHistoryVm GetMedicationHistoryObject(int drugIssuance, MedicationHistoryVm medicationHistory) {
 
             StringBuilder stringJson = new StringBuilder();

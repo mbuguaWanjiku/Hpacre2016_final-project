@@ -9,7 +9,9 @@ using DataLayer.EntityFramework;
 using System.Data.Entity;
 
 namespace BusinessLayer.Implementation
-{
+{/// <summary>
+/// This class save the list of prescribed medications
+/// </summary>
     public class ImpMedication : IMedication
     {
         private HPCareDBContext db;
@@ -17,6 +19,12 @@ namespace BusinessLayer.Implementation
         {
             this.db = db;
         }
+        /// <summary>
+        /// The issuances are saved in a single DrugManager.
+        /// The drugManager associated the prescribed drug and the patient registry
+        /// </summary>
+        /// <param name="prescibedMedication">List of drug Issuances .
+        /// drug inssuance consist of drug,administration,dosage and frequency</param>
         public void savePrescribedMedication(List<DrugIssuance> prescibedMedication)
         {
             DrugIssuance drugIssuance;
