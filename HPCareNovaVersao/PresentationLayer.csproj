@@ -36,6 +36,7 @@
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <DeployEncryptKey>Encryption password is used only if any deployment setting is marked as secure</DeployEncryptKey>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
@@ -245,6 +246,7 @@
     <Content Include="Content\Angular\ModalViewsContent\modalSpecificControlGraph.html" />
     <Content Include="Content\Angular\ModalViewsContent\modalControlGraph.html" />
     <Content Include="Content\Angular\Modules\SpinnerModule.js" />
+    <Content Include="Hpcare\VisitManager.html" />
     <Content Include="Scripts\angular-spinner.js" />
     <Content Include="Scripts\mcdts\McdtsDialogueFactory.js" />
     <Content Include="Scripts\mcdts\modalLymphocyte.html" />

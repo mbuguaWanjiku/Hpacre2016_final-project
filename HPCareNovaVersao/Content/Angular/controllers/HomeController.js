@@ -1,9 +1,7 @@
 ﻿app.controller("homeController", function ($state, alert, searchDialogue, searchService) {
     var vm = this;
 
-     vm.startAjax = function() {
-    $http.get('your-server-endpoint')
-  };
+   
 
     vm.search;
     vm.visitManagerModal = function () {

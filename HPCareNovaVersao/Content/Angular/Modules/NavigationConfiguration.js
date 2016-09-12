@@ -1,4 +1,9 @@
-﻿app.config(function ($stateProvider, $urlRouterProvider) {
+﻿
+
+
+
+app.config(function ($stateProvider, $urlRouterProvider,$locationProvider) {
+    $locationProvider.html5Mode(true);
     //$urlRouterProvider.when("", "");
     //$urlRouterProvider.otherwise('/');
     $stateProvider
