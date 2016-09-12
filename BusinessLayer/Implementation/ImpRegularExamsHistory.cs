@@ -14,7 +14,9 @@ using System.Threading.Tasks;
 using System.Web;
 
 namespace BusinessLayer.Implementation
-{
+{/// <summary>
+/// This class have a single public fuction which retrieves regular exams history
+/// </summary>
     public class ImpRegularExamsHistory
     {
         private HPCareDBContext db;
@@ -27,16 +29,20 @@ namespace BusinessLayer.Implementation
             patient = db.Users.Find(HttpContext.Current.Session["patientId"]) as Patient;           
             listRegularExam = new List<RegularExamsVM>();
         }
+        /// <summary>
+        /// This function returns a historic data list of specified lab exam 
+        /// </summary>
+        /// <param name="discriminator">The name or identifier of the exam type</param>
+        /// <returns>Historic data associated to the patient</returns>
         public List<RegularExamsVM> GetRegularExamsHistory(string discriminator)
         {
             setRegularLabsList(discriminator);
             return listRegularExam;
         }
-        /// <summary>
-        /// Getting all patinets clinical registries
-        /// </summary>
-        /// <param name="patient"></param>
-        /// <returns></returns>
+       /// <summary>
+       /// retrieves the patient's registries
+       /// </summary>
+       /// <returns>patient associated registries</returns>
         private List<ClinicRegistryManager> GetPatientClinicalRegisties()
         {
             List<ClinicRegistryManager> clinicalRegistries =
@@ -51,6 +57,11 @@ namespace BusinessLayer.Implementation
             }
            
         }
+        /// <summary>
+        /// creates the labexams viewmodel
+        /// </summary>
+        /// <param name="discriminator">lab exam identifier</param>
+        /// <param name="clinicalReg">Registry id</param>
         private void SetRegularLabsListAUX(string discriminator,int clinicalReg) { 
                 
             StringBuilder stringJson = new StringBuilder();
@@ -88,15 +99,32 @@ namespace BusinessLayer.Implementation
 
         }
 
-     
+     /// <summary>
+     /// handles error incase the data reader is null 
+     /// </summary>
+     /// <param name="reader">database reader</param>
+     /// <param name="colIndex">column index</param>
+     /// <returns>date time</returns>
         private DateTime GetDateSafely(DbDataReader reader, int colIndex)
         {
             return (reader.IsDBNull(colIndex) ? new DateTime(1920, 10, 10) : reader.GetDateTime(colIndex));          
         }
+        /// <summary>
+        /// handles error incase the data reader is null 
+        /// </summary>
+        /// <param name="reader">database reader</param>
+        /// <param name="colIndex">column index</param>
+        /// <returns>integer</returns>
         private int GetIntSafely(DbDataReader reader, int colIndex)
         {
             return (reader.IsDBNull(colIndex) ? 0: reader.GetInt32(colIndex));
         }
+        /// <summary>
+        /// handles error incase the data reader is null 
+        /// </summary>
+        /// <param name="reader">database reader</param>
+        /// <param name="colIndex">column index</param>
+        /// <returns>string</returns>
         private string GetStaffName (int id)
         {
             return (db.Users.Where(x => x.User_id == id).FirstOrDefault().Name);
