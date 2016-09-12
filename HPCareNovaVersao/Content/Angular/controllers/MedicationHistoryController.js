@@ -3,7 +3,7 @@
     var getData = medicationHistoryFactory.getMedicationHistory();
         getData.then(function (medHistory) {
                 $scope.medicationHistory = medHistory.data;
-                alert(JSON.stringify($scope.medicationHistory));
+              
         }, function () {
             alert('Error in getting records');
         });

@@ -1,5 +1,8 @@
 ﻿app.controller("homeController", function ($state, alert, searchDialogue, searchService) {
     var vm = this;
+
+   
+
     vm.search;
     vm.visitManagerModal = function () {
        

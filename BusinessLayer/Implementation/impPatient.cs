@@ -14,6 +14,9 @@ using System.Web;
 using DataLayer.Entities.UserEntities;
 
 namespace BusinessLayer.Implementation {
+    /// <summary>
+    /// This class implements IPatient interface
+    /// </summary>
     public class impPatient : IPatient {
 
         private HPCareDBContext db;

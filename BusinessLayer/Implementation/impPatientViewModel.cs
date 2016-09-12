@@ -11,6 +11,9 @@ using System.Text;
 using System.Threading.Tasks;
 
 namespace BusinessLayer.Implementation {
+    /// <summary>
+    /// This class configures patient's information
+    /// </summary>
     public class impPatientViewModel {
         List<string> riskNamesList;
         List<string> familyHistoryList;

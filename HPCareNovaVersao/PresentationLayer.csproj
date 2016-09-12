@@ -36,6 +36,7 @@
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <DeployEncryptKey>Encryption password is used only if any deployment setting is marked as secure</DeployEncryptKey>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
@@ -244,6 +245,11 @@
     <Content Include="Content\Angular\controllers\StaffController.js" />
     <Content Include="Content\Angular\ModalViewsContent\modalSpecificControlGraph.html" />
     <Content Include="Content\Angular\ModalViewsContent\modalControlGraph.html" />
+    <Content Include="Content\Angular\Modules\SpinnerModule.js" />
+    <Content Include="Hpcare\LogOut.html" />
+    <Content Include="Hpcare\VisitManager.html" />
+    <Content Include="Images\Homepage\GoodBye.gif" />
+    <Content Include="Scripts\angular-spinner.js" />
     <Content Include="Scripts\mcdts\McdtsDialogueFactory.js" />
     <Content Include="Scripts\mcdts\modalLymphocyte.html" />
     <Content Include="Scripts\mcdts\modalPlatelets.html" />
@@ -311,7 +317,6 @@
     <Content Include="Hpcare\Home.html" />
     <Content Include="Hpcare\HomePatient.html" />
     <Content Include="Hpcare\scriptsLoader.html" />
-    <Content Include="Hpcare\VisitManager.html" />
     <Content Include="Images\1.png" />
     <Content Include="Images\2.png" />
     <Content Include="Images\3.png" />
@@ -1195,6 +1200,8 @@
     <Content Include="Scripts\angular-cookies.min.js.map" />
     <Content Include="Scripts\angular-aria.min.js.map" />
     <Content Include="Scripts\angular-animate.min.js.map" />
+    <None Include="Properties\PublishProfiles\Default Settings %282%29.pubxml" />
+    <None Include="Properties\PublishProfiles\Default Settings %283%29.pubxml" />
     <None Include="Properties\PublishProfiles\Default Settings.pubxml" />
     <None Include="Scripts_Ajax\jquery-2.1.0.intellisense.js" />
     <Content Include="Scripts_Ajax\jquery-2.1.0.js" />

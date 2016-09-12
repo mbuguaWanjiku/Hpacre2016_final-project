@@ -19,7 +19,7 @@ namespace BusinessLayer.Implementation {
         /// Accesses the database.
         /// </summary>
         /// <param name="PatientToSearch">The patient to search.</param>
-        /// <returns></returns>
+        /// <returns>Patient view model</returns>
         public PatientViewModel AccessDatabase(string PatientToSearch) {
             using (SqlConnection connection = new SqlConnection("Data Source=SQL5025.myASP.NET;Initial Catalog=DB_A0ADFA_HPCareDBContext;User Id=DB_A0ADFA_HPCareDBContext_admin;Password=hpcare2016;")) {
 
@@ -40,26 +40,13 @@ namespace BusinessLayer.Implementation {
         /// <summary>
         /// Get int safely in case the dbReader is null
         /// </summary>
-        /// <param name="reader"></param>
-        /// <param name="colIndex"></param>
+        /// <param name="reader">database reader</param>
+        /// <param name="colIndex">reader column index</param>
         /// <returns></returns>
         private int GetIntSafely(DbDataReader reader, int colIndex) {
             return (reader.IsDBNull(colIndex) ? 0 : reader.GetInt32(colIndex));
         }
-
-        private void insert() {
-            HPCareDBContext context = new HPCareDBContext();
-            context.MCDTs.Add(new KFT { });
-            context.MCDTs.Add(new LFT { });
-            context.MCDTs.Add(new WBCS { });
-            context.MCDTs.Add(new RBCS { });
-            context.MCDTs.Add(new RBCIndices { });
-            context.MCDTs.Add(new PlateletsCount { });
-            context.MCDTs.Add(new ViralLoad { });
-            context.MCDTs.Add(new LymphocytesSubsets { });
-            context.SaveChanges();
-
-        }
+      
 
     }
 

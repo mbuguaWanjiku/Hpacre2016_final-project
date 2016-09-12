@@ -77,7 +77,9 @@ namespace PresentationLayer.Controllers {
                 case SignInStatus.Failure:
                 default:
                     ModelState.AddModelError("", "Invalid login attempt.");
-                    return View(model);
+                    //return View(model);
+                    return PartialView("~/Views/Home/Index.cshtml");
+
             }
         }
 
@@ -350,13 +352,13 @@ namespace PresentationLayer.Controllers {
         // POST: /Account/LogOff
         //[HttpPost]
         //[ValidateAntiForgeryToken]
-        public void LogOff() {
+        public string LogOff() {
             AuthenticationManager.SignOut(DefaultAuthenticationTypes.ApplicationCookie);
             var AutheticationManager = HttpContext.GetOwinContext().Authentication;
             AuthenticationManager.SignOut(DefaultAuthenticationTypes.ApplicationCookie);
             //Session.Abandon();
             //Response.Cookies.Clear();
-          
+            return "loggedOff";
           
             //return RedirectToAction("Index", "Home");
         }

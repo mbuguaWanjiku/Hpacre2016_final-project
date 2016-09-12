@@ -1,9 +1,13 @@
-﻿app.controller('logOutController', function ($scope,$window, logOutService) {
+﻿app.controller('logOutController', function ($scope, logOutService,$interval) {
     $scope.controllerName = "logOutController";
    
-    logOutService.logOut().success(function () {
-        window.location = 'http://hpcare2016.com';
+    logOutService.logOut().then(function () {
+        $interval(function () {
+            window.location = 'http://hpcare2016.com';
 
+
+        }, 1000);
+      
 
     });
 });

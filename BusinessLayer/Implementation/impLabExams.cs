@@ -15,16 +15,16 @@ using DataLayer.Entities;
 using System.Web;
 
 namespace BusinessLayer.Implementation {
+    /// <summary>
+    /// This class implements IlabExams
+    /// </summary>
     public class impLabExams : ILabExams {
 
         private HPCareDBContext db;
         private List<McdtViewModel> listMcdtVM;
         private CurrentUserId currentUser;
 
-        /// <summary>
-        /// Initializes a new instance of the <see cref="impLabExams"/> class.
-        /// </summary>
-        /// <param name="db">The database.</param>
+     
         public impLabExams(HPCareDBContext db) {
             this.db = db;
             listMcdtVM = new List<McdtViewModel>();
