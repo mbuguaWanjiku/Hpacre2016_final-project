@@ -21,6 +21,7 @@ namespace PresentationLayer.Controllers {
             current = new CurrentUserId();
         }
 
+
         public ActionResult ListClinicInformation() {
             return PartialView();
         }
