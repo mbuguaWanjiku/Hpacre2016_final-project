@@ -8,20 +8,13 @@
     <div class="form-body" ng-controller="LabExamsController" ng-init="initLymphocytesSubsets()">
         <form class="form-horizontal">
 
-            <!--<div class="form-group">
-                <label for="focusedinput3" class="col-md-2 control-label">Lymphocytes Units</label>
-                <div class="col-md-8">
-                    <input type="text" class="form-control" id="focusedinput3" ng-model="LabExams.Lymphocytes_units" />
-                </div>
-            </div>-->
-
             <div class="form-group">
                 <label for="focusedinput4" class="col-md-2 control-label">CD3</label>
                 <div class="col-md-7">
                     <input type="text" class="form-control" id="focusedinput4" ng-model="LabExams.CD3" />
                 </div>
                 <div class="col-sm-3">
-                    <p class="help-block">Min: {{ValuesMin[1]}} - Max: {{ValuesMax[1]}}</p>
+                    <p class="help-block">Min: {{ValuesMin[0]}} - Max: {{ValuesMax[0]}}</p>
                 </div>
             </div>
 
@@ -31,7 +24,7 @@
                     <input type="text" class="form-control" id="focusedinput5" ng-model="LabExams.CD4" />
                 </div>
                 <div class="col-sm-3">
-                    <p class="help-block">Min: {{ValuesMin[2]}} - Max: {{ValuesMax[2]}}</p>
+                    <p class="help-block">Min: {{ValuesMin[1]}} - Max: {{ValuesMax[1]}}</p>
                 </div>
             </div>
 
@@ -41,7 +34,7 @@
                     <input type="text" class="form-control" id="focusedinput6" ng-model="LabExams.CD8" />
                 </div>
                 <div class="col-sm-3">
-                    <p class="help-block">Min: {{ValuesMin[3]}} - Max: {{ValuesMax[3]}}</p>
+                    <p class="help-block">Min: {{ValuesMin[2]}} - Max: {{ValuesMax[2]}}</p>
                 </div>
             </div>
 
@@ -51,7 +44,7 @@
                     <input type="text" class="form-control" id="focusedinput7" ng-model="LabExams.T_lymphocytes" />
                 </div>
                 <div class="col-sm-3">
-                    <p class="help-block">Min: {{ValuesMin[4]}} - Max: {{ValuesMax[4]}}</p>
+                    <p class="help-block">Min: {{ValuesMin[3]}} - Max: {{ValuesMax[3]}}</p>
                 </div>
             </div>
 
