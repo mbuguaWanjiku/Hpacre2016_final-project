@@ -244,6 +244,8 @@
     <Content Include="Content\Angular\controllers\StaffController.js" />
     <Content Include="Content\Angular\ModalViewsContent\modalSpecificControlGraph.html" />
     <Content Include="Content\Angular\ModalViewsContent\modalControlGraph.html" />
+    <Content Include="Content\Angular\Modules\SpinnerModule.js" />
+    <Content Include="Scripts\angular-spinner.js" />
     <Content Include="Scripts\mcdts\McdtsDialogueFactory.js" />
     <Content Include="Scripts\mcdts\modalLymphocyte.html" />
     <Content Include="Scripts\mcdts\modalPlatelets.html" />
@@ -311,7 +313,6 @@
     <Content Include="Hpcare\Home.html" />
     <Content Include="Hpcare\HomePatient.html" />
     <Content Include="Hpcare\scriptsLoader.html" />
-    <Content Include="Hpcare\VisitManager.html" />
     <Content Include="Images\1.png" />
     <Content Include="Images\2.png" />
     <Content Include="Images\3.png" />

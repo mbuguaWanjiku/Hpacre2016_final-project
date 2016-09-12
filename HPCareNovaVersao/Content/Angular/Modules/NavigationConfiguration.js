@@ -5,9 +5,11 @@
     
        .state("searchPatient", {
            url: "/searchPatient",
-
-           templateUrl: "../Home/SearchPatient"
+           templateUrl: "../../HpcarescriptsLoader.html"
+           //templateUrl: "../Home/SearchPatient"
        })
+
+
 
        .state("prescribeMCDT", {
            url: "/prescribeMCDT",

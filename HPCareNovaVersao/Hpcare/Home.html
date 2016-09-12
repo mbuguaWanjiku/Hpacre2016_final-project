@@ -10,7 +10,10 @@
     <link rel="shortcut icon" type="image/ico" href="../Images/favicon.ico">
     <!--Angular scripts-->
 
+   
+  
     <script src="/Scripts/angular.js"></script>
+   
     <script src="/Scripts/angular-animate.js"></script>
     <script src="//cdnjs.cloudflare.com/ajax/libs/moment.js/2.11.1/moment.min.js"></script>
     <script src="//cdnjs.cloudflare.com/ajax/libs/interact.js/1.2.4/interact.min.js"></script>
@@ -24,6 +27,10 @@
 
 
     <script src="/Scripts/angular-ui-router.js"></script>
+    <script type="text/javascript" src="http://fgnass.github.io/spin.js/spin.min.js"></script>
+    <script src="../Scripts/angular-spinner.js"></script>
+    <script src="../Content/Angular/Modules/SpinnerModule.js"></script>
+
     <script src="../Content/Angular/Modules/MainModule.js"></script>
     <script src="../Content/Angular/Modules/NavigationConfiguration.js"></script>
     <script src="../Content/Angular/Services/DialoguesFactory.js"></script>
@@ -244,9 +251,18 @@
         </div>
         <!-- //header-ends -->
         <!-- main content start-->
-        <div id="page-wrapper">
-            <div class="main-page " style="margin-top:13%;" ng-controller="homeController as vm">
 
+
+
+
+
+
+        <div id="page-wrapper">
+
+
+  
+            <div class="main-page " style="margin-top:13%;" ng-controller="homeController as vm">
+                <span us-spinner="{radius:30, width:8, length: 16}" style="color:blue"></span>
                 <div data-ui-view="" ng-init="vm.visitManagerModal()">
 
                 </div>

@@ -13,6 +13,9 @@ using BusinessLayer.Implementation.ViewModels;
 using System.Data.Common;
 
 namespace BusinessLayer.Implementation {
+    /// <summary>
+    /// This class configues staff information
+    /// </summary>
     public class impStaff : IStaff {
 
         private HPCareDBContext db;
