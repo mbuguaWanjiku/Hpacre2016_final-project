@@ -59,24 +59,6 @@ namespace PresentationLayer.Controllers {
             return PartialView("~/Views/Diagnosis/UpdateDiseaseStatus.cshtml");
         }
 
-        //public JsonResult GetPatientActiveDisease() {
-        //    //Patient patient = db.Users.Find((int)Session["patientId"]) as Patient;
-
-        //    //var diseaseList = impDiagnosis.getPatientActiveDiseases(patient);
-        //    //return Json(diseaseList, JsonRequestBehavior.AllowGet);
-        //    ImpPatientDiagnosisHistory history = new ImpPatientDiagnosisHistory(db, 1);
-        //    Patient patient = db.Users.Find((int)Session["patientId"]) as Patient;
-
-        //    List<PatientDiseaseHistoryVM> HistoryList = history.GetDiagnosisHistory(patient);
-        //    return Json(HistoryList, JsonRequestBehavior.AllowGet);
-        //}
-
-        public ActionResult GetPatientInActiveDisease() {
-            Patient patient = db.Users.Find((int)Session["patientId"]) as Patient;
-            //Patient patient = new Patient();//should use current patient from the session
-            List<Disease> diseaseList = impDiagnosis.getPatientInActiveDiseases(patient);
-            return PartialView(diseaseList.ToList());
-        }
 
         public ActionResult GetPatientDiagnosisHistory() {
             return PartialView();
