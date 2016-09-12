@@ -142,9 +142,7 @@ namespace BusinessLayer.Implementation {
                     patient.Patient_DOB = p.Patient_DOB;
                 }
 
-                if (!p.IsAlive) {
-                    patient.IsAlive = p.IsAlive;
-                }
+                patient.IsAlive = p.IsAlive;
 
             }
             db.SaveChanges();
@@ -312,9 +310,9 @@ namespace BusinessLayer.Implementation {
         /// <param name="idPatient">The identifier patient.</param>
         private void AccessGetPatientInformations(int idPatient) {
             using (SqlConnection connection = new SqlConnection("Data Source=SQL5025.myASP.NET;Initial Catalog=DB_A0ADFA_HPCareDBContext;User Id=DB_A0ADFA_HPCareDBContext_admin;Password=hpcare2016;")) {
-                SqlCommand command = new SqlCommand("select address, email, genderName, maritalstatusname, name, telephone, user_identification, isalive, patient_dob " +
-                     " from users, patient, genders, maritalstatus where gender_genderid = genderid and MaritalStatus_MaritalStatusId = MaritalStatusId and users.user_id = " + idPatient +
-                     " and users.user_id = patient.user_id;", connection);
+                SqlCommand command = new SqlCommand("select address, email, genderName, maritalstatusname, name, telephone, user_identification, isalive, patient_dob, Description " + 
+                    " from users, patient, genders, maritalstatus, agegroups where gender_genderid = genderid and MaritalStatus_MaritalStatusId = MaritalStatusId and " +
+                    " users.user_id = " + idPatient + " and users.user_id = patient.user_id and patient_age_group_agegroup_id = agegroup_id;", connection);
                 command.CommandType = CommandType.Text;
                 command.Connection = connection;
                 connection.Open();
@@ -332,7 +330,8 @@ namespace BusinessLayer.Implementation {
                         Telephone = GetStringSafely(dbDataReader, 5),
                         User_identification = GetStringSafely(dbDataReader, 6),
                         IsAlive = dbDataReader.GetBoolean(7),
-                        Patient_DOB = GetDateDefault(dbDataReader, 8)
+                        Patient_DOB = GetDateDefault(dbDataReader, 8),
+                        Description = dbDataReader.GetString(9)
                     };
                     patientInformationList.Add(viewModel);
                 }

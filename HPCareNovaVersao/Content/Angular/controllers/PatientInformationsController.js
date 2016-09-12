@@ -55,6 +55,7 @@ app.controller("PatientInformationsController", function ($scope, PatientInforma
         $scope.Identification = $scope.PatientFullInformation[0].User_identification;
         $scope.BirthDate = $scope.PatientFullInformation[0].Patient_DOB;
         $scope.Status = $scope.PatientFullInformation[0].IsAlive;
+        $scope.AgeGroup = $scope.PatientFullInformation[0].Description;
     }
 
 });

@@ -36,7 +36,7 @@
                                         <div class="form-group">
                                             <label for="focusedinput3" class="col-sm-2 control-label">Patient's Status</label>
                                             <div class="col-sm-8">
-                                                <select ng-model="Users.Status" >
+                                                <select ng-model="Status">
                                                     <option value="alive">Alive</option>
                                                     <option value="deceased">Deceased</option>
                                                 </select>
@@ -79,7 +79,7 @@
                                         </div>
 
                                     </div>
-                                    <button type="submit" class="btn btn-primary" ng-click="savePatientData(gender, MaritalStatus, IsAlive)" style="float:right">Save To Database</button>
+                                    <button type="submit" class="btn btn-primary" ng-click="savePatientData(gender, MaritalStatus, Status)" style="float:right">Save To Database</button>
                                 </div>
                             </div>
                             <div role="tabpanel" class="tab-pane fade" id="family" aria-labelledby="family-tab">

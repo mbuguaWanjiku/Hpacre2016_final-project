@@ -43,5 +43,9 @@ namespace BusinessLayer.Implementation.ViewModels {
             get; set;
         }
 
+        public string Description {
+            get; set;
+        }
+
     }
 }
