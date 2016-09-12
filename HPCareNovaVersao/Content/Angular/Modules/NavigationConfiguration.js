@@ -105,16 +105,7 @@ app.config(function ($stateProvider, $urlRouterProvider,$locationProvider) {
     .state("createTreatmentPlan", {
         url: "/createTreatmentPlan",
         templateUrl: "../TreatmentPlans/Index"
-        //resolve: { title: 'TreatmentPlan' },
-        //controller: function ($scope, title) {
-        //    $scope.title = title;
-        //},
-        //onEnter: function (title) {
-        //    if (title) { alert("enter"); }
-        //},
-        //onExit: function (title) {
-        //    if (title) { alert("exits"); }
-        //}
+       
     })
     .state("consultTreatmentPlan", {
         url: "/TreatmentPlanMed",
