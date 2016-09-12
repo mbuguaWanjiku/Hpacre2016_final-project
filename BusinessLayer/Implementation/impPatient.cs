@@ -137,8 +137,16 @@ namespace BusinessLayer.Implementation {
                 if (p.MaritalStatus != null) {
                     AccessDatabaseStatus(p.MaritalStatus.MaritalStatusId, patient.User_id);
                 }
-            }
 
+                if (p.Patient_DOB != null) {
+                    patient.Patient_DOB = p.Patient_DOB;
+                }
+
+                if (!p.IsAlive) {
+                    patient.IsAlive = p.IsAlive;
+                }
+
+            }
             db.SaveChanges();
         }
 
@@ -304,8 +312,9 @@ namespace BusinessLayer.Implementation {
         /// <param name="idPatient">The identifier patient.</param>
         private void AccessGetPatientInformations(int idPatient) {
             using (SqlConnection connection = new SqlConnection("Data Source=SQL5025.myASP.NET;Initial Catalog=DB_A0ADFA_HPCareDBContext;User Id=DB_A0ADFA_HPCareDBContext_admin;Password=hpcare2016;")) {
-                SqlCommand command = new SqlCommand("select address, email, genderName, maritalstatusname, name, telephone, user_identification " +
-                    " from users, genders, maritalstatus where gender_genderid = genderid and MaritalStatus_MaritalStatusId = MaritalStatusId and user_id = " + idPatient + ";", connection);
+                SqlCommand command = new SqlCommand("select address, email, genderName, maritalstatusname, name, telephone, user_identification, isalive, patient_dob " +
+                     " from users, patient, genders, maritalstatus where gender_genderid = genderid and MaritalStatus_MaritalStatusId = MaritalStatusId and users.user_id = " + idPatient +
+                     " and users.user_id = patient.user_id;", connection);
                 command.CommandType = CommandType.Text;
                 command.Connection = connection;
                 connection.Open();
@@ -321,7 +330,9 @@ namespace BusinessLayer.Implementation {
                         MaritalStatus = GetStringSafely(dbDataReader, 3),
                         Name = GetStringSafely(dbDataReader, 4),
                         Telephone = GetStringSafely(dbDataReader, 5),
-                        User_identification = GetStringSafely(dbDataReader, 6)
+                        User_identification = GetStringSafely(dbDataReader, 6),
+                        IsAlive = dbDataReader.GetBoolean(7),
+                        Patient_DOB = GetDateDefault(dbDataReader, 8)
                     };
                     patientInformationList.Add(viewModel);
                 }
@@ -403,7 +414,7 @@ namespace BusinessLayer.Implementation {
             using (SqlConnection connection = new SqlConnection("Data Source=SQL5025.myASP.NET;Initial Catalog=DB_A0ADFA_HPCareDBContext;User Id=DB_A0ADFA_HPCareDBContext_admin;Password=hpcare2016;")) {
                 SqlCommand command = new SqlCommand("SELECT Drug_Name, drugcategories.description, Medication_Start_date, Medication_end_date FROM Patient INNER " +
                     " JOIN ClinicRegistryManagers ON Patient.User_id = ClinicRegistryManagers.Clinic_patient_User_id INNER JOIN Users ON Patient.User_id = Users.User_id INNER  " +
-                    " JOIN Users AS Users_1 ON Patient.User_id = Users_1.User_id CROSS JOIN Drugs INNER JOIN DrugCategories ON Drugs.Category_category_id = " + 
+                    " JOIN Users AS Users_1 ON Patient.User_id = Users_1.User_id CROSS JOIN Drugs INNER JOIN DrugCategories ON Drugs.Category_category_id = " +
                     " DrugCategories.category_id INNER JOIN DrugIssuances ON Drugs.Drug_id = DrugIssuances.IssuedDrug_Drug_id and users.user_id = " + idPatient + "; ", connection);
                 command.CommandType = CommandType.Text;
                 command.Connection = connection;

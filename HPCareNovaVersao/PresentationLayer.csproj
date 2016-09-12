@@ -229,6 +229,7 @@
     <Compile Include="Startup.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Content\Angular\controllers\PatientStatusController.js" />
     <Content Include="Content\Angular\controllers\HelpController.js" />
     <Content Include="Content\Angular\controllers\DiagnosisHistoryController.js" />
     <Content Include="Content\Angular\controllers\HomeController.js" />
