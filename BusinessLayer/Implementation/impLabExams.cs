@@ -21,12 +21,20 @@ namespace BusinessLayer.Implementation {
         private List<McdtViewModel> listMcdtVM;
         private CurrentUserId currentUser;
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="impLabExams"/> class.
+        /// </summary>
+        /// <param name="db">The database.</param>
         public impLabExams(HPCareDBContext db) {
             this.db = db;
             listMcdtVM = new List<McdtViewModel>();
             currentUser = new CurrentUserId();
         }
 
+        /// <summary>
+        /// Saves the KFT.
+        /// </summary>
+        /// <param name="kftList">The KFT list.</param>
         public void saveKft(List<KFT> kftList) {
             KFT kft = db.MCDTs.Find(kftList.Single().MCDT_ID) as KFT;
             kft.LabExam_data_in = DateTime.Now;
@@ -43,6 +51,10 @@ namespace BusinessLayer.Implementation {
             db.SaveChanges();
         }
 
+        /// <summary>
+        /// Saves the LFT.
+        /// </summary>
+        /// <param name="lftList">The LFT list.</param>
         public void saveLft(List<LFT> lftList) {
             LFT lft = db.MCDTs.Find(lftList.First().MCDT_ID) as LFT;
             lft.LabExam_data_in = DateTime.Now;
@@ -62,6 +74,10 @@ namespace BusinessLayer.Implementation {
 
         }
 
+        /// <summary>
+        /// Saves the lymphocyte subsets.
+        /// </summary>
+        /// <param name="lymList">The lym list.</param>
         public void saveLymphocyteSubsets(List<LymphocytesSubsets> lymList) {
             LymphocytesSubsets lymphocytes = db.MCDTs.Find(lymList.Single().MCDT_ID) as LymphocytesSubsets;
             lymphocytes.LabExam_data_in = DateTime.Now;
@@ -80,6 +96,10 @@ namespace BusinessLayer.Implementation {
 
         }
 
+        /// <summary>
+        /// Saves the platelets count.
+        /// </summary>
+        /// <param name="platList">The plat list.</param>
         public void savePlateletsCount(List<PlateletsCount> platList) {
             PlateletsCount platelets = db.MCDTs.Find(platList.Single().MCDT_ID) as PlateletsCount;
             platelets.LabExam_data_in = DateTime.Now;
@@ -94,6 +114,10 @@ namespace BusinessLayer.Implementation {
             db.SaveChanges();
         }
 
+        /// <summary>
+        /// Saves the RBC indices.
+        /// </summary>
+        /// <param name="rbcIndicesList">The RBC indices list.</param>
         public void saveRbcIndices(List<RBCIndices> rbcIndicesList) {
             RBCIndices rbcIndices = db.MCDTs.Find(rbcIndicesList.Single().MCDT_ID) as RBCIndices;
             rbcIndices.LabExam_data_in = DateTime.Now;
@@ -114,6 +138,10 @@ namespace BusinessLayer.Implementation {
             db.SaveChanges();
         }
 
+        /// <summary>
+        /// Saves the RBCS.
+        /// </summary>
+        /// <param name="rbcsList">The RBCS list.</param>
         public void saveRbcs(List<RBCS> rbcsList) {
             RBCS rbcs = db.MCDTs.Find(rbcsList.Single().MCDT_ID) as RBCS;
             rbcs.LabExam_data_in = DateTime.Now;
@@ -129,6 +157,10 @@ namespace BusinessLayer.Implementation {
             db.SaveChanges();
         }
 
+        /// <summary>
+        /// Saves the viral load.
+        /// </summary>
+        /// <param name="viralList">The viral list.</param>
         public void saveViralLoad(List<ViralLoad> viralList) {
             ViralLoad viral = db.MCDTs.Find(viralList.Single().MCDT_ID) as ViralLoad;
             viral.LabExam_data_in = DateTime.Now;
@@ -143,6 +175,10 @@ namespace BusinessLayer.Implementation {
             db.SaveChanges();
         }
 
+        /// <summary>
+        /// Saves the WBCS.
+        /// </summary>
+        /// <param name="wbcsList">The WBCS list.</param>
         public void saveWbcs(List<WBCS> wbcsList) {
             WBCS wbcs = db.MCDTs.Find(wbcsList.Single().MCDT_ID) as WBCS;
             wbcs.LabExam_data_in = DateTime.Now;
@@ -161,7 +197,7 @@ namespace BusinessLayer.Implementation {
         }
 
         /// <summary>
-        /// metodo que faz insert do id do labTec depois de ele inserir os dados do LabExam
+        /// inserts the labtec id in the lab exam which he just added the results
         /// </summary>
         private void InsertStaffId(int staffId, LabExams lab) {
 
@@ -174,11 +210,18 @@ namespace BusinessLayer.Implementation {
             }
         }
 
+        /// <summary>
+        /// Lists the MCDTS.
+        /// </summary>
+        /// <returns></returns>
         public List<McdtViewModel> ListMcdts() {
             AccessDatabase();
             return listMcdtVM;
         }
 
+        /// <summary>
+        /// Accesses the database.
+        /// </summary>
         private void AccessDatabase() {
             using (SqlConnection connection = new SqlConnection("Data Source=SQL5025.myASP.NET;Initial Catalog=DB_A0ADFA_HPCareDBContext;User Id=DB_A0ADFA_HPCareDBContext_admin;Password=hpcare2016;")) {
                 SqlCommand command = new SqlCommand("SELECT MCDTs.MCDT_ID, MCDTs.MCDT_type, MCDTs.MCDT_date, MCDTs.LabExam_data_in, MCDTs.LabExam_date_out, Users.User_id," +
@@ -209,10 +252,20 @@ namespace BusinessLayer.Implementation {
             }
         }
 
+        /// <summary>
+        /// Gets the date default.
+        /// </summary>
+        /// <param name="reader">The reader.</param>
+        /// <param name="colIndex">Index of the col.</param>
+        /// <returns></returns>
         private DateTime GetDateDefault(DbDataReader reader, int colIndex) {
             return (reader.IsDBNull(colIndex) ? new DateTime(1970, 01, 01) : reader.GetDateTime(colIndex));
         }
 
+        /// <summary>
+        /// Numbers the lab exams null.
+        /// </summary>
+        /// <returns></returns>
         public int NumberLabExamsNull() {
             int number = 0;
             using (SqlConnection connection = new SqlConnection("Data Source=SQL5025.myASP.NET;Initial Catalog=DB_A0ADFA_HPCareDBContext;User Id=DB_A0ADFA_HPCareDBContext_admin;Password=hpcare2016;")) {
@@ -233,6 +286,10 @@ namespace BusinessLayer.Implementation {
             return number;
         }
 
+        /// <summary>
+        /// Numbers the lab exams.
+        /// </summary>
+        /// <returns></returns>
         public int NumberLabExams() {
             int number = 0;
             using (SqlConnection connection = new SqlConnection("Data Source=SQL5025.myASP.NET;Initial Catalog=DB_A0ADFA_HPCareDBContext;User Id=DB_A0ADFA_HPCareDBContext_admin;Password=hpcare2016;")) {

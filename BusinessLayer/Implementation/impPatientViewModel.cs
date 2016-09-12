@@ -18,12 +18,20 @@ namespace BusinessLayer.Implementation {
 
         HPCareDBContext db = new HPCareDBContext();
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="impPatientViewModel"/> class.
+        /// </summary>
         public impPatientViewModel() {
             riskNamesList = new List<string>();
             familyHistoryList = new List<string>();
             allergiesList = new List<string>();
         }
 
+        /// <summary>
+        /// Adds the risk factor list.
+        /// </summary>
+        /// <param name="idPatient">The identifier patient.</param>
+        /// <returns></returns>
         private List<string> addRiskFactorList(int idPatient) {
             using(SqlConnection connection = new SqlConnection("Data Source=SQL5025.myASP.NET;Initial Catalog=DB_A0ADFA_HPCareDBContext;User Id=DB_A0ADFA_HPCareDBContext_admin;Password=hpcare2016;")) {
                 SqlCommand command = new SqlCommand("select RiskFactors.RiskFactorName from RiskFactorsManagers, RiskFactors, users " +
@@ -41,6 +49,11 @@ namespace BusinessLayer.Implementation {
             return riskNamesList;
         }
 
+        /// <summary>
+        /// Adds the family history list.
+        /// </summary>
+        /// <param name="idPatient">The identifier patient.</param>
+        /// <returns></returns>
         private List<string> addFamilyHistoryList(int idPatient) {
             using(SqlConnection connection = new SqlConnection("Data Source=SQL5025.myASP.NET;Initial Catalog=DB_A0ADFA_HPCareDBContext;User Id=DB_A0ADFA_HPCareDBContext_admin;Password=hpcare2016;")) {
                 SqlCommand command = new SqlCommand(" select FamilyHistories.FamilyHistoryName from FamilyHistoryManagers, users, FamilyHistories where " +
@@ -58,6 +71,11 @@ namespace BusinessLayer.Implementation {
             return familyHistoryList;
         }
 
+        /// <summary>
+        /// Adds the allergies list.
+        /// </summary>
+        /// <param name="idPatient">The identifier patient.</param>
+        /// <returns></returns>
         private List<string> addAllergiesList(int idPatient) {
             using(SqlConnection connection = new SqlConnection("Data Source=SQL5025.myASP.NET;Initial Catalog=DB_A0ADFA_HPCareDBContext;User Id=DB_A0ADFA_HPCareDBContext_admin;Password=hpcare2016;")) {
                 SqlCommand command = new SqlCommand("select Allergies.Allergy_Name from allergies, users, AllergiesManagers where " +
@@ -76,6 +94,11 @@ namespace BusinessLayer.Implementation {
             return allergiesList;
         }
 
+        /// <summary>
+        /// Gets the patient information.
+        /// </summary>
+        /// <param name="idPatient">The identifier patient.</param>
+        /// <returns></returns>
         public PatientViewModel getPatientInformation(int idPatient) {
             Patient p = db.Users.Find(idPatient) as Patient;
             PatientViewModel viewModel = new PatientViewModel {

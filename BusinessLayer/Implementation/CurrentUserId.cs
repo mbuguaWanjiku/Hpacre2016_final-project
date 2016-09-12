@@ -12,10 +12,14 @@ namespace BusinessLayer.Implementation {
 
     public class CurrentUserId {
 
+        /// <summary>
+        /// Accesses the database. Returns the id of the current logged user. Returns 0 if there is no user.
+        /// </summary>
+        /// <param name="currentUser">The current user.</param>
+        /// <returns>User id</returns>
         public int AccessDatabase(string currentUser) {
             int id = 0;
             using(SqlConnection connection = new SqlConnection("Data Source=SQL5025.myASP.NET;Initial Catalog=DB_A0ADFA_HPCareDBContext;User Id=DB_A0ADFA_HPCareDBContext_admin;Password=hpcare2016;")) {
-                //using(SqlConnection connection = new SqlConnection("Data Source= MÁRCIA\\SQLSERVER ; Initial Catalog =HPCareDBContext;Integrated Security=SSPI")) {
 
                 SqlCommand command = new SqlCommand("select user_id from aspnetusers, users where AspNetUsersId = AspUserId and UserName = '" + currentUser + "';", connection);
 
@@ -32,11 +36,13 @@ namespace BusinessLayer.Implementation {
 
         }
 
+        /// <summary>
+        /// Returns the current user.
+        /// </summary>
+        /// <param name="idCurrentUser">The identifier current user.</param>
+        /// <returns></returns>
         public Users ReturnCurrentUser(int idCurrentUser) {
             using(SqlConnection connection = new SqlConnection("Data Source=SQL5025.myASP.NET;Initial Catalog=DB_A0ADFA_HPCareDBContext;User Id=DB_A0ADFA_HPCareDBContext_admin;Password=hpcare2016;")) {
-                //using(SqlConnection connection = new SqlConnection("Data Source=MÁRCIA\\SQLSERVER; Initial Catalog =HPCareDBContext; Integrated Security=true")) {
-                //using (SqlConnection connection = new SqlConnection("Data Source= WANJIKU\\NEWSQLEXPRESS ; Initial Catalog =HPCareDBContext;Integrated Security=SSPI"))
-                //{
                 SqlCommand command = new SqlCommand("select * from Users where user_id = '" + idCurrentUser + "';", connection);
 
                 command.CommandType = CommandType.Text;

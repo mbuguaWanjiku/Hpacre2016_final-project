@@ -11,6 +11,10 @@ namespace BusinessLayer.Interfaces {
 
         void saveKft(List<KFT> kftList);
 
+        /// <summary>
+        /// Saves the LFT.
+        /// </summary>
+        /// <param name="lftList">The LFT list.</param>
         void saveLft(List<LFT> lftList);
 
         void saveLymphocyteSubsets(List<LymphocytesSubsets> lymList);

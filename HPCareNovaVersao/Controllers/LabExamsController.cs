@@ -32,6 +32,10 @@ namespace PresentationLayer.Controllers {
 
         // lab exams com angular //
 
+        /// <summary>
+        /// Lists the MCDTS.
+        /// </summary>
+        /// <returns></returns>
         public ActionResult ListMcdts() {
             return PartialView();
         }
@@ -45,6 +49,10 @@ namespace PresentationLayer.Controllers {
             impLabExams.saveKft(kftList);
         }
 
+        /// <summary>
+        /// Saves the LFT results.
+        /// </summary>
+        /// <param name="lftList">The LFT list.</param>
         [HttpPost]
         public void saveLftResults(List<LFT> lftList) {
             impLabExams.saveLft(lftList);

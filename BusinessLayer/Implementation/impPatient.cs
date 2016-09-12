@@ -24,6 +24,10 @@ namespace BusinessLayer.Implementation {
         private List<McdtViewModel> patientMcdtHistory;
         private List<MedicationHistoryVm> patientMedicationHistory;
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="impPatient"/> class.
+        /// </summary>
+        /// <param name="db">The database.</param>
         public impPatient(HPCareDBContext db) {
             this.db = db;
             allergyList = new List<AllergiesViewModel>();
@@ -34,6 +38,11 @@ namespace BusinessLayer.Implementation {
             patientMedicationHistory = new List<MedicationHistoryVm>();
         }
 
+        /// <summary>
+        /// Saves the family history.
+        /// </summary>
+        /// <param name="historiesList">The histories list.</param>
+        /// <param name="familyHistoryManager">The family history manager.</param>
         public void saveFamilyHistory(List<FamilyHistoryManager> historiesList, FamilyHistoryManager familyHistoryManager) {
             Patient patient = db.Users.Find(HttpContext.Current.Session["patientId"]) as Patient;
 
@@ -51,6 +60,11 @@ namespace BusinessLayer.Implementation {
             db.SaveChanges();
         }
 
+        /// <summary>
+        /// Saves the allergies.
+        /// </summary>
+        /// <param name="allergiesList">The allergies list.</param>
+        /// <param name="allergiesManager">The allergies manager.</param>
         public void saveAllergies(List<AllergiesManager> allergiesList, AllergiesManager allergiesManager) {
             Patient patient = db.Users.Find(HttpContext.Current.Session["patientId"]) as Patient; //ir buscar ao session
 
@@ -68,6 +82,11 @@ namespace BusinessLayer.Implementation {
             db.SaveChanges();
         }
 
+        /// <summary>
+        /// Saves the risk factors.
+        /// </summary>
+        /// <param name="risksList">The risks list.</param>
+        /// <param name="riskFactorsManager">The risk factors manager.</param>
         public void saveRiskFactors(List<RiskFactorsManager> risksList, RiskFactorsManager riskFactorsManager) {
             Patient patient = db.Users.Find(HttpContext.Current.Session["patientId"]) as Patient; //ir buscar atraves do session
 
@@ -84,6 +103,10 @@ namespace BusinessLayer.Implementation {
             db.SaveChanges();
         }
 
+        /// <summary>
+        /// Saves the data from patient.
+        /// </summary>
+        /// <param name="usersInformations">The users informations.</param>
         public void saveDataFromPatient(List<Patient> usersInformations) {
             Patient patient = db.Users.Find(HttpContext.Current.Session["patientId"]) as Patient; //session
 
@@ -116,6 +139,11 @@ namespace BusinessLayer.Implementation {
             db.SaveChanges();
         }
 
+        /// <summary>
+        /// Accesses the database gender.
+        /// </summary>
+        /// <param name="gender">The gender.</param>
+        /// <param name="idPatient">The identifier patient.</param>
         public void AccessDatabaseGender(int gender, int idPatient) {
             using (SqlConnection connection = new SqlConnection("Data Source=SQL5025.myASP.NET;Initial Catalog=DB_A0ADFA_HPCareDBContext;User Id=DB_A0ADFA_HPCareDBContext_admin;Password=hpcare2016;")) {
                 SqlCommand command = new SqlCommand("update users set gender_GenderId = " + gender + " where user_id = " + idPatient + ";", connection);
@@ -128,6 +156,11 @@ namespace BusinessLayer.Implementation {
 
         }
 
+        /// <summary>
+        /// Accesses the database status.
+        /// </summary>
+        /// <param name="status">The status.</param>
+        /// <param name="idPatient">The identifier patient.</param>
         public void AccessDatabaseStatus(int status, int idPatient) {
             using (SqlConnection connection = new SqlConnection("Data Source=SQL5025.myASP.NET;Initial Catalog=DB_A0ADFA_HPCareDBContext;User Id=DB_A0ADFA_HPCareDBContext_admin;Password=hpcare2016;")) {
                 SqlCommand command = new SqlCommand("update users set MaritalStatus_MaritalStatusId = " + status + " where user_id = " + idPatient + ";", connection);
@@ -140,11 +173,20 @@ namespace BusinessLayer.Implementation {
 
         }
 
+        /// <summary>
+        /// Gets the patient allergies.
+        /// </summary>
+        /// <param name="idPatient">The identifier patient.</param>
+        /// <returns></returns>
         public List<AllergiesViewModel> GetPatientAllergies(int idPatient) {
             AccessGetPatientAllergies(idPatient);
             return allergyList;
         }
 
+        /// <summary>
+        /// Accesses the get patient allergies.
+        /// </summary>
+        /// <param name="patientId">The patient identifier.</param>
         private void AccessGetPatientAllergies(int patientId) {
             Patient p = db.Users.Find(patientId) as Patient;
             AllergiesViewModel viewModel;
@@ -170,11 +212,20 @@ namespace BusinessLayer.Implementation {
 
         }
 
+        /// <summary>
+        /// Gets the patient risk factors.
+        /// </summary>
+        /// <param name="idPatient">The identifier patient.</param>
+        /// <returns></returns>
         public List<RiskFactorsViewModel> GetPatientRiskFactors(int idPatient) {
             AccessGetPatientRiskFactors(idPatient);
             return riskList;
         }
 
+        /// <summary>
+        /// Accesses the get patient risk factors.
+        /// </summary>
+        /// <param name="idPatient">The identifier patient.</param>
         private void AccessGetPatientRiskFactors(int idPatient) {
             Patient p = db.Users.Find(idPatient) as Patient; //ir buscar ao session
             RiskFactorsViewModel viewModel;
@@ -196,11 +247,20 @@ namespace BusinessLayer.Implementation {
             }
         }
 
+        /// <summary>
+        /// Gets the patient family history.
+        /// </summary>
+        /// <param name="idPatient">The identifier patient.</param>
+        /// <returns></returns>
         public List<FamilyHistoryViewModel> GetPatientFamilyHistory(int idPatient) {
             AccessGetPatientFamilyHistory(idPatient);
             return historyList;
         }
 
+        /// <summary>
+        /// Accesses the get patient family history.
+        /// </summary>
+        /// <param name="patientId">The patient identifier.</param>
         private void AccessGetPatientFamilyHistory(int patientId) {
             Patient p = db.Users.Find(patientId) as Patient; //ir buscar ao session
             FamilyHistoryViewModel viewModel;
@@ -225,11 +285,20 @@ namespace BusinessLayer.Implementation {
 
         }
 
+        /// <summary>
+        /// Gets the patient information.
+        /// </summary>
+        /// <param name="idPatient">The identifier patient.</param>
+        /// <returns></returns>
         public List<PatientInformationViewModel> GetPatientInformation(int idPatient) {
             AccessGetPatientInformations(idPatient);
             return patientInformationList;
         }
 
+        /// <summary>
+        /// Accesses the get patient informations.
+        /// </summary>
+        /// <param name="idPatient">The identifier patient.</param>
         private void AccessGetPatientInformations(int idPatient) {
             using (SqlConnection connection = new SqlConnection("Data Source=SQL5025.myASP.NET;Initial Catalog=DB_A0ADFA_HPCareDBContext;User Id=DB_A0ADFA_HPCareDBContext_admin;Password=hpcare2016;")) {
                 SqlCommand command = new SqlCommand("select address, email, genderName, maritalstatusname, name, telephone, user_identification " +
@@ -256,15 +325,31 @@ namespace BusinessLayer.Implementation {
             }
         }
 
+        /// <summary>
+        /// Gets the string safely.
+        /// </summary>
+        /// <param name="reader">The reader.</param>
+        /// <param name="colIndex">Index of the col.</param>
+        /// <returns></returns>
         private string GetStringSafely(DbDataReader reader, int colIndex) {
             return (reader.IsDBNull(colIndex) ? "-" : reader.GetString(colIndex));
         }
 
+        /// <summary>
+        /// Gets the date default.
+        /// </summary>
+        /// <param name="reader">The reader.</param>
+        /// <param name="colIndex">Index of the col.</param>
+        /// <returns></returns>
         private DateTime GetDateDefault(DbDataReader reader, int colIndex) {
             return (reader.IsDBNull(colIndex) ? new DateTime(1970, 01, 01) : reader.GetDateTime(colIndex));
         }
 
-
+        /// <summary>
+        /// Gets the patient MCDTS history.
+        /// </summary>
+        /// <param name="idPatient">The identifier patient.</param>
+        /// <returns></returns>
         public List<McdtViewModel> GetPatientMcdtsHistory(int idPatient) {
             AccessGetPatientMcdtsHistory(idPatient);
             return patientMcdtHistory;
@@ -297,11 +382,20 @@ namespace BusinessLayer.Implementation {
             }
         }
 
+        /// <summary>
+        /// Gets the patient medication history.
+        /// </summary>
+        /// <param name="idPatient">The identifier patient.</param>
+        /// <returns></returns>
         public List<MedicationHistoryVm> GetPatientMedicationHistory(int idPatient) {
             AccessGetPatientMedicationHistory(idPatient);
             return patientMedicationHistory;
         }
 
+        /// <summary>
+        /// Accesses the get patient medication history.
+        /// </summary>
+        /// <param name="idPatient">The identifier patient.</param>
         private void AccessGetPatientMedicationHistory(int idPatient) {
             using (SqlConnection connection = new SqlConnection("Data Source=SQL5025.myASP.NET;Initial Catalog=DB_A0ADFA_HPCareDBContext;User Id=DB_A0ADFA_HPCareDBContext_admin;Password=hpcare2016;")) {
                 SqlCommand command = new SqlCommand("SELECT Drug_Name, drugcategories.description, Medication_Start_date, Medication_end_date FROM Patient INNER " +
