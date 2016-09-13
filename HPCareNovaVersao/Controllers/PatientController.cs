@@ -47,6 +47,11 @@ namespace PresentationLayer.Controllers {
             return Json(impPatient.GetPatientInformation((int) Session["patientId"]), JsonRequestBehavior.AllowGet);
         }
 
+        [HttpPost]
+        public void UpdateAllergies(List<AllergiesManager> allergies) {
+            impPatient.updateAllergies(allergies);
+        }
+
         // ****************** "Criacao" do Patient ***************** //
 
         public ActionResult AddPatientInformation() {

@@ -310,9 +310,9 @@ namespace BusinessLayer.Implementation {
         /// <param name="idPatient">The identifier patient.</param>
         private void AccessGetPatientInformations(int idPatient) {
             using (SqlConnection connection = new SqlConnection("Data Source=SQL5025.myASP.NET;Initial Catalog=DB_A0ADFA_HPCareDBContext;User Id=DB_A0ADFA_HPCareDBContext_admin;Password=hpcare2016;")) {
-                SqlCommand command = new SqlCommand("SELECT Users.Address, Users.Email, Genders.GenderName, MaritalStatus.MaritalStatusName, Users.Name, Users.Telephone, " + 
-                    " Users.User_identification,Patient.IsAlive,Patient.Patient_DOB,AgeGroups.Description FROM Genders INNER JOIN Users ON Genders.GenderId = Users.gender_GenderId " + 
-                    " INNER JOIN MaritalStatus ON Users.MaritalStatus_MaritalStatusId = MaritalStatus.MaritalStatusId INNER JOIN Patient ON Users.User_id = Patient.User_id " + 
+                SqlCommand command = new SqlCommand("SELECT Users.Address, Users.Email, Genders.GenderName, MaritalStatus.MaritalStatusName, Users.Name, Users.Telephone, " +
+                    " Users.User_identification,Patient.IsAlive,Patient.Patient_DOB,AgeGroups.Description FROM Genders INNER JOIN Users ON Genders.GenderId = Users.gender_GenderId " +
+                    " INNER JOIN MaritalStatus ON Users.MaritalStatus_MaritalStatusId = MaritalStatus.MaritalStatusId INNER JOIN Patient ON Users.User_id = Patient.User_id " +
                     " INNER JOIN AgeGroups ON Patient.Patient_Age_Group_AgeGroup_id = AgeGroups.AgeGroup_id and users.User_id = " + idPatient + ";", connection);
                 command.CommandType = CommandType.Text;
                 command.Connection = connection;
@@ -434,6 +434,15 @@ namespace BusinessLayer.Implementation {
                 }
             }
 
+        }
+        public void updateAllergies(List<AllergiesManager> allergies) {
+            AllergiesManager allergyManager = db.AllergiesManagers.Find(allergies.First());
+
+            foreach (var item in allergies) {
+                allergyManager.Allergy_end_date = item.Allergy_end_date;
+            }
+
+            db.SaveChanges();
         }
     }
 }
