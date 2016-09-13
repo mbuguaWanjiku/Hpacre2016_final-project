@@ -4,14 +4,15 @@
 
 app.config(function ($stateProvider, $urlRouterProvider,$locationProvider) {
     $locationProvider.html5Mode(true);
+ 
     //$urlRouterProvider.when("", "");
     //$urlRouterProvider.otherwise('/');
     $stateProvider
     
        .state("searchPatient", {
            url: "/searchPatient",
-           templateUrl: "../../HpcarescriptsLoader.html"
-           //templateUrl: "../Home/SearchPatient"
+          
+           templateUrl: "../Home/SearchPatient"
        })
 
 
@@ -166,9 +167,10 @@ app.config(function ($stateProvider, $urlRouterProvider,$locationProvider) {
   
     .state('logout', {
     url: '/logout',
-    templateUrl: '',
+    templateUrl: 'logOut.html',
     resolve : {
-        logOut : function(logOutService) {
+        logOut: function (logOutService) {
+           
             return logOutService.logOut();
         },
     },
@@ -176,13 +178,6 @@ app.config(function ($stateProvider, $urlRouterProvider,$locationProvider) {
 })
 
 
-    //.state('logout', {
-    //    url: '/logout',
-    //    controller: function ($window) {
-    //        $window.localStorage.clear();
-    //        $window.location.href = '/';
-    //    },
-    //})    
 
 });
 

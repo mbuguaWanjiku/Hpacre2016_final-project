@@ -350,13 +350,13 @@ namespace PresentationLayer.Controllers {
         // POST: /Account/LogOff
         //[HttpPost]
         //[ValidateAntiForgeryToken]
-        public void LogOff() {
+        public string LogOff() {
             AuthenticationManager.SignOut(DefaultAuthenticationTypes.ApplicationCookie);
             var AutheticationManager = HttpContext.GetOwinContext().Authentication;
             AuthenticationManager.SignOut(DefaultAuthenticationTypes.ApplicationCookie);
             //Session.Abandon();
             //Response.Cookies.Clear();
-          
+            return "loggedOff";
           
             //return RedirectToAction("Index", "Home");
         }

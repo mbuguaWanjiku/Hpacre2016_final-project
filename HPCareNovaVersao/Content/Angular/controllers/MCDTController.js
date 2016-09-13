@@ -1,5 +1,5 @@
 ﻿var tempBuffer = [];
-app.controller("MCDTController", function ($scope, $interval, MCDTService) {
+app.controller("MCDTController", function ($scope, $interval,alert, MCDTService) {
     $scope.prescribedMCDTS = [];
 
     $scope.MCDTS = [];
@@ -69,19 +69,19 @@ app.controller("MCDTController", function ($scope, $interval, MCDTService) {
         return lista;
     }
 
-    $scope.McdtListLevel1.push(new $scope.Mcdt("Physical", "main"));
-    $scope.McdtListLevel1.push(new $scope.Mcdt("Pyschiatric", "main"));
-    $scope.McdtListLevel1.push(new $scope.Mcdt("Laboratory", "main"));
+    $scope.McdtListLevel1.push(new $scope.Mcdt("Physical", "General"));
+    $scope.McdtListLevel1.push(new $scope.Mcdt("Pyschiatric", "General"));
+    $scope.McdtListLevel1.push(new $scope.Mcdt("Laboratory", "General"));
 
     $scope.saveMcdts = function () {
         if ($scope.prescribedMCDTS.length > 0) {
             var getData = MCDTService.saveSelectedMCDT($scope.prescribedMCDTS);
             getData.then(function (msg) {
 
-                alert('mcdt saved');
+                alert.success('mcdt saved');
                 tempBuffer = [];
             }, function () {
-                alert('Error in saving Record');
+                alert.warning('Error in saving Record');
 
             });
         }

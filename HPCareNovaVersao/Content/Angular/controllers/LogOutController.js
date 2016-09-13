@@ -1,7 +1,8 @@
-﻿app.controller('logOutController', function ($scope,$window, logOutService) {
+﻿app.controller('logOutController', function ($scope, logOutService) {
     $scope.controllerName = "logOutController";
    
-    logOutService.logOut().success(function () {
+    logOutService.logOut().then(function () {
+       
         window.location = 'http://hpcare2016.com';
 
 
