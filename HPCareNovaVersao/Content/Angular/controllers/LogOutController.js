@@ -6,7 +6,7 @@
             window.location = 'http://hpcare2016.com';
 
 
-        }, 1000);
+        }, 700);
       
 
     });
