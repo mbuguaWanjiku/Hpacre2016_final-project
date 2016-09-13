@@ -101,7 +101,6 @@ app.factory('alert', function ($uibModal) {
             templateUrl: '../Content/Angular/ModalViewsContent/modalControlGraph.html',
             controller: function () {
                 var vm = this;
-
                 vm.observations = message;
             },
             controllerAs: 'vm'
@@ -114,9 +113,17 @@ app.factory('alert', function ($uibModal) {
             controller: function () {
                 var vm = this;
                 vm.observations = message;
+            },
+            controllerAs: 'vm'
+        });
+    }
 
-              
-
+    fac.updateAllergy = function (message) {
+        return $uibModal.open({
+            templateUrl: '../Content/Angular/ModalViewsContent/modalUpdateAllergy.html',
+            controller: function () {
+                var vm = this;
+                vm.observations = message;
             },
             controllerAs: 'vm'
         });

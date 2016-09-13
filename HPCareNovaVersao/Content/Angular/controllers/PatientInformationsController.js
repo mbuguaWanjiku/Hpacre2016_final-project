@@ -1,5 +1,4 @@
-﻿
-app.controller("PatientInformationsController", function ($scope, PatientInformationFactory) {
+﻿app.controller("PatientInformationsController", function ($scope, PatientInformationFactory, alert) {
 
     $scope.FamilyHistoryCategories = null;
     $scope.RiskFactorsCategories = null;
@@ -12,27 +11,26 @@ app.controller("PatientInformationsController", function ($scope, PatientInforma
     $scope.MaritalStatus = null;
 
 
-
     $scope.Init = function () {
         var familyHistories = PatientInformationFactory.GetPatientFamilyHistories();
         familyHistories.then(function (dt) {
             $scope.PatientFamilyHistoryCategories = dt.data;
         }, function (error) {
-            alert("erro");
+            alert.warning("Something went wrong ! Please try again.");
         });
 
         var riskFactors = PatientInformationFactory.GetPatientRiskFactors();
         riskFactors.then(function (dt) {
             $scope.PatientRiskFactorsCategories = dt.data;
         }, function (error) {
-            alert("erro");
+            alert.warning("Something went wrong ! Please try again.");
         });
 
         var allergies = PatientInformationFactory.GetPatientAllergies();
         allergies.then(function (dt) {
             $scope.PatientAllergyCategories = dt.data;
         }, function (error) {
-            alert("erro");
+            alert.warning("Something went wrong ! Please try again.");
         });
 
         var patientInformation = PatientInformationFactory.GetPatientFullInformations();
@@ -40,7 +38,7 @@ app.controller("PatientInformationsController", function ($scope, PatientInforma
             $scope.PatientFullInformation = dt.data;
             $scope.InitInformation();
         }, function (error) {
-            alert("erro");
+            alert.warning("Something went wrong ! Please try again.");
         });
 
     }
@@ -56,6 +54,15 @@ app.controller("PatientInformationsController", function ($scope, PatientInforma
         $scope.BirthDate = $scope.PatientFullInformation[0].Patient_DOB;
         $scope.Status = $scope.PatientFullInformation[0].IsAlive;
         $scope.AgeGroup = $scope.PatientFullInformation[0].Description;
+    }
+
+
+    $scope.updateAllergy = function (allergyCategory) {
+        alert.updateAllergy(allergyCategory);
+    }
+
+    $scope.UpdateAllergy = function (allergyEndDate) {
+        alert.warning(allergyEndDate);
     }
 
 });

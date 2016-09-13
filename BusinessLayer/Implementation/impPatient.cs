@@ -331,7 +331,7 @@ namespace BusinessLayer.Implementation {
                         User_identification = GetStringSafely(dbDataReader, 6),
                         IsAlive = dbDataReader.GetBoolean(7),
                         Patient_DOB = GetDateDefault(dbDataReader, 8),
-                        Description = dbDataReader.GetString(9)
+                        Description = GetStringSafely(dbDataReader, 9)
                     };
                     patientInformationList.Add(viewModel);
                 }

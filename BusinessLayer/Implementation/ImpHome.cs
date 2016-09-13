@@ -47,7 +47,6 @@ namespace BusinessLayer.Implementation {
             return (reader.IsDBNull(colIndex) ? 0 : reader.GetInt32(colIndex));
         }
       
-
     }
 
 }

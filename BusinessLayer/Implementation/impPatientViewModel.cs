@@ -120,7 +120,7 @@ namespace BusinessLayer.Implementation {
                 Telephone = p.Telephone,
                 UserType = p.UserType,
                 User_id = p.User_id,
-                User_identification = p.User_identification
+                User_identification = p.User_identification,
             };
 
             return viewModel;
