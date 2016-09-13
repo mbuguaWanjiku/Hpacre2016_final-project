@@ -168,8 +168,7 @@ app.controller("LabExamsController", function ($scope, LabExamsFactory, alert, $
 
     $scope.SaveLymphocytes = function () {
         var LabExams = new Object();
-        //LabExams.Lymphocytes_units = $scope.LabExams.Lymphocytes_units;
-        LabExams.CD3 = $scope.LabExams.CD3;
+        LabExams.CD3 = $scope.LabExams.CD3; 
         LabExams.CD4 = $scope.LabExams.CD4;
         LabExams.CD8 = $scope.LabExams.CD8;
         LabExams.T_lymphocytes = $scope.LabExams.T_lymphocytes;

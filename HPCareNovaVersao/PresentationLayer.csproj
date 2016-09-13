@@ -229,6 +229,7 @@
     <Compile Include="Startup.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Content\Angular\controllers\PatientStatusController.js" />
     <Content Include="Content\Angular\controllers\HelpController.js" />
     <Content Include="Content\Angular\controllers\DiagnosisHistoryController.js" />
     <Content Include="Content\Angular\controllers\HomeController.js" />
@@ -1202,10 +1203,7 @@
     <Content Include="Scripts\angular-animate.min.js.map" />
     <None Include="Properties\PublishProfiles\Default Settings %282%29.pubxml" />
     <None Include="Properties\PublishProfiles\Default Settings %283%29.pubxml" />
-    <None Include="Properties\PublishProfiles\Default Settings %286%29.pubxml" />
     <None Include="Properties\PublishProfiles\Default Settings.pubxml" />
-    <None Include="Properties\PublishProfiles\myasp.pubxml" />
-    <None Include="Properties\PublishProfiles\site4.pubxml" />
     <None Include="Scripts_Ajax\jquery-2.1.0.intellisense.js" />
     <Content Include="Scripts_Ajax\jquery-2.1.0.js" />
     <Content Include="Scripts_Ajax\jquery-2.1.0.min.js" />

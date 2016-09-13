@@ -53,6 +53,8 @@ app.controller("PatientInformationsController", function ($scope, PatientInforma
         $scope.Email = $scope.PatientFullInformation[0].Email;
         $scope.Telephone = $scope.PatientFullInformation[0].Telephone;
         $scope.Identification = $scope.PatientFullInformation[0].User_identification;
+        $scope.BirthDate = $scope.PatientFullInformation[0].Patient_DOB;
+        $scope.Status = $scope.PatientFullInformation[0].IsAlive;
     }
 
 });

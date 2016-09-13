@@ -34,6 +34,14 @@ namespace BusinessLayer.Implementation.ViewModels {
         public string User_identification {
             get; set;
         }
-                        
+
+        public bool IsAlive {
+            get; set;
+        }
+
+        public DateTime Patient_DOB {
+            get; set;
+        }
+
     }
 }

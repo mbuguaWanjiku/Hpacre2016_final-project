@@ -232,6 +232,8 @@ app.controller("PatientController", function ($scope, alert, PatientFactory) {
             $scope.Address = $scope.Users[0].Address;
             $scope.Email = $scope.Users[0].Email;
             $scope.Telephone = $scope.Users[0].Telephone;
+            $scope.Status = $scope.Users[0].IsAlive;
+            $scope.BirthDate = $scope.Users[0].Patient_DOB;
 
         }, function (error) {
             alert.warning("Something went wrong ! Please try again. ");
@@ -252,8 +254,7 @@ app.controller("PatientController", function ($scope, alert, PatientFactory) {
         });
     }
 
-    $scope.savePatientData = function (g, m) {
-
+    $scope.savePatientData = function (g, m, status) {
         var Patient = new Object();
         Patient.Email = $scope.Users.Email;
         Patient.Telephone = $scope.Users.Telephone;
@@ -261,6 +262,8 @@ app.controller("PatientController", function ($scope, alert, PatientFactory) {
         Patient.gender = g;
         Patient.MaritalStatus = m;
         Patient.Name = $scope.Users.Name;
+        Patient.IsAlive = status;
+        Patient.Patient_DOB = $scope.Users.BirthDate;
 
         patientDetails.push(Patient);
 

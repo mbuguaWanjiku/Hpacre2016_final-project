@@ -1,8 +1,8 @@
 ﻿
+<div class="col-md-1"></div>
+<div class="panel panel-widget col-md-10" ng-controller="observationController as vm">
+    <div ui-sref="observations" class="pull-right"><span class="glyphicon glyphicon-inbox  " style="color:black"></span>New Observation</div>
 
-<div class="panel panel-widget col-md-12" ng-controller="observationController as vm" >
-    <div ui-sref ="observations" class="pull-right" ><span class="glyphicon glyphicon-inbox  " style="color:red"></span>New Observation</div>
-   
     <div class="progressbar-heading grids-heading">
         <h2>Observations History</h2>
     </div>
@@ -14,7 +14,7 @@
                 <option value="Date" selected="selected">Date</option>
                 <option value="subject">Subject</option>
                 <option value="Author">Author</option>
-               
+
             </select><span></span>
             <input type="number" step="2" min="0" max="20" ng-model="rowLimit" placeholder="rows" style="width:140px" />
         </div>
@@ -26,14 +26,13 @@
                     <th>Date</th>
                     <th>Subject</th>
                     <th>Author</th>
-                   
                 </tr>
             </thead>
             <tbody>
                 <tr ng-repeat="obsHistory in vm.archive | limitTo:rowLimit | orderBy:sortColumn">
                     <td style="width:2%">{{$index + 1}}</td>
                     <td>
-                      
+
                         {{obsHistory.Date | jsonDate :'dd-M-yyyy H:mm' }}
                     </td>
                     <td>
@@ -49,9 +48,8 @@
             </tbody>
         </table>
 
-
     </div>
 
 </div>
-
+<div class="col-md-1"></div>
 

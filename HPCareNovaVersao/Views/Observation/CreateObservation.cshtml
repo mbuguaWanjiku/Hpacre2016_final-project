@@ -1,37 +1,33 @@
-﻿
-
-                    <div class="panel panel-widget"ng-controller="observationController as vm">                    
-                <div class="col-md-10 pull-right">
-                    <div class="panel panel-widget">
-                        <div class="compose-right widget-shadow">
-                            <div class="panel-default">
-                                <div class="panel-heading">
-                                    Compose new 
-                                    <div ui-sref="observationsHistory" class="pull-right"><a href="#"><i class="fa fa fa-envelope" style="color:red"></i>archive </a></div>
-                                </div>
-                                <div class="panel-body">
-                                    <div class="alert alert-info">
-                                        Please fill details 
-                                    </div>
-                                    <form class="com-mail" name="obsForm" ng-init="setForm(obsForm)">
-                                       
-                                        <input type="text" class="form-control1 control3" placeholder="Subject :"  ng-model="vm.subject" maxlength="50" max="10" required>
-                                        <textarea rows="6" class="form-control1 control2" placeholder="Observation :" ng-model="vm.observationBody" required></textarea>
-                                        <div class="form-group">
-                                            <div class="btn btn-default btn-file">
-                                                <i class="fa fa-paperclip"></i> Attachment
-                                                <input type="file" name="attachment">
-                                            </div>
-                                            <p class="help-block">Max. 32MB</p>
-                                        </div>
-                                        <button type="submit" class="btn btn-primary" ng-click="vm.saveToBD()" ng-disabled="obsForm.$invalid" >Save To Database</button>
-                                    </form>
-                                </div>
+﻿<div class="col-md-1"></div>
+<fieldset ng-controller="PatientStatusController" ng-disabled="!PatientStatus">
+    <div class="panel panel-widget col-md-11" ng-controller="observationController as vm">
+                <div class="compose-right widget-shadow">
+                    <div class="panel-default">
+                        <div class="panel-heading">
+                            Compose new
+                            <div ui-sref="observationsHistory" class="pull-right"><a href="#"><i class="fa fa fa-envelope" style="color:black"></i>Archive </a></div>
+                        </div>
+                        <div class="panel-body">
+                            <div class="alert alert-info">
+                                Please fill details
                             </div>
+                            <form class="com-mail" name="obsForm" ng-init="setForm(obsForm)">
+
+                                <input type="text" class="form-control1 control3" placeholder="Subject:" ng-model="vm.subject" maxlength="50" max="10" required>
+                                <textarea rows="6" class="form-control1 control2" placeholder="Observation:" ng-model="vm.observationBody" required></textarea>
+                                <div class="form-group">
+                                    <div class="btn btn-default btn-file">
+                                        <i class="fa fa-paperclip"></i> Attachment
+                                        <input type="file" name="attachment">
+                                    </div>
+                                    <p class="help-block">Max. 32MB</p>
+                                </div>
+                                <button type="submit" class="btn btn-primary" ng-click="vm.saveToBD()" ng-disabled="obsForm.$invalid">Save To Database</button>
+                            </form>
                         </div>
                     </div>
                 </div>
-                <div class="clearfix"> </div>
-            </div>
-
-     
+        <div class="clearfix"> </div>
+    </div>
+</fieldset>
+<div class="col-md-1"></div>
