@@ -310,9 +310,10 @@ namespace BusinessLayer.Implementation {
         /// <param name="idPatient">The identifier patient.</param>
         private void AccessGetPatientInformations(int idPatient) {
             using (SqlConnection connection = new SqlConnection("Data Source=SQL5025.myASP.NET;Initial Catalog=DB_A0ADFA_HPCareDBContext;User Id=DB_A0ADFA_HPCareDBContext_admin;Password=hpcare2016;")) {
-                SqlCommand command = new SqlCommand("select address, email, genderName, maritalstatusname, name, telephone, user_identification, isalive, patient_dob, Description " + 
-                    " from users, patient, genders, maritalstatus, agegroups where gender_genderid = genderid and MaritalStatus_MaritalStatusId = MaritalStatusId and " +
-                    " users.user_id = " + idPatient + " and users.user_id = patient.user_id and patient_age_group_agegroup_id = agegroup_id;", connection);
+                SqlCommand command = new SqlCommand("SELECT Users.Address, Users.Email, Genders.GenderName, MaritalStatus.MaritalStatusName, Users.Name, Users.Telephone, " + 
+                    " Users.User_identification,Patient.IsAlive,Patient.Patient_DOB,AgeGroups.Description FROM Genders INNER JOIN Users ON Genders.GenderId = Users.gender_GenderId " + 
+                    " INNER JOIN MaritalStatus ON Users.MaritalStatus_MaritalStatusId = MaritalStatus.MaritalStatusId INNER JOIN Patient ON Users.User_id = Patient.User_id " + 
+                    " INNER JOIN AgeGroups ON Patient.Patient_Age_Group_AgeGroup_id = AgeGroups.AgeGroup_id and users.User_id = " + idPatient + ";", connection);
                 command.CommandType = CommandType.Text;
                 command.Connection = connection;
                 connection.Open();
