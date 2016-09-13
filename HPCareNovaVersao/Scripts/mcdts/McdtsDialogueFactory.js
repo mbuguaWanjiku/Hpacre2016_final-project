@@ -1,4 +1,5 @@
-﻿app.factory('alertMcdt', function ($uibModal) {
+﻿/// <reference path="modalKft.html" />
+app.factory('alertMcdt', function ($uibModal) {
 
     var fac = {};
 

@@ -1,6 +1,6 @@
 ﻿var tempArray = [];
 var mcdtId = null;
-app.controller("LabExamsController", function ($scope, LabExamsFactory, alert, $timeout) {
+app.controller("LabExamsController", function ($scope, LabExamsFactory, alert, alertMcdt, $timeout) {
     $scope.mcdtsList = [];
     $scope.LabExams = null;
     $scope.id = null;//user id
