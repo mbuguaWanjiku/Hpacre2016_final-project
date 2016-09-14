@@ -229,6 +229,7 @@
     <Compile Include="Startup.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Content\Angular\controllers\LoadIndexController.js" />
     <Content Include="Content\Angular\controllers\PatientStatusController.js" />
     <Content Include="Content\Angular\controllers\HelpController.js" />
     <Content Include="Content\Angular\controllers\DiagnosisHistoryController.js" />
@@ -1259,6 +1260,7 @@
     <Content Include="Views\Patient\PatientTreatmentPlan.cshtml" />
     <Content Include="Views\Observation\CreateObservation.cshtml" />
     <Content Include="Views\Observation\ObservationsHistory.cshtml" />
+    <Content Include="Views\Observation\PatientObservations.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

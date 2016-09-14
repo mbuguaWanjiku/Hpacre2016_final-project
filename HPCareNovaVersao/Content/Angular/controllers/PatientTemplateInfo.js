@@ -96,7 +96,8 @@ app.controller("PatientTemplateMedicationHistory", function ($scope, PatientTemp
 
     $scope.MedicationHistoryVm = null;
     $scope.listMedications = null;
-
+    $scope.rowLimit = 20;
+    $scope.sortColumn = "StartDate";
     $scope.Init = function () {
         var getData = PatientTemplateInformationFactory.GetPatientMedication();
         getData.then(function (dt) {

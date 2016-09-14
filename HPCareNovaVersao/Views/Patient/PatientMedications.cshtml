@@ -8,6 +8,17 @@
             <div class="row">
 
                 <div class="col-md-12">
+                    <div class="panel-widget">
+                        <span class="glyphicon glyphicon-filter"></span>
+
+                        <select ng-model="sortColumn" class="dropDownOptions">
+                            <option value="StartDate" selected="selected">StartDate</option>
+                            <option value="EndDate">EndDate</option>
+                            <option value="Drugcategory">Drug Category</option>
+                            <option value="DrugName">Drug Name</option>
+                        </select><span></span>
+                        <input type="number" step="2" min="0" max="20" ng-model="rowLimit" placeholder="rows" style="width:140px" />
+                    </div>
                     <table class="table table-hover">
                         <thead>
                             <tr>
@@ -18,7 +29,8 @@
                             </tr>
                         </thead>
                         <tbody>
-                            <tr ng-repeat="MedicationHistoryVm in listMedications">
+                            <tr ng-repeat="MedicationHistoryVm in listMedications| limitTo:rowLimit | orderBy:sortColumn">
+                                >
                                 <td> {{MedicationHistoryVm.DrugName}}</td>
                                 <td> {{MedicationHistoryVm.Drugcategory}}</td>
                                 <td> {{MedicationHistoryVm.StartDate | jsonDate :'dd-MM-yyyy' }}</td>

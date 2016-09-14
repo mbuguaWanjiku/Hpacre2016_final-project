@@ -30,7 +30,7 @@ app.controller("observationController", function ($scope,alert, observationServi
             }       
             ////alert(JSON.stringify(vm.archive[0].Date))
         }, function (error) {
-            alert("error in obtaining drug category");
+            alert.warning("error in obtaining observations");
 
         });
         vm.GetObservation = function (observation) {

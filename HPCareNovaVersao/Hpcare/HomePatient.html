@@ -31,6 +31,9 @@
 
     <script src="../Content/Angular/Modules/MainModule.js"></script>
     <script src="../Content/Angular/Modules/NavigationConfiguration.js"></script>
+
+    <script src="../Content/Angular/controllers/LoadIndexController.js"></script>
+
     <script src="../Content/Angular/Services/DialoguesFactory.js"></script>
     <script src="../Content/Angular/Services/DiagnosisHistoryService.js"></script>
     <script src="../Content/Angular/controllers/DiagnosisClassificationController.js"></script>
@@ -39,6 +42,9 @@
 
     <script src="../Content/Angular/Services/DialoguesFactory.js"></script>
     <script src="../Content/TreatmentPlan/indexController.js"></script>
+
+    <script src="../Content/Angular/Services/ObservationsFactory.js"></script>
+    <script src="../Content/Angular/controllers/ObservationsController.js"></script>
 
     <script src="../Content/Angular/controllers/PatientTemplateInfo.js"></script>
     <script src="../Content/Angular/controllers/PatientInformationsController.js"></script>
@@ -139,7 +145,7 @@
 
                 <div class="clearfix"> </div>
             </div>
-          
+
             <div class="header-right">
 
                 <!--notification menu end -->
@@ -169,8 +175,8 @@
         <!-- //header-ends -->
         <!-- main content start-->
         <div id="page-wrapper">
-            <div class="main-page  " style="margin-top:13%;">
-
+            <div class="main-page  " style="margin-top:13%;" ng-controller="loadIndexCTR as vm" ng-init="vm.loadProfile()">
+                <span us-spinner="{radius:30, width:8, length: 16}" style="color:blue"></span>
                 <div data-ui-view="">
 
                 </div>
@@ -237,6 +243,6 @@
 
     <!--<script src="/Scripts/jquery.fn.gantt.js"></script>-->
     <!-- //status -->
-   
+
 </body>
 </html>

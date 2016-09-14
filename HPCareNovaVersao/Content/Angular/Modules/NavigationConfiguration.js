@@ -2,19 +2,30 @@
 
 
 
-app.config(function ($stateProvider, $urlRouterProvider,$locationProvider) {
+app.config(function ($stateProvider, $urlRouterProvider, $locationProvider) {
     $locationProvider.html5Mode(true);
- 
+
     //$urlRouterProvider.when("", "");
-    //$urlRouterProvider.otherwise('/');
+    $urlRouterProvider.otherwise('/');
     $stateProvider
-    
+
        .state("searchPatient", {
            url: "/searchPatient",
-          
+
            templateUrl: "../Home/SearchPatient"
        })
 
+         .state("myInfo", {
+             url: "/myInfo",
+
+             templateUrl: "../Patient/PatientProfilePage"
+         })
+
+          .state("labTec", {
+              url: "/labTec",
+
+              templateUrl: "../labExams/ListMcdts"
+          })
 
 
        .state("prescribeMCDT", {
@@ -57,10 +68,14 @@ app.config(function ($stateProvider, $urlRouterProvider,$locationProvider) {
              templateUrl: "../Observation/CreateObservation"
          })
           .state("observationsHistory", {
-             url: "/observationsHistory",
+              url: "/PatientObservationsHistory",
+              templateUrl: "../Observation/ObservationsHistory"
+          })
+
+         .state("patientObservations", {
+             url: "/myObservations",
              templateUrl: "../Observation/ObservationsHistory"
          })
-
 
     // ****************** Graphs ****************************//
     .state("mcdtResults", {
@@ -105,7 +120,7 @@ app.config(function ($stateProvider, $urlRouterProvider,$locationProvider) {
     .state("createTreatmentPlan", {
         url: "/createTreatmentPlan",
         templateUrl: "../TreatmentPlans/Index"
-       
+
     })
     .state("consultTreatmentPlan", {
         url: "/TreatmentPlanMed",
@@ -119,7 +134,7 @@ app.config(function ($stateProvider, $urlRouterProvider,$locationProvider) {
         templateUrl: "../Patient/PatientProfilePage"
     })
 
-   
+
 
     .state("patientMcdts", {
         url: "/patientMcdts",
@@ -138,9 +153,9 @@ app.config(function ($stateProvider, $urlRouterProvider,$locationProvider) {
 
 
      .state("patientTreatmentPlan", {
-        url: "/TreatmentPlanPatient",
-        templateUrl: "../Content/TreatmentPlan/TreatmentPlanPatient.html"
-    })
+         url: "/TreatmentPlanPatient",
+         templateUrl: "../Content/TreatmentPlan/TreatmentPlanPatient.html"
+     })
     // ************ Admin template **************** //
 
 
@@ -155,18 +170,18 @@ app.config(function ($stateProvider, $urlRouterProvider,$locationProvider) {
         templateUrl: "../Home/Users"
     })
 
-  
+
     .state('logout', {
-    url: '/logout',
-    templateUrl: 'logOut.html',
-    resolve : {
-        logOut: function (logOutService) {
-           
-            return logOutService.logOut();
+        url: '/logout',
+        templateUrl: 'logOut.html',
+        resolve: {
+            logOut: function (logOutService) {
+
+                return logOutService.logOut();
+            },
         },
-    },
-    controller: 'logOutController',
-})
+        controller: 'logOutController',
+    })
 
 
 
