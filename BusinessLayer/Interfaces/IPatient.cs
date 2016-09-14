@@ -17,5 +17,7 @@ namespace BusinessLayer.Interfaces {
 
         void saveDataFromPatient(List<Patient> usersInformations);
 
+        void updateAllergies(List<AllergiesManager> allergies);
+
     }
 }

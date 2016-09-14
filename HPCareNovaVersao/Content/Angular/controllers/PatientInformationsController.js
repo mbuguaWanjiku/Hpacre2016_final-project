@@ -61,7 +61,7 @@
         alert.updateAllergy(allergyCategory);
     }
 
-    $scope.UpdateAllergy = function (allergyEndDate) {
+    $scope.UpdateAllergyDatabase = function (allergyEndDate) {
         alert.warning(allergyEndDate);
     }
 
