@@ -89,7 +89,14 @@ namespace PresentationLayer.Controllers {
             return false;
             //return Json(patient, JsonRequestBehavior.AllowGet);
         }
-
+        /// <summary>
+        /// whether is firts visit
+        /// </summary>
+        /// <returns></returns>
+        public bool IsFirstVisit()
+        {
+            return new ImpHome().IsFirstVist(context);
+        }
        
 
     }

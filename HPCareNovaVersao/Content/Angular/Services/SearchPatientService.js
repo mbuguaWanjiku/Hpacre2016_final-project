@@ -47,37 +47,24 @@ app.factory('searchDialogue', function ($uibModal, $http, $state, $interval) {
 
     fac.visitManager = function () {
 
-        return $uibModal.open({
-            backdrop: 'static',
-            //keyboard: false,
-            templateUrl: 'VisitManager.html',
-            controller: function () {
-                var vm = this;
-                vm.firstVisit = function () {
-                    $state.go('addPatientInfo');
+      
+                var visitType = function(){
+                    return $http.get('../Home/IsFirstVisit')
                 }
-                vm.subsequenteVisit = function () {
 
-                    $state.go('consultPatientInfo')
-                }
-            },
-            controllerAs: 'vm'
-
-        });
+                var getData = visitType();
+                getData.then(function (response) {                 
+                    if (response.data === 'True') {
+                        $state.go('addPatientInfo');
+                    } else {
+                        $state.go('consultPatientInfo')
+                    }
+           
+            });
+    
+              
 
     }
-
-
-
-
-
-
-
-
-
-
-
-
 
 
     return fac;

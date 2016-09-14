@@ -105,10 +105,10 @@ namespace BusinessLayer.Implementation {
         public PatientViewModel getPatientInformation(int idPatient) {
             Patient p = db.Users.Find(idPatient) as Patient;
             PatientViewModel viewModel = new PatientViewModel {
-                Address = p.Address,
+                Address = "p.Address",
                 AllergiesManager = addAllergiesList(idPatient),
                 AspUserId = p.AspUserId,
-                Email = p.Email,
+                Email = "p.Email",
                 FamilyHistoryManager = addFamilyHistoryList(idPatient),
                 gender = p.gender,
                 MaritalStatus = p.MaritalStatus,
@@ -117,10 +117,10 @@ namespace BusinessLayer.Implementation {
                 Patient_Age_Group = p.Patient_Age_Group,
                 Patient_next_of_kin = p.Patient_next_of_kin,
                 RiskFactorManager = addRiskFactorList(idPatient),
-                Telephone = p.Telephone,
+                Telephone = "p.Telephone",
                 UserType = p.UserType,
                 User_id = p.User_id,
-                User_identification = p.User_identification
+                User_identification = "p.User_identification"
             };
 
             return viewModel;
