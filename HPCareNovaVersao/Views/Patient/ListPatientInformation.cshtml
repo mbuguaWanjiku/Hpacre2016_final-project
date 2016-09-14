@@ -22,7 +22,7 @@
                         </ul>
                         <div id="myTabContent" class="tab-content">
                             <div role="tabpanel" class="tab-pane fade in active" id="personal" aria-labelledby="personal-tab">
-                                
+
                                 <div class="form-horizontal">
                                     <div class="form-group">
                                         <label class="col-md-2 control-label">Name</label>
@@ -30,6 +30,7 @@
                                             <p class="form-control1 m-n">{{Name}}</p>
                                         </div>
                                     </div>
+
                                     <div class="form-group">
                                         <label class="col-md-2 control-label">Birth Date</label>
                                         <div class="col-md-8">
@@ -38,7 +39,14 @@
                                     </div>
 
                                     <div class="form-group">
-                                        <label class="col-md-2 control-label">Patient Status</label>
+                                        <label class="col-md-2 control-label">Age Group</label>
+                                        <div class="col-md-8">
+                                            <p class="form-control1 m-n">{{AgeGroup }}</p>
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label class="col-md-2 control-label">Status</label>
                                         <div class="col-md-8">
                                             <p class="form-control1 m-n">{{Status ? 'Alive' : 'Deceased'}}</p>
                                         </div>
@@ -94,7 +102,6 @@
                                         <tr ng-repeat="FamilyHistoryCategories in PatientFamilyHistoryCategories track by $index">
                                             <td> {{FamilyHistoryCategories.FamilyHistoryName}}</td>
                                             <td> {{FamilyHistoryCategories.Carrier}}</td>
-
                                         </tr>
                                     </tbody>
                                 </table>
@@ -109,7 +116,6 @@
                                     <tbody>
                                         <tr ng-repeat="RiskFactorsCategories in PatientRiskFactorsCategories track by $index">
                                             <td> {{RiskFactorsCategories.RiskFactorName}}</td>
-
                                         </tr>
                                     </tbody>
                                 </table>
@@ -118,6 +124,7 @@
                                 <table class="table table-hover">
                                     <thead>
                                         <tr>
+                                            <th></th>
                                             <th>Name</th>
                                             <th>Start Date</th>
                                             <th>End Date</th>
@@ -125,9 +132,10 @@
                                     </thead>
                                     <tbody>
                                         <tr ng-repeat="AllergyCategories in PatientAllergyCategories track by $index">
-                                            <td> {{AllergyCategories.Allergy_Name}}</td>
-                                            <td> {{AllergyCategories.Allergy_start_date | jsonDate :'dd-MM-yyyy' }}</td>
-                                            <td> {{AllergyCategories.Allergy_end_date}}</td>
+                                            <td> <span class="fa fa-plus" ng-click="updateAllergy(AllergyCategories)"></span></td>
+                                            <td> {{AllergyCategories.Allergy_Name}} </td>
+                                            <td> {{AllergyCategories.Allergy_start_date | jsonDate : 'dd-MM-yyyy' }} </td>
+                                            <td> {{AllergyCategories.Allergy_end_date | jsonDate : 'dd-MM-yyyy' }} </td>
                                         </tr>
                                     </tbody>
                                 </table>

@@ -218,7 +218,6 @@ var patientDetails = [];
 app.controller("PatientController", function ($scope, alert, PatientFactory) {
 
     $scope.Users = null;
-    $scope.Aux = false;
     $scope.Genders = null;
     $scope.Marital = null;
     $scope.gender = null;
@@ -272,7 +271,6 @@ app.controller("PatientController", function ($scope, alert, PatientFactory) {
             getData.then(function (message) {
                 alert.success("Patient info added with success !");
                 patientDetails = [];
-                $scope.Aux = true;
             }, function () {
                 alert.warning("Something went wrong ! Please try again. ");
             });
