@@ -228,7 +228,7 @@ namespace BusinessLayer.Implementation {
                     " Users.Name , MCDTs.Discriminator FROM ClinicRegistryManagers INNER JOIN MCDTManagers ON ClinicRegistryManagers.ClinicRegistryManagerId = MCDTManagers.clinicRegistryManager_ClinicRegistryManagerId " +
                     " INNER JOIN MCDTStaffManagers ON MCDTManagers.MCDTStaffManager_MCDTStaffManager_id = MCDTStaffManagers.MCDTStaffManager_id INNER JOIN MCDTs ON " +
                     " MCDTStaffManagers.mcdt_MCDT_ID = MCDTs.MCDT_ID INNER JOIN Patient ON ClinicRegistryManagers.Clinic_patient_User_id = Patient.User_id INNER JOIN " +
-                    " Users ON Patient.User_id = Users.User_id and mcdts.labexam_data_in is null;", connection);
+                    " Users ON Patient.User_id = Users.User_id and mcdts.labexam_data_in is null and discriminator != '(Undefined)';", connection);
                 command.CommandType = CommandType.Text;
                 command.Connection = connection;
                 connection.Open();

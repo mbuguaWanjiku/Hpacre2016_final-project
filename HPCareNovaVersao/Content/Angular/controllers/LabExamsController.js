@@ -128,7 +128,6 @@ app.controller("LabExamsController", function ($scope, LabExamsFactory, alert, a
         LabExams.BUN = $scope.LabExams.BUN;
         LabExams.Creatinine = $scope.LabExams.Creatinine;
         LabExams.uricAcid = $scope.LabExams.uricAcid;
-        alert.warning(mcdtId);
         LabExams.MCDT_ID = mcdtId;
 
         tempArray.push(LabExams);
@@ -136,10 +135,10 @@ app.controller("LabExamsController", function ($scope, LabExamsFactory, alert, a
         if (tempArray.length > 0) {
             var getData = LabExamsFactory.saveKft();
             getData.then(function (message) {
-                //alert.success("MCDT's results added with success !");
+                alert.success("MCDT's results added with success !");
                 tempArray = [];
             }, function () {
-                //alert.warning("Something went wrong ! Please try again. ");
+                alert.warning("Something went wrong ! Please try again. ");
             });
         }
     }
