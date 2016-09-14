@@ -11,6 +11,7 @@ using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Web;
 
 namespace BusinessLayer.Implementation {
     public class ImpHome {
@@ -46,8 +47,15 @@ namespace BusinessLayer.Implementation {
         private int GetIntSafely(DbDataReader reader, int colIndex) {
             return (reader.IsDBNull(colIndex) ? 0 : reader.GetInt32(colIndex));
         }
-      
+        public bool IsFirstVist(HPCareDBContext context)
+        {
+
+            Patient patient = context.Users.Find(HttpContext.Current.Session["patientId"]) as Patient;
+            return patient.Address == "";
+        }
     }
 
 }
+
+
 
