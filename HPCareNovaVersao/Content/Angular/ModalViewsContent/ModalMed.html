@@ -11,21 +11,27 @@
                         <div class="form-group">
                             <label for="subject" class="col-sm-2 control-label">subject</label>
                             <div class="col-sm-9">
-                                <input type="text" class="form-control" id="obsData" placeholder="subject" required  ng-model="vm.subject"/>
+                                <input type="text" class="form-control" id="obsData" placeholder="subject" required ng-model="vm.subject" />
                             </div>
 
                             <label for="Observations" class="col-sm-2 control-label">Report</label>
                             <div class="col-sm-9">
-                                <textarea type="text" class="form-control"  placeholder="Observations" required ng-model ="vm.observationBody">
-                                </textarea>
+                                <textarea type="text" class="form-control" placeholder="Observations" required ng-model="vm.observationBody"></textarea>
                             </div>
-                              <br/><br/>
-                            <div class=" pull-left">
-                                <button type="button" class="btn btn-primary" ng-disabled="medForm.$invalid" ng-click="vm.saveToBD();$close()" >submit</button>
-   
+
+                            <br /><br />
+                            <div class="modal-footer">
+                                <div class="pull-right">
+                                    <input type="checkbox" id="classified" ng-model="vm.classified" />
+                                    <p class="help-block">Classified</p>
+                                </div>
+                                <div class=" pull-left">
+                                    <button type="button" class="btn btn-primary" ng-disabled="medForm.$invalid" ng-click="vm.saveToBD();$close()">submit</button>
+
+                                </div>
                             </div>
                         </div>
-                       
+
                     </form>
                 </div>
             </div>
