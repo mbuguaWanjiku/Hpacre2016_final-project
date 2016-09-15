@@ -74,7 +74,7 @@ app.config(function ($stateProvider, $urlRouterProvider, $locationProvider) {
 
          .state("patientObservations", {
              url: "/myObservations",
-             templateUrl: "../Observation/ObservationsHistory"
+             templateUrl: "../Observation/PatientObservations"
          })
 
     // ****************** Graphs ****************************//
