@@ -136,10 +136,10 @@ app.controller("LabExamsController", function ($scope, LabExamsFactory, alert, a
         if (tempArray.length > 0) {
             var getData = LabExamsFactory.saveKft();
             getData.then(function (message) {
-                alert.success("MCDT's results added with success !");
+                //alert.success("MCDT's results added with success !");
                 tempArray = [];
             }, function () {
-                alert.warning("Something went wrong ! Please try again. ");
+                //alert.warning("Something went wrong ! Please try again. ");
             });
         }
     }
@@ -158,10 +158,10 @@ app.controller("LabExamsController", function ($scope, LabExamsFactory, alert, a
         if (tempArray.length > 0) {
             var getData = LabExamsFactory.saveLft();
             getData.then(function (message) {
-                alert.success("MCDT's results added with success !");
+                //alert.success("MCDT's results added with success !");
                 tempArray = [];
             }, function () {
-                alert.warning("Something went wrong ! Please try again. ");
+                //alert.warning("Something went wrong ! Please try again. ");
             });
         }
     }
@@ -179,10 +179,10 @@ app.controller("LabExamsController", function ($scope, LabExamsFactory, alert, a
         if (tempArray.length > 0) {
             var getData = LabExamsFactory.saveLymphocytes();
             getData.then(function (message) {
-                alert.success("MCDT's results added with success !");
+                //alert.success("MCDT's results added with success !");
                 tempArray = [];
             }, function () {
-                alert.warning("Something went wrong ! Please try again. ");
+                //alert.warning("Something went wrong ! Please try again. ");
             });
         }
     }
@@ -197,10 +197,10 @@ app.controller("LabExamsController", function ($scope, LabExamsFactory, alert, a
         if (tempArray.length > 0) {
             var getData = LabExamsFactory.savePlatelets();
             getData.then(function (message) {
-                alert.success("MCDT's results added with success !");
+                //alert.success("MCDT's results added with success !");
                 tempArray = [];
             }, function () {
-                alert.warning("Something went wrong ! Please try again. ");
+                //alert.warning("Something went wrong ! Please try again. ");
             });
         }
     }
@@ -221,10 +221,10 @@ app.controller("LabExamsController", function ($scope, LabExamsFactory, alert, a
         if (tempArray.length > 0) {
             var getData = LabExamsFactory.saveRbcIndices();
             getData.then(function (message) {
-                alert.success("MCDT's results added with success !");
+                //alert.success("MCDT's results added with success !");
                 tempArray = [];
             }, function () {
-                alert.warning("Something went wrong ! Please try again. ");
+                //alert.warning("Something went wrong ! Please try again. ");
             });
         }
     }
@@ -240,10 +240,10 @@ app.controller("LabExamsController", function ($scope, LabExamsFactory, alert, a
         if (tempArray.length > 0) {
             var getData = LabExamsFactory.saveRbcs();
             getData.then(function (message) {
-                alert.success("MCDT's results added with success !");
+                //alert.success("MCDT's results added with success !");
                 tempArray = [];
             }, function () {
-                alert.warning("Something went wrong ! Please try again. ");
+                //alert.warning("Something went wrong ! Please try again. ");
             });
         }
     }
@@ -258,10 +258,10 @@ app.controller("LabExamsController", function ($scope, LabExamsFactory, alert, a
         if (tempArray.length > 0) {
             var getData = LabExamsFactory.saveViralLoad();
             getData.then(function (message) {
-                alert.success("MCDT's results added with success !");
+                //alert.success("MCDT's results added with success !");
                 tempArray = [];
             }, function () {
-                alert.warning("Something went wrong ! Please try again. ");
+                //alert.warning("Something went wrong ! Please try again. ");
             });
         }
     }
@@ -279,10 +279,10 @@ app.controller("LabExamsController", function ($scope, LabExamsFactory, alert, a
         if (tempArray.length > 0) {
             var getData = LabExamsFactory.saveWbcs();
             getData.then(function (message) {
-                alert.success("MCDT's results added with success !");
+                //alert.success("MCDT's results added with success !");
                 tempArray = [];
             }, function () {
-                alert.warning("Something went wrong ! Please try again. ");
+                //alert.warning("Something went wrong ! Please try again. ");
             });
         }
     }

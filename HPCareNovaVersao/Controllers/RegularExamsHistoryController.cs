@@ -32,7 +32,9 @@ namespace PresentationLayer.Controllers
         public JsonResult GetMcdt(int id)
         {
             List<MCDT> mcdt = db.MCDTs.Where(x => x.MCDT_ID == id).ToList();
-            mcdt.FirstOrDefault().MCDT_units = new Units { Description = "debug" };
+            
+            db.Entry(mcdt.FirstOrDefault()).Reference(x => x.MCDT_units).Load();
+            //string units = mcdt.MCDT_units.Description;
             return Json(mcdt, JsonRequestBehavior.AllowGet);
         }
     }

@@ -22,12 +22,21 @@ namespace HPCareNovaVersao {
             );
 
             //        routes.MapRoute(
-            //    name: "Default",
-            //    url: "Hpcare/Home.html",
-            //    defaults: new { controller = "Home", action = "Demo", id = UrlParameter.Optional }
-            //);
+            //              name: "Default1",
+            //              url: "{*.}",
+            //              defaults: new
+            //              {
+            //                  controller = "Home",
+            //                  action = "Index",
+            //              }
+            //          );
+            //        routes.MapRoute(
+            //            name: "Default",
+            //            url: "{controller}/{action}/{id}",
+            //            defaults: new { controller = "Home", action = "Index", id = UrlParameter.Optional }
+            //        );
+               }
 
-
+            }
         }
-    }
-}
+

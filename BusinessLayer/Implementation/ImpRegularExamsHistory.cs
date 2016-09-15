@@ -81,7 +81,7 @@ namespace BusinessLayer.Implementation {/// <summary>
                     viewModel.MCDT_date = dbDataReader.GetDateTime(1);
                     viewModel.LabExam_data_in = GetDateSafely(dbDataReader, 2);
                     viewModel.LabExam_data_out = GetDateSafely(dbDataReader, 3);
-                    viewModel.MCDT_units_Id = GetIntSafely(dbDataReader, 4);
+                    viewModel.MCDT_units_Id = GetMcdtUnits(GetIntSafely(dbDataReader, 4), viewModel.Mcdt_id);
                     viewModel.Staff_User_id = GetStaffName(GetIntSafely(dbDataReader, 5));
                     viewModel.Discriminator = dbDataReader.GetString(6);
                     listRegularExam.Add(viewModel);
@@ -116,7 +116,15 @@ namespace BusinessLayer.Implementation {/// <summary>
         /// <param name="colIndex">column index</param>
         /// <returns>string</returns>
         private string GetStaffName(int id) {
-            return (db.Users.Where(x => x.User_id == id).FirstOrDefault().Name);
+            return(id==0 ? "unset":
+                  db.Users.Where(x => x.User_id == id).FirstOrDefault().Name);
+        }
+        private string GetMcdtUnits(int unitId,int mcdtId)
+        {
+            MCDT mcdt = db.MCDTs.Find(mcdtId);
+            db.Entry(mcdt).Reference(x => x.MCDT_units).Load();
+            string units = mcdt.MCDT_units.Description;
+            return units;
         }
     }
 }

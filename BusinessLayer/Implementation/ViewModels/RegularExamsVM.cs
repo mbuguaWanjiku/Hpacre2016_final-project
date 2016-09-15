@@ -19,7 +19,7 @@ namespace BusinessLayer.Implementation.ViewModels {
         public Nullable<DateTime> LabExam_data_out {
             get; set;
         }
-        public int MCDT_units_Id {
+        public string MCDT_units_Id {
             get; set;
         }
         public string Staff_User_id {

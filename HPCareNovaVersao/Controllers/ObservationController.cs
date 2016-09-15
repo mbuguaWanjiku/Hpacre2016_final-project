@@ -30,6 +30,11 @@ namespace PresentationLayer.Controllers
         {
             return PartialView();
         }
+        public ActionResult PatientObservations()
+        {
+            return PartialView();
+        }
+
         public string SaveObservation(List<string> observationList)
         {
             int c = observationList.Count;

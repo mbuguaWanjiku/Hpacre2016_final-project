@@ -29,13 +29,17 @@ app.factory('showResultModal', function ($uibModal) {
                     label = document.createElement('label');
                     label.appendChild(document.createTextNode(prop))
                     label.appendChild(document.createTextNode('\u00A0\u00A0\u00A0\u00A0'));
-                    h1 = document.createElement('h2').appendChild(document.createTextNode(mcdtObject[prop]));
+
+                    h1 = document.createElement('h2').appendChild(document.createTextNode(setTextNode(mcdtObject[prop])));
                     p = document.createElement('prep');
                     //p.className = 'results';
                     p.appendChild(label); p.appendChild(h1);
                     bodyDiv.appendChild(p)
                     bodyDiv.appendChild(br)
                 }
+            }
+            function setTextNode(prop) {             
+                return (prop !== null && typeof prop === 'object')?prop.Description : prop;
             }
             return bodyDiv;
         }

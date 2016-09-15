@@ -21,7 +21,7 @@
                     </div>
                     <table class="table table-hover">
                         <thead>
-                            <tr>
+                            <tr><<th>No</th>
                                 <th>Drug Name</th>
                                 <th>Drug Category</th>
                                 <th>Start Date</th>
@@ -30,7 +30,7 @@
                         </thead>
                         <tbody>
                             <tr ng-repeat="MedicationHistoryVm in listMedications| limitTo:rowLimit | orderBy:sortColumn">
-                                >
+                                <td style="width:2%">{{$index + 1}}</td>
                                 <td> {{MedicationHistoryVm.DrugName}}</td>
                                 <td> {{MedicationHistoryVm.Drugcategory}}</td>
                                 <td> {{MedicationHistoryVm.StartDate | jsonDate :'dd-MM-yyyy' }}</td>

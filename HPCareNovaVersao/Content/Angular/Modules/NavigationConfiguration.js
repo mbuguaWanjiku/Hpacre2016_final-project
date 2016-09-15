@@ -7,6 +7,7 @@ app.config(function ($stateProvider, $urlRouterProvider, $locationProvider) {
 
     //$urlRouterProvider.when("", "");
     $urlRouterProvider.otherwise('/');
+
     $stateProvider
 
        .state("searchPatient", {
