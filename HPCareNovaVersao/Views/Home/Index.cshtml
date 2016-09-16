@@ -89,10 +89,7 @@
                         <ul id="m_nav_list" class="m_nav">
                             <li class="m_nav_item" id="m_nav_item_1"> <a href="index.html">Home</a> </li>
                             <li class="m_nav_item" id="moble_nav_item_2"> <a href="#about">About </a> </li>
-                            @*<li class="m_nav_item" id="moble_nav_item_3"> <a href="#services">Services</a> </li>
-                            <li class="m_nav_item" id="moble_nav_item_4"> <a href="#gallery"> Gallery </a> </li>*@
                             <li class="m_nav_item" id="moble_nav_item_4"> <a href="#features"> Login </a> </li>
-                            <!--<li class="m_nav_item" id="moble_nav_item_5"> <a href="#contact"> Contact </a> </li>-->
                         </ul>
                     </div>
                 </div>
@@ -309,8 +306,8 @@
                                 </div>
                                
                                 <div class="login-info">
-                                    <p>user= Clinic/Patient/Admin</p>
-                                    <p>password -Qwerty123!</p>
+                                    <p>user -> Clinic/Patient/Admin</p>
+                                    <p>password -> Qwerty123!</p>
                                     @using (Html.BeginForm("Login", "Account", new
                                     {
                                         ReturnUrl = ViewBag.ReturnUrl
@@ -347,7 +344,7 @@
                                        @class = "text-danger"
                                    })
 
-                                        <div class="forgot-top-grids">
+                                        @*<div class="forgot-top-grids">
                                             <div class="forgot-grid">
                                                 @Html.CheckBoxFor(m => m.RememberMe)
                                                 @Html.LabelFor(m => m.RememberMe)
@@ -356,7 +353,7 @@
                                                 <a href="#">Forgot password?</a>
                                             </div>
                                             <div class="clearfix"> </div>
-                                        </div>
+                                        </div>*@
 
                                         <input type="submit" value="Log in" name="Sign In">
 

@@ -2510,7 +2510,7 @@ button#default-map-btn, button#green-map-btn, button#blue-map-btn,button#grey-ma
 }
 .login-heading{
     background: #67d3e0;
-    padding: 3em 0em;
+    padding: 2em 0em;
 }
 .login-heading h1{
     color: #FFFFFF;
@@ -2518,7 +2518,7 @@ button#default-map-btn, button#green-map-btn, button#blue-map-btn,button#grey-ma
 	text-align:center;
 }
 .login-info{
-    padding: 4em 1.5em 1em;
+    padding: 3em 1.5em 1em;
     background: #FFFFFF;
 }
 .login-info input[type="text"], .login-info input[type="password"] {
