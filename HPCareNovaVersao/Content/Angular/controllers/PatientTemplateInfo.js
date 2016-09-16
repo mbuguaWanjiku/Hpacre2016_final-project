@@ -1,15 +1,15 @@
 ﻿
 app.controller("PatientTemplateInfo", function ($scope, PatientTemplateInformationFactory, alert) {
 
-    $scope.FamilyHistoryCategories = null;
-    $scope.RiskFactorsCategories = null;
-    $scope.AllergyCategories = null;
-    $scope.PatientFamilyHistoryCategories = null;
-    $scope.PatientRiskFactorsCategories = null;
-    $scope.PatientAllergyCategories = null;
-    $scope.PatientFullInformation = null;
-    $scope.gender = null;
-    $scope.MaritalStatus = null;
+    //$scope.FamilyHistoryCategories = null;
+    //$scope.RiskFactorsCategories = null;
+    //$scope.AllergyCategories = null;
+    //$scope.PatientFamilyHistoryCategories = null;
+    //$scope.PatientRiskFactorsCategories = null;
+    //$scope.PatientAllergyCategories = null;
+    //$scope.PatientFullInformation = null;
+    //$scope.gender = null;
+    //$scope.MaritalStatus = null;
 
 
     $scope.Init = function () {
@@ -52,8 +52,10 @@ app.controller("PatientTemplateInfo", function ($scope, PatientTemplateInformati
         $scope.Email = $scope.PatientFullInformation[0].Email;
         $scope.Telephone = $scope.PatientFullInformation[0].Telephone;
         $scope.Identification = $scope.PatientFullInformation[0].User_identification;
-    }
 
+       
+    }
+   
 });
 
 

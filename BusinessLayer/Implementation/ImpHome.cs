@@ -51,7 +51,7 @@ namespace BusinessLayer.Implementation {
         {
 
             Patient patient = context.Users.Find(HttpContext.Current.Session["patientId"]) as Patient;
-            return patient.Address == "";
+            return patient.Address == null;
         }
     }
 

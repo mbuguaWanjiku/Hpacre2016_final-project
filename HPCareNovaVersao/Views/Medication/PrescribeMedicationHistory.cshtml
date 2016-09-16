@@ -37,40 +37,40 @@
             </select><span></span>
             <input type="number" step="2" min="0" max="20" ng-model="rowLimit" placeholder="rows" style="width:140px" />
         </div>
-        <table class="table table-hover form-control-wrapper">
-            <caption>Prescribed Medications Pool</caption>
-            <thead>
-                <tr>
-                    <th>No</th>
-                    <th>Start Date</th>
-                    <th>End Date</th>
-                    <th>Drug Name</th>
-                    <th>Category</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr ng-repeat="medHistory in medicationHistory | limitTo:rowLimit | orderBy:sortColumn">
-                    <td style="width:2%">{{$index + 1}}</td>
-                    <td>
-                        {{medHistory.StartDate | jsonDate :'dd-M-yyyy H:mm' }}
-                    </td>
-                    <td>
-                        {{medHistory.EndDate | jsonDate :'dd-M-yyyy H:mm' }}
-                    </td>
-                    <td>
-                        {{medHistory.DrugName}}
-                    </td>
-                    <td>
-                        {{medHistory.Drugcategory}}
-                    </td>
-                </tr>
-            </tbody>
-        </table>
+        <div style="overflow:auto; height: 440px;">
+            <table class="table table-hover form-control-wrapper">
+                <caption>Prescribed Medications Pool</caption>
+                <thead>
+                    <tr>
+                        <th>No</th>
+                        <th>Start Date</th>
+                        <th>End Date</th>
+                        <th>Drug Name</th>
+                        <th>Category</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr ng-repeat="medHistory in medicationHistory | limitTo:rowLimit | orderBy:sortColumn">
+                        <td style="width:2%">{{$index + 1}}</td>
+                        <td>
+                            {{medHistory.StartDate | jsonDate :'dd-M-yyyy H:mm' }}
+                        </td>
+                        <td>
+                            {{medHistory.EndDate | jsonDate :'dd-M-yyyy H:mm' }}
+                        </td>
+                        <td>
+                            {{medHistory.DrugName}}
+                        </td>
+                        <td>
+                            {{medHistory.Drugcategory}}
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
 
 
-    </div>
+        </div>
 
 </div>
 
-
-<div class="col-md-1"></div>
+</div>

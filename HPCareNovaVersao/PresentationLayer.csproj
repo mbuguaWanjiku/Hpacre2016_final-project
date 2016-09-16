@@ -250,6 +250,7 @@
     <Content Include="Content\Angular\ModalViewsContent\modalSpecificControlGraph.html" />
     <Content Include="Content\Angular\ModalViewsContent\modalControlGraph.html" />
     <Content Include="Content\Angular\Modules\SpinnerModule.js" />
+    <Content Include="Content\Angular\Services\SharedPropertiesService.js" />
     <Content Include="Hpcare\LogOut.html" />
     <Content Include="Hpcare\VisitManager.html" />
     <Content Include="Images\Homepage\GoodBye.gif" />

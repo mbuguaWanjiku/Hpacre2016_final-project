@@ -11,39 +11,16 @@ var app = angular.module('myApp', ['mwl.calendar', 'ngAnimate', 'ui.bootstrap', 
      
     }]);
 
+  app.run(function($rootScope) {
+      $rootScope.subsequentVisit = 'false'
+            // $rootScope.valid=(patient.Address === null || patient.MaritalStatus === null || patient.Gender === null);           
+        
+    })
+   
+    app.run(function($rootScope) {
+        $rootScope.filledFields = function (patient) {
+            $rootScope.subsequentVisit =(patient.Address !== null && patient.MaritalStatus !== null && patient.Gender !== null);           
+        }
+    })
+   
     
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-//  app.run(function($rootScope){
-
-//    $rootScope
-//        .$on('$stateChangeStart', 
-//            function(event, toState, toParams, fromState, fromParams){ 
-//                $("#ui-view").html("");
-//                $(".page-loading").removeClass("hidden");
-//        });
-
-//    $rootScope
-//        .$on('$stateChangeSuccess',
-//            function(event, toState, toParams, fromState, fromParams){ 
-//                $(".page-loading").addClass("hidden");
-//        });
-
-//});

@@ -22,13 +22,6 @@ app.config(function ($stateProvider, $urlRouterProvider, $locationProvider) {
              templateUrl: "../Patient/PatientProfilePage"
          })
 
-          .state("labTec", {
-              url: "/labTec",
-
-              templateUrl: "../labExams/ListMcdts"
-          })
-
-
        .state("prescribeMCDT", {
            url: "/prescribeMCDT",
            templateUrl: "../MCDTs/PrescribeMCDT"

@@ -215,13 +215,13 @@ app.controller("PatientAllergiesController", function ($scope, $interval, Patien
 
 
 var patientDetails = [];
-app.controller("PatientController", function ($scope, alert, PatientFactory) {
+app.controller("PatientController", function ($scope,$rootScope,validation, alert, PatientFactory) {
 
-    $scope.Users = null;
-    $scope.Genders = null;
-    $scope.Marital = null;
-    $scope.gender = null;
-    $scope.MaritalStatus = null;
+    //$scope.Users = null;
+    //$scope.Genders = null;
+    //$scope.Marital = null;
+    //$scope.gender = null;
+    //$scope.MaritalStatus = null;
 
     $scope.elemReady = function () {
         var getData = PatientFactory.GetPatientInformations();
@@ -252,7 +252,7 @@ app.controller("PatientController", function ($scope, alert, PatientFactory) {
             alert.warning("Something went wrong ! Please try again. ");
         });
     }
-
+    $scope.validation =validation.message;
     $scope.savePatientData = function (g, m, status) {
         var Patient = new Object();
         Patient.Email = $scope.Users.Email;
@@ -275,7 +275,10 @@ app.controller("PatientController", function ($scope, alert, PatientFactory) {
                 alert.warning("Something went wrong ! Please try again. ");
             });
         }
-    }
+        $rootScope.filledFields(Patient)
+       
+       
+}
 
 });
 

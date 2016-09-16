@@ -1,14 +1,14 @@
-﻿app.controller("PatientInformationsController", function ($scope, PatientInformationFactory, alert,allergyDialogue) {
+﻿app.controller("PatientInformationsController", function ($scope, PatientInformationFactory,$rootScope,validation, alert,allergyDialogue) {
 
-    $scope.FamilyHistoryCategories = null;
-    $scope.RiskFactorsCategories = null;
-    $scope.AllergyCategories = null;
-    $scope.PatientFamilyHistoryCategories = null;
-    $scope.PatientRiskFactorsCategories = null;
-    $scope.PatientAllergyCategories = null;
-    $scope.PatientFullInformation = null;
-    $scope.gender = null;
-    $scope.MaritalStatus = null;
+    //$scope.FamilyHistoryCategories = null;
+    //$scope.RiskFactorsCategories = null;
+    //$scope.AllergyCategories = null;
+    //$scope.PatientFamilyHistoryCategories = null;
+    //$scope.PatientRiskFactorsCategories = null;
+    //$scope.PatientAllergyCategories = null;
+    //$scope.PatientFullInformation = null;
+    //$scope.gender = null;
+    //$scope.MaritalStatus = null;
 
 
     $scope.Init = function () {
@@ -54,38 +54,36 @@
         $scope.BirthDate = $scope.PatientFullInformation[0].Patient_DOB;
         $scope.Status = $scope.PatientFullInformation[0].IsAlive;
         $scope.AgeGroup = $scope.PatientFullInformation[0].Description;
+
+        //differentiate first and subsequente visit
+        $rootScope.subsequentVisit = 'true'
+        validation.message;
     }
+        $scope.updateAllergy = function (allergyCategory) {   
+            allergyDialogue.updateAllergy(allergyCategory);
+        }
 
+    });
 
-    $scope.updateAllergy = function (allergyCategory) {   
-        allergyDialogue.updateAllergy(allergyCategory);
-    }
+    app.factory('PatientInformationFactory', function ($http) {
+        var fac = {};
 
-   
+        fac.GetPatientAllergies = function () {
+            return $http.get('../Patient/GetPatientAllergies');
+        }
 
-});
+        fac.GetPatientRiskFactors = function () {
+            return $http.get('../Patient/GetPatientRiskFactors');
+        }
 
+        fac.GetPatientFamilyHistories = function () {
+            return $http.get('../Patient/GetPatientFamilyHistory');
+        }
 
+        fac.GetPatientFullInformations = function () {
+            return $http.get('../Patient/GetPatientInformations');
+        }
 
-app.factory('PatientInformationFactory', function ($http) {
-    var fac = {};
-
-    fac.GetPatientAllergies = function () {
-        return $http.get('../Patient/GetPatientAllergies');
-    }
-
-    fac.GetPatientRiskFactors = function () {
-        return $http.get('../Patient/GetPatientRiskFactors');
-    }
-
-    fac.GetPatientFamilyHistories = function () {
-        return $http.get('../Patient/GetPatientFamilyHistory');
-    }
-
-    fac.GetPatientFullInformations = function () {
-        return $http.get('../Patient/GetPatientInformations');
-    }
-
-    return fac;
-});
+        return fac;
+    });
 

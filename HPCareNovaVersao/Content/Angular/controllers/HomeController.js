@@ -1,32 +1,34 @@
-﻿app.controller("homeController", function ($state, alert, searchDialogue, searchService) {
+﻿app.controller("homeController", function ($state, alert,validation, searchDialogue,$rootScope, searchService) {
     var vm = this;
-
-   
-
     vm.search;
     vm.visitManagerModal = function () {
-       
-            searchDialogue.searchPatient();
+        searchDialogue.searchPatient();
     }
+    
 
     vm.getDetails = function () {
 
+        var isFirst = $rootScope.subsequentVisit;
+        if (isFirst === 'false') {
+            $state.go('addPatientInfo')
+            validation.message = 'please fill empty fields before searching another patient';
+        } else {
 
-        var getData = searchService.SearchPatient(vm.search);
-        getData.then(function (response) {
-            if (response.data !== 'False') {
-                $state.go('consultPatientInfo')
+            var getData = searchService.SearchPatient(vm.search);
+            getData.then(function (response) {
+                if (response.data !== 'False') {
+                    $state.go('consultPatientInfo')
 
-            } else {
+                } else {
 
-                alert.warning('patient dont exist');
-            }
+                    alert.warning('patient dont exist');
+                }
 
-        }, function () {
-            alert.warning('Error in getting records');
-        });
+            }, function () {
+                alert.warning('Error in getting records');
+            });
+        }
     }
-
 });
 
 

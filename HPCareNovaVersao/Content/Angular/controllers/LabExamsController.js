@@ -3,6 +3,8 @@ var mcdtId = null;
 app.controller("LabExamsController", function ($scope, LabExamsFactory, alert, alertMcdt, $timeout) {
     $scope.mcdtsList = [];
     $scope.LabExams = null;
+    $scope.rowLimit = 20;
+    $scope.sortColumn = "McdtDate";
     $scope.id = null;//user id
 
     $scope.InitInformation = function () {
