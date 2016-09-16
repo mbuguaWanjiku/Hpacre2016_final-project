@@ -165,22 +165,19 @@ namespace PresentationLayer.Controllers {
             }
             List<double> list = new List<double>();
 
-            //using (SqlConnection connection = new SqlConnection("Data Source=SQL5025.myASP.NET;Initial Catalog=DB_A0ADFA_HPCareDBContext;User Id=DB_A0ADFA_HPCareDBContext_admin;Password=hpcare2016;")) {
-            //    SqlCommand command = new SqlCommand("select top 1(" + component + ") from " + discriminator + ";", connection);
+            using (SqlConnection connection = new SqlConnection("Data Source=SQL5025.myASP.NET;Initial Catalog=DB_A0ADFA_HPCareDBContext;User Id=DB_A0ADFA_HPCareDBContext_admin;Password=hpcare2016;")) {
+                SqlCommand command = new SqlCommand("select min(" + component + ") from (select top 2(" + component + ") from " + discriminator + ") a;", connection);
 
-            //    command.CommandType = CommandType.Text;
-            //    command.Connection = connection;
-            //    connection.Open();
-            //    DbDataReader dbDataReader = command.ExecuteReader();
+                command.CommandType = CommandType.Text;
+                command.Connection = connection;
+                connection.Open();
+                DbDataReader dbDataReader = command.ExecuteReader();
 
-            //while (dbDataReader.Read()){
-            //list.Add(dbDataReader.GetDouble(0));
-            //}
-            //}
-            //    dbDataReader.Close();
-            //}
+                while (dbDataReader.Read()) {
+                    list.Add(dbDataReader.GetDouble(0));
+                }
+            }
 
-            list.Add(5);
             return Json(list, JsonRequestBehavior.AllowGet);
         }
 
@@ -315,7 +312,7 @@ namespace PresentationLayer.Controllers {
             List<double> list = new List<double>();
 
             using (SqlConnection connection = new SqlConnection("Data Source=SQL5025.myASP.NET;Initial Catalog=DB_A0ADFA_HPCareDBContext;User Id=DB_A0ADFA_HPCareDBContext_admin;Password=hpcare2016;")) {
-                SqlCommand command = new SqlCommand("select top 1 * from " + discriminator + ";", connection);
+                SqlCommand command = new SqlCommand("select top 1 * from (select top 2 * from " + discriminator + " order by mcdt_id asc) as k order by k.mcdt_id desc;", connection);
 
                 command.CommandType = CommandType.Text;
                 command.Connection = connection;

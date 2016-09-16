@@ -43,8 +43,8 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                <tr ng-repeat="LabExams in mcdtsList">
-                                    <td><span ng-click="getPatientMcdts(LabExams.UserId)" class="fa fa-plus"></span></td>
+                                <tr ng-repeat="LabExams in mcdtsList" ng-hide="LabExams.Discriminator == '(Undefined)'">
+                                    <td><span ng-click="getPatientMcdts(LabExams.UserId)" class="fa fa-plus" ></span></td>
                                     <td> {{LabExams.UserName}} </td>
                                     <td> {{LabExams.Discriminator}} </td>
                                     <td> {{LabExams.McdtDate | jsonDate :'dd-MM-yyyy'}} </td>
