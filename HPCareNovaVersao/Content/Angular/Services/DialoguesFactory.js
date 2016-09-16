@@ -1,8 +1,6 @@
-﻿/// <reference path="../ModalViewsContent/modalLymphocyte.html" />
-/// <reference path="../ModalViewsContent/modalLymphocyte.html" />
+﻿
 
-
-app.factory('alert', function ($uibModal) {
+app.factory('alert', function ($uibModal, $http) {
 
     var fac = {};
     fac.show = function (action, event) {
@@ -39,22 +37,9 @@ app.factory('alert', function ($uibModal) {
         });
     }
 
-    //fac.visitManager = function () {
 
-    //    return $uibModal.open({
-    //        backdrop: 'static',
-    //        //keyboard: false,
-    //        templateUrl: 'VisitManager.html',
-    //        controller: function () {
-    //            var vm = this;
-             
-
-    //        },
-    //        controllerAs: 'vm'
-    //    });
-    //}
     fac.showObservation = function (obs) {
-     
+
         return $uibModal.open({
             templateUrl: '../Content/Angular/ModalViewsContent/modalObservation.html',
             controller: function () {
@@ -65,22 +50,6 @@ app.factory('alert', function ($uibModal) {
             controllerAs: 'vm'
         });
     }
-  
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
@@ -118,16 +87,38 @@ app.factory('alert', function ($uibModal) {
         });
     }
 
-    fac.updateAllergy = function (message) {
-        return $uibModal.open({
-            templateUrl: '../Content/Angular/ModalViewsContent/modalUpdateAllergy.html',
-            controller: function () {
-                var vm = this;
-                vm.observations = message;
-            },
-            controllerAs: 'vm'
-        });
-    }
+//    fac.updateAllergy = function (allergy) {
+//        return $uibModal.open({
+//            templateUrl: '../Content/Angular/ModalViewsContent/modalUpdateAllergy.html',
+//            controller: function () {
+//                var vm = this;
+//                vm.message = "debuggggg";
+//                vm.allergyUpdate = allergy;
 
-    return fac;
+//                vm.updateAllergyDB = function (update) {
+//                    alert("loadededdddddddddd");
+//                    alert(JSON.stringify(update));
+//                  //  post(update);
+//                    var postData = post(update);
+//                    postData.then(function (dt) {
+//                        alert("passed")
+//                    }, function () {
+//                        alert('Error in getting records');
+//                    });
+//                }
+//            },
+//            controllerAs: 'vm'
+//        });
+//        function post(allergy) {         
+//            var response = $http({
+//                method: "post",
+//                url: "../../../Patient/UpdateAllergies",
+//                data: allergy,
+//                dataType: "json",
+//            });
+//            alert("wwwwwwwwwwwwwwwwwww");
+//        }
+ 
+
+   return fac;
 });

@@ -18,6 +18,6 @@ namespace BusinessLayer.Implementation.ViewModels {
         public string Allergy_Name {
             get; set;
         }
-
+        public int allergyId { get; set; }
     }
 }

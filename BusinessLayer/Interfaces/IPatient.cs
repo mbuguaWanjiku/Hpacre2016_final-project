@@ -1,4 +1,5 @@
-﻿using DataLayer.Entities;
+﻿using BusinessLayer.Implementation.ViewModels;
+using DataLayer.Entities;
 using DataLayer.Entities.TreatmentEntities;
 using System;
 using System.Collections.Generic;
@@ -17,7 +18,7 @@ namespace BusinessLayer.Interfaces {
 
         void saveDataFromPatient(List<Patient> usersInformations);
 
-        void updateAllergies(List<AllergiesManager> allergies);
+        void updateAllergies(AllergiesViewModel allergy);
 
     }
 }

@@ -1,4 +1,5 @@
 ﻿using BusinessLayer.Implementation;
+using BusinessLayer.Implementation.ViewModels;
 using DataLayer.Entities;
 using DataLayer.Entities.UserEntities;
 using DataLayer.EntityFramework;
@@ -48,8 +49,8 @@ namespace PresentationLayer.Controllers {
         }
 
         [HttpPost]
-        public void UpdateAllergies(List<AllergiesManager> allergies) {
-            impPatient.updateAllergies(allergies);
+        public void UpdateAllergies(AllergiesViewModel allergy) {
+            impPatient.updateAllergies(allergy);
         }
 
         // ****************** "Criacao" do Patient ***************** //

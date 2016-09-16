@@ -1,4 +1,4 @@
-﻿app.controller("PatientInformationsController", function ($scope, PatientInformationFactory, alert) {
+﻿app.controller("PatientInformationsController", function ($scope, PatientInformationFactory, alert,allergyDialogue) {
 
     $scope.FamilyHistoryCategories = null;
     $scope.RiskFactorsCategories = null;
@@ -57,13 +57,11 @@
     }
 
 
-    $scope.updateAllergy = function (allergyCategory) {
-        alert.updateAllergy(allergyCategory);
+    $scope.updateAllergy = function (allergyCategory) {   
+        allergyDialogue.updateAllergy(allergyCategory);
     }
 
-    $scope.UpdateAllergyDatabase = function (allergyEndDate) {
-        alert.warning(allergyEndDate);
-    }
+   
 
 });
 

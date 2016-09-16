@@ -13,11 +13,13 @@ using System.Data.Common;
 using System.Web;
 using DataLayer.Entities.UserEntities;
 
-namespace BusinessLayer.Implementation {
+namespace BusinessLayer.Implementation
+{
     /// <summary>
     /// This class implements IPatient interface
     /// </summary>
-    public class impPatient : IPatient {
+    public class impPatient : IPatient
+    {
 
         private HPCareDBContext db;
         private List<AllergiesViewModel> allergyList;
@@ -31,7 +33,8 @@ namespace BusinessLayer.Implementation {
         /// Initializes a new instance of the <see cref="impPatient"/> class.
         /// </summary>
         /// <param name="db">The database.</param>
-        public impPatient(HPCareDBContext db) {
+        public impPatient(HPCareDBContext db)
+        {
             this.db = db;
             allergyList = new List<AllergiesViewModel>();
             riskList = new List<RiskFactorsViewModel>();
@@ -46,12 +49,15 @@ namespace BusinessLayer.Implementation {
         /// </summary>
         /// <param name="historiesList">The histories list.</param>
         /// <param name="familyHistoryManager">The family history manager.</param>
-        public void saveFamilyHistory(List<FamilyHistoryManager> historiesList, FamilyHistoryManager familyHistoryManager) {
+        public void saveFamilyHistory(List<FamilyHistoryManager> historiesList, FamilyHistoryManager familyHistoryManager)
+        {
             Patient patient = db.Users.Find(HttpContext.Current.Session["patientId"]) as Patient;
 
-            foreach (FamilyHistoryManager history in historiesList) {
+            foreach (FamilyHistoryManager history in historiesList)
+            {
 
-                familyHistoryManager = new FamilyHistoryManager {
+                familyHistoryManager = new FamilyHistoryManager
+                {
                     Carrier = history.Carrier,
                     FamilyHistoryManagerFamilyHistoryId = history.FamilyHistoryManagerFamilyHistoryId,
                     FamilyHistoryManager_PatientId = patient
@@ -68,12 +74,15 @@ namespace BusinessLayer.Implementation {
         /// </summary>
         /// <param name="allergiesList">The allergies list.</param>
         /// <param name="allergiesManager">The allergies manager.</param>
-        public void saveAllergies(List<AllergiesManager> allergiesList, AllergiesManager allergiesManager) {
+        public void saveAllergies(List<AllergiesManager> allergiesList, AllergiesManager allergiesManager)
+        {
             Patient patient = db.Users.Find(HttpContext.Current.Session["patientId"]) as Patient; //ir buscar ao session
 
-            foreach (AllergiesManager allergy in allergiesList) {
+            foreach (AllergiesManager allergy in allergiesList)
+            {
 
-                allergiesManager = new AllergiesManager {
+                allergiesManager = new AllergiesManager
+                {
                     AllergiesManager_AllergiesId = allergy.AllergiesManager_AllergiesId,
                     AllergiesManager_PatientId = patient,
                     Allergy_start_date = allergy.Allergy_start_date
@@ -90,12 +99,15 @@ namespace BusinessLayer.Implementation {
         /// </summary>
         /// <param name="risksList">The risks list.</param>
         /// <param name="riskFactorsManager">The risk factors manager.</param>
-        public void saveRiskFactors(List<RiskFactorsManager> risksList, RiskFactorsManager riskFactorsManager) {
+        public void saveRiskFactors(List<RiskFactorsManager> risksList, RiskFactorsManager riskFactorsManager)
+        {
             Patient patient = db.Users.Find(HttpContext.Current.Session["patientId"]) as Patient; //ir buscar atraves do session
 
-            foreach (RiskFactorsManager risk in risksList) {
+            foreach (RiskFactorsManager risk in risksList)
+            {
 
-                riskFactorsManager = new RiskFactorsManager {
+                riskFactorsManager = new RiskFactorsManager
+                {
                     RiskFactorsManagerRiskFactorId = risk.RiskFactorsManagerRiskFactorId,
                     RiskFactorsManager_PatientId = patient
                 };
@@ -110,35 +122,44 @@ namespace BusinessLayer.Implementation {
         /// Saves the data from patient.
         /// </summary>
         /// <param name="usersInformations">The users informations.</param>
-        public void saveDataFromPatient(List<Patient> usersInformations) {
+        public void saveDataFromPatient(List<Patient> usersInformations)
+        {
             Patient patient = db.Users.Find(HttpContext.Current.Session["patientId"]) as Patient; //session
 
-            foreach (Patient p in usersInformations) {
-                if (p.Email != null) {
+            foreach (Patient p in usersInformations)
+            {
+                if (p.Email != null)
+                {
                     patient.Email = p.Email;
                 }
 
-                if (p.Address != null) {
+                if (p.Address != null)
+                {
                     patient.Address = p.Address;
                 }
 
-                if (p.Telephone != null) {
+                if (p.Telephone != null)
+                {
                     patient.Telephone = p.Telephone;
                 }
 
-                if (p.Name != null) {
+                if (p.Name != null)
+                {
                     patient.Name = p.Name;
                 }
 
-                if (p.gender != null) {
+                if (p.gender != null)
+                {
                     AccessDatabaseGender(p.gender.GenderId, patient.User_id);
                 }
 
-                if (p.MaritalStatus != null) {
+                if (p.MaritalStatus != null)
+                {
                     AccessDatabaseStatus(p.MaritalStatus.MaritalStatusId, patient.User_id);
                 }
 
-                if (p.Patient_DOB != null) {
+                if (p.Patient_DOB != null)
+                {
                     patient.Patient_DOB = p.Patient_DOB;
                 }
 
@@ -153,8 +174,10 @@ namespace BusinessLayer.Implementation {
         /// </summary>
         /// <param name="gender">The gender.</param>
         /// <param name="idPatient">The identifier patient.</param>
-        public void AccessDatabaseGender(int gender, int idPatient) {
-            using (SqlConnection connection = new SqlConnection("Data Source=SQL5025.myASP.NET;Initial Catalog=DB_A0ADFA_HPCareDBContext;User Id=DB_A0ADFA_HPCareDBContext_admin;Password=hpcare2016;")) {
+        public void AccessDatabaseGender(int gender, int idPatient)
+        {
+            using (SqlConnection connection = new SqlConnection("Data Source=SQL5025.myASP.NET;Initial Catalog=DB_A0ADFA_HPCareDBContext;User Id=DB_A0ADFA_HPCareDBContext_admin;Password=hpcare2016;"))
+            {
                 SqlCommand command = new SqlCommand("update users set gender_GenderId = " + gender + " where user_id = " + idPatient + ";", connection);
 
                 command.CommandType = CommandType.Text;
@@ -170,8 +193,10 @@ namespace BusinessLayer.Implementation {
         /// </summary>
         /// <param name="status">The status.</param>
         /// <param name="idPatient">The identifier patient.</param>
-        public void AccessDatabaseStatus(int status, int idPatient) {
-            using (SqlConnection connection = new SqlConnection("Data Source=SQL5025.myASP.NET;Initial Catalog=DB_A0ADFA_HPCareDBContext;User Id=DB_A0ADFA_HPCareDBContext_admin;Password=hpcare2016;")) {
+        public void AccessDatabaseStatus(int status, int idPatient)
+        {
+            using (SqlConnection connection = new SqlConnection("Data Source=SQL5025.myASP.NET;Initial Catalog=DB_A0ADFA_HPCareDBContext;User Id=DB_A0ADFA_HPCareDBContext_admin;Password=hpcare2016;"))
+            {
                 SqlCommand command = new SqlCommand("update users set MaritalStatus_MaritalStatusId = " + status + " where user_id = " + idPatient + ";", connection);
 
                 command.CommandType = CommandType.Text;
@@ -187,7 +212,8 @@ namespace BusinessLayer.Implementation {
         /// </summary>
         /// <param name="idPatient">The identifier patient.</param>
         /// <returns></returns>
-        public List<AllergiesViewModel> GetPatientAllergies(int idPatient) {
+        public List<AllergiesViewModel> GetPatientAllergies(int idPatient)
+        {
             AccessGetPatientAllergies(idPatient);
             return allergyList;
         }
@@ -196,7 +222,8 @@ namespace BusinessLayer.Implementation {
         /// Accesses the get patient allergies.
         /// </summary>
         /// <param name="patientId">The patient identifier.</param>
-        private void AccessGetPatientAllergies(int patientId) {
+        private void AccessGetPatientAllergies(int patientId)
+        {
             Patient p = db.Users.Find(patientId) as Patient;
             AllergiesViewModel viewModel;
 
@@ -204,17 +231,22 @@ namespace BusinessLayer.Implementation {
                        from allergy in db.Allergies
                        where a.AllergiesManager_PatientId.User_id == p.User_id &&
                        allergy.Allergy_id == a.AllergiesManager_AllergiesId
-                       select new {
+                       select new
+                       {
                            a.Allergy_start_date,
                            a.Allergy_end_date,
-                           allergy.Allergy_Name
+                           allergy.Allergy_Name,
+                           allergy.Allergy_id
                        };
 
-            foreach (var item in list) {
-                viewModel = new AllergiesViewModel {
+            foreach (var item in list)
+            {
+                viewModel = new AllergiesViewModel
+                {
                     Allergy_end_date = item.Allergy_end_date,
                     Allergy_start_date = item.Allergy_start_date,
-                    Allergy_Name = item.Allergy_Name
+                    Allergy_Name = item.Allergy_Name,
+                    allergyId = item.Allergy_id
                 };
                 allergyList.Add(viewModel);
             }
@@ -226,7 +258,8 @@ namespace BusinessLayer.Implementation {
         /// </summary>
         /// <param name="idPatient">The identifier patient.</param>
         /// <returns></returns>
-        public List<RiskFactorsViewModel> GetPatientRiskFactors(int idPatient) {
+        public List<RiskFactorsViewModel> GetPatientRiskFactors(int idPatient)
+        {
             AccessGetPatientRiskFactors(idPatient);
             return riskList;
         }
@@ -235,7 +268,8 @@ namespace BusinessLayer.Implementation {
         /// Accesses the get patient risk factors.
         /// </summary>
         /// <param name="idPatient">The identifier patient.</param>
-        private void AccessGetPatientRiskFactors(int idPatient) {
+        private void AccessGetPatientRiskFactors(int idPatient)
+        {
             Patient p = db.Users.Find(idPatient) as Patient; //ir buscar ao session
             RiskFactorsViewModel viewModel;
 
@@ -243,12 +277,15 @@ namespace BusinessLayer.Implementation {
                        from risk in db.RiskFactors
                        where r.RiskFactorsManager_PatientId.User_id == p.User_id
                        && risk.RiskFActors_id == r.RiskFactorsManager_id
-                       select new {
+                       select new
+                       {
                            risk.RiskFactorName
                        };
 
-            foreach (var item in list) {
-                viewModel = new RiskFactorsViewModel {
+            foreach (var item in list)
+            {
+                viewModel = new RiskFactorsViewModel
+                {
                     RiskFactorName = item.RiskFactorName
                 };
 
@@ -261,7 +298,8 @@ namespace BusinessLayer.Implementation {
         /// </summary>
         /// <param name="idPatient">The identifier patient.</param>
         /// <returns></returns>
-        public List<FamilyHistoryViewModel> GetPatientFamilyHistory(int idPatient) {
+        public List<FamilyHistoryViewModel> GetPatientFamilyHistory(int idPatient)
+        {
             AccessGetPatientFamilyHistory(idPatient);
             return historyList;
         }
@@ -270,7 +308,8 @@ namespace BusinessLayer.Implementation {
         /// Accesses the get patient family history.
         /// </summary>
         /// <param name="patientId">The patient identifier.</param>
-        private void AccessGetPatientFamilyHistory(int patientId) {
+        private void AccessGetPatientFamilyHistory(int patientId)
+        {
             Patient p = db.Users.Find(patientId) as Patient; //ir buscar ao session
             FamilyHistoryViewModel viewModel;
 
@@ -278,13 +317,16 @@ namespace BusinessLayer.Implementation {
                        from family in db.FamilyHistories
                        where f.FamilyHistoryManager_PatientId.User_id == p.User_id
                        && family.FamilyHistory_id == f.FamilyHistoryManagerFamilyHistoryId
-                       select new {
+                       select new
+                       {
                            family.FamilyHistoryName,
                            f.Carrier
                        };
 
-            foreach (var item in list) {
-                viewModel = new FamilyHistoryViewModel {
+            foreach (var item in list)
+            {
+                viewModel = new FamilyHistoryViewModel
+                {
                     Carrier = item.Carrier,
                     FamilyHistoryName = item.FamilyHistoryName
                 };
@@ -299,7 +341,8 @@ namespace BusinessLayer.Implementation {
         /// </summary>
         /// <param name="idPatient">The identifier patient.</param>
         /// <returns></returns>
-        public List<PatientInformationViewModel> GetPatientInformation(int idPatient) {
+        public List<PatientInformationViewModel> GetPatientInformation(int idPatient)
+        {
             AccessGetPatientInformations(idPatient);
             return patientInformationList;
         }
@@ -308,8 +351,10 @@ namespace BusinessLayer.Implementation {
         /// Accesses the get patient informations.
         /// </summary>
         /// <param name="idPatient">The identifier patient.</param>
-        private void AccessGetPatientInformations(int idPatient) {
-            using (SqlConnection connection = new SqlConnection("Data Source=SQL5025.myASP.NET;Initial Catalog=DB_A0ADFA_HPCareDBContext;User Id=DB_A0ADFA_HPCareDBContext_admin;Password=hpcare2016;")) {
+        private void AccessGetPatientInformations(int idPatient)
+        {
+            using (SqlConnection connection = new SqlConnection("Data Source=SQL5025.myASP.NET;Initial Catalog=DB_A0ADFA_HPCareDBContext;User Id=DB_A0ADFA_HPCareDBContext_admin;Password=hpcare2016;"))
+            {
                 SqlCommand command = new SqlCommand("SELECT Users.Address, Users.Email, Genders.GenderName, MaritalStatus.MaritalStatusName, Users.Name, Users.Telephone, " +
                     " Users.User_identification,Patient.IsAlive,Patient.Patient_DOB,AgeGroups.Description FROM Genders INNER JOIN Users ON Genders.GenderId = Users.gender_GenderId " +
                     " INNER JOIN MaritalStatus ON Users.MaritalStatus_MaritalStatusId = MaritalStatus.MaritalStatusId INNER JOIN Patient ON Users.User_id = Patient.User_id " +
@@ -321,8 +366,10 @@ namespace BusinessLayer.Implementation {
                 DbDataReader dbDataReader = command.ExecuteReader();
                 PatientInformationViewModel viewModel;
 
-                while (dbDataReader.Read()) {
-                    viewModel = new PatientInformationViewModel {
+                while (dbDataReader.Read())
+                {
+                    viewModel = new PatientInformationViewModel
+                    {
                         Address = GetStringSafely(dbDataReader, 0),
                         Email = GetStringSafely(dbDataReader, 1),
                         gender = GetStringSafely(dbDataReader, 2),
@@ -345,7 +392,8 @@ namespace BusinessLayer.Implementation {
         /// <param name="reader">The reader.</param>
         /// <param name="colIndex">Index of the col.</param>
         /// <returns></returns>
-        private string GetStringSafely(DbDataReader reader, int colIndex) {
+        private string GetStringSafely(DbDataReader reader, int colIndex)
+        {
             return (reader.IsDBNull(colIndex) ? "-" : reader.GetString(colIndex));
         }
 
@@ -355,7 +403,8 @@ namespace BusinessLayer.Implementation {
         /// <param name="reader">The reader.</param>
         /// <param name="colIndex">Index of the col.</param>
         /// <returns></returns>
-        private DateTime GetDateDefault(DbDataReader reader, int colIndex) {
+        private DateTime GetDateDefault(DbDataReader reader, int colIndex)
+        {
             return (reader.IsDBNull(colIndex) ? new DateTime(1970, 01, 01) : reader.GetDateTime(colIndex));
         }
 
@@ -364,7 +413,8 @@ namespace BusinessLayer.Implementation {
         /// </summary>
         /// <param name="idPatient">The identifier patient.</param>
         /// <returns></returns>
-        public List<McdtViewModel> GetPatientMcdtsHistory(int idPatient) {
+        public List<McdtViewModel> GetPatientMcdtsHistory(int idPatient)
+        {
             AccessGetPatientMcdtsHistory(idPatient);
             return patientMcdtHistory;
         }
@@ -373,8 +423,10 @@ namespace BusinessLayer.Implementation {
         /// Accesses the get patient MCDTS history.
         /// </summary>
         /// <param name="idPatient">The identifier patient.</param>
-        private void AccessGetPatientMcdtsHistory(int idPatient) {
-            using (SqlConnection connection = new SqlConnection("Data Source=SQL5025.myASP.NET;Initial Catalog=DB_A0ADFA_HPCareDBContext;User Id=DB_A0ADFA_HPCareDBContext_admin;Password=hpcare2016;")) {
+        private void AccessGetPatientMcdtsHistory(int idPatient)
+        {
+            using (SqlConnection connection = new SqlConnection("Data Source=SQL5025.myASP.NET;Initial Catalog=DB_A0ADFA_HPCareDBContext;User Id=DB_A0ADFA_HPCareDBContext_admin;Password=hpcare2016;"))
+            {
                 SqlCommand command = new SqlCommand("SELECT MCDTs.MCDT_date, MCDTs.Discriminator FROM ClinicRegistryManagers INNER JOIN MCDTManagers ON ClinicRegistryManagers.ClinicRegistryManagerId = MCDTManagers.clinicRegistryManager_ClinicRegistryManagerId " +
                   " INNER JOIN MCDTStaffManagers ON MCDTManagers.MCDTStaffManager_MCDTStaffManager_id = MCDTStaffManagers.MCDTStaffManager_id INNER JOIN MCDTs ON " +
                    " MCDTStaffManagers.mcdt_MCDT_ID = MCDTs.MCDT_ID INNER JOIN Patient ON ClinicRegistryManagers.Clinic_patient_User_id = Patient.User_id INNER JOIN " +
@@ -386,8 +438,10 @@ namespace BusinessLayer.Implementation {
                 DbDataReader dbDataReader = command.ExecuteReader();
                 McdtViewModel viewModel;
 
-                while (dbDataReader.Read()) {
-                    viewModel = new McdtViewModel {
+                while (dbDataReader.Read())
+                {
+                    viewModel = new McdtViewModel
+                    {
                         McdtDate = dbDataReader.GetDateTime(0),
                         Discriminator = dbDataReader.GetString(1)
                     };
@@ -401,7 +455,8 @@ namespace BusinessLayer.Implementation {
         /// </summary>
         /// <param name="idPatient">The identifier patient.</param>
         /// <returns></returns>
-        public List<MedicationHistoryVm> GetPatientMedicationHistory(int idPatient) {
+        public List<MedicationHistoryVm> GetPatientMedicationHistory(int idPatient)
+        {
             AccessGetPatientMedicationHistory(idPatient);
             return patientMedicationHistory;
         }
@@ -410,8 +465,10 @@ namespace BusinessLayer.Implementation {
         /// Accesses the get patient medication history.
         /// </summary>
         /// <param name="idPatient">The identifier patient.</param>
-        private void AccessGetPatientMedicationHistory(int idPatient) {
-            using (SqlConnection connection = new SqlConnection("Data Source=SQL5025.myASP.NET;Initial Catalog=DB_A0ADFA_HPCareDBContext;User Id=DB_A0ADFA_HPCareDBContext_admin;Password=hpcare2016;")) {
+        private void AccessGetPatientMedicationHistory(int idPatient)
+        {
+            using (SqlConnection connection = new SqlConnection("Data Source=SQL5025.myASP.NET;Initial Catalog=DB_A0ADFA_HPCareDBContext;User Id=DB_A0ADFA_HPCareDBContext_admin;Password=hpcare2016;"))
+            {
                 SqlCommand command = new SqlCommand("SELECT Drug_Name, drugcategories.description, Medication_Start_date, Medication_end_date FROM Patient INNER " +
                     " JOIN ClinicRegistryManagers ON Patient.User_id = ClinicRegistryManagers.Clinic_patient_User_id INNER JOIN Users ON Patient.User_id = Users.User_id INNER  " +
                     " JOIN Users AS Users_1 ON Patient.User_id = Users_1.User_id CROSS JOIN Drugs INNER JOIN DrugCategories ON Drugs.Category_category_id = " +
@@ -423,8 +480,10 @@ namespace BusinessLayer.Implementation {
                 DbDataReader dbDataReader = command.ExecuteReader();
                 MedicationHistoryVm viewModel;
 
-                while (dbDataReader.Read()) {
-                    viewModel = new MedicationHistoryVm {
+                while (dbDataReader.Read())
+                {
+                    viewModel = new MedicationHistoryVm
+                    {
                         DrugName = dbDataReader.GetString(0),
                         Drugcategory = dbDataReader.GetString(1),
                         StartDate = dbDataReader.GetDateTime(2),
@@ -435,14 +494,12 @@ namespace BusinessLayer.Implementation {
             }
 
         }
-        public void updateAllergies(List<AllergiesManager> allergies) {
-            AllergiesManager allergyManager = db.AllergiesManagers.Find(allergies.First());
-
-            foreach (var item in allergies) {
-                allergyManager.Allergy_end_date = item.Allergy_end_date;
-            }
-
+        public void updateAllergies(AllergiesViewModel allergy)
+        {
+            AllergiesManager update = db.AllergiesManagers.Find(allergy.allergyId);
+            update.Allergy_end_date = allergy.Allergy_end_date;
             db.SaveChanges();
+
         }
     }
 }

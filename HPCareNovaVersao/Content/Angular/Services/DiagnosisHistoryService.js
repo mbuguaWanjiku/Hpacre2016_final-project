@@ -1,11 +1,6 @@
 ﻿app.factory('DiagnosisService', function ($http) {
 
-    ////get All  patient diseases
-    //this.getDiseases = function () {
-
-    //    return $http.get("../Diagnosis/GetPatientActiveDisease");
-    //};
-
+    
     var fac = {};
 
     //Deactivating patient disease
