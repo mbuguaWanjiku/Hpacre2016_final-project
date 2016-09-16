@@ -6,16 +6,10 @@ app.factory('allergyDialogue', function ($uibModal, $http) {
             templateUrl: '../Content/Angular/ModalViewsContent/modalUpdateAllergy.html',
             controller: function () {
                 var vm = this;
-                vm.message = "debuggggg";
-                vm.allergyUpdate = allergy;
-
                 vm.updateAllergyDB = function (update) {
-                    alert("loadededdddddddddd");
-                    alert(JSON.stringify(update));
-                    //  post(update);
+                  
                     var postData = post(update);
                     postData.then(function (dt) {
-                        alert("passed")
                     }, function () {
                         alert('Error in getting records');
                     });
@@ -30,7 +24,7 @@ app.factory('allergyDialogue', function ($uibModal, $http) {
                 data: allergy,
                 dataType: "json",
             });
-            alert("wwwwwwwwwwwwwwwwwww");
+            
         }
     }
 

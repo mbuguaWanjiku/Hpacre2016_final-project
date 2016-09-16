@@ -11,7 +11,7 @@
     </div>
 
     <div class="login-body">
-
+      <p class="alert-danger">@ViewBag.errorMessage</p>
         @using (Html.BeginForm("Register", "Account", new {
                 ReturnUrl = ViewBag.ReturnUrl
             }, FormMethod.Post, new {

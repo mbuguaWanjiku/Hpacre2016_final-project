@@ -37,6 +37,10 @@
     <script src="../Content/Angular/controllers/AdminController.js"></script>
     <script src="../Content/Angular/controllers/LogOutController.js"></script>
 
+    <script src="../Content/Angular/controllers/LoadIndexController.js"></script>
+    <script src="../Content/Angular/Services/SharedPropertiesService.js"></script>
+
+    <script src="../Content/Angular/controllers/SearchAllUsersController.js"></script>
 
     <!-- Bootstrap Core CSS -->
     <link href="/Content/bootstrap.css" rel='stylesheet' type='text/css' />
@@ -89,9 +93,9 @@
                                 <div ui-sref="addUser"><a href="#" style="margin-left:18px;"><i class="fa fa-user-plus"></i>&nbsp;&nbsp;&nbsp;&nbsp;Add Users</a></div>
                             </li>
 
-                            <!--<li>
-                                <div ui-sref="listUsers"><a href="#" style="margin-left:18px;"><i class="fa fa-users"></i>&nbsp;&nbsp;&nbsp;&nbsp;List Users</a></div>
-                            </li>-->
+                            <li>
+                                <div ui-sref="searchUsers"><a href="#" style="margin-left:18px;"><i class="fa fa-users"></i>&nbsp;&nbsp;&nbsp;&nbsp;search</a></div>
+                            </li>
 
                         </ul>
                     </div>
@@ -322,7 +326,8 @@
         <!-- //header-ends -->
         <!-- main content start-->
         <div id="page-wrapper">
-            <div class="main-page  " style="margin-top:13%;">
+            <div class="main-page  " style="margin-top:13%;" ng-controller="loadIndexCTR as vm" ng-init="vm.adminIndex()">
+                <span us-spinner="{radius:30, width:8, length: 16}" style="color:blue"></span>
 
 
                 <div data-ui-view="">

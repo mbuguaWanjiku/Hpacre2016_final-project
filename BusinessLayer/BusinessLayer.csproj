@@ -74,6 +74,7 @@
     <Compile Include="Implementation\ViewModels\StaffViewModel.cs" />
     <Compile Include="Implementation\ViewModels\TreatmentCategoryVM.cs" />
     <Compile Include="Implementation\ViewModels\TreatmentTypeVM.cs" />
+    <Compile Include="Implementation\ViewModels\UsersSearchVM.cs" />
     <Compile Include="Interfaces\ILabExams.cs" />
     <Compile Include="Interfaces\ImedicationHistory.cs" />
     <Compile Include="Interfaces\IObservations.cs" />

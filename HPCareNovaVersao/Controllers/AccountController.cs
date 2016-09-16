@@ -150,8 +150,11 @@ namespace PresentationLayer.Controllers {
                 //ViewBag.Name = new SelectList(context.Roles.ToList(), "Name", "Name");
                 AddErrors(result);
             }
+
             // If we got this far, something failed, redisplay form   
-            return View(model);
+            ViewBag.errorMessage = "Invalid data retry";
+            return Redirect("../Hpcare/HomeAdmin.html");
+            //  return View(model);
         }
 
         //

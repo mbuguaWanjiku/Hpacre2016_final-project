@@ -74,6 +74,15 @@ namespace PresentationLayer.Controllers {
         public ActionResult SearchPatient(string search) {
             return PartialView();
         }
+        public ActionResult SearchUsers()
+        {
+            return PartialView();
+        }
+        public JsonResult SearchAllusers()
+        {
+            List<UsersSearchVM> listUsers = new ImpHome().SearchUsers(context);
+            return Json(listUsers,JsonRequestBehavior.AllowGet);
+        }
 
         public bool Search(string search) {
             ImpHome homeImplementation = new ImpHome();
