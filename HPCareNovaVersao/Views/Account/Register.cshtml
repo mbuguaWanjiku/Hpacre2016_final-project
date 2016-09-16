@@ -21,69 +21,52 @@
             @Html.AntiForgeryToken()
 
             @Html.TextBoxFor(m => m.Email, new {
-               @class = "user",
-               placeholder = "Email",
-               required = "",
-               name = "email"
-           })
+           @class = "user",
+           placeholder = "Email",
+           required = "",
+           name = "email"
+       })
             @Html.ValidationMessageFor(m => m.Email, "", new {
-               @class = "text-danger"
-           })
+           @class = "text-danger"
+       })
 
             @Html.TextBoxFor(m => m.UserName, new {
-               @class = "user",
-               placeholder = "Name",
-               required = "",
-               name = "email"
-           })
+           @class = "user",
+           placeholder = "Name",
+           required = "",
+           name = "email"
+       })
             @Html.ValidationMessageFor(m => m.UserName, "", new {
-               @class = "text-danger"
-           })
+           @class = "text-danger"
+       })
 
             @Html.PasswordFor(m => m.Password, new {
-               @class = "ock",
-               placeholder = "Password",
-               name = "password"
-           })
+           @class = "ock",
+           placeholder = "Password",
+           name = "password"
+       })
             @Html.ValidationMessageFor(m => m.Password, "", new {
-               @class = "text-danger"
-           })
+           @class = "text-danger"
+       })
 
             @Html.PasswordFor(m => m.ConfirmPassword, new {
-               @class = "user",
-               placeholder = "Confirm Password",
-               name = "password"
-           })
+           @class = "user",
+           placeholder = "Confirm Password",
+           name = "password"
+       })
             @Html.ValidationMessageFor(m => m.Email, "", new {
-               @class = "text-danger"
-           })
+           @class = "text-danger"
+       })
 
             @Html.Label("User Role", new {
-               @class = "user"
-           })
-            @Html.DropDownList("UserRoles", (SelectList) ViewBag.Name, " ")
+           @class = "user"
+       })
+            @Html.DropDownList("UserRoles", (SelectList)ViewBag.Name, " ")
 
             <input type="submit" name="Sign In" value="Register">
         }
 
     </div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 </div>
 
