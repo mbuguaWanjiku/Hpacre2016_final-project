@@ -16,6 +16,12 @@ app.config(function ($stateProvider, $urlRouterProvider, $locationProvider) {
            templateUrl: "../Home/SearchPatient"
        })
 
+         .state("searchUsers", {
+             url: "/searchUsers",
+
+             templateUrl: "../Home/SearchUsers"
+         })
+
          .state("myInfo", {
              url: "/myInfo",
 

@@ -5,7 +5,6 @@
         searchDialogue.searchPatient();
     }
     
-
     vm.getDetails = function () {
 
         var isFirst = $rootScope.subsequentVisit;
@@ -29,9 +28,18 @@
             });
         }
     }
+    vm.searchUsers = function () {
+    vm.getData = searchService.SearchUsers();
+    getData.then(function (dt) {
+        vm.users = dt.data;
+        alert.success(JSON.stringify(dt.data));
+    }, function () {
+        alert.warning('Error in getting records');
+    });
+   
+}
+
 });
-
-
 
 
 app.factory('searchService', function ($http) {
@@ -40,6 +48,11 @@ app.factory('searchService', function ($http) {
     fac.SearchPatient = function (id) {
 
         return $http.get('../Home/Search?search=' + id)
+    }
+
+    fac.SearchUsers = function () {
+
+        return $http.get('../Home/SearchAllUsers')
     }
 
     return fac;
