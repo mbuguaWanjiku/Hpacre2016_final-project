@@ -72,15 +72,15 @@ namespace BusinessLayer.Implementation
                     Name = user.Name,
                     Address = user.Address,
                     Email = user.Email,
-                    Type = setUserType(1)
+                    Type = setUserType(user.UserType)
                 };
                 usersVM.Add(vm);
             }
 
             return usersVM;
         }
-        private string setUserType(int type)
-        {
+        private string setUserType(int type) { 
+       
             return (type == 0 ? "admin" : type == 1 ? "clinic": type == 2 ?"labTec":type ==3?"nurse":"Patient");
         }
     }

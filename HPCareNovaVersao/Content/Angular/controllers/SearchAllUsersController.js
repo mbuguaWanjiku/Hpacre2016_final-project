@@ -6,7 +6,6 @@
     var getData = searchService.SearchUsers();
     getData.then(function (dt) {
         vm.users = dt.data;
-        alert.success(JSON.stringify(dt.data));
     }, function () {
         alert.warning('Error in getting records');
     });
@@ -19,7 +18,7 @@
 app.factory('searchService', function ($http) {
     var fac = {};
     fac.SearchUsers = function () {
-        alert("called");
+      
         return $http.get('../Home/SearchAllUsers')
     }
 

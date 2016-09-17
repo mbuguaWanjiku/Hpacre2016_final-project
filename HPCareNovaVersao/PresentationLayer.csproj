@@ -254,7 +254,9 @@
     <Content Include="Content\Angular\Services\SharedPropertiesService.js" />
     <Content Include="Hpcare\LogOut.html" />
     <Content Include="Hpcare\VisitManager.html" />
+    <Content Include="Images\Homepage\estSetubal.png" />
     <Content Include="Images\Homepage\GoodBye.gif" />
+    <Content Include="Images\Homepage\LogOut.gif" />
     <Content Include="Scripts\angular-spinner.js" />
     <Content Include="Scripts\mcdts\McdtsDialogueFactory.js" />
     <Content Include="Scripts\mcdts\modalLymphocyte.html" />

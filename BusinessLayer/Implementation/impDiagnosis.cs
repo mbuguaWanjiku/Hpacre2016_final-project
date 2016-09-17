@@ -65,6 +65,7 @@ namespace BusinessLayer.Implementation {/// <summary>
         private void saveDiagnosisAUX(CID_DiseaseCode disCode) {
             CIDCode diseaseCode = db.CIDCodes.Where(x => x.CID_DiseaseCode.DiseaseCode == disCode.DiseaseCode &&
             x.CID_DiseaseCode.CIDCategory.CID_CategorID == disCode.CIDCategory.CID_CategorID).FirstOrDefault();
+
             Disease disease = new Disease { Disease_start_date = DateTime.Now, Disease_is_active = true };
             ClinicRegistryManager registry = SingletonClinicRegistry.GetInstance(db);
             try {
