@@ -27,7 +27,7 @@ namespace BusinessLayer.Implementation
         /// <param name="observationList">includes observation body and subject</param>
         public void SaveObservation(List<string> observationList)
         {
-            bool ISclassified = observationList[2] == "true" ? true : false;
+            bool ISclassified = observationList[2] == "True" ? true : false;
             db.Observations.Add(new Observations
             {
                 subject = observationList[0],
@@ -68,7 +68,7 @@ namespace BusinessLayer.Implementation
             foreach (ClinicRegistryManager reg in GetPatientClinicalRegisties())
             {
 
-                listVm.Add(GetObservationVM(reg));
+                listVm.AddRange(GetObservationVM(reg));
 
             }
             return listVm;
@@ -79,9 +79,10 @@ namespace BusinessLayer.Implementation
         /// </summary>
         /// <param name="registry"></param>
         /// <returns>the observation viewmodel data-subject,body,date and author</returns>
-        private ObservationsVM GetObservationVM(ClinicRegistryManager registry)
+        private List<ObservationsVM> GetObservationVM(ClinicRegistryManager registry)
         {
             ObservationsVM vm = null;
+            List<ObservationsVM> listObservationsVM = new List<ObservationsVM>();
             VisitManager vManager = null;
 
             db.Entry(registry).Reference(x => x.Staff_doctor).Load();
@@ -100,9 +101,10 @@ namespace BusinessLayer.Implementation
 
                     vm.Author = db.ClinicRegistryManagers.Where(x => x.ClinicRegistryManagerId == registry.ClinicRegistryManagerId).FirstOrDefault().Staff_doctor.Name;
                 }
+                listObservationsVM.Add(vm);
             }
 
-            return vm;
+            return listObservationsVM;
         }
         private List<Observations> SetListObservation(ClinicRegistryManager registry)
         {
