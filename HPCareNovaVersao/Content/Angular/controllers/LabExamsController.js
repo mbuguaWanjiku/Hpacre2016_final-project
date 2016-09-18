@@ -1,6 +1,6 @@
 ﻿var tempArray = [];
 var mcdtId = null;
-app.controller("LabExamsController", function ($scope, LabExamsFactory, alert, alertMcdt, $timeout) {
+app.controller("LabExamsController", function ($scope, LabExamsFactory, alert, alertMcdt) {
     $scope.mcdtsList = [];
     $scope.LabExams = null;
     $scope.rowLimit = 20;
@@ -93,6 +93,7 @@ app.controller("LabExamsController", function ($scope, LabExamsFactory, alert, a
 
     $scope.goBack = function () {
         $scope.id = null;
+        $scope.InitInformation();
     };
 
     // *********************************************************** //

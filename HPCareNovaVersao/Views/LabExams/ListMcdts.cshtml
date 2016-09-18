@@ -43,6 +43,7 @@
                     <input type="number" step="2" min="0" max="20" ng-model="rowLimit" placeholder="rows" style="width:140px" />
                 </div>
                 <!--End of filter-->
+            
                 <div  style="overflow:auto; height: 440px;">
                    
                     <div class="col-md-12" ng-show="id == null">
@@ -53,8 +54,8 @@
                                     <th>Patient Name</th>
                                     <th>MCDT Type</th>
                                     <th>MCDT Date</th>
-                                    <th>Lab Date In</th>
-                                    <th>Lab Date Out</th>
+                                    @*<th>Lab Date In</th>
+                                    <th>Lab Date Out</th>*@
                                 </tr>
                             </thead>
                             <tbody>
@@ -74,11 +75,11 @@
                         <table class="table table-hover">
                             <thead>
                                 <tr>
-                                    <th></th>
+                                    <th><span ng-click="goBack()" class="fa fa-reply"></span></th>
                                     <th>MCDT Type</th>
                                     <th>MCDT Date</th>
-                                    <th>Lab Date In</th>
-                                    <th>Lab Date Out</th>
+                                    @*<th>Lab Date In</th>
+                                    <th>Lab Date Out</th>*@
                                 </tr>
                             </thead>
                             <tbody>
@@ -91,7 +92,7 @@
                                 </tr>
                             </tbody>
                         </table>
-                        <span ng-click="goBack()" class="fa fa-reply"></span>
+                      
                     </div>
                 </div>
 
