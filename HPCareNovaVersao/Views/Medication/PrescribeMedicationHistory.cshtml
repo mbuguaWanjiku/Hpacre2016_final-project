@@ -12,12 +12,10 @@
                     </div>
                 </li>
                 <li>
-                    <a href="#">
-                        <div class="task-info" ng-controller="HelpController">
-                            <span class="task-desc">{{helpPrescribeMedicationHistory}}</span>
-                            <div class="clearfix"></div>
-                        </div>
-                    </a>
+                    <div class="modal-body" ng-controller="HelpController">
+                        <span class="task-desc">{{helpPrescribeMedicationHistory}}</span>
+                        <div class="clearfix"></div>
+                    </div>
                 </li>
             </ul>
         </li>
@@ -30,7 +28,7 @@
             <span class="glyphicon glyphicon-filter"></span>
 
             <select ng-model="sortColumn" class="dropDownOptions">
-                <option value="StartDate" selected ="selected">StartDate</option>
+                <option value="StartDate" selected="selected">StartDate</option>
                 <option value="EndDate">EndDate</option>
                 <option value="Drugcategory">Drug Category</option>
                 <option value="DrugName">Drug Name</option>
@@ -71,6 +69,6 @@
 
         </div>
 
-</div>
+    </div>
 
 </div>

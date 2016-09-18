@@ -1,5 +1,5 @@
-﻿app.controller("HelpController", function ($scope ) {
-    $scope.helpSearchPatient = 'Code to insert:  Unique identification of a  patient. Press Search in the end \nnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnn to proceed the search.';
+﻿app.controller("HelpController", function ($scope) {
+    $scope.helpSearchPatient = 'Code to insert: Unique identification of a  patient. Press Search in the end to proceed the search.';
 
     $scope.helpClassifyDisease = 'Create a new diagnosis for a patient: Insert the category then the sub-category. Press Save To Database to confirm the creation of the new diagnosis.'
 

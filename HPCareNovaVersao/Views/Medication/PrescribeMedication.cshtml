@@ -2,7 +2,7 @@
 <div class="col-md-1"></div>
 <fieldset ng-controller="PatientStatusController" ng-disabled="!PatientStatus">
 
-    <div class="panel panel-widget col-md-10 form-horizontal" ng-controller="MedicationController as vm">
+    <div class="panel panel-widget col-md-11 form-horizontal" ng-controller="MedicationController as vm">
         <ul class="nofitications-dropdown pull-right" style="margin-top:-4%;margin-right:-3%;">
 
             <li class="dropdown head-dpdn">
@@ -14,12 +14,10 @@
                         </div>
                     </li>
                     <li>
-                        <a href="#">
-                            <div class="task-info" ng-controller="HelpController">
-                                <span class="task-desc">{{helpPrescribeMedication}}</span>
-                                <div class="clearfix"></div>
-                            </div>
-                        </a>
+                        <div class="modal-body" ng-controller="HelpController">
+                            <span class="task-desc">{{helpPrescribeMedication}}</span>
+                            <div class="clearfix"></div>
+                        </div>
                     </li>
                 </ul>
             </li>
@@ -29,7 +27,7 @@
         </div>
 
 
-        <div class="well form-control-wrapper dropdown dropdown-toggle col-md-10">
+        <div class="well form-control-wrapper dropdown dropdown-toggle col-md-11">
             @*<label for="drug_category">Drug Category</label>*@
             @*<form id="drugsForm">*@
             <select id="drug_category"
@@ -176,4 +174,3 @@
 
     <!--//grids-->
 </fieldset>
-<div class="col-md-1"></div>
