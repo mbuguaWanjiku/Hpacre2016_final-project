@@ -36,6 +36,7 @@
                     <select ng-model="vm.sortColumn" class="dropDownOptions">
                         <option value="UserName" selected="selected">UserName</option>
                         <option value="Type">Type</option>
+                        <option value="User_identification">User ID</option>
                         <option value="Email">Email</option>
                         <option value="Address">Address</option>
                     </select>
@@ -55,6 +56,7 @@
                                     
                                     <th>Name</th>
                                     <th>Type</th>
+                                    <th>User ID</th>
                                     <th>Email</th>
                                     <th>Address</th>
                                 </tr>
@@ -64,6 +66,7 @@
                                     
                                     <td> {{user.Name}} </td>
                                     <td> {{user.Type}} </td>
+                                    <td>{{user.User_identification}}</td>
                                     <td> {{user.Email}} </td>
                                     <td> {{user.Address}} </td>
                                 </tr>

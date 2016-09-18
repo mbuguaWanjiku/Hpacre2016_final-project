@@ -10,7 +10,7 @@
          logOutService.logOut().then(function () {
              $interval(function () {
                  window.location = 'http://hpcare2016.com';
-             }, 700);
+             }, 600);
          });
      }
 });

@@ -25,6 +25,9 @@ namespace BusinessLayer.Implementation.ViewModels
         {
             get; set;
         }
-
+        public string User_identification
+        {
+            get; set;
+        }
     }
 }

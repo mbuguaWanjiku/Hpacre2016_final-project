@@ -72,6 +72,7 @@ namespace BusinessLayer.Implementation
                     Name = user.Name,
                     Address = user.Address,
                     Email = user.Email,
+                    User_identification = user.User_identification,
                     Type = setUserType(user.UserType)
                 };
                 usersVM.Add(vm);
