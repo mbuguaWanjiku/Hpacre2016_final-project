@@ -58,7 +58,7 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                <tr ng-repeat="LabExams in mcdtsList" ng-hide="LabExams.Discriminator == '(Undefined)'  | limitTo:rowLimit | orderBy:sortColumn">
+                                <tr ng-repeat="LabExams in mcdtsList | limitTo:rowLimit | orderBy:sortColumn" ng-hide="LabExams.Discriminator == '(Undefined)'">
                                     <td><span ng-click="getPatientMcdts(LabExams.UserId)" class="fa fa-plus" ></span></td>
                                     <td> {{LabExams.UserName}} </td>
                                     <td> {{LabExams.Discriminator}} </td>

@@ -47,7 +47,7 @@ app.controller("observationController", function (alert, observationService) {
         var getData = observationService.GetObservation(observation.observationID);
         getData.then(function (obs) {
 
-            alert.showObservation(obs.data[0]);
+           
 
         }, function () {
             alert.warning('Error in getting records');

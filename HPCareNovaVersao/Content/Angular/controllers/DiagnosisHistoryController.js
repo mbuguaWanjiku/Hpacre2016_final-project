@@ -22,7 +22,7 @@
         var getData = DiagnosisService.getPatientHistory(false);
         getData.then(function (diagnosis) {
             vm.diagnosesHistory = diagnosis.data;
-            alert(JSON.stringify(vm.diagnosesHistory))
+            
         }, function () {
             alert('Error in getting records');
         });
@@ -79,7 +79,7 @@ app.factory('DiagnosisService', function ($http) {
             data: JSON.stringify(prescribedMCDTS),
             dataType: "json",
         });
-        alert(response);
+       
         return response;
     };
 
