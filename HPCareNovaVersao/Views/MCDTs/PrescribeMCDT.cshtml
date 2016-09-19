@@ -1,6 +1,6 @@
 ﻿<div class="col-md-1"></div>
 <fieldset ng-controller="PatientStatusController" ng-disabled="!PatientStatus">
-    <div class="panel panel-widget col-md-10">
+    <div class="panel panel-widget col-md-11">
         <ul class="nofitications-dropdown pull-right" style="margin-top:-4%;margin-right:-3%;">
 
             <li class="dropdown head-dpdn">
@@ -12,12 +12,10 @@
                         </div>
                     </li>
                     <li>
-                        <a href="#">
-                            <div class="task-info" ng-controller="HelpController">
-                                <span class="task-desc">{{helpPrescribeMcdt}}</span>
-                                <div class="clearfix"></div>
-                            </div>
-                        </a>
+                        <div class="modal-body" ng-controller="HelpController">
+                            <span class="task-desc">{{helpPrescribeMcdt}}</span>
+                            <div class="clearfix"></div>
+                        </div>
                     </li>
                 </ul>
             </li>
@@ -105,4 +103,3 @@
 
     </div>
 </fieldset>
-@*<div class="col-md-1"></div>*@

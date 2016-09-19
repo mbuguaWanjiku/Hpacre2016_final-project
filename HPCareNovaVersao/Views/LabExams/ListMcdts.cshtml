@@ -13,19 +13,17 @@
                         </div>
                     </li>
                     <li>
-                        <a href="#">
-                            <div class="task-info" ng-controller="HelpController">
-                                <span class="task-desc">{{helpListMdts}}</span>
-                                <div class="clearfix"></div>
-                            </div>
-                        </a>
+                        <div class="modal-body" ng-controller="HelpController">
+                            <span class="task-desc">{{helpListMdts}}</span>
+                            <div class="clearfix"></div>
+                        </div>
                     </li>
                 </ul>
             </li>
         </ul>
         <div class="col-md-12" ng-controller="LabExamsController" ng-init="InitInformation()">
-            
-            <div class="row" >
+
+            <div class="row">
                 <div class="progressbar-heading grids-heading">
                     <h2>Lab Exams List</h2>
                 </div>
@@ -43,9 +41,9 @@
                     <input type="number" step="2" min="0" max="20" ng-model="rowLimit" placeholder="rows" style="width:140px" />
                 </div>
                 <!--End of filter-->
-            
-                <div  style="overflow:auto; height: 440px;">
-                   
+
+                <div style="overflow:auto; height: 440px;">
+
                     <div class="col-md-12" ng-show="id == null">
                         <table class="table table-hover">
                             <thead>
@@ -55,12 +53,12 @@
                                     <th>MCDT Type</th>
                                     <th>MCDT Date</th>
                                     @*<th>Lab Date In</th>
-                                    <th>Lab Date Out</th>*@
+                                        <th>Lab Date Out</th>*@
                                 </tr>
                             </thead>
                             <tbody>
                                 <tr ng-repeat="LabExams in mcdtsList | limitTo:rowLimit | orderBy:sortColumn" ng-hide="LabExams.Discriminator == '(Undefined)'">
-                                    <td><span ng-click="getPatientMcdts(LabExams.UserId)" class="fa fa-plus" ></span></td>
+                                    <td><span ng-click="getPatientMcdts(LabExams.UserId)" class="fa fa-plus"></span></td>
                                     <td> {{LabExams.UserName}} </td>
                                     <td> {{LabExams.Discriminator}} </td>
                                     <td> {{LabExams.McdtDate | jsonDate :'dd-MM-yyyy'}} </td>
@@ -79,7 +77,7 @@
                                     <th>MCDT Type</th>
                                     <th>MCDT Date</th>
                                     @*<th>Lab Date In</th>
-                                    <th>Lab Date Out</th>*@
+                                        <th>Lab Date Out</th>*@
                                 </tr>
                             </thead>
                             <tbody>
@@ -92,7 +90,7 @@
                                 </tr>
                             </tbody>
                         </table>
-                      
+
                     </div>
                 </div>
 

@@ -1,11 +1,12 @@
 ﻿
 <div class="col-md-1"></div>
 <fieldset ng-controller="PatientStatusController" ng-disabled="!PatientStatus">
-    <div class="panel panel-widget col-md-10">
+    <div class="panel panel-widget col-md-11">
         <ul class="nofitications-dropdown pull-right" style="margin-top:-4%;margin-right:-3%;">
 
             <li class="dropdown head-dpdn">
                 <a class="dropdown-toggle" data-toggle="dropdown" aria-expanded="false"><i class="fa fa-question-circle-o"></i></a>
+
                 <ul class="dropdown-menu anti-dropdown-menu">
                     <li>
                         <div class="notification_header">
@@ -13,8 +14,8 @@
                         </div>
                     </li>
                     <li>
-                        <a href="#">
-                            <div class="task-info" ng-controller="HelpController">
+                        <a>
+                            <div class="modal-body" ng-controller="HelpController">
                                 <span class="task-desc">{{helpClassifyDisease}}</span>
                                 <div class="clearfix"></div>
                             </div>
@@ -23,6 +24,7 @@
                 </ul>
             </li>
         </ul>
+
         <div class="progressbar-heading grids-heading">
             <h2>Classify Disease</h2>
         </div>
@@ -87,7 +89,6 @@
         <!--//grids-->
     </div>
 </fieldset>
-<div class="col-md-1"></div>
 <script type="text/javascript" src="~/Scripts/material.min.js"></script>
 <script type="text/javascript" src="~/Scripts/moment-with-locales.min.js"></script>
 <script type="text/javascript" src="~/Scripts/bootstrap-material-datetimepicker.js"></script>
